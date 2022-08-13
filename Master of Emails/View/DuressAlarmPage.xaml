@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="practice.Pages.DuressAlarmPage"
+             Title="Duress Alarm">
+
+    <ScrollView
+               Background="#FFA500">
+        <Border
+           HeightRequest="600"
+           WidthRequest="600"
+           Stroke="#C49B33"
+           StrokeThickness="4"
+           Background="White"
+           Padding="16,8"
+           HorizontalOptions="Center">
+
+            <Border.StrokeShape>
+                <RoundRectangle
+                           CornerRadius="40,0,0,40">
+                </RoundRectangle>
+            </Border.StrokeShape>
+
+            <VerticalStackLayout
+                            Padding="30"
+                            Spacing="40"
+                            HorizontalOptions="Center">
+
+                <HorizontalStackLayout
+                                      Spacing="10"
+                                      HorizontalOptions="Center">
+                    <Picker
+                       HorizontalOptions="Center"
+                       FontSize="16"
+                       FontFamily="Times"
+                       Title="Select Plaza">
+                    </Picker>
+
+                    <Picker
+                   HorizontalOptions="Center"
+                   FontSize="16"
+                   FontFamily="Times"
+                   Title="Select Lane/Lane Type">
+                    </Picker>
+                    
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout
+                                      Spacing="10"
+                                      HorizontalOptions="Center">
+
+                    <Picker
+                   HorizontalOptions="Center"
+                   FontSize="16"
+                   FontFamily="Times"
+                   Title="Select Alarm">
+                    </Picker>
+
+                    <Picker
+                   HorizontalOptions="Center"
+                   FontSize="16"
+                   FontFamily="Times"
+                   Title="Select Reason">
+                    </Picker>
+                </HorizontalStackLayout>
+
+                <Entry
+                  FontFamily="Times"
+                  FontSize="16"
+                  Placeholder="Supervisor Name"
+                  PlaceholderColor="DarkSlateGray">
+
+                </Entry>
+
+                <HorizontalStackLayout
+                                      Spacing="10"
+                                      HorizontalOptions="Center">
+                    <Label
+                          VerticalOptions="Center"
+                          Text="Select Date/Time"
+                          FontSize="16"
+                          FontFamily="Times">
+                    </Label>
+
+                    <DatePicker
+                               x:Name="date"
+                               FontSize="16"
+                               FontFamily="Times">
+                    </DatePicker>
+
+                    <TimePicker
+                               x:Name="time"
+                               FontSize="16"
+                               FontFamily="Times">
+                    </TimePicker>
+
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+
+        </Border>
+    </ScrollView>
+
+
+</ContentPage>

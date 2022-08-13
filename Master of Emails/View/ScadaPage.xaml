@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="practice.Pages.ScadaPage"
+             Title="SCADA">
+    <ScrollView
+               Background="#98fb98">
+        <Border
+           HeightRequest="600"
+           WidthRequest="600"
+           Stroke="#C49B33"
+           StrokeThickness="4"
+           Background="White"
+           Padding="16,8"
+           HorizontalOptions="Center">
+
+            <Border.StrokeShape>
+                <RoundRectangle
+                           CornerRadius="40,0,0,40">
+                </RoundRectangle>
+            </Border.StrokeShape>
+
+            <VerticalStackLayout
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            Padding="10"
+                            Spacing="40">
+
+                <HorizontalStackLayout
+                                      Spacing="30"
+                                      HorizontalOptions="Center">
+                    <Picker
+                           HorizontalOptions="Center"
+                           FontSize="16"
+                           FontFamily="Times"
+                           Title="Select Plaza">
+                    </Picker>
+
+                    <Label
+                          x:Name="bldg"
+                          HorizontalOptions="Center"
+                          FontSize="16"
+                          FontFamily="Times"
+                          Text="Bldg">
+                    </Label>
+
+                    <Picker
+                   HorizontalOptions="Center"
+                   FontSize="16"
+                   FontFamily="Times"
+                   Title="Select Technician">
+                    </Picker>
+
+                </HorizontalStackLayout>
+
+                <Entry
+                  FontFamily="Times"
+                  FontSize="16"
+                  Placeholder="Enter the Problem"
+                  PlaceholderColor="DarkSlateGray">
+
+                </Entry>
+
+                <Entry
+                  FontFamily="Times"
+                  FontSize="16"
+                  Placeholder="Enter BOM Item"
+                  PlaceholderColor="DarkSlateGray">
+
+                </Entry>
+
+                <Entry
+                  FontFamily="Times"
+                  FontSize="16"
+                  Placeholder="Enter MAF Number"
+                  PlaceholderColor="DarkSlateGray">
+
+                </Entry>
+
+                <Editor
+                  HeightRequest="100"
+                  FontFamily="Times"
+                  FontSize="16"
+                  Placeholder="Action Taken"
+                  PlaceholderColor="DarkSlateGray"
+                  AutoSize="TextChanges">
+
+                </Editor>
+
+
+
+            </VerticalStackLayout>
+
+        </Border>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="practice.Pages.ZfoPage"
+             Title="ZFO">
+
+    <ScrollView
+               Background="#228B22">
+        
+        <Border
+           HeightRequest="600"
+           WidthRequest="600"
+           Stroke="#C49B33"
+           StrokeThickness="4"
+           Background="white"
+           Padding="16,8"
+           HorizontalOptions="Center">
+            <Border.StrokeShape>
+                <RoundRectangle
+                           CornerRadius="40,0,0,40">
+                </RoundRectangle>
+            </Border.StrokeShape>
+
+            <VerticalStackLayout
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                Padding="5"
+                                Spacing="20">
+
+                <HorizontalStackLayout
+                                      Spacing="10"
+                                      HorizontalOptions="Center">
+                    <Picker
+                       x:Name="select_region"
+                       HorizontalOptions="Center"
+                       FontSize="16"
+                       FontFamily="Times"
+                       Title="Select region">
+                    </Picker>
+
+                    <Picker
+                       x:Name="plaza"
+                       HorizontalOptions="Center"
+                       FontSize="16"
+                       FontFamily="Times"
+                       Title="Select Plaza">
+                    </Picker>
+
+                    <Picker
+                       x:Name="lane"
+                       HorizontalOptions="Center"
+                       FontSize="16"
+                       FontFamily="Times"
+                       Title="Select Lane/Lane Type">
+                    </Picker>
+                </HorizontalStackLayout>
+
+                <Entry
+                      x:Name="requestor"
+                      FontFamily="Times"
+                      FontSize="16"
+                      Placeholder="Requestor"
+                      PlaceholderColor="DarkSlateGray">
+                </Entry>
+
+                <Entry
+                      x:Name="reason"
+                      FontFamily="Times"
+                      FontSize="16"
+                      Placeholder="Reason"
+                      PlaceholderColor="DarkSlateGray">
+                </Entry>
+
+                <HorizontalStackLayout
+                                      Spacing="10"
+                                      HorizontalOptions="Center">
+                    <Label
+                          VerticalOptions="Center"
+                          Text="Select Start Date/Time"
+                          FontSize="16"
+                          FontFamily="Times">
+                    </Label>
+
+                    <DatePicker
+                               x:Name="start_date"
+                               FontSize="16"
+                               FontFamily="Times">
+                    </DatePicker>
+
+                    <TimePicker
+                               x:Name="start_time"
+                               FontSize="16"
+                               FontFamily="Times">
+                    </TimePicker>
+
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout
+                                      Spacing="10"
+                                      HorizontalOptions="Center">
+                    <Label
+                          VerticalOptions="Center"
+                          Text="Select End Date/Time"
+                          FontSize="16"
+                          FontFamily="Times">
+                    </Label>
+
+                    <DatePicker
+                               x:Name="end_date"
+                               FontSize="16"
+                               FontFamily="Times">
+                    </DatePicker>
+
+                    <TimePicker
+                               x:Name="end_time"
+                               FontSize="16"
+                               FontFamily="Times">
+                    </TimePicker>
+
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout
+                                      HorizontalOptions="End">
+                    <Label
+                          FontSize="16"
+                          FontFamily="Times"
+                          HorizontalOptions="Center"
+                          VerticalOptions="Center"
+                          Text="TBD">
+                    </Label>
+                    <CheckBox
+                             x:Name="tbd"
+                             Color="Red">
+
+                    </CheckBox>
+                </HorizontalStackLayout>
+               
+            </VerticalStackLayout>
+            
+        </Border>
+
+    </ScrollView>
+    
+</ContentPage>
