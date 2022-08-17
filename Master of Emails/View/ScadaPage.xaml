@@ -21,76 +21,142 @@
             </Border.StrokeShape>
 
             <VerticalStackLayout
-                            VerticalOptions="Center"
-                            HorizontalOptions="Center"
                             Padding="10"
-                            Spacing="40">
+                            Spacing="40"
+                            VerticalOptions="Center">
 
                 <HorizontalStackLayout
-                                      Spacing="30"
+                                      Spacing="10"
                                       HorizontalOptions="Center">
                     <Picker
-                           HorizontalOptions="Center"
-                           FontSize="16"
-                           FontFamily="Times"
-                           Title="Select Plaza">
+                       x:Name="select_plaza"
+                       HorizontalOptions="Center"
+                       FontSize="16"
+                       FontFamily="Times"
+                       Title="Select Plaza">
                     </Picker>
 
-                    <Label
-                          x:Name="bldg"
-                          HorizontalOptions="Center"
-                          FontSize="16"
-                          FontFamily="Times"
-                          Text="Bldg">
-                    </Label>
+                    <Entry
+                        Placeholder="Building Number"
+                        PlaceholderColor="DarkSlateGray"
+                        x:Name="bldg"     
+                        HorizontalOptions="Center"
+                        FontSize="16"
+                        FontFamily="Times"
+                        HeightRequest="10">
+                    </Entry>
 
-                    <Picker
-                   HorizontalOptions="Center"
-                   FontSize="16"
-                   FontFamily="Times"
-                   Title="Select Technician">
-                    </Picker>
+                    <Entry
+                        Placeholder="Mile Post"
+                        PlaceholderColor="DarkSlateGray"
+                        x:Name="mp"     
+                        HorizontalOptions="Center"
+                        FontSize="16"
+                        FontFamily="Times"
+                        HeightRequest="10">
+                    </Entry>
 
                 </HorizontalStackLayout>
 
-                <Entry
-                  FontFamily="Times"
-                  FontSize="16"
-                  Placeholder="Enter the Problem"
-                  PlaceholderColor="DarkSlateGray">
+                <HorizontalStackLayout
+                                      Spacing="10"
+                                      HorizontalOptions="Center">
+                    <Picker
+                       x:Name="select_alarm"
+                       HorizontalOptions="Center"
+                       FontSize="16"
+                       FontFamily="Times"
+                       Title="Select Alarm">
+                    </Picker>
 
-                </Entry>
+                    <Picker
+                   x:Name="select_contact"
+                   HorizontalOptions="Center"
+                   FontSize="16"
+                   FontFamily="Times"
+                   Title="Select Contact">
+                    </Picker>
 
-                <Entry
-                  FontFamily="Times"
-                  FontSize="16"
-                  Placeholder="Enter BOM Item"
-                  PlaceholderColor="DarkSlateGray">
+                    <Entry
+                      x:Name="Contact_phone_number"
+                      FontFamily="Times"
+                      FontSize="16"
+                      Placeholder="Contact Phone Number"
+                      PlaceholderColor="DarkSlateGray"
+                      HeightRequest="10">
+                    </Entry>
 
-                </Entry>
+                </HorizontalStackLayout>
 
-                <Entry
-                  FontFamily="Times"
-                  FontSize="16"
-                  Placeholder="Enter MAF Number"
-                  PlaceholderColor="DarkSlateGray">
+                <HorizontalStackLayout
+                                      Spacing="10"
+                                      HorizontalOptions="Center">
+                    <Label
+                          VerticalOptions="Center"
+                          Text="Select Date/Time"
+                          FontSize="16"
+                          FontFamily="Times">
+                    </Label>
 
-                </Entry>
+                    <DatePicker
+                               x:Name="date"
+                               FontSize="16"
+                               FontFamily="Times">
+                    </DatePicker>
 
-                <Editor
-                  HeightRequest="100"
-                  FontFamily="Times"
-                  FontSize="16"
-                  Placeholder="Action Taken"
-                  PlaceholderColor="DarkSlateGray"
-                  AutoSize="TextChanges">
+                    <TimePicker
+                               x:Name="time"
+                               FontSize="16"
+                               FontFamily="Times">
+                    </TimePicker>
 
-                </Editor>
+                </HorizontalStackLayout>
 
+                <HorizontalStackLayout
+                                      Spacing="10"
+                                      HorizontalOptions="Center">
 
+                    <VerticalStackLayout>
+                        <RadioButton
+                                    x:Name="after_hours"
+                                    FontSize="16"
+                                    FontFamily="Times"
+                                    Content="After Hours"
+                                    Value="After Hours">
+                        </RadioButton>
+
+                        <RadioButton
+                                    x:Name="normal_hours"
+                                    FontSize="16"
+                                    FontFamily="Times"
+                                    Content="Normal Hours"
+                                    Value="Normal Hours">
+                        </RadioButton>
+                    </VerticalStackLayout>
+
+                    <Entry
+                      x:Name="work_order_number"
+                      FontFamily="Times"
+                      FontSize="16"
+                      Placeholder="Work Order Number"
+                      PlaceholderColor="DarkSlateGray"
+                      HeightRequest="10">
+                    </Entry>
+
+                    <Entry
+                      x:Name="temperature"
+                      FontFamily="Times"
+                      FontSize="16"
+                      Placeholder="Temperature"
+                      PlaceholderColor="DarkSlateGray"
+                      HeightRequest="10">
+                    </Entry>
+
+                </HorizontalStackLayout>
 
             </VerticalStackLayout>
 
         </Border>
+
     </ScrollView>
 </ContentPage>

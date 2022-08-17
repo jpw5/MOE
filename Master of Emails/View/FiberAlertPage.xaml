@@ -3,10 +3,183 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="practice.Pages.FiberAlertPage"
              Title="Fiber Alert">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView
+               Background="#D9D9D9">
+
+        <Border
+           HeightRequest="600"
+           WidthRequest="600"
+           Stroke="#C49B33"
+           StrokeThickness="4"
+           Background="white"
+           Padding="16,8"
+           HorizontalOptions="Center">
+            <Border.StrokeShape>
+                <RoundRectangle
+                           CornerRadius="40,0,0,40">
+                </RoundRectangle>
+            </Border.StrokeShape>
+
+            <VerticalStackLayout
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                Padding="5"
+                                Spacing="20">
+
+                <Picker
+                       x:Name="select_region"
+                       HorizontalOptions="Center"
+                       FontSize="16"
+                       FontFamily="Times"
+                       Title="Select region">
+                </Picker>
+
+                <HorizontalStackLayout
+                                      Spacing="10"
+                                      HorizontalOptions="Center">
+
+
+                    <Entry
+                        Placeholder="Mile Post"
+                        PlaceholderColor="DarkSlateGray"
+                        x:Name="mp"     
+                        HorizontalOptions="Center"
+                        FontSize="16"
+                        FontFamily="Times"
+                        HeightRequest="10">
+                    </Entry>
+
+                    <Entry
+                        Placeholder="Affected Area"
+                        PlaceholderColor="DarkSlateGray"
+                        x:Name="affected"     
+                        HorizontalOptions="Center"
+                        FontSize="16"
+                        FontFamily="Times"
+                        HeightRequest="10"
+                        WidthRequest="200">
+                    </Entry>
+
+                    <Entry
+                        Placeholder="Who"
+                        PlaceholderColor="DarkSlateGray"
+                        x:Name="who"     
+                        HorizontalOptions="Center"
+                        FontSize="16"
+                        FontFamily="Times"
+                        HeightRequest="10"
+                        WidthRequest="150">
+                    </Entry>
+
+                </HorizontalStackLayout>
+
+                <Entry
+                      x:Name="fiber_technician"
+                      FontFamily="Times"
+                      FontSize="16"
+                      Placeholder="Fiber Technician"
+                      PlaceholderColor="DarkSlateGray">
+                </Entry>
+
+                <Entry
+                      x:Name="amount_of_fiber_cut"
+                      FontFamily="Times"
+                      FontSize="16"
+                      Placeholder="Amount Of Fiber Cut"
+                      PlaceholderColor="DarkSlateGray">
+                </Entry>
+
+                <HorizontalStackLayout
+                                      Spacing="10"
+                                      HorizontalOptions="Center">
+                    <Entry
+                      x:Name="reported_by"
+                       HeightRequest="10"
+                        WidthRequest="200"
+                      FontFamily="Times"
+                      FontSize="16"
+                      Placeholder="Reported By"
+                      PlaceholderColor="DarkSlateGray">
+                    </Entry>
+
+                    <Entry
+                      x:Name="phone"
+                      HeightRequest="10"
+                      WidthRequest="200"
+                      FontFamily="Times"
+                      FontSize="16"
+                      Placeholder="Phone Number"
+                      PlaceholderColor="DarkSlateGray">
+                    </Entry>
+                </HorizontalStackLayout>
+
+
+                <HorizontalStackLayout
+                                      Spacing="10"
+                                      HorizontalOptions="Center">
+                    <Label
+                          VerticalOptions="Center"
+                          Text="Select Start Date/Time"
+                          FontSize="16"
+                          FontFamily="Times">
+                    </Label>
+
+                    <DatePicker
+                               x:Name="start_date"
+                               FontSize="16"
+                               FontFamily="Times">
+                    </DatePicker>
+
+                    <TimePicker
+                               x:Name="start_time"
+                               FontSize="16"
+                               FontFamily="Times">
+                    </TimePicker>
+
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout
+                                      Spacing="10"
+                                      HorizontalOptions="Center">
+                    <Label
+                          VerticalOptions="Center"
+                          Text="Select End Date/Time"
+                          FontSize="16"
+                          FontFamily="Times">
+                    </Label>
+
+                    <DatePicker
+                               x:Name="end_date"
+                               FontSize="16"
+                               FontFamily="Times">
+                    </DatePicker>
+
+                    <TimePicker
+                               x:Name="end_time"
+                               FontSize="16"
+                               FontFamily="Times">
+                    </TimePicker>
+
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout
+                                      HorizontalOptions="Start">
+                    <Label
+                          FontSize="16"
+                          FontFamily="Times"
+                          HorizontalOptions="Center"
+                          VerticalOptions="Center"
+                          Text="TBD">
+                    </Label>
+                    <CheckBox
+                             x:Name="tbd"
+                             Color="Red">
+                    </CheckBox>
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+
+        </Border>
+
+    </ScrollView>
 </ContentPage>
