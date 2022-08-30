@@ -6,4 +6,10 @@ public partial class DuressAlarmPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void ClearButtonClicked(object sender, EventArgs e)
+    {
+        //Shell.Current.GoToAsync("PriorityOneMafPage");
+    }
+
 }

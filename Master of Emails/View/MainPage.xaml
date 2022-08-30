@@ -101,8 +101,7 @@
                             Padding="20">
             <SearchBar
                       x:Name="plaza_search_bar"
-                      SearchButtonPressed="plaza_search"
-                      IsTextPredictionEnabled="True"
+                      SearchButtonPressed="Plaza_search"
                       Margin="20"
                       Placeholder="Plaza Lookup"
                       FontSize="20"

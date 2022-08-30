@@ -28,23 +28,25 @@
                                 Spacing="20">
 
                 <HorizontalStackLayout
-                                      Spacing="10"
-                                      HorizontalOptions="Center">
+                                      Spacing="20"
+                                      HorizontalOptions="Center"
+                                      VerticalOptions="Center">
                     <Picker
-                       x:Name="select_region"
+                       x:Name="selectRegion"
+                       FontAutoScalingEnabled="False"
                        HorizontalOptions="Center"
+                       VerticalOptions="Center"
                        FontSize="16"
                        FontFamily="Times"
                        Title="Select region">
                     </Picker>
 
-                    <Picker
-                       x:Name="plaza"
-                       HorizontalOptions="Center"
-                       FontSize="16"
-                       FontFamily="Times"
-                       Title="Select Plaza">
-                    </Picker>
+                    <ListView
+                       x:Name="selectPlaza"
+                       SeparatorColor="Red"
+                       VerticalScrollBarVisibility="Always"
+                       HorizontalOptions="Center">
+                    </ListView>
 
                     <Picker
                        x:Name="lane"

@@ -29,12 +29,13 @@
                 <HorizontalStackLayout
                                       Spacing="10"
                                       HorizontalOptions="Center">
-                    <Picker
+                    <ListView
+                       x:Name="selectPlaza"
+                       ItemSelected="PlazaSelected"
                        HorizontalOptions="Center"
-                       FontSize="16"
-                       FontFamily="Times"
-                       Title="Select Plaza">
-                    </Picker>
+                       VerticalOptions="Center" 
+                       VerticalScrollBarVisibility="Always">
+                    </ListView>
 
                     <Picker
                    HorizontalOptions="Center"

@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="practice.Pages.DuressAlarmPage"
+             
              Title="Duress Alarm">
 
     <ScrollView
@@ -96,6 +97,26 @@
                                FontFamily="Times">
                     </TimePicker>
 
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout
+                                      HorizontalOptions="End"
+                                      Spacing="10">
+
+                    <Button
+                           Text="Clear"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           Clicked="ClearButtonClicked">
+                        
+                    </Button>
+
+
+                    <Button
+                           Text="Email">
+
+                    </Button>
+                    
                 </HorizontalStackLayout>
 
             </VerticalStackLayout>

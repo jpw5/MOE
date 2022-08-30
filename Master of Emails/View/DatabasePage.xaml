@@ -3,10 +3,91 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="practice.Pages.DatabasePage"
              Title="Database">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ScrollView>
+        <Grid Padding="5" RowSpacing="1" ColumnSpacing="1">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Entry x:Name="newRegion"
+           PlaceholderColor="Black"
+           Placeholder="Enter Region" />
+
+        <Button Text="Add Region"
+            Grid.Row="1"
+            Clicked="OnNewRegionButtonClicked" />
+
+        <Entry x:Name="deleteRegion"
+           Grid.Row="2"
+           Placeholder="Enter a Region ID to Delete from Database" 
+           PlaceholderColor="Black"/>
+
+        <Button Text="Delete Region"
+            Grid.Row="3"
+            Clicked="OnDeleteRegionButtonClicked"
+             />
+
+        <Button Text="Get All Regions"
+            Grid.Row="4"
+            Clicked="OnGetRegionButtonClicked" />
+
+        <Entry x:Name="newPlazaId"
+           Grid.Row="5"
+           Placeholder="Enter New Plaza ID" 
+           PlaceholderColor="Black"/>
+
+        <Entry x:Name="newPlazaName"
+           Grid.Row="6"
+           Placeholder="Enter New Plaza Name" 
+           PlaceholderColor="Black"/>
+
+        <Entry x:Name="newPlazaRoadway"
+           Grid.Row="7"
+           Placeholder="Enter New Plaza Roadway"
+           PlaceholderColor="Black"/>
+
+        <Entry x:Name="newPlazaMilepost"
+           Grid.Row="8"
+           Placeholder="Enter New Plaza Mile Post" 
+           PlaceholderColor="Black"/>
+
+        <Entry x:Name="newPlazaRegionName"
+           Grid.Row="9"
+           Placeholder="Enter New Plaza Region" 
+           PlaceholderColor="Black"/>
+
+        <Entry x:Name="newPlazaRegionPhoneNumber"
+           Grid.Row="10"
+           Placeholder="Enter New Plaza Phone Number" 
+           PlaceholderColor="Black"/>
+
+        <Button Text="Add Plaza"
+            Grid.Row="11"
+            Clicked="OnNewPlazaButtonClicked" />
+
+         <Button Text="Get All Plazas"
+            Grid.Row="12"
+            Clicked="OnGetPlazaButtonClicked" />
+        </Grid>
+    </ScrollView>
+
 </ContentPage>

@@ -52,4 +52,9 @@
 	  <None Remove="Resources\Fonts\TimesNewRoman.otf" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="Google.Apis.Compute.v1" Version="1.57.0.2777" />
+	  <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+	</ItemGroup>
+
 </Project>

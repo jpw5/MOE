@@ -1,18 +1,49 @@
-﻿namespace Master_of_Emails;
+﻿using Master_of_Emails.Table_Repositories;
+using Master_of_Emails.Tables;
+using SQLite;
+
+namespace Master_of_Emails;
 
 public partial class MainPage : ContentPage
 {
+    public TollPlazaRepository PlazaRepo = new();
+    public string StatusMessage;
     public MainPage()
     {
         InitializeComponent();
     }
 
-    public string Text { get; set; }
+    public string Text;
 
-    void plaza_search(object sender, EventArgs e)
+    void Plaza_search(object sender, EventArgs e)
     {
-        //plaza_search_result_phone_label.Text = plaza_search_result_phone_label.Text + plaza_search_bar.Text;
 
+        try
+        {
+
+            TableQuery<TollPlaza> tollPlazas = PlazaRepo.PlazaQuery(Int32.Parse(plaza_search_bar.Text));
+            
+            if (!tollPlazas.Any())
+            {
+                DisplayAlert("Failed to Retrive", "Please enter a valid Plaza ID Number Or The Plaza ID does not exist. " + StatusMessage, "Close");
+            }
+            else
+            {
+                foreach (TollPlaza plaza in tollPlazas)
+                {
+                    plaza_search_result_phone_label.Text = "Phone: " + plaza.Plaza_phone_number;
+                    plaza_search_result_name_label.Text = "Plaza: " + plaza.Plaza_name + " " + plaza.Plaza_roadway + " Mile Post " + plaza.Plaza_milepost + " " + plaza.Plaza_region;
+                }
+            }
+           
+
+        }
+
+        catch
+        {
+            DisplayAlert("Failed to Retrive", "Please enter a valid Plaza ID Number Or The Plaza ID does not exist. " + StatusMessage, "Close");
+        }
+       
     }
 
     void person_search(object sender, EventArgs e)
