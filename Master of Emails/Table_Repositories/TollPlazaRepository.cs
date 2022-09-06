@@ -16,8 +16,8 @@ namespace Master_of_Emails.Table_Repositories
         public DB DB;
         public string StatusMessage;
 
+
         public static SQLiteConnection DatabaseConnection { get; private set; }
-        public string PhoneNumber { get; private set; }
 
         public static void Init()
         {
@@ -28,7 +28,6 @@ namespace Master_of_Emails.Table_Repositories
 
         public void AddPlaza(int Plaza_id, string Plaza_name, string Plaza_roadway, int Plaza_milepost, string Plaza_region, string Plaza_phone_number)
         {
-          
                 Init();
 
             try
@@ -54,10 +53,12 @@ namespace Master_of_Emails.Table_Repositories
             }
         }
 
-        public static void RemovePlaza(int Plaza_id) { 
-            
-          
-        
+        public void DeletePlaza(int Plaza_id) {
+
+            Init();
+
+            DatabaseConnection.Delete<TollPlaza>(Plaza_id);
+            StatusMessage = "Plaza Deleted";
         }
 
         public List<TollPlaza> GetPlazas()
@@ -79,12 +80,12 @@ namespace Master_of_Emails.Table_Repositories
 
         }  
 
-         public TableQuery<TollPlaza> PlazaQuery(int Plaza_id_search)
+         public TableQuery<TollPlaza> PlazaQuery(int Plaza_Id)
         {
             Init();
 
             StatusMessage = string.Format("Failed to retrieve data.");
-            return DatabaseConnection.Table<TollPlaza>().Where(value => value.Plaza_id.Equals(Plaza_id_search));
+            return DatabaseConnection.Table<TollPlaza>().Where(value => value.Plaza_id.Equals(Plaza_Id));
         }
 
     }

@@ -2,10 +2,18 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="practice.Pages.DatabasePage"
+             xmlns:viewmodel="clr-namespace:Master_of_Emails.ViewModels"
+             x:DataType="viewmodel:DatabasePageViewModel"
              Title="Database">
 
-    <ScrollView>
-        <Grid Padding="5" RowSpacing="1" ColumnSpacing="1">
+    <ScrollView
+               HorizontalScrollBarVisibility="Always"
+               VerticalScrollBarVisibility="Always">
+        
+        <Grid 
+            Padding="5" 
+            RowSpacing="2" 
+            ColumnSpacing="2">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -28,65 +36,185 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Entry x:Name="newRegion"
-           PlaceholderColor="Black"
-           Placeholder="Enter Region" />
+            <Label
+                  Text="----------Region Section----------"
+                  TextColor="Black"
+                  FontSize="20"
+                  FontFamily="Times"
+                  HorizontalOptions="Center">
+            </Label>
 
-        <Button Text="Add Region"
-            Grid.Row="1"
-            Clicked="OnNewRegionButtonClicked" />
+            <HorizontalStackLayout
+                                  Grid.Row="1"
+                                  HorizontalOptions="Center"
+                                  Spacing="10"
+                                  Padding="10">
+                <Entry 
+                      x:Name="newRegion"
+                      Text="{Binding newRegion}"
+                      PlaceholderColor="Black"
+                      Placeholder="Enter Region Name" />
 
-        <Entry x:Name="deleteRegion"
-           Grid.Row="2"
-           Placeholder="Enter a Region ID to Delete from Database" 
-           PlaceholderColor="Black"/>
+                <Button 
+                       Text="Add Region"
+                       Clicked="OnNewRegionButtonClicked" />
+            </HorizontalStackLayout>
 
-        <Button Text="Delete Region"
-            Grid.Row="3"
-            Clicked="OnDeleteRegionButtonClicked"
-             />
+            <HorizontalStackLayout
+                                  HorizontalOptions="Center"
+                                  Grid.Row="2"
+                                  Spacing="10"
+                                  Padding="10">
 
-        <Button Text="Get All Regions"
-            Grid.Row="4"
-            Clicked="OnGetRegionButtonClicked" />
+                <Entry 
+                      x:Name="deleteRegion"
+                      Placeholder="Enter a Region ID to Delete from Database" 
+                      PlaceholderColor="Black"/>
 
-        <Entry x:Name="newPlazaId"
-           Grid.Row="5"
-           Placeholder="Enter New Plaza ID" 
-           PlaceholderColor="Black"/>
+                <Button 
+                       Text="Delete Region"
+                       Clicked="OnDeleteRegionButtonClicked"/>
 
-        <Entry x:Name="newPlazaName"
-           Grid.Row="6"
-           Placeholder="Enter New Plaza Name" 
-           PlaceholderColor="Black"/>
+            </HorizontalStackLayout>
 
-        <Entry x:Name="newPlazaRoadway"
-           Grid.Row="7"
-           Placeholder="Enter New Plaza Roadway"
-           PlaceholderColor="Black"/>
+            <Button
+                   Text="Get All Regions"
+                   Grid.Row="3"
+                   Clicked="OnGetRegionButtonClicked" />
 
-        <Entry x:Name="newPlazaMilepost"
-           Grid.Row="8"
-           Placeholder="Enter New Plaza Mile Post" 
-           PlaceholderColor="Black"/>
+            <Label
+                  Padding="10"
+                  Grid.Row="4"
+                  Text="----------Plaza Section----------"
+                  TextColor="Black"
+                  FontSize="20"
+                  FontFamily="Times"
+                  HorizontalOptions="Center">
+            </Label>
 
-        <Entry x:Name="newPlazaRegionName"
-           Grid.Row="9"
-           Placeholder="Enter New Plaza Region" 
-           PlaceholderColor="Black"/>
+            <HorizontalStackLayout 
+                                  HorizontalOptions="Center"
+                                  Grid.Row="5"
+                                  Spacing="10"
+                                  Padding="10">
 
-        <Entry x:Name="newPlazaRegionPhoneNumber"
-           Grid.Row="10"
-           Placeholder="Enter New Plaza Phone Number" 
-           PlaceholderColor="Black"/>
+                <Entry 
+                      x:Name="newPlazaId"
+                      Placeholder="Enter New Plaza ID" 
+                      PlaceholderColor="Black"/>
 
-        <Button Text="Add Plaza"
-            Grid.Row="11"
-            Clicked="OnNewPlazaButtonClicked" />
+                <Entry 
+                      x:Name="newPlazaName"
+                      Placeholder="Enter New Plaza Name" 
+                      PlaceholderColor="Black"/>
 
-         <Button Text="Get All Plazas"
-            Grid.Row="12"
-            Clicked="OnGetPlazaButtonClicked" />
+                <Entry 
+                      x:Name="newPlazaRoadway" 
+                      Placeholder="Enter New Plaza Roadway"
+                      PlaceholderColor="Black"/>
+
+                <Entry 
+                      x:Name="newPlazaMilepost"
+                      Placeholder="Enter New Plaza Mile Post" 
+                      PlaceholderColor="Black"/>
+
+                <Entry 
+                      x:Name="newPlazaRegionName"
+                      Placeholder="Enter New Plaza Region" 
+                      PlaceholderColor="Black"/>
+
+                <Entry 
+                      x:Name="newPlazaRegionPhoneNumber"
+                      Placeholder="Enter New Plaza Phone Number" 
+                      PlaceholderColor="Black"/>
+
+                <Button 
+                       Text="Add Plaza"
+                       Clicked="OnNewPlazaButtonClicked" />
+
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout
+                                  HorizontalOptions="Center"
+                                  Grid.Row="6"
+                                  Spacing="10"
+                                  Padding="10">
+                
+                <Entry 
+                      x:Name="deletePlaza"
+                      Placeholder="Enter Plaza ID To Delete" 
+                      PlaceholderColor="Black"/>
+
+                <Button 
+                       Text="Delete Plaza"
+                       Clicked="OnDeletePlazaButtonClicked" />
+                
+            </HorizontalStackLayout>
+
+            <Button 
+                   Text="Get All Plazas"
+                   Grid.Row="7"
+                   Clicked="OnGetPlazaButtonClicked" />
+
+            <Label
+                  Padding="10"
+                  Grid.Row="8"
+                  Text="----------Lane Section----------"
+                  TextColor="Black"
+                  FontSize="20"
+                  FontFamily="Times"
+                  HorizontalOptions="Center">
+            </Label>
+
+            <HorizontalStackLayout
+                                  HorizontalOptions="Center"
+                                  Grid.Row="9"
+                                  Spacing="10"
+                                  Padding="10">
+                
+                <Entry 
+                      x:Name="newLanePlazaId"
+                      Placeholder="Enter Lane Plaza ID" 
+                      PlaceholderColor="Black"/>
+
+                <Entry 
+                      x:Name="newLaneNumber"
+                      Placeholder="Enter Lane Number" 
+                      PlaceholderColor="Black"/>
+
+                <Entry 
+                      x:Name="newLaneType"
+                      Placeholder="Enter Lane Type" 
+                      PlaceholderColor="Black"/>
+
+                <Button 
+                   Text="Add Lane"
+                   Clicked="OnNewLaneButtonClicked" />
+
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout
+                                  HorizontalOptions="Center"
+                                  Grid.Row="10"
+                                  Spacing="10"
+                                  Padding="10">
+
+                <Entry 
+                      x:Name="deleteLane"
+                      Placeholder="Enter Lane ID To Delete" 
+                      PlaceholderColor="Black"/>
+
+                <Button 
+                   Text="Delete Lane"
+                   Clicked="OnDeleteLaneButtonClicked" />
+
+            </HorizontalStackLayout>
+
+            <Button 
+                   Grid.Row="11"
+                   Text="Get All Lanes"
+                   Clicked="OnGetLaneButtonClicked" />
+
         </Grid>
     </ScrollView>
 

@@ -9,7 +9,7 @@ namespace practice.Pages;
 public partial class ZfoPage : ContentPage
 {
 
-    public TollsRegionRepository TollsRegionRepo = new();
+    public TollRegionRepository TollsRegionRepo = new();
     public List<TollsRegion> TollRegionList;
    
     public ZfoPage()

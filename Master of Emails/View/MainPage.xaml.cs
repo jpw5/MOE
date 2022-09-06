@@ -6,7 +6,9 @@ namespace Master_of_Emails;
 
 public partial class MainPage : ContentPage
 {
-    public TollPlazaRepository PlazaRepo = new();
+    public TollPlazaRepository TollPlazaRepo = new();
+    TableQuery<TollPlaza> tollPlazas;
+
     public string StatusMessage;
     public MainPage()
     {
@@ -21,12 +23,13 @@ public partial class MainPage : ContentPage
         try
         {
 
-            TableQuery<TollPlaza> tollPlazas = PlazaRepo.PlazaQuery(Int32.Parse(plaza_search_bar.Text));
+            tollPlazas = TollPlazaRepo.PlazaQuery(Int32.Parse(plaza_search_bar.Text));
             
             if (!tollPlazas.Any())
             {
                 DisplayAlert("Failed to Retrive", "Please enter a valid Plaza ID Number Or The Plaza ID does not exist. " + StatusMessage, "Close");
             }
+
             else
             {
                 foreach (TollPlaza plaza in tollPlazas)

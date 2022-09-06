@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="practice.Pages.PriorityOneMafPage"
+             xmlns:viewmodel="clr-namespace:Master_of_Emails.ViewModels"
+             x:DataType="viewmodel:PriorityOneMafPageViewModel"
              Title="Priority One Maf">
 
     <ScrollView
@@ -28,27 +30,40 @@
 
                 <HorizontalStackLayout
                                       Spacing="10"
-                                      HorizontalOptions="Center">
-                    <ListView
-                       x:Name="selectPlaza"
-                       ItemSelected="PlazaSelected"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center" 
-                       VerticalScrollBarVisibility="Always">
-                    </ListView>
-
+                                      HorizontalOptions="Start">
                     <Picker
-                   HorizontalOptions="Center"
-                   FontSize="16"
-                   FontFamily="Times"
-                   Title="Select Lane/Lane Type">
+                       ItemsSource="{Binding TollPlazaList}"
+                       SelectedItem="{Binding Plaza}"
+                       x:Name="selectPlaza"
+                       SelectedIndexChanged="selectPlaza_SelectedIndexChanged"
+                       WidthRequest="250"
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center" 
+                       FontSize="12"
+                       FontAttributes="Bold"
+                       FontFamily="Times"
+                       Title="Select Plaza">
                     </Picker>
 
                     <Picker
-                   HorizontalOptions="Center"
-                   FontSize="16"
-                   FontFamily="Times"
-                   Title="Select Technician">
+                           ItemsSource="{Binding TollLaneList}"
+                           SelectedItem="{Binding Lane}"
+                           x:Name="selectLane"
+                           SelectedIndexChanged="selectLane_SelectedIndexChanged"
+                           WidthRequest="100"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           FontSize="12"
+                           FontFamily="Times"
+                           FontAttributes="Bold"
+                           Title="Select Lane/Lane Type">
+                    </Picker>
+
+                    <Picker
+                           HorizontalOptions="Center"
+                           FontSize="16"
+                           FontFamily="Times"
+                           Title="Select Technician">
                     </Picker>
 
                 </HorizontalStackLayout>

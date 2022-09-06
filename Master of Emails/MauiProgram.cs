@@ -1,4 +1,7 @@
-﻿namespace Master_of_Emails;
+﻿using Master_of_Emails.ViewModels;
+using practice.Pages;
+
+namespace Master_of_Emails;
 
 public static class MauiProgram
 {
@@ -14,6 +17,8 @@ public static class MauiProgram
 				fonts.AddFont("TimesNewRoman.otf", "Times");
 			});
 
+		builder.Services.AddSingleton<PriorityOneMafPage>();
+		builder.Services.AddSingleton<PriorityOneMafPageViewModel>();
 		return builder.Build();
 	}
 }

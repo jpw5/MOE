@@ -10,12 +10,17 @@ namespace practice.Pages;
 public partial class DatabasePage : ContentPage
 {
     public DB DB;
+
     public string Text;
-    public TollsRegionRepository TollsRegionRepo = new();
-    public TollPlazaRepository PlazaRepo= new();
-    public List<TollsRegion> Region;
-    public List<TollPlaza> Plazas;
     public string StatusMessage;
+
+    public TollRegionRepository TollRegionRepo = new();
+    public TollPlazaRepository TollPlazaRepo= new();
+    public TollLaneRepository TollLaneRepo = new();
+
+    public List<TollsRegion> Regions;
+    public List<TollPlaza> Plazas;
+    public List<TollLane> Lanes;
 
     public DatabasePage()
 	{
@@ -28,18 +33,18 @@ public partial class DatabasePage : ContentPage
     public void OnNewRegionButtonClicked(object sender, EventArgs args)
     {
         StatusMessage = "";
-        TollsRegionRepo.AddRegion(newRegion.Text);
-        DisplayAlert("Alert", TollsRegionRepo.StatusMessage,"Close");
+        TollRegionRepo.AddRegion(newRegion.Text);
+        DisplayAlert("Failed to Add Region", TollRegionRepo.StatusMessage,"Close");
         newRegion.Text = "";
     }
 
     public void OnGetRegionButtonClicked(object sender, EventArgs args)
     {
         
-        Region =  TollsRegionRepo.GetRegions();
+        Regions =  TollRegionRepo.GetRegions();
         String AllRegions="";
 
-        foreach (var region in Region)
+        foreach (var region in Regions)
         {
             AllRegions+=region.Region_id+" "+region.Region_name+"\n";
         }
@@ -57,7 +62,7 @@ public partial class DatabasePage : ContentPage
         {
             StatusMessage = "";
             int id = Int32.Parse(deleteRegion.Text);
-            TollsRegionRepo.RemoveRegion(id);
+            TollRegionRepo.DeleteRegion(id);
             deleteRegion.Text = "";
         }
         catch (Exception ex) 
@@ -71,11 +76,9 @@ public partial class DatabasePage : ContentPage
 
     public void OnNewPlazaButtonClicked(object sender, EventArgs args)
     {
-
-
         try
         {
-            PlazaRepo.AddPlaza(Int32.Parse(newPlazaId.Text), newPlazaName.Text, newPlazaRoadway.Text, Int32.Parse(newPlazaMilepost.Text), newPlazaRegionName.Text, newPlazaRegionPhoneNumber.Text);
+            TollPlazaRepo.AddPlaza(Int32.Parse(newPlazaId.Text), newPlazaName.Text, newPlazaRoadway.Text, Int32.Parse(newPlazaMilepost.Text), newPlazaRegionName.Text, newPlazaRegionPhoneNumber.Text);
 
             newPlazaId.Text = "";
             newPlazaName.Text = "";
@@ -84,7 +87,7 @@ public partial class DatabasePage : ContentPage
             newPlazaRegionName.Text = "";
             newPlazaRegionPhoneNumber.Text = "";
 
-            DisplayAlert("Alert", PlazaRepo.StatusMessage, "Close");
+            DisplayAlert("Alert", TollPlazaRepo.StatusMessage, "Close");
         }
 
         catch (Exception ex)
@@ -98,7 +101,7 @@ public partial class DatabasePage : ContentPage
     public void OnGetPlazaButtonClicked(object sender, EventArgs args)
     {
 
-        Plazas= PlazaRepo.GetPlazas();
+        Plazas= TollPlazaRepo.GetPlazas();
         String AllPlazas = "";
 
         foreach (var plaza in Plazas)
@@ -111,6 +114,76 @@ public partial class DatabasePage : ContentPage
         //var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MOE.db");
         //DisplayAlert("Alert", databasePath, "accept");
     }
+
+    public void OnDeletePlazaButtonClicked(object sender, EventArgs args)
+    {
+        try
+        {
+            StatusMessage = "";
+            int id = Int32.Parse(deletePlaza.Text);
+            TollPlazaRepo.DeletePlaza(id);
+            deletePlaza.Text = "";
+        }
+        catch (Exception ex)
+
+        {
+            StatusMessage = ex.Message;
+            DisplayAlert("Failed to Delete", "Please enter a valid Plaza ID Number. " + StatusMessage, "Close");
+        }
+    }
+
+    public void OnNewLaneButtonClicked(object sender, EventArgs args)
+    {
+        try
+        {
+            TollLaneRepo.AddLane(Int32.Parse(newLanePlazaId.Text), Int32.Parse(newLaneNumber.Text), newLaneType.Text);
+
+            newLanePlazaId.Text = "";
+            newLaneNumber.Text = "";
+            newLaneType.Text = "";
+          
+            DisplayAlert("Alert", TollLaneRepo.StatusMessage, "Close");
+        }
+
+        catch (Exception ex)
+        {
+            StatusMessage = ex.Message;
+            DisplayAlert("Failed to Add Lane", "Please enter valid Lane Inputs. " + StatusMessage, "Close");
+        }
+
+    }
+
+    public void OnDeleteLaneButtonClicked(object sender, EventArgs args)
+    {
+        try
+        {
+            StatusMessage = "";
+            int id = Int32.Parse(deleteLane.Text);
+            TollLaneRepo.DeleteLane(id);
+            deleteLane.Text = "";
+        }
+        catch (Exception ex)
+
+        {
+            StatusMessage = ex.Message;
+            DisplayAlert("Failed to Delete", "Please enter a valid Lane ID Number. " + StatusMessage, "Close");
+        }
+    }
+
+    public void OnGetLaneButtonClicked(object sender, EventArgs args)
+    {
+        Lanes = TollLaneRepo.GetLanes();
+        String AllLanes = "";
+
+        foreach (var lane in Lanes)
+        {
+            AllLanes += lane.Id+" "+lane.Plaza_id + " Lane " + lane.Lane_number + " " + lane.Lane_Type + "\n";
+        }
+
+        DisplayAlert("Plaza List", AllLanes, "Close");
+
+    }
+
 
 
 }

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Master_of_Emails.Table_Repositories
 {
-    public class TollsRegionRepository
+    public class TollRegionRepository
     {
         public DB DB;
         public string StatusMessage;
@@ -48,10 +48,10 @@ namespace Master_of_Emails.Table_Repositories
         
         }
 
-        public void RemoveRegion(int id)
+        public void DeleteRegion(int Id)
         {
              Init();
-             DatabaseConnection.Delete<TollsRegion>(id);
+             DatabaseConnection.Delete<TollsRegion>(Id);
              StatusMessage = "Region Deleted";
         }
 
