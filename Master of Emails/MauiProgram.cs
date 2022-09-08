@@ -19,6 +19,13 @@ public static class MauiProgram
 
 		builder.Services.AddSingleton<PriorityOneMafPage>();
 		builder.Services.AddSingleton<PriorityOneMafPageViewModel>();
+
+		builder.Services.AddSingleton<DatabasePage>();
+		builder.Services.AddSingleton<DatabasePageViewModel>();
+
+		builder.Services.AddSingleton<MainPage>();
+		builder.Services.AddSingleton<MainPageViewModel>();
+
 		return builder.Build();
 	}
 }

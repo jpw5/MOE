@@ -24,7 +24,6 @@ namespace Master_of_Emails.Tables
 
         public string Plaza_phone_number{ get; set; }
 
-        [MaxLength(250)]
         public string Plaza_region { get; set; }
 
 

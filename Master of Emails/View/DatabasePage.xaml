@@ -1,221 +1,179 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="practice.Pages.DatabasePage"
-             xmlns:viewmodel="clr-namespace:Master_of_Emails.ViewModels"
-             x:DataType="viewmodel:DatabasePageViewModel"
-             Title="Database">
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="practice.Pages.DatabasePage" 
+    xmlns:viewmodel="clr-namespace:Master_of_Emails.ViewModels" 
+    x:DataType="viewmodel:DatabasePageViewModel" 
+    Title="Database">
 
-    <ScrollView
-               HorizontalScrollBarVisibility="Always"
-               VerticalScrollBarVisibility="Always">
-        
-        <Grid 
-            Padding="5" 
-            RowSpacing="2" 
-            ColumnSpacing="2">
+    <ScrollView BackgroundColor="AliceBlue" Orientation="Both" HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+        <Grid Padding="5" RowSpacing="2" ColumnSpacing="2">
 
-            <Label
-                  Text="----------Region Section----------"
-                  TextColor="Black"
-                  FontSize="20"
-                  FontFamily="Times"
-                  HorizontalOptions="Center">
-            </Label>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-            <HorizontalStackLayout
-                                  Grid.Row="1"
-                                  HorizontalOptions="Center"
-                                  Spacing="10"
-                                  Padding="10">
-                <Entry 
-                      x:Name="newRegion"
-                      Text="{Binding newRegion}"
-                      PlaceholderColor="Black"
-                      Placeholder="Enter Region Name" />
-
-                <Button 
-                       Text="Add Region"
-                       Clicked="OnNewRegionButtonClicked" />
+            <Label Text="----------REGION SECTION----------" TextColor="Black" FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
+            
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10" Grid.Row="1">
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+                    <Entry  Text="{Binding NewRegion}" PlaceholderColor="Black" Placeholder="Enter Region Name" />
+                    <Button Command="{Binding AddNewRegionCommand}" Text="Add Region"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+                    <Entry  Text="{Binding RemoveRegion}" Placeholder="Enter a Region ID" PlaceholderColor="Black"/>
+                    <Button Command="{Binding DeleteRegionCommand}" Text="Delete Region"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+                    <Button Command="{Binding GetAllRegionsCommand}" Text="Get All Regions" Grid.Row="3"/>
+                </VerticalStackLayout>
             </HorizontalStackLayout>
 
-            <HorizontalStackLayout
-                                  HorizontalOptions="Center"
-                                  Grid.Row="2"
-                                  Spacing="10"
-                                  Padding="10">
-
-                <Entry 
-                      x:Name="deleteRegion"
-                      Placeholder="Enter a Region ID to Delete from Database" 
-                      PlaceholderColor="Black"/>
-
-                <Button 
-                       Text="Delete Region"
-                       Clicked="OnDeleteRegionButtonClicked"/>
-
-            </HorizontalStackLayout>
-
-            <Button
-                   Text="Get All Regions"
-                   Grid.Row="3"
-                   Clicked="OnGetRegionButtonClicked" />
-
-            <Label
-                  Padding="10"
-                  Grid.Row="4"
-                  Text="----------Plaza Section----------"
-                  TextColor="Black"
-                  FontSize="20"
-                  FontFamily="Times"
-                  HorizontalOptions="Center">
-            </Label>
-
-            <HorizontalStackLayout 
-                                  HorizontalOptions="Center"
-                                  Grid.Row="5"
-                                  Spacing="10"
-                                  Padding="10">
-
-                <Entry 
-                      x:Name="newPlazaId"
-                      Placeholder="Enter New Plaza ID" 
-                      PlaceholderColor="Black"/>
-
-                <Entry 
-                      x:Name="newPlazaName"
-                      Placeholder="Enter New Plaza Name" 
-                      PlaceholderColor="Black"/>
-
-                <Entry 
-                      x:Name="newPlazaRoadway" 
-                      Placeholder="Enter New Plaza Roadway"
-                      PlaceholderColor="Black"/>
-
-                <Entry 
-                      x:Name="newPlazaMilepost"
-                      Placeholder="Enter New Plaza Mile Post" 
-                      PlaceholderColor="Black"/>
-
-                <Entry 
-                      x:Name="newPlazaRegionName"
-                      Placeholder="Enter New Plaza Region" 
-                      PlaceholderColor="Black"/>
-
-                <Entry 
-                      x:Name="newPlazaRegionPhoneNumber"
-                      Placeholder="Enter New Plaza Phone Number" 
-                      PlaceholderColor="Black"/>
-
-                <Button 
-                       Text="Add Plaza"
-                       Clicked="OnNewPlazaButtonClicked" />
-
-            </HorizontalStackLayout>
-
-            <HorizontalStackLayout
-                                  HorizontalOptions="Center"
-                                  Grid.Row="6"
-                                  Spacing="10"
-                                  Padding="10">
-                
-                <Entry 
-                      x:Name="deletePlaza"
-                      Placeholder="Enter Plaza ID To Delete" 
-                      PlaceholderColor="Black"/>
-
-                <Button 
-                       Text="Delete Plaza"
-                       Clicked="OnDeletePlazaButtonClicked" />
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10" Grid.Row="2">
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" BackgroundColor="SandyBrown">
+                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
+                        <Label Text="{Binding NewRegionStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                        <Label Text="{Binding RemoveRegionStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                    </HorizontalStackLayout>
+                </Frame>
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" BackgroundColor="SandyBrown">
+                    <ListView ItemsSource="{Binding RegionList}" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="100" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
+                </Frame>
                 
             </HorizontalStackLayout>
 
-            <Button 
-                   Text="Get All Plazas"
-                   Grid.Row="7"
-                   Clicked="OnGetPlazaButtonClicked" />
+            <Label Text="----------REGION SECTION END----------" Grid.Row="3" TextColor="Black" FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
 
-            <Label
-                  Padding="10"
-                  Grid.Row="8"
-                  Text="----------Lane Section----------"
-                  TextColor="Black"
-                  FontSize="20"
-                  FontFamily="Times"
-                  HorizontalOptions="Center">
-            </Label>
+            <Label Text="----------PLAZA SECTION----------" TextColor="Black" Padding="10" Grid.Row="4" FontSize="20" FontFamily="Times" HorizontalOptions="Center"> </Label>
 
-            <HorizontalStackLayout
-                                  HorizontalOptions="Center"
-                                  Grid.Row="9"
-                                  Spacing="10"
-                                  Padding="10">
+            <HorizontalStackLayout HorizontalOptions="Center" Grid.Row="5" Spacing="10" Padding="10">
                 
-                <Entry 
-                      x:Name="newLanePlazaId"
-                      Placeholder="Enter Lane Plaza ID" 
-                      PlaceholderColor="Black"/>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+                    <Entry Text="{Binding NewPlazaId}" Placeholder="Enter Plaza ID" PlaceholderColor="Black"/>
+                    <Entry Text="{Binding NewPlazaName}" Placeholder="Enter Plaza Name" PlaceholderColor="Black"/>
+                    <Entry Text="{Binding NewPlazaRoadway}" Placeholder="Enter Plaza Roadway" PlaceholderColor="Black"/>
+                    <Entry Text="{Binding NewPlazaMilepost}" Placeholder="Enter Plaza Mile Post" PlaceholderColor="Black"/>
+                    <Entry Text="{Binding NewPlazaRegionName}" Placeholder="Enter Plaza Region" PlaceholderColor="Black"/>
+                    <Entry Text="{Binding NewPlazaPhoneNumber}" Placeholder="Enter Plaza Phone Number" PlaceholderColor="Black"/>
+                    <Button Command="{Binding AddNewPlazaCommand}" Text="Add Plaza" />
+                </VerticalStackLayout>
 
-                <Entry 
-                      x:Name="newLaneNumber"
-                      Placeholder="Enter Lane Number" 
-                      PlaceholderColor="Black"/>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+                    <Entry Text="{Binding RemoveRegion}" Placeholder="Enter Plaza ID" PlaceholderColor="Black"/>
+                    <Button Command="{Binding DeletePlazaCommand}" Text="Delete Plaza" />
+                </VerticalStackLayout>
 
-                <Entry 
-                      x:Name="newLaneType"
-                      Placeholder="Enter Lane Type" 
-                      PlaceholderColor="Black"/>
-
-                <Button 
-                   Text="Add Lane"
-                   Clicked="OnNewLaneButtonClicked" />
-
-            </HorizontalStackLayout>
-
-            <HorizontalStackLayout
-                                  HorizontalOptions="Center"
-                                  Grid.Row="10"
-                                  Spacing="10"
-                                  Padding="10">
-
-                <Entry 
-                      x:Name="deleteLane"
-                      Placeholder="Enter Lane ID To Delete" 
-                      PlaceholderColor="Black"/>
-
-                <Button 
-                   Text="Delete Lane"
-                   Clicked="OnDeleteLaneButtonClicked" />
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+                    <Button Command="{Binding GetAllPlazasCommand}" Text="Get All Plazas" />
+                </VerticalStackLayout>
 
             </HorizontalStackLayout>
 
-            <Button 
-                   Grid.Row="11"
-                   Text="Get All Lanes"
-                   Clicked="OnGetLaneButtonClicked" />
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10" Grid.Row="6">
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" BackgroundColor="SandyBrown">
+                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" Padding="10" Grid.Row="6">
+                        <Label Text="{Binding NewPlazaStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                        <Label Text="{Binding RemovePlazaStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                    </HorizontalStackLayout>
+                </Frame>
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" BackgroundColor="SandyBrown">
+                    <ListView ItemsSource="{Binding PlazaList}" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="350" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
+                </Frame>
+            </HorizontalStackLayout>
 
+            <Label Text="----------PLAZA SECTION END----------" TextColor="Black" Padding="10" Grid.Row="7" FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
+            
+            <Label Text="----------LANE SECTION----------" Padding="10" Grid.Row="8" TextColor="Black" FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
+
+            <HorizontalStackLayout HorizontalOptions="Center" Grid.Row="9" Spacing="10" Padding="10">
+                
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+                    <Entry Text="{Binding NewLanePlazaId}" Placeholder="Enter Lane Plaza ID" PlaceholderColor="Black"/>
+                    <Entry Text="{Binding NewLaneNumber}" Placeholder="Enter Lane Number" PlaceholderColor="Black"/>
+                    <Entry Text="{Binding NewLaneType}" Placeholder="Enter Lane Type" PlaceholderColor="Black"/>
+                    <Button Command="{Binding AddNewLaneCommand}" Text="Add Lane"/>
+                </VerticalStackLayout>
+                
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+                    <Entry Text="{Binding RemoveLane}" Placeholder="Enter Lane ID" PlaceholderColor="Black"/>
+                    <Button Command="{Binding DeleteLaneCommand}" Text="Delete Lane"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+                    <Button Command="{Binding GetAllLanesCommand}" Text="Get All Lanes"/>
+                </VerticalStackLayout>
+                
+            </HorizontalStackLayout>
+            
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="10" Spacing="10" Padding="10">
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" BackgroundColor="SandyBrown">
+                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" Padding="10" Grid.Row="6">
+                        <Label Text="{Binding NewLaneStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                        <Label Text="{Binding RemoveLaneStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                    </HorizontalStackLayout>
+                </Frame>
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" BackgroundColor="SandyBrown">
+                    <ListView ItemsSource="{Binding LaneList}" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="200" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
+                </Frame>
+            </HorizontalStackLayout>
+
+            <Label Text="----------LANE SECTION END----------" TextColor="Black" Padding="10" Grid.Row="11" FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
+
+            <Label Text="----------PERSONALE SECTION----------" TextColor="Black" Padding="10" Grid.Row="12" FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
+
+            <HorizontalStackLayout HorizontalOptions="Center" Grid.Row="13" Spacing="10" Padding="10">
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+                    <Entry Text="{Binding NewPersonaleKnId}" Placeholder="Enter Personale KN ID" PlaceholderColor="Black"/>
+                    <Entry Text="{Binding NewPersonaleName}" Placeholder="Enter Personale Name (Last, First)" PlaceholderColor="Black"/>
+                    <Entry Text="{Binding NewPersonalePhoneNumber}" Placeholder="Enter Personale Phone Number" PlaceholderColor="Black"/>
+                    <Entry Text="{Binding NewPersonaleEmail}" Placeholder="Enter Personale E-Mail" PlaceholderColor="Black"/>
+                    <Entry Text="{Binding NewPersonaleRole}" Placeholder="Enter Personale Role" PlaceholderColor="Black"/>
+                    <Button Command="{Binding AddNewPersonaleCommand}" Text="Add Personale"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+                    <Entry Text="{Binding RemovePersonale}" Placeholder="Enter Personale KNID" PlaceholderColor="Black"/>
+                    <Button Command="{Binding DeletePersonaleCommand}" Text="Delete Personale"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+                    <Button Command="{Binding GetAllPersonaleCommand}" Text="Get All Personale"/>
+                </VerticalStackLayout>
+
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="14" Spacing="10" Padding="10">
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" BackgroundColor="SandyBrown">
+                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" Padding="10" Grid.Row="6">
+                        <Label Text="{Binding NewPersonaleStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                        <Label Text="{Binding RemovePersonaleStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                    </HorizontalStackLayout>
+                </Frame>
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" BackgroundColor="SandyBrown">
+                    <ListView ItemsSource="{Binding PersonaleList}" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="400" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
+                </Frame>
+            </HorizontalStackLayout>
+            
         </Grid>
+        
     </ScrollView>
 
 </ContentPage>

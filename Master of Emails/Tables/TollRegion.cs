@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Master_of_Emails.Tables
 {
     [Table("tollsRegion")]
-    public class TollsRegion
+    public class TollRegion
     {
         [PrimaryKey, AutoIncrement]
         public int Region_id { get; set; }

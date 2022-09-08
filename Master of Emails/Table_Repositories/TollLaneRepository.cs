@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace Master_of_Emails.Table_Repositories
 {
-    
     public class TollLaneRepository
     {
         public DB DB;
@@ -19,7 +18,6 @@ namespace Master_of_Emails.Table_Repositories
 
         public static void Init()
         {
-
             DatabaseConnection = DB.DatabaseInit();
             DatabaseConnection.CreateTable<TollLane>();
         }
@@ -27,56 +25,28 @@ namespace Master_of_Emails.Table_Repositories
         public void AddLane(int Plaza_id, int Lane_number, string Lane_type)
         {
             Init();
-
-            try
-            {
-                var lane = new TollLane
+            var lane = new TollLane
                 {
-                    Plaza_id = Plaza_id,
-                    Lane_number = Lane_number,
-                    Lane_Type = Lane_type
+                  Plaza_id = Plaza_id,
+                  Lane_number = Lane_number,
+                  Lane_Type = Lane_type
                 };
-
-                DatabaseConnection.Insert(lane);
-                StatusMessage = string.Format("Lane added");
-
-            }
-
-            catch (Exception ex)
-            {
-                StatusMessage = string.Format("Failed to add plaza. {0}", ex.Message);
-            }
-
+            DatabaseConnection.Insert(lane);
         }
 
         public void DeleteLane(int Id)
         {
             Init();
             DatabaseConnection.Delete<TollLane>(Id);
-            StatusMessage = "Region Deleted";
         }
-
 
         public List<TollLane> GetLanes()
         {
             Init();
-
-            try
-            {
-                return DatabaseConnection.Table<TollLane>().ToList();
-            }
-
-            catch (Exception ex)
-            {
-                StatusMessage = string.Format("Failed to retrieve data. {0}", ex.Message);
-
-            }
-
-            return new List<TollLane>();
-
+            return DatabaseConnection.Table<TollLane>().ToList();
         }
 
-        public TableQuery<TollLane> LaneQuery(int Plaza_Id)
+        public TableQuery<TollLane> QueryByPlazaId(int Plaza_Id)
         {
             Init();
             return DatabaseConnection.Table<TollLane>().Where(value => value.Plaza_id.Equals(Plaza_Id));

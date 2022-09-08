@@ -7,14 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-
 namespace Master_of_Emails.Table_Repositories
 {
     public class TollRegionRepository
     {
         public DB DB;
-        public string StatusMessage;
         public static SQLiteConnection DatabaseConnection { get; private set; }
         private static void Init()
         {
@@ -22,57 +19,26 @@ namespace Master_of_Emails.Table_Repositories
             DatabaseConnection.CreateTable<TollPlaza>();
         }
 
-        public void AddRegion(string Region_name)
+        public void AddRegion(string RegionName)
         {
-            try
-            {
-                Init();
-
-                if (string.IsNullOrEmpty(Region_name))
-                    throw new Exception("Valid name required");
-
-                var region = new TollsRegion
+            Init();
+            var region = new TollRegion
                 {
-                    Region_name = Region_name
-
+                  Region_name = RegionName
                 };
-
-                var id =  DatabaseConnection.Insert(region);
-                StatusMessage = string.Format("{0} record(s) added (Name: {1})", id, Region_name);
-            }
-
-            catch (Exception ex)
-            {
-                StatusMessage = string.Format("Failed to add {0}. Error: {1}", Region_name, ex.Message);
-            }
-        
+               DatabaseConnection.Insert(region);
         }
 
         public void DeleteRegion(int Id)
         {
              Init();
-             DatabaseConnection.Delete<TollsRegion>(Id);
-             StatusMessage = "Region Deleted";
+             DatabaseConnection.Delete<TollRegion>(Id);
         }
 
-        public List<TollsRegion> GetRegions()
+        public List<TollRegion> GetRegions()
         {
-            
             Init();
-            try
-            {
-                return DatabaseConnection.Table<TollsRegion>().ToList();
-            }
-
-            catch (Exception ex)
-            {
-                StatusMessage = string.Format("Failed to retrieve data. {0}", ex.Message);
-                
-            }
-
-            return new List<TollsRegion>();
-
-            
+            return DatabaseConnection.Table<TollRegion>().ToList();
         }
 
     }

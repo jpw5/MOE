@@ -10,7 +10,7 @@ public partial class ZfoPage : ContentPage
 {
 
     public TollRegionRepository TollsRegionRepo = new();
-    public List<TollsRegion> TollRegionList;
+    public List<TollRegion> TollRegionList;
    
     public ZfoPage()
 	{

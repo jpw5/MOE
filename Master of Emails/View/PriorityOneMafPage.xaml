@@ -6,107 +6,54 @@
              x:DataType="viewmodel:PriorityOneMafPageViewModel"
              Title="Priority One Maf">
 
-    <ScrollView
-               Background="#ff0000">
-        <Border
-           HeightRequest="600"
-           WidthRequest="600"
-           Stroke="#C49B33"
-           StrokeThickness="4"
-           Background="White"
-           Padding="16,8"
-           HorizontalOptions="Center">
+    <ScrollView Orientation="Both" HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always" BackgroundColor="#ff0000">
+        <Border HeightRequest="700" WidthRequest="700" Stroke="#C49B33" StrokeThickness="4" Background="White" Padding="16,8" HorizontalOptions="Center">
         
         <Border.StrokeShape>
-            <RoundRectangle
-                           CornerRadius="40,0,0,40">
-            </RoundRectangle>
+                <RoundRectangle CornerRadius="40,0,0,40"></RoundRectangle>
         </Border.StrokeShape>
-        
-        <VerticalStackLayout
-                            Padding="10"
-                            Spacing="40"
-                            VerticalOptions="Center">
 
-                <HorizontalStackLayout
-                                      Spacing="10"
-                                      HorizontalOptions="Start">
-                    <Picker
-                       ItemsSource="{Binding TollPlazaList}"
-                       SelectedItem="{Binding Plaza}"
-                       x:Name="selectPlaza"
-                       SelectedIndexChanged="selectPlaza_SelectedIndexChanged"
-                       WidthRequest="250"
-                       HorizontalOptions="Center" 
-                       VerticalOptions="Center" 
-                       FontSize="12"
-                       FontAttributes="Bold"
-                       FontFamily="Times"
-                       Title="Select Plaza">
-                    </Picker>
+            <VerticalStackLayout Padding="10" Spacing="40" VerticalOptions="Center" HorizontalOptions="Start">
 
-                    <Picker
-                           ItemsSource="{Binding TollLaneList}"
-                           SelectedItem="{Binding Lane}"
-                           x:Name="selectLane"
-                           SelectedIndexChanged="selectLane_SelectedIndexChanged"
-                           WidthRequest="100"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           FontSize="12"
-                           FontFamily="Times"
-                           FontAttributes="Bold"
-                           Title="Select Lane/Lane Type">
-                    </Picker>
-
-                    <Picker
-                           HorizontalOptions="Center"
-                           FontSize="16"
-                           FontFamily="Times"
-                           Title="Select Technician">
-                    </Picker>
-
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
+                    <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" SelectedIndexChanged="SelectRegion_SelectedIndexChanged" x:Name="selectRegion" WidthRequest="110" HorizontalOptions="Center" VerticalOptions="Center" FontSize="14" FontAttributes="Bold" FontFamily="Times" Title="Select Region"></Picker>
+                    <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" x:Name="selectPlaza" SelectedIndexChanged="SelectPlaza_SelectedIndexChanged" WidthRequest="350" HorizontalOptions="Center" VerticalOptions="Center" FontSize="14" FontAttributes="Bold" FontFamily="Times" Title="Select Plaza"></Picker>
+                    <Picker ItemsSource="{Binding TollLaneList}" SelectedItem="{Binding Lane}" x:Name="selectLane" SelectedIndexChanged="SelectLane_SelectedIndexChanged" WidthRequest="100" HorizontalOptions="Center" VerticalOptions="Center" FontSize="14" FontFamily="Times" FontAttributes="Bold" Title="Select Lane"></Picker>
                 </HorizontalStackLayout>
-                
-            <Entry
+
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                    <Picker HorizontalOptions="Center" FontFamily="Times" FontSize="14" Title="Select BOM Item"></Picker>
+                    <Picker HorizontalOptions="Center" FontSize="14" FontFamily="Times" Title="Select Technician"></Picker>
+                </HorizontalStackLayout>
+
+                <Entry
                   FontFamily="Times"
                   FontSize="16"
                   Placeholder="Enter the Problem"
                   PlaceholderColor="DarkSlateGray">
-                
-            </Entry>
 
-            <Entry
-                  FontFamily="Times"
-                  FontSize="16"
-                  Placeholder="Enter BOM Item"
-                  PlaceholderColor="DarkSlateGray">
+                </Entry>
 
-            </Entry>
-
-            <Entry
+                <Entry
                   FontFamily="Times"
                   FontSize="16"
                   Placeholder="Enter MAF Number"
                   PlaceholderColor="DarkSlateGray">
 
-            </Entry>
+                </Entry>
 
-            <Editor
+                <Editor
                   HeightRequest="100"
                   FontFamily="Times"
                   FontSize="16"
                   Placeholder="Action Taken"
                   PlaceholderColor="DarkSlateGray"
                   AutoSize="TextChanges">
-                
-            </Editor>
 
+                </Editor>
 
-
-        </VerticalStackLayout>
-
-    </Border>
+            </VerticalStackLayout>
+        </Border>
     </ScrollView>
 
 </ContentPage>

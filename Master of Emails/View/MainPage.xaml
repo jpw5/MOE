@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:Master_of_Emails.ViewModels" 
+             x:DataType="viewmodel:MainPageViewModel" 
              x:Class="Master_of_Emails.MainPage">
-
-
+    
     <!-- Start of code for the Grid Layout-->
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -18,124 +20,43 @@
         </Grid.ColumnDefinitions>
 
         <!--Start of code for email form Imagebuttons-->
-        <BoxView 
-                Color="#ff0000" 
-            />
-        <ImageButton 
-                    x:Name="priority_one_maf"
-                    Clicked="OnPriorityOneMafClicked"
-                    Source="priority_one_maf.png"
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand" />
+        
+        <BoxView Color="#ff0000"/>
+        <ImageButton Command="{Binding PriorityOneMafClickedCommand }" Source="priority_one_maf.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
 
-        <BoxView 
-                Grid.Column="1"
-                Color="#00FFFF" />
-        <ImageButton
-                    x:Name="incon_alert"
-                    Clicked="OnInconAlertClicked"
-                    Source="incon_alert.png" 
-                    Grid.Column="1"
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand"/>
+        <BoxView Grid.Column="1" Color="#00FFFF"/>
+        <ImageButton Command="{Binding InconAlertClickedCommand}" Source="incon_alert.png" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
 
-        <BoxView 
-                 Grid.Column="2"
-                 Color="#228B22" />
-        <ImageButton 
-                    x:Name="zfo"
-                    Clicked="OnZfoClicked"
-                    Source="zfo.png" 
-                    Grid.Column="2"
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand" />
+        <BoxView Grid.Column="2" Color="#228B22" />
+        <ImageButton Command="{Binding ZfoClickedCommand}" Source="zfo.png" Grid.Column="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
 
-        <BoxView 
-                Grid.Row="1"
-                Color="#FFA500" />
-        <ImageButton 
-                    x:Name="duress_alarm"
-                    Clicked="OnDuressAlarmClicked"
-                    Source="duress_alarm.png" 
-                    Grid.Row="1"
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand" />
+        <BoxView Grid.Row="1" Color="#FFA500" />
+        <ImageButton Command="{Binding DuressAlarmClickedCommand}" Source="duress_alarm.png" Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
 
-        <BoxView 
-                Grid.Row="1"
-                Grid.Column="1"
-                Color="#98fb98" />
-        <ImageButton
-                    x:Name="scada"
-                    Clicked="OnScadaClicked"
-                    Source="scada.png" 
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand" />
+        <BoxView Grid.Row="1" Grid.Column="1" Color="#98fb98" />
+        <ImageButton Command="{Binding ScadaClickedCommand}" Source="scada.png" Grid.Row="1" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
 
-        <BoxView 
-                Grid.Row="1"
-                Grid.Column="2"
-                Color="#D9D9D9" />
-        <ImageButton
-                    x:Name="fiber_alert"
-                    Clicked="OnFiberAlertClicked"
-                    Source="fiber_alert.png"
-                    Grid.Row="1"
-                    Grid.Column="2"
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand" />
+        <BoxView Grid.Row="1" Grid.Column="2" Color="#D9D9D9" />
+        <ImageButton Command="{Binding FiberAlertClickedCommand}" Source="fiber_alert.png" Grid.Row="1" Grid.Column="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+        
         <!--End of code for email form Imagebuttons-->
 
-        <!-- Code for the Plaza Lookup section-->
-        <BoxView 
-                Grid.Row="2"
-                Grid.ColumnSpan="3"
-                Color="White" />
+        <!-- Start of Code for the Plaza Lookup section-->
+        
+        <BoxView Grid.Row="2" Grid.ColumnSpan="3" Color="White"/>
 
-        <VerticalStackLayout 
-                            Grid.Row="2"
-                            Grid.Column="1"
-                            Spacing="10"
-                            Padding="20">
-            <SearchBar
-                      x:Name="plaza_search_bar"
-                      SearchButtonPressed="Plaza_search"
-                      Margin="20"
-                      Placeholder="Plaza Lookup"
-                      FontSize="20"
-                      CancelButtonColor="Black">
-            </SearchBar>
-            <Label
-                  x:Name="plaza_search_result_phone_label"
-                  FontAttributes="Bold"
-                  Text="Phone: "
-                  HorizontalTextAlignment="Start"
-                  VerticalTextAlignment="Start"
-                  Padding="10"
-                  BackgroundColor="LightBlue">
-
-            </Label>
-
-            <Label
-                  x:Name="plaza_search_result_name_label"
-                  FontAttributes="Bold"
-                  Text="Plaza: "
-                  HorizontalTextAlignment="Start"
-                  VerticalTextAlignment="Start"
-                  Padding="10"
-                  BackgroundColor="LightBlue">
-
-            </Label>
-
+        <VerticalStackLayout Grid.Row="2" Grid.Column="1" Spacing="10" Padding="20">
+            <SearchBar Text="{Binding PlazaSearch}" SearchCommand="{Binding ReturnPlazaCommand}" Margin="20" Placeholder="Plaza Lookup" FontSize="20" CancelButtonColor="Black"></SearchBar>
+            <Label Text="{Binding PlazaPhoneResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Padding="10" BackgroundColor="LightBlue"></Label>
+            <Label Text="{Binding PlazaNameResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Padding="10" BackgroundColor="LightBlue"></Label>
         </VerticalStackLayout>
+        
         <!-- End of Code for the Plaza Lookup section-->
 
         <!-- Start of Code for the Person Lookup section-->
-        <VerticalStackLayout 
-                            Grid.Row="2"
-                            Spacing="10">
+        
+        <VerticalStackLayout Grid.Row="2" Spacing="10">
+            
             <SearchBar
                       x:Name="person_search_bar"
                       SearchButtonPressed="person_search"

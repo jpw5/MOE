@@ -9,6 +9,14 @@ namespace Master_of_Emails.ViewModels;
 public partial class PriorityOneMafPageViewModel : ObservableObject
 {
     [ObservableProperty]
+    public ObservableCollection<string> tollRegionList;
+    [ObservableProperty]
+    public string region;
+    public TollRegionRepository TollRegionRepo = new();
+    public List<TollRegion> TollRegion = new();
+
+
+    [ObservableProperty]
     public ObservableCollection<string> tollPlazaList;
     [ObservableProperty]
     public string plaza;
@@ -26,8 +34,17 @@ public partial class PriorityOneMafPageViewModel : ObservableObject
     {
         tollPlazaList = new ObservableCollection<string>();
         tollLaneList = new ObservableCollection<string>();
-        PopulatePlazaList();
-        
+        tollRegionList = new ObservableCollection<string>();
+        PopulateRegionList();
+    }
+
+    public void PopulateRegionList()
+    {
+        TollRegion= TollRegionRepo.GetRegions();
+        foreach (TollRegion region in TollRegion)
+        {
+            tollRegionList.Add(region.Region_name);
+        }
     }
 
     public void PopulatePlazaList()
@@ -38,4 +55,6 @@ public partial class PriorityOneMafPageViewModel : ObservableObject
             tollPlazaList.Add(plaza.Plaza_id.ToString()+" "+plaza.Plaza_name);
         }
     }
+
+
 }
