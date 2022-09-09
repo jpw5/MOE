@@ -1,14 +1,9 @@
-using Master_of_Emails.Database;
 using Master_of_Emails.Table_Repositories;
 using Master_of_Emails.Tables;
 using Master_of_Emails.ViewModels;
-using practice.Pages;
 using SQLite;
-using System.Collections;
-using System.Linq;
 
 namespace practice.Pages;
-
 
 public partial class PriorityOneMafPage : ContentPage
 {
@@ -16,6 +11,7 @@ public partial class PriorityOneMafPage : ContentPage
     public TollLaneRepository TollLaneRepo = new();
 
     public List<TollLane> TollLaneList = new();
+
     public TableQuery<TollLane> tollLanesQueryByPlazaId;
 
     public TableQuery<TollPlaza> tollPlazaQueryByRegionName;
@@ -23,10 +19,10 @@ public partial class PriorityOneMafPage : ContentPage
 
     public string Region;
     public int PlazaId;
-    public String Plaza;
-    public String Roadway;
-    public String Lane;
-    public String[] Split;
+    public string Plaza;
+    public string Roadway;
+    public string Lane;
+    public string[] Split;
 
     public PriorityOneMafPage(PriorityOneMafPageViewModel priorityOneMafPageViewModel)
     {

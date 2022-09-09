@@ -22,22 +22,28 @@
         <!--Start of code for email form Imagebuttons-->
         
         <BoxView Color="#ff0000"/>
-        <ImageButton Command="{Binding PriorityOneMafClickedCommand }" Source="priority_one_maf.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+        <ImageButton Command="{Binding PriorityOneMafClickedCommand }" Source="priority_one_maf.png" 
+        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
 
         <BoxView Grid.Column="1" Color="#00FFFF"/>
-        <ImageButton Command="{Binding InconAlertClickedCommand}" Source="incon_alert.png" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        <ImageButton Command="{Binding InconAlertClickedCommand}" Source="incon_alert.png" Grid.Column="1" 
+        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
 
         <BoxView Grid.Column="2" Color="#228B22" />
-        <ImageButton Command="{Binding ZfoClickedCommand}" Source="zfo.png" Grid.Column="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        <ImageButton Command="{Binding ZfoClickedCommand}" Source="zfo.png" Grid.Column="2" 
+        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
 
         <BoxView Grid.Row="1" Color="#FFA500" />
-        <ImageButton Command="{Binding DuressAlarmClickedCommand}" Source="duress_alarm.png" Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+        <ImageButton Command="{Binding DuressAlarmClickedCommand}" Source="duress_alarm.png" Grid.Row="1" 
+        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
 
         <BoxView Grid.Row="1" Grid.Column="1" Color="#98fb98" />
-        <ImageButton Command="{Binding ScadaClickedCommand}" Source="scada.png" Grid.Row="1" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+        <ImageButton Command="{Binding ScadaClickedCommand}" Source="scada.png" Grid.Row="1" Grid.Column="1" 
+        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
 
         <BoxView Grid.Row="1" Grid.Column="2" Color="#D9D9D9" />
-        <ImageButton Command="{Binding FiberAlertClickedCommand}" Source="fiber_alert.png" Grid.Row="1" Grid.Column="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+        <ImageButton Command="{Binding FiberAlertClickedCommand}" Source="fiber_alert.png" Grid.Row="1" 
+        Grid.Column="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
         
         <!--End of code for email form Imagebuttons-->
 
@@ -46,47 +52,28 @@
         <BoxView Grid.Row="2" Grid.ColumnSpan="3" Color="White"/>
 
         <VerticalStackLayout Grid.Row="2" Grid.Column="1" Spacing="10" Padding="20">
-            <SearchBar Text="{Binding PlazaSearch}" SearchCommand="{Binding ReturnPlazaCommand}" Margin="20" Placeholder="Plaza Lookup" FontSize="20" CancelButtonColor="Black"></SearchBar>
-            <Label Text="{Binding PlazaPhoneResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Padding="10" BackgroundColor="LightBlue"></Label>
-            <Label Text="{Binding PlazaNameResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Padding="10" BackgroundColor="LightBlue"></Label>
+            <SearchBar Text="{Binding PlazaSearch}" SearchCommand="{Binding ReturnPlazaCommand}" Margin="20" 
+            Placeholder="Plaza Lookup" FontSize="20" CancelButtonColor="Black"></SearchBar>
+            <Label Text="{Binding PlazaPhoneResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+            VerticalTextAlignment="Start" Padding="10" BackgroundColor="LightBlue"></Label>
+            <Label Text="{Binding PlazaNameResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+            VerticalTextAlignment="Start" Padding="10" BackgroundColor="LightBlue"></Label>
         </VerticalStackLayout>
         
         <!-- End of Code for the Plaza Lookup section-->
 
-        <!-- Start of Code for the Person Lookup section-->
-        
+        <!-- Start of Code for the Personale Lookup section-->
+
         <VerticalStackLayout Grid.Row="2" Spacing="10">
-            
-            <SearchBar
-                      x:Name="person_search_bar"
-                      SearchButtonPressed="person_search"
-                      IsTextPredictionEnabled="True"
-                      Margin="20"
-                      Placeholder="Person Lookup"
-                      FontSize="20"
-                      CancelButtonColor="Black">
-            </SearchBar>
-            <Label
-                  x:Name="person_search_result_phone_label"
-                  FontAttributes="Bold"
-                  Text="Phone: "
-                 
-                  HorizontalTextAlignment="Start"
-                  VerticalTextAlignment="Start"
-                  Padding="10"
-                  BackgroundColor="LightBlue">
-            </Label>
-            <Label
-                  x:Name="person_search_result_email_label"
-                  FontAttributes="Bold"
-                  Text="Email: "
-                  HorizontalTextAlignment="Start"
-                  VerticalTextAlignment="Start"
-                  Padding="10"
-                  BackgroundColor="LightBlue">
-            </Label>
+            <SearchBar Text="{Binding PersonaleSearch}" SearchCommand="{Binding ReturnPersonaleCommand}" 
+             IsTextPredictionEnabled="True" Margin="20" Placeholder="Personale Lookup (First Name Last Name)" 
+             FontSize="20" CancelButtonColor="Black"></SearchBar>
+            <Label Text="{Binding PersonalePhoneResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+            VerticalTextAlignment="Start" Padding="10" BackgroundColor="LightBlue"></Label>
+            <Label Text="{Binding PersonaleEmailResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+            VerticalTextAlignment="Start" Padding="10" BackgroundColor="LightBlue"></Label>
         </VerticalStackLayout>
-        <!-- End of Code for the Person Lookup section-->
+        <!-- End of Code for the Personale Lookup section-->
 
         <!-- Start of Code for the Organization Lookup section-->
         <VerticalStackLayout 

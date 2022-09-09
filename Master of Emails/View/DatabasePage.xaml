@@ -27,14 +27,17 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Label Text="----------REGION SECTION----------" TextColor="Black" FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
+            <Label Text="----------REGION SECTION----------" TextColor="Black" FontSize="20" 
+            FontFamily="Times" HorizontalOptions="Center"></Label>
             
-            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10" Grid.Row="1">
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+             Padding="10" Grid.Row="1">
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
                     <Entry  Text="{Binding NewRegion}" PlaceholderColor="Black" Placeholder="Enter Region Name" />
                     <Button Command="{Binding AddNewRegionCommand}" Text="Add Region"/>
@@ -48,22 +51,30 @@
                 </VerticalStackLayout>
             </HorizontalStackLayout>
 
-            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10" Grid.Row="2">
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" BackgroundColor="SandyBrown">
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10" 
+             Grid.Row="2">
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
+                BackgroundColor="SandyBrown">
                     <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
-                        <Label Text="{Binding NewRegionStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
-                        <Label Text="{Binding RemoveRegionStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                        <Label Text="{Binding NewRegionStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" 
+                         VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                        <Label Text="{Binding RemoveRegionStatusMessage}" TextColor="Black" FontSize="16" 
+                        FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
                     </HorizontalStackLayout>
                 </Frame>
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" BackgroundColor="SandyBrown">
-                    <ListView ItemsSource="{Binding RegionList}" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="100" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
+                 BackgroundColor="SandyBrown">
+                    <ListView ItemsSource="{Binding RegionList}" VerticalOptions="Center" HorizontalOptions="Center" 
+                     WidthRequest="100" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
                 </Frame>
                 
             </HorizontalStackLayout>
 
-            <Label Text="----------REGION SECTION END----------" Grid.Row="3" TextColor="Black" FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
+            <Label Text="----------REGION SECTION END----------" Grid.Row="3" TextColor="Black" FontSize="20" 
+            FontFamily="Times" HorizontalOptions="Center"></Label>
 
-            <Label Text="----------PLAZA SECTION----------" TextColor="Black" Padding="10" Grid.Row="4" FontSize="20" FontFamily="Times" HorizontalOptions="Center"> </Label>
+            <Label Text="----------PLAZA SECTION----------" TextColor="Black" Padding="10" Grid.Row="4" FontSize="20" 
+            FontFamily="Times" HorizontalOptions="Center"> </Label>
 
             <HorizontalStackLayout HorizontalOptions="Center" Grid.Row="5" Spacing="10" Padding="10">
                 
@@ -89,20 +100,28 @@
             </HorizontalStackLayout>
 
             <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10" Grid.Row="6">
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" BackgroundColor="SandyBrown">
-                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" Padding="10" Grid.Row="6">
-                        <Label Text="{Binding NewPlazaStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
-                        <Label Text="{Binding RemovePlazaStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
+                BackgroundColor="SandyBrown">
+                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" Padding="10" 
+                     Grid.Row="6">
+                        <Label Text="{Binding NewPlazaStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" 
+                         VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                        <Label Text="{Binding RemovePlazaStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" 
+                         VerticalOptions="Center" HorizontalOptions="Center"></Label>
                     </HorizontalStackLayout>
                 </Frame>
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" BackgroundColor="SandyBrown">
-                    <ListView ItemsSource="{Binding PlazaList}" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="350" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
+                 BackgroundColor="SandyBrown">
+                    <ListView ItemsSource="{Binding PlazaList}" VerticalOptions="Center" HorizontalOptions="Center" 
+                     WidthRequest="350" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
                 </Frame>
             </HorizontalStackLayout>
 
-            <Label Text="----------PLAZA SECTION END----------" TextColor="Black" Padding="10" Grid.Row="7" FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
+            <Label Text="----------PLAZA SECTION END----------" TextColor="Black" Padding="10" Grid.Row="7" FontSize="20" 
+            FontFamily="Times" HorizontalOptions="Center"></Label>
             
-            <Label Text="----------LANE SECTION----------" Padding="10" Grid.Row="8" TextColor="Black" FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
+            <Label Text="----------LANE SECTION----------" Padding="10" Grid.Row="8" TextColor="Black" FontSize="20" 
+            FontFamily="Times" HorizontalOptions="Center"></Label>
 
             <HorizontalStackLayout HorizontalOptions="Center" Grid.Row="9" Spacing="10" Padding="10">
                 
@@ -124,54 +143,73 @@
             </HorizontalStackLayout>
             
             <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="10" Spacing="10" Padding="10">
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" BackgroundColor="SandyBrown">
-                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" Padding="10" Grid.Row="6">
-                        <Label Text="{Binding NewLaneStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
-                        <Label Text="{Binding RemoveLaneStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
+                BackgroundColor="SandyBrown">
+                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" Padding="10" 
+                     Grid.Row="6">
+                        <Label Text="{Binding NewLaneStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" 
+                         VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                        <Label Text="{Binding RemoveLaneStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" 
+                        VerticalOptions="Center" HorizontalOptions="Center"></Label>
                     </HorizontalStackLayout>
                 </Frame>
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" BackgroundColor="SandyBrown">
-                    <ListView ItemsSource="{Binding LaneList}" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="200" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
+                BackgroundColor="SandyBrown">
+                    <ListView ItemsSource="{Binding LaneList}" VerticalOptions="Center" HorizontalOptions="Center" 
+                     WidthRequest="200" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
                 </Frame>
             </HorizontalStackLayout>
 
-            <Label Text="----------LANE SECTION END----------" TextColor="Black" Padding="10" Grid.Row="11" FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
+            <Label Text="----------LANE SECTION END----------" TextColor="Black" Padding="10" Grid.Row="11" FontSize="20" 
+             FontFamily="Times" HorizontalOptions="Center"></Label>
 
-            <Label Text="----------PERSONALE SECTION----------" TextColor="Black" Padding="10" Grid.Row="12" FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
+            <Label Text="----------TECHNICIAN SECTION----------" TextColor="Black" Padding="10" Grid.Row="12" FontSize="20" 
+             FontFamily="Times" HorizontalOptions="Center"></Label>
 
             <HorizontalStackLayout HorizontalOptions="Center" Grid.Row="13" Spacing="10" Padding="10">
 
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Entry Text="{Binding NewPersonaleKnId}" Placeholder="Enter Personale KN ID" PlaceholderColor="Black"/>
-                    <Entry Text="{Binding NewPersonaleName}" Placeholder="Enter Personale Name (Last, First)" PlaceholderColor="Black"/>
-                    <Entry Text="{Binding NewPersonalePhoneNumber}" Placeholder="Enter Personale Phone Number" PlaceholderColor="Black"/>
-                    <Entry Text="{Binding NewPersonaleEmail}" Placeholder="Enter Personale E-Mail" PlaceholderColor="Black"/>
-                    <Entry Text="{Binding NewPersonaleRole}" Placeholder="Enter Personale Role" PlaceholderColor="Black"/>
-                    <Button Command="{Binding AddNewPersonaleCommand}" Text="Add Personale"/>
+                    <Entry Text="{Binding NewTechnicianKnId}" Placeholder="Enter Technician KN ID" PlaceholderColor="Black"/>
+                    <Entry Text="{Binding NewTechnicianName}" Placeholder="Enter Technician Name (First Last)" 
+                    PlaceholderColor="Black"/>
+                    <Entry Text="{Binding NewTechnicianPhoneNumber}" Placeholder="Enter Technician Phone Number" 
+                    PlaceholderColor="Black"/>
+                    <Entry Text="{Binding NewTechnicianEmail}" Placeholder="Enter Technician E-Mail" PlaceholderColor="Black"/>
+                    <Entry Text="{Binding NewTechnicianRole}" Placeholder="Enter Technician Role" PlaceholderColor="Black"/>
+                    <Button Command="{Binding AddNewTechnicianCommand}" Text="Add Technician"/>
                 </VerticalStackLayout>
 
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Entry Text="{Binding RemovePersonale}" Placeholder="Enter Personale KNID" PlaceholderColor="Black"/>
-                    <Button Command="{Binding DeletePersonaleCommand}" Text="Delete Personale"/>
+                    <Entry Text="{Binding RemoveTechnician}" Placeholder="Enter Technician KNID" PlaceholderColor="Black"/>
+                    <Button Command="{Binding DeleteTechnicianCommand}" Text="Delete Technician"/>
                 </VerticalStackLayout>
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Button Command="{Binding GetAllPersonaleCommand}" Text="Get All Personale"/>
+                    <Button Command="{Binding GetAllTechnicianCommand}" Text="Get All Technician"/>
                 </VerticalStackLayout>
 
             </HorizontalStackLayout>
 
             <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="14" Spacing="10" Padding="10">
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" BackgroundColor="SandyBrown">
-                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" Padding="10" Grid.Row="6">
-                        <Label Text="{Binding NewPersonaleStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
-                        <Label Text="{Binding RemovePersonaleStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
+                BackgroundColor="SandyBrown">
+                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" Padding="10" 
+                     Grid.Row="6">
+                        <Label Text="{Binding NewTechnicianStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" 
+                        VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                        <Label Text="{Binding RemoveTechnicianStatusMessage}" TextColor="Black" FontSize="16" 
+                        FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
                     </HorizontalStackLayout>
                 </Frame>
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" BackgroundColor="SandyBrown">
-                    <ListView ItemsSource="{Binding PersonaleList}" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="400" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
+                BackgroundColor="SandyBrown">
+                    <ListView ItemsSource="{Binding TechnicianList}" VerticalOptions="Center" HorizontalOptions="Center" 
+                    WidthRequest="400" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
                 </Frame>
             </HorizontalStackLayout>
-            
+
+            <Label Text="----------TECHNICIAN SECTION END----------" TextColor="Black" Padding="10" Grid.Row="15" 
+            FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
+
         </Grid>
         
     </ScrollView>

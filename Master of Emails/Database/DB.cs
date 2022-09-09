@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using practice.Pages;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,9 @@ namespace Master_of_Emails.Database
 
         public static SQLiteConnection DatabaseInit()
         {
-            DatabasePath = FileSystem.AppDataDirectory;
             DatabaseName = "MOE.db";
             DatabasePath = Path.Combine(FileSystem.AppDataDirectory, DatabaseName);
             DatabaseConnection = new SQLiteConnection(DatabasePath);
-
             return DatabaseConnection;
         }
     }

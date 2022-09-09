@@ -11,8 +11,10 @@ namespace Master_of_Emails.ViewModels;
 public partial class MainPageViewModel: ObservableObject
 {
     public TollPlazaRepository TollPlazaRepo = new();
-    public List<TollPlaza> TollPlaza = new();
     public TableQuery<TollPlaza> TollPlazaQuery;
+
+    public TollTechnicianRepository TollPersonaleRepo = new();
+    public TableQuery<TollTechnician> TollPersonaleQuery;
 
     [ObservableProperty]
     public string plazaSearch;
@@ -21,10 +23,91 @@ public partial class MainPageViewModel: ObservableObject
     [ObservableProperty]
     public string plazaNameResult="Name: ";
 
+    [ObservableProperty]
+    public string personaleSearch;
+    [ObservableProperty]
+    public string personalePhoneResult = "Phone: ";
+    [ObservableProperty]
+    public string personaleEmailResult = "Name: ";
+
+
+
     public MainPageViewModel()
     {
 
      
+    }
+
+    [RelayCommand]
+    public async void ReturnPersonale()
+    {
+        try
+        {
+            TollPersonaleQuery = TollPersonaleRepo.QueryByTechnicianName(PersonaleSearch);
+
+            if(!TollPersonaleQuery.Any())
+            {
+                PersonalePhoneResult = "Failed to Retrive. The entered ID was invalid or nonexistant";
+                PersonaleEmailResult = "Failed to Retrive. The entered ID was invalid or nonexistant.";
+                await Task.Delay(2000);
+                PersonalePhoneResult = "Phone: ";
+                PersonaleEmailResult = "Name: ";
+            }
+
+            else
+            {
+                foreach (TollTechnician personale in TollPersonaleQuery)
+                {
+                    PersonalePhoneResult = "Phone: " + personale.Technician_phone_number;
+                    PersonaleEmailResult = "Email: " + personale.Technician_email;
+                }
+            }
+        }
+
+        catch (Exception)
+        {
+            PersonalePhoneResult = "Failed to Retrive. The entered ID was invalid or nonexistant";
+            PersonaleEmailResult = "Failed to Retrive. The entered ID was invalid or nonexistant.";
+            await Task.Delay(2000);
+            PersonalePhoneResult = "Phone: ";
+            PersonaleEmailResult = "Name: ";
+        }
+    }
+
+    [RelayCommand]
+    public async void ReturnPlaza()
+    {
+        try
+        {
+            TollPlazaQuery = TollPlazaRepo.QueryByPlazaId(Int32.Parse(PlazaSearch));
+
+            if (!TollPlazaQuery.Any())
+            {
+                PlazaPhoneResult= "Failed to Retrive. The entered ID was invalid or nonexistant";
+                PlazaNameResult= "Failed to Retrive. The entered ID was invalid or nonexistant.";
+                await Task.Delay(2000);
+                PlazaPhoneResult = "Phone: ";
+                PlazaNameResult = "Name: ";
+            }
+
+            else
+            {
+                foreach (TollPlaza plaza in TollPlazaQuery)
+                {
+                    PlazaPhoneResult = "Phone: " + plaza.Plaza_phone_number;
+                    PlazaNameResult = "Plaza: " + plaza.Plaza_name + " " + plaza.Plaza_roadway + " Mile Post " + plaza.Plaza_milepost + " " + plaza.Plaza_region;
+                }
+            }
+        }
+
+        catch (Exception)
+        {
+            PlazaPhoneResult = "Failed to Retrive. The entered ID was invalid or nonexistant.";
+            PlazaNameResult = "Failed to Retrive. The entered ID was invalid or nonexistant";
+            await Task.Delay(2000);
+            PlazaPhoneResult = "Phone: ";
+            PlazaNameResult = "Name: ";
+        }
     }
 
     [RelayCommand]
@@ -61,42 +144,6 @@ public partial class MainPageViewModel: ObservableObject
     public static void OnFiberAlertClicked()
     {
         Shell.Current.GoToAsync("FiberAlertPage");
-    }
-
-    [RelayCommand]
-    public async void ReturnPlaza()
-    {
-        try
-        {
-            TollPlazaQuery = TollPlazaRepo.QueryByPlazaId(Int32.Parse(PlazaSearch));
-
-            if (!TollPlazaQuery.Any())
-            {
-                PlazaPhoneResult= "Failed to Retrive. The entered ID was invalid or nonexistant";
-                PlazaNameResult= "Failed to Retrive. The entered ID was invalid or nonexistant.";
-                await Task.Delay(2000);
-                PlazaPhoneResult = "Phone: ";
-                PlazaNameResult = "Name: ";
-            }
-
-            else
-            {
-                foreach (TollPlaza plaza in TollPlazaQuery)
-                {
-                    PlazaPhoneResult = "Phone: " + plaza.Plaza_phone_number;
-                    PlazaNameResult = "Plaza: " + plaza.Plaza_name + " " + plaza.Plaza_roadway + " Mile Post " + plaza.Plaza_milepost + " " + plaza.Plaza_region;
-                }
-            }
-        }
-
-        catch
-        {
-            PlazaPhoneResult = "Failed to Retrive. The entered ID was invalid or nonexistant.";
-            PlazaNameResult = "Failed to Retrive. The entered ID was invalid or nonexistant";
-            await Task.Delay(2000);
-            PlazaPhoneResult = "Phone: ";
-            PlazaNameResult = "Name: ";
-        }
     }
 
 

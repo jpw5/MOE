@@ -4,6 +4,7 @@ using Master_of_Emails.Database;
 using Master_of_Emails.Table_Repositories;
 using Master_of_Emails.Tables;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Master_of_Emails.ViewModels; 
     public partial class DatabasePageViewModel: ObservableObject
@@ -63,33 +64,33 @@ namespace Master_of_Emails.ViewModels;
         [ObservableProperty]
         public ObservableCollection<string> laneList;
 
-        public TollPersonaleRepository TollPersonaleRepo = new();
-        public List<TollPersonale> TollPersonale = new();
+        public TollTechnicianRepository TollTechnicianRepo = new();
+        public List<TollTechnician> TollTechnician = new();
         [ObservableProperty]
-        public string newPersonaleKnId;
+        public string newTechnicianKnId;
         [ObservableProperty]
-        public string newPersonaleName;
+        public string newTechnicianName;
         [ObservableProperty]
-        public string newPersonalePhoneNumber;
+        public string newTechnicianPhoneNumber;
         [ObservableProperty]
-        public string newPersonaleEmail;
+        public string newTechnicianEmail;
         [ObservableProperty]
-        public string newPersonaleRole;
+        public string newTechnicianRole;
         [ObservableProperty]
-        public string newPersonaleStatusMessage;
+        public string newTechnicianStatusMessage;
         [ObservableProperty]
-        public string removePersonale;
+        public string removeTechnician;
         [ObservableProperty]
-        public string removePersonaleStatusMessage;
+        public string removeTechnicianStatusMessage;
         [ObservableProperty]
-        public ObservableCollection<string> personaleList;
+        public ObservableCollection<string> technicianList;
 
     public DatabasePageViewModel()
         {
             RegionList = new ObservableCollection<string>();
             PlazaList = new ObservableCollection<string>();
             LaneList = new ObservableCollection<string>();
-            PersonaleList = new ObservableCollection<string>();
+            TechnicianList = new ObservableCollection<string>();
 
         if (DB.DatabaseConnection == null)
                 DB.DatabaseInit();
@@ -98,6 +99,7 @@ namespace Master_of_Emails.ViewModels;
         [RelayCommand]
         async void AddNewRegion()
             {
+
             if (string.IsNullOrWhiteSpace(NewRegion))
                {
                     NewRegionStatusMessage = "Error: Please enter a valid name."+NewRegion;
@@ -272,72 +274,86 @@ namespace Master_of_Emails.ViewModels;
         TollLane = TollLaneRepo.GetLanes();
         foreach (TollLane lane in TollLane)
         {
+
             LaneList.Add("Plaza "+lane.Plaza_id+" Lane "+lane.Lane_number.ToString() + " " + lane.Lane_Type);
         }
     }
 
     [RelayCommand]
-    async void AddNewPersonale()
+    async void AddNewTechnician()
     {
+        if (string.IsNullOrWhiteSpace(NewTechnicianKnId) | string.IsNullOrWhiteSpace(NewTechnicianName) |
+            string.IsNullOrWhiteSpace(NewTechnicianPhoneNumber) | string.IsNullOrWhiteSpace(NewTechnicianEmail) |
+            string.IsNullOrWhiteSpace(NewTechnicianRole))
+        {
+            NewTechnicianStatusMessage = "Error: Please enter valid inputs.";
+            await Task.Delay(2000);
+            NewTechnicianStatusMessage = "";
+            return;
+        }
+           
         try
         {
-            TollPersonaleRepo.AddPersonale(NewPersonaleKnId, NewPersonaleName, NewPersonalePhoneNumber, NewPersonaleEmail, NewPersonaleRole);
-            NewPersonaleKnId = "";
-            NewPersonaleName = "";
-            NewPersonalePhoneNumber = "";
-            NewPersonaleEmail = "";
-            NewPersonaleRole = "";
-            NewPersonaleStatusMessage = "Success: Personale Added";
+            
+            TollTechnicianRepo.AddTechnician(NewTechnicianKnId, NewTechnicianName, NewTechnicianPhoneNumber, 
+            NewTechnicianEmail, NewTechnicianRole);
+
+            NewTechnicianKnId = "";
+            NewTechnicianName = "";
+            NewTechnicianPhoneNumber = "";
+            NewTechnicianEmail = "";
+            NewTechnicianRole = "";
+            NewTechnicianStatusMessage = "Success: Technician Added";
             await Task.Delay(2000);
-            NewPersonaleStatusMessage = "";
+            NewTechnicianStatusMessage = "";
         }
 
         catch (Exception)
         {
-            NewPersonaleStatusMessage = "Error: Please enter valid inputs.";
+            NewTechnicianStatusMessage = "Error: Please enter valid inputs.";
             await Task.Delay(2000);
-            NewPersonaleStatusMessage = "";
+            NewTechnicianStatusMessage = "";
         }
     }
 
     [RelayCommand]
-    async void DeletePersonale()
+    async void DeleteTechnician()
     {
-       if(RemovePersonale==null)
+       if(RemoveTechnician==null)
         {
-            RemovePersonaleStatusMessage = "Error: Please enter valid inputs.";
+            RemoveTechnicianStatusMessage = "Error: Please enter valid inputs.";
             await Task.Delay(2000);
-            RemovePersonaleStatusMessage = "";
+            RemoveTechnicianStatusMessage = "";
        }
         else
         {
-            TollPersonaleRepo.DeletePersonale(RemovePersonale);
-            RemovePersonale = "";
-            RemovePersonaleStatusMessage = "Success: Personal Deleted.";
+            TollTechnicianRepo.DeleteTechnician(RemoveTechnician);
+            RemoveTechnician = "";
+            RemoveTechnicianStatusMessage = "Success: Technician Deleted.";
             await Task.Delay(2000);
-            RemovePersonaleStatusMessage = "";
+            RemoveTechnicianStatusMessage = "";
         }
-            
-        
-       
     }
     [RelayCommand]
-    private void GetAllPersonale()
+    private void GetAllTechnician()
     {
-        PersonaleList.Clear();
+        TechnicianList.Clear();
         try
         {
-            TollPersonale = TollPersonaleRepo.GetPersonale();
-            foreach (TollPersonale personale in TollPersonale)
+            TollTechnician = TollTechnicianRepo.GetTechnician();
+            foreach (TollTechnician technician in TollTechnician)
             {
-                PersonaleList.Add(personale.Personale_kn_id + " " + personale.Personale_name + " "+personale.Personale_role+" \n" + personale.Personale_phone_number + " " + personale.Personale_email);
-                PersonaleList.Add(" ");
+                TechnicianList.Add(technician.Technician_kn_id + " " + technician.Technician_name + " " + 
+                technician.Technician_region+" \n" + technician.Technician_phone_number + " " + 
+                technician.Technician_email);
+
+                TechnicianList.Add(" ");
             }
         }
 
         catch(Exception)
         {
-            PersonaleList.Add("No Data Found");
+            TechnicianList.Add("No Data Found");
         }
       
     }
