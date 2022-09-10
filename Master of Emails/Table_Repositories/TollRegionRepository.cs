@@ -26,7 +26,7 @@ namespace Master_of_Emails.Table_Repositories
                 {
                   Region_name = RegionName
                 };
-               DatabaseConnection.Insert(region);
+               var id=DatabaseConnection.Insert(region);
         }
 
         public void DeleteRegion(int Id)

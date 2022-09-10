@@ -85,12 +85,28 @@ namespace Master_of_Emails.ViewModels;
         [ObservableProperty]
         public ObservableCollection<string> technicianList;
 
+        public TollBomitemRepository TollBomitemRepo = new();
+        public List<TollBomitem> TollBomitem = new();
+        [ObservableProperty]
+        public string newBomitemLaneType;
+        [ObservableProperty]
+        public string newBomitemName;
+    [   ObservableProperty]
+        public string newBomitemStatusMessage;
+        [ObservableProperty]
+        public string removeBomitem;
+        [ObservableProperty]
+        public string removeBomitemStatusMessage;
+        [ObservableProperty]
+        public ObservableCollection<string> bomitemList;
+
     public DatabasePageViewModel()
         {
             RegionList = new ObservableCollection<string>();
             PlazaList = new ObservableCollection<string>();
             LaneList = new ObservableCollection<string>();
             TechnicianList = new ObservableCollection<string>();
+            BomitemList = new ObservableCollection<string>();
 
         if (DB.DatabaseConnection == null)
                 DB.DatabaseInit();
@@ -335,7 +351,7 @@ namespace Master_of_Emails.ViewModels;
         }
     }
     [RelayCommand]
-    private void GetAllTechnician()
+    private void GetAllTechnicians()
     {
         TechnicianList.Clear();
         try
@@ -356,6 +372,74 @@ namespace Master_of_Emails.ViewModels;
             TechnicianList.Add("No Data Found");
         }
       
+    }
+
+    [RelayCommand]
+    async void AddNewBomitem()
+    {
+        if (string.IsNullOrWhiteSpace(NewBomitemLaneType) | string.IsNullOrWhiteSpace(NewBomitemName))
+        {
+            NewBomitemStatusMessage = "Error: Please enter valid inputs.";
+            await Task.Delay(2000);
+            NewBomitemStatusMessage = "";
+            return;
+        }
+
+        try
+        {
+
+            TollBomitemRepo.AddBomitem(NewBomitemLaneType, NewBomitemName);
+            NewBomitemLaneType = "";
+            NewBomitemName = "";
+            NewBomitemStatusMessage = "Success: Bom Item Added";
+            await Task.Delay(2000);
+            NewBomitemStatusMessage = "";
+        }
+
+        catch(Exception)
+        {
+            NewBomitemStatusMessage = "Error: Please enter valid inputs.";
+            await Task.Delay(2000);
+            NewBomitemStatusMessage = "";
+        }
+    }
+
+    [RelayCommand]
+    async void DeleteBomitem()
+    {
+        if (string.IsNullOrWhiteSpace(RemoveBomitem))
+        {
+            RemoveBomitemStatusMessage = "Error: Please enter valid inputs.";
+            await Task.Delay(2000);
+            RemoveBomitemStatusMessage = "";
+        }
+        else
+        {
+            TollBomitemRepo.DeleteBomitem(Int32.Parse(RemoveBomitem));
+            RemoveBomitem = "";
+            RemoveBomitemStatusMessage = "Success: Bomitem Deleted.";
+            await Task.Delay(2000);
+            RemoveBomitemStatusMessage = "";
+        }
+    }
+
+    [RelayCommand]
+    private void GetAllBomitems()
+    {
+        BomitemList.Clear();
+        try
+        {
+            TollBomitem = TollBomitemRepo.GetBomitems();
+            foreach (TollBomitem bomitem in TollBomitem)
+            {
+                BomitemList.Add(bomitem.Bomitem_id + " " + bomitem.Bomitem_name);
+            }
+        }
+
+        catch (Exception)
+        {
+            BomitemList.Add("No Data Found");
+        }
     }
 
 

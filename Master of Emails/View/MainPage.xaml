@@ -53,7 +53,7 @@
 
         <VerticalStackLayout Grid.Row="2" Grid.Column="1" Spacing="10" Padding="20">
             <SearchBar Text="{Binding PlazaSearch}" SearchCommand="{Binding ReturnPlazaCommand}" Margin="20" 
-            Placeholder="Plaza Lookup" FontSize="20" CancelButtonColor="Black"></SearchBar>
+            Placeholder="Plaza Lookup" FontSize="20" CancelButtonColor="Black" IsTextPredictionEnabled="True"></SearchBar>
             <Label Text="{Binding PlazaPhoneResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
             VerticalTextAlignment="Start" Padding="10" BackgroundColor="LightBlue"></Label>
             <Label Text="{Binding PlazaNameResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" 

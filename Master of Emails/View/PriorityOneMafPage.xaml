@@ -16,14 +16,24 @@
             <VerticalStackLayout Padding="10" Spacing="40" VerticalOptions="Center" HorizontalOptions="Start">
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
-                    <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" SelectedIndexChanged="SelectRegion_SelectedIndexChanged" x:Name="selectRegion" WidthRequest="110" HorizontalOptions="Center" VerticalOptions="Center" FontSize="14" FontAttributes="Bold" FontFamily="Times" Title="Select Region"></Picker>
-                    <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" x:Name="selectPlaza" SelectedIndexChanged="SelectPlaza_SelectedIndexChanged" WidthRequest="350" HorizontalOptions="Center" VerticalOptions="Center" FontSize="14" FontAttributes="Bold" FontFamily="Times" Title="Select Plaza"></Picker>
-                    <Picker ItemsSource="{Binding TollLaneList}" SelectedItem="{Binding Lane}" x:Name="selectLane" SelectedIndexChanged="SelectLane_SelectedIndexChanged" WidthRequest="100" HorizontalOptions="Center" VerticalOptions="Center" FontSize="14" FontFamily="Times" FontAttributes="Bold" Title="Select Lane"></Picker>
+                    <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" 
+                     SelectedIndexChanged="SelectRegion_SelectedIndexChanged" x:Name="selectRegion" WidthRequest="110" 
+                     HorizontalOptions="Center" VerticalOptions="Center" FontSize="14" FontAttributes="Bold" FontFamily="Times" 
+                     Title="Select Region"></Picker>
+                    <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" x:Name="selectPlaza" 
+                     SelectedIndexChanged="SelectPlaza_SelectedIndexChanged" WidthRequest="350" HorizontalOptions="Center" 
+                     VerticalOptions="Center" FontSize="14" FontAttributes="Bold" FontFamily="Times" Title="Select Plaza"></Picker>
+                    <Picker ItemsSource="{Binding TollLaneList}" SelectedItem="{Binding Lane}" x:Name="selectLane" 
+                    SelectedIndexChanged="SelectLane_SelectedIndexChanged" WidthRequest="100" HorizontalOptions="Center" 
+                    VerticalOptions="Center" FontSize="14" FontFamily="Times" FontAttributes="Bold" Title="Select Lane"></Picker>
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                    <Picker HorizontalOptions="Center" FontFamily="Times" FontSize="14" Title="Select BOM Item"></Picker>
-                    <Picker HorizontalOptions="Center" FontSize="14" FontFamily="Times" Title="Select Technician"></Picker>
+                    <Picker ItemsSource="{Binding TollBomitemList}" SelectedIndex="{Binding Bomitem}" x:Name="selectBomitem" 
+                     FontAttributes="Bold" HorizontalOptions="Center" FontSize="14" FontFamily="Times" Title="Select BOM Item"></Picker>
+                    <Picker ItemsSource="{Binding TollTechnicianList}" SelectedItem="{Binding Technician}" 
+                     x:Name="selectTechnician" HorizontalOptions="Center" FontSize="14" FontFamily="Times" FontAttributes="Bold" 
+                     Title="Select Technician"></Picker>
                 </HorizontalStackLayout>
 
                 <Entry

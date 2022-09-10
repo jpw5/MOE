@@ -43,7 +43,7 @@ public partial class MainPageViewModel: ObservableObject
     {
         try
         {
-            TollPersonaleQuery = TollPersonaleRepo.QueryByTechnicianName(PersonaleSearch);
+            TollPersonaleQuery = TollPersonaleRepo.QueryTechnicianByName(PersonaleSearch);
 
             if(!TollPersonaleQuery.Any())
             {

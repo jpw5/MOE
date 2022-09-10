@@ -49,17 +49,17 @@ namespace Master_of_Emails.Table_Repositories
             return DatabaseConnection.Table<TollTechnician>().ToList();
         }
 
-        public TableQuery<TollTechnician> QueryByTechnicianName(string TechnicianName)
+        public TableQuery<TollTechnician> QueryTechnicianByName(string TechnicianName)
         {
             Init();
             return DatabaseConnection.Table<TollTechnician>().Where(value => value.Technician_name.
             Equals(TechnicianName));
         }
 
-        public TableQuery<TollTechnician> QueryByTechnicianRegion(string TechnicianRegion)
+        public TableQuery<TollTechnician> QueryTechnicianByRegion(string TechnicianRegion)
         {
             Init();
-            return DatabaseConnection.Table<TollTechnician>().Where(value => value.Technician_name.
+            return DatabaseConnection.Table<TollTechnician>().Where(value => value.Technician_region.
             Equals(TechnicianRegion));
         }
 

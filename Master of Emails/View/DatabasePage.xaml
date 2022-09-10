@@ -28,6 +28,10 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -184,7 +188,7 @@
                     <Button Command="{Binding DeleteTechnicianCommand}" Text="Delete Technician"/>
                 </VerticalStackLayout>
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Button Command="{Binding GetAllTechnicianCommand}" Text="Get All Technician"/>
+                    <Button Command="{Binding GetAllTechniciansCommand}" Text="Get All Technicians"/>
                 </VerticalStackLayout>
 
             </HorizontalStackLayout>
@@ -206,9 +210,48 @@
                     WidthRequest="400" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
                 </Frame>
             </HorizontalStackLayout>
-
+            
             <Label Text="----------TECHNICIAN SECTION END----------" TextColor="Black" Padding="10" Grid.Row="15" 
             FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
+
+            <Label Text="----------BOM ITEM SECTION----------" TextColor="Black" Padding="10" Grid.Row="16" 
+            FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
+
+            <HorizontalStackLayout HorizontalOptions="Center" Grid.Row="17" Spacing="10" Padding="10">
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+                    <Entry Text="{Binding NewBomitemLaneType}" Placeholder="Enter Bom Item Lane Type" PlaceholderColor="Black"/>
+                    <Entry Text="{Binding NewBomitemName}" Placeholder="Enter Bom Item Name" 
+                    PlaceholderColor="Black"/>
+                    <Button Command="{Binding AddNewBomitemCommand}" Text="Add Bom Item"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+                    <Entry Text="{Binding RemoveBomitem}" Placeholder="Enter Bomitem ID" PlaceholderColor="Black"/>
+                    <Button Command="{Binding DeleteBomitemCommand}" Text="Delete Bomitem"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+                    <Button Command="{Binding GetAllBomitemsCommand}" Text="Get All Bomitems"/>
+                </VerticalStackLayout>
+
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="18" Spacing="10" Padding="10">
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
+                BackgroundColor="SandyBrown">
+                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" Padding="10" 
+                     Grid.Row="6">
+                        <Label Text="{Binding NewBomitemStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" 
+                        VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                        <Label Text="{Binding RemoveBomitemStatusMessage}" TextColor="Black" FontSize="16" 
+                        FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                    </HorizontalStackLayout>
+                </Frame>
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
+                BackgroundColor="SandyBrown">
+                    <ListView ItemsSource="{Binding BomitemList}" VerticalOptions="Center" HorizontalOptions="Center" 
+                    WidthRequest="400" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
+                </Frame>
+            </HorizontalStackLayout>
 
         </Grid>
         
