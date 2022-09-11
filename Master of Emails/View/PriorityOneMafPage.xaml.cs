@@ -88,13 +88,14 @@ public partial class PriorityOneMafPage : ContentPage
 
     private void SelectLane_SelectedIndexChanged(object sender, EventArgs e)
     {
+        selectBomitem.ItemsSource.Clear();
         int selectedIndex = selectLane.SelectedIndex;
-        var Split = selectLane.Items[selectedIndex].Split(" ", 2);
-        Bomitem = (Split[1]);
 
         if (selectedIndex != -1)
         {
             Lane = selectLane.SelectedItem.ToString();
+            var Split = selectLane.Items[selectedIndex].Split(" ", 2);
+            Bomitem = (Split[1]);
         }
 
         tollBomitemQueryByLaneType= TollBomitemRepo.QueryByLaneType(Bomitem);

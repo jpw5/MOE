@@ -38,7 +38,16 @@ namespace Master_of_Emails.Table_Repositories
         public List<TollRegion> GetRegions()
         {
             Init();
-            return DatabaseConnection.Table<TollRegion>().ToList();
+
+            try
+            {
+                return DatabaseConnection.Table<TollRegion>().ToList();
+            }
+            
+            catch(Exception)
+            {
+                return null;
+            }
         }
 
     }

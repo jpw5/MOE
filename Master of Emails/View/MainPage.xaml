@@ -6,7 +6,6 @@
              x:Class="Master_of_Emails.MainPage">
     
     <!-- Start of code for the Grid Layout-->
-    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -14,14 +13,14 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
         <!--Start of code for email form Imagebuttons-->
         
-        <BoxView Color="#ff0000"/>
+        <BoxView Color="#ff0000" />
         <ImageButton Command="{Binding PriorityOneMafClickedCommand }" Source="priority_one_maf.png" 
         HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
 
@@ -112,5 +111,7 @@
 
     </Grid>
     <!-- End of code for the Grid Layout-->
+
+ 
 
 </ContentPage>

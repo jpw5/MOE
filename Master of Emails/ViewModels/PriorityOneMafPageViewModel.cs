@@ -57,12 +57,14 @@ public partial class PriorityOneMafPageViewModel : ObservableObject
     public void PopulateRegionList()
     {
         TollRegion= TollRegionRepo.GetRegions();
-        foreach (TollRegion region in TollRegion)
+        if(TollRegion!=null)
         {
-            tollRegionList.Add(region.Region_name);
+            foreach (TollRegion region in TollRegion)
+            {
+                tollRegionList.Add(region.Region_name);
+            }
         }
 
-        
     }
 
   

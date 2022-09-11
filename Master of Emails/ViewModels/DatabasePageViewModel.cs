@@ -175,11 +175,21 @@ namespace Master_of_Emails.ViewModels;
         private void GetAllRegions()
         {
             RegionList.Clear();
-            TollRegion = TollRegionRepo.GetRegions();
-            foreach(TollRegion region in TollRegion)
+            try
             {
-            RegionList.Add(region.Region_id.ToString() + " " + region.Region_name);
+                TollRegion = TollRegionRepo.GetRegions();
+                foreach (TollRegion region in TollRegion)
+                {
+                    RegionList.Add(region.Region_id.ToString() + " " + region.Region_name);
+                }
+
             }
+
+            catch (Exception)
+            {
+                RegionList.Add("No Data in database");
+            }      
+           
         }
 
         [RelayCommand]
@@ -232,10 +242,19 @@ namespace Master_of_Emails.ViewModels;
     private void GetAllPlazas()
     {
         PlazaList.Clear();
-        TollPlaza = TollPlazaRepo.GetPlazas();
-        foreach (TollPlaza plaza in TollPlaza)
+        try
         {
-            PlazaList.Add(plaza.Plaza_id.ToString() + " " + plaza.Plaza_name+" "+plaza.Plaza_roadway+" MP:"+plaza.Plaza_milepost+" "+plaza.Plaza_region);
+            TollPlaza = TollPlazaRepo.GetPlazas();
+            foreach (TollPlaza plaza in TollPlaza)
+            {
+              PlazaList.Add(plaza.Plaza_id.ToString() + " " + plaza.Plaza_name + " " + plaza.Plaza_roadway + " MP:" + plaza.Plaza_milepost + " " + plaza.Plaza_region);
+            }
+
+        }
+
+        catch
+        {
+            PlazaList.Add("No Data in database");
         }
     }
 
@@ -340,8 +359,10 @@ namespace Master_of_Emails.ViewModels;
             RemoveTechnicianStatusMessage = "Error: Please enter valid inputs.";
             await Task.Delay(2000);
             RemoveTechnicianStatusMessage = "";
+            return;
        }
-        else
+
+        try
         {
             TollTechnicianRepo.DeleteTechnician(RemoveTechnician);
             RemoveTechnician = "";
@@ -349,6 +370,16 @@ namespace Master_of_Emails.ViewModels;
             await Task.Delay(2000);
             RemoveTechnicianStatusMessage = "";
         }
+
+        catch (Exception)
+        {
+            RemoveTechnicianStatusMessage = "Error: Please enter valid inputs.";
+            await Task.Delay(2000);
+            RemoveTechnicianStatusMessage = "";
+        }
+        
+         
+        
     }
     [RelayCommand]
     private void GetAllTechnicians()
@@ -412,12 +443,20 @@ namespace Master_of_Emails.ViewModels;
             RemoveBomitemStatusMessage = "Error: Please enter valid inputs.";
             await Task.Delay(2000);
             RemoveBomitemStatusMessage = "";
+            return ;
         }
-        else
+        try
         {
             TollBomitemRepo.DeleteBomitem(Int32.Parse(RemoveBomitem));
             RemoveBomitem = "";
             RemoveBomitemStatusMessage = "Success: Bomitem Deleted.";
+            await Task.Delay(2000);
+            RemoveBomitemStatusMessage = "";
+        }
+
+        catch (Exception)
+        {
+            RemoveBomitemStatusMessage = "Error: Please enter valid inputs.";
             await Task.Delay(2000);
             RemoveBomitemStatusMessage = "";
         }

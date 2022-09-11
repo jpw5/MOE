@@ -17,7 +17,7 @@ namespace Master_of_Emails.Tables
         [MaxLength(250), Unique]
         public string Plaza_name { get; set; }
 
-        [MaxLength(250), Unique]
+        [MaxLength(250)]
         public string Plaza_roadway { get; set; }
 
         public int Plaza_milepost { get; set; }
