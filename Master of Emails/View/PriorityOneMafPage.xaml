@@ -6,61 +6,62 @@
              x:DataType="viewmodel:PriorityOneMafPageViewModel"
              Title="Priority One Maf">
 
-    <ScrollView Orientation="Both" HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always" BackgroundColor="#ff0000">
-        <Border HeightRequest="700" WidthRequest="700" Stroke="#C49B33" StrokeThickness="4" Background="White" Padding="16,8" HorizontalOptions="Center">
+    <ScrollView Orientation="Both" HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always" 
+    BackgroundColor="#ff0000">
         
-        <Border.StrokeShape>
-                <RoundRectangle CornerRadius="40,0,0,40"></RoundRectangle>
-        </Border.StrokeShape>
+        <Border HeightRequest="700" WidthRequest="700" Stroke="#C49B33" StrokeThickness="4" Background="White" 
+        Padding="16,8" HorizontalOptions="Center">
 
-            <VerticalStackLayout Padding="10" Spacing="40" VerticalOptions="Center" HorizontalOptions="Start">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="40,0,0,40"></RoundRectangle>
+            </Border.StrokeShape>
+
+            <VerticalStackLayout Padding="10" Spacing="20" VerticalOptions="Center" HorizontalOptions="Start">
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
+
                     <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" 
                      SelectedIndexChanged="SelectRegion_SelectedIndexChanged" x:Name="selectRegion" WidthRequest="110" 
                      HorizontalOptions="Center" VerticalOptions="Center" FontSize="14" FontAttributes="Bold" FontFamily="Times" 
                      Title="Select Region"></Picker>
+
                     <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" x:Name="selectPlaza" 
                      SelectedIndexChanged="SelectPlaza_SelectedIndexChanged" WidthRequest="350" HorizontalOptions="Center" 
                      VerticalOptions="Center" FontSize="14" FontAttributes="Bold" FontFamily="Times" Title="Select Plaza"></Picker>
+
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="Start">
+
                     <Picker ItemsSource="{Binding TollLaneList}" SelectedItem="{Binding Lane}" x:Name="selectLane" 
                     SelectedIndexChanged="SelectLane_SelectedIndexChanged" WidthRequest="100" HorizontalOptions="Center" 
                     VerticalOptions="Center" FontSize="14" FontFamily="Times" FontAttributes="Bold" Title="Select Lane"></Picker>
+
+                    <Picker ItemsSource="{Binding TollBomitemList}" SelectedIndex="{Binding Bomitem}" x:Name="selectBomitem"
+                     SelectedIndexChanged="SelectBomitem_SelectedIndexChanged" FontAttributes="Bold" HorizontalOptions="Center" FontSize="14" FontFamily="Times" Title="Select BOM Item"
+                     WidthRequest="200"></Picker>
+
                 </HorizontalStackLayout>
 
-                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                    <Picker ItemsSource="{Binding TollBomitemList}" SelectedIndex="{Binding Bomitem}" x:Name="selectBomitem" 
-                     FontAttributes="Bold" HorizontalOptions="Center" FontSize="14" FontFamily="Times" Title="Select BOM Item"></Picker>
-                    <Picker ItemsSource="{Binding TollTechnicianList}" SelectedItem="{Binding Technician}" 
+                <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="Start">
+
+                    <Picker ItemsSource="{Binding TollTechnicianList}" SelectedItem="{Binding Technician}" SelectedIndexChanged="SelectTechnician_SelectedIndexChanged" 
                      x:Name="selectTechnician" HorizontalOptions="Center" FontSize="14" FontFamily="Times" FontAttributes="Bold" 
-                     Title="Select Technician"></Picker>
+                     Title="Select Technician" WidthRequest="200"></Picker>
+
+                    <Entry Text="{Binding Problem}" x:Name="selectProblem" TextChanged="SelectProblem_TextChanged" FontFamily="Times" FontSize="14" Placeholder="Enter Problem" HeightRequest="5" PlaceholderColor="DarkSlateGray" WidthRequest="250"></Entry>
+
+                    <Entry Text="{Binding MafNumber}" x:Name="selectMafNumber" TextChanged="SelectMafNumber_TextChanged" FontFamily="Times" FontSize="14" Placeholder="Enter MAF#" HeightRequest="5" PlaceholderColor="DarkSlateGray"></Entry>
+
                 </HorizontalStackLayout>
 
-                <Entry
-                  FontFamily="Times"
-                  FontSize="16"
-                  Placeholder="Enter the Problem"
-                  PlaceholderColor="DarkSlateGray">
+                <Editor Text="{Binding ActionTaken}" x:Name="selectActionTaken" TextChanged="SelectActionTaken_TextChanged" HeightRequest="100" FontFamily="Times" FontSize="16" Placeholder="Action Taken" 
+                PlaceholderColor="DarkSlateGray" AutoSize="TextChanges"></Editor>
 
-                </Entry>
-
-                <Entry
-                  FontFamily="Times"
-                  FontSize="16"
-                  Placeholder="Enter MAF Number"
-                  PlaceholderColor="DarkSlateGray">
-
-                </Entry>
-
-                <Editor
-                  HeightRequest="100"
-                  FontFamily="Times"
-                  FontSize="16"
-                  Placeholder="Action Taken"
-                  PlaceholderColor="DarkSlateGray"
-                  AutoSize="TextChanges">
-
-                </Editor>
+                <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="End">
+                    <Button Command="{Binding ClearCommand}" CornerRadius="20" Text="Clear"></Button>
+                    <Button Pressed="PriorityOneEmail_Button_Pressed" CornerRadius="20" Text="Email"></Button>
+                </HorizontalStackLayout>
 
             </VerticalStackLayout>
         </Border>

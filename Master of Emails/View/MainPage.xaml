@@ -51,12 +51,16 @@
         <BoxView Grid.Row="2" Grid.ColumnSpan="3" Color="White"/>
 
         <VerticalStackLayout Grid.Row="2" Grid.Column="1" Spacing="10" Padding="20">
+            
             <SearchBar Text="{Binding PlazaSearch}" SearchCommand="{Binding ReturnPlazaCommand}" Margin="20" 
             Placeholder="Plaza Lookup" FontSize="20" CancelButtonColor="Black" IsTextPredictionEnabled="True"></SearchBar>
+            
             <Label Text="{Binding PlazaPhoneResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
             VerticalTextAlignment="Start" Padding="10" BackgroundColor="LightBlue"></Label>
+            
             <Label Text="{Binding PlazaNameResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
             VerticalTextAlignment="Start" Padding="10" BackgroundColor="LightBlue"></Label>
+            
         </VerticalStackLayout>
         
         <!-- End of Code for the Plaza Lookup section-->
@@ -64,13 +68,17 @@
         <!-- Start of Code for the Personale Lookup section-->
 
         <VerticalStackLayout Grid.Row="2" Spacing="10">
+            
             <SearchBar Text="{Binding PersonaleSearch}" SearchCommand="{Binding ReturnPersonaleCommand}" 
              IsTextPredictionEnabled="True" Margin="20" Placeholder="Personale Lookup (First Name Last Name)" 
              FontSize="20" CancelButtonColor="Black"></SearchBar>
+            
             <Label Text="{Binding PersonalePhoneResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
             VerticalTextAlignment="Start" Padding="10" BackgroundColor="LightBlue"></Label>
+            
             <Label Text="{Binding PersonaleEmailResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
             VerticalTextAlignment="Start" Padding="10" BackgroundColor="LightBlue"></Label>
+            
         </VerticalStackLayout>
         <!-- End of Code for the Personale Lookup section-->
 

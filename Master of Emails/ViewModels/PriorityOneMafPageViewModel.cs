@@ -15,7 +15,6 @@ public partial class PriorityOneMafPageViewModel : ObservableObject
     public TollRegionRepository TollRegionRepo = new();
     public List<TollRegion> TollRegion = new();
 
-
     [ObservableProperty]
     public ObservableCollection<string> tollPlazaList;
     [ObservableProperty]
@@ -44,6 +43,13 @@ public partial class PriorityOneMafPageViewModel : ObservableObject
     public TollBomitemRepository TollBomitemRepo = new();
     public List<TollBomitem> TollBomitem = new();
 
+    [ObservableProperty]
+    public string problem;
+    [ObservableProperty]
+    public string mafNumber;
+    [ObservableProperty]
+    public string actionTaken;
+
     public PriorityOneMafPageViewModel()
     {
         tollPlazaList = new ObservableCollection<string>();
@@ -53,7 +59,6 @@ public partial class PriorityOneMafPageViewModel : ObservableObject
         tollBomitemList=new ObservableCollection<string>();
         PopulateRegionList();
     }
-
     public void PopulateRegionList()
     {
         TollRegion= TollRegionRepo.GetRegions();
@@ -67,7 +72,17 @@ public partial class PriorityOneMafPageViewModel : ObservableObject
 
     }
 
-  
-
-
+    [RelayCommand]
+    public void Clear()
+    {
+        tollRegionList.Clear();
+        PopulateRegionList();
+        tollPlazaList.Clear();
+        tollLaneList.Clear();
+        tollBomitemList.Clear();
+        tollTechnicianList.Clear();
+        Problem = "";
+        MafNumber = "";
+        ActionTaken = "";
+    }
 }

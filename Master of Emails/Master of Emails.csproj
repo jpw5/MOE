@@ -53,8 +53,30 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <COMReference Include="Microsoft.Office.Core">
+	    <WrapperTool>tlbimp</WrapperTool>
+	    <VersionMinor>8</VersionMinor>
+	    <VersionMajor>2</VersionMajor>
+	    <Guid>2df8d04c-5bfa-101b-bde5-00aa0044de52</Guid>
+	    <Lcid>0</Lcid>
+	    <Isolated>false</Isolated>
+	    <EmbedInteropTypes>true</EmbedInteropTypes>
+	  </COMReference>
+	  <COMReference Include="Microsoft.Office.Interop.Outlook">
+	    <WrapperTool>tlbimp</WrapperTool>
+	    <VersionMinor>6</VersionMinor>
+	    <VersionMajor>9</VersionMajor>
+	    <Guid>00062fff-0000-0000-c000-000000000046</Guid>
+	    <Lcid>0</Lcid>
+	    <Isolated>false</Isolated>
+	    <EmbedInteropTypes>true</EmbedInteropTypes>
+	  </COMReference>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 	  <PackageReference Include="Google.Apis.Compute.v1" Version="1.57.0.2777" />
+	  <PackageReference Include="Microsoft.Exchange.WebServices" Version="2.2.0" />
 	  <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 	  <PackageReference Include="System.ObjectModel" Version="4.3.0" />
 	</ItemGroup>

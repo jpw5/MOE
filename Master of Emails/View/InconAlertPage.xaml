@@ -2,152 +2,85 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="practice.Pages.InconAlertPage"
+             xmlns:viewmodel="clr-namespace:Master_of_Emails.ViewModels"
+             x:DataType="viewmodel:InconAlertPageViewModel"
              Title="Incon Alert">
 
-    <ScrollView
-                Background="#00FFFF">
-        <Border
-           HeightRequest="600"
-           WidthRequest="600"
-           Stroke="#C49B33"
-           StrokeThickness="4"
-           Background="white"
-           Padding="16,8"
-           HorizontalOptions="Center">
+    <ScrollView Orientation="Both" HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always" 
+    Background="#00FFFF">
+        
+        <Border HeightRequest="700" WidthRequest="700" Stroke="#C49B33" StrokeThickness="4" Background="white"
+        Padding="16,8" HorizontalOptions="Center">
 
             <Border.StrokeShape>
-                <RoundRectangle
-                           CornerRadius="40,0,0,40">
-                </RoundRectangle>
+                <RoundRectangle CornerRadius="40,0,0,40"></RoundRectangle>
             </Border.StrokeShape>
 
-            <VerticalStackLayout 
-                                VerticalOptions="Center"
-                                HorizontalOptions="Center"
-                                Padding="5"
-                                Spacing="20">
+            <VerticalStackLayout Padding="10" Spacing="20" VerticalOptions="Center" HorizontalOptions="Start">
 
-                <HorizontalStackLayout
-                                      Spacing="10"
-                                      HorizontalOptions="Center">
-                    <Picker
-                       x:Name="select_plaza"
-                       HorizontalOptions="Center"
-                       FontSize="16"
-                       FontFamily="Times"
-                       Title="Select Plaza">
-                    </Picker>
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
-                    <Picker
-                       x:Name="lane"
-                       HorizontalOptions="Center"
-                       FontSize="16"
-                       FontFamily="Times"
-                       Title="Select Lane/Lane Type">
-                    </Picker>
+                    <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" 
+                     SelectedIndexChanged="SelectRegion_SelectedIndexChanged" x:Name="selectRegion" WidthRequest="110" 
+                     HorizontalOptions="Center" VerticalOptions="Center" FontSize="14" FontAttributes="Bold" 
+                     FontFamily="Times" Title="Select Region"></Picker>
+
+                    <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" x:Name="selectPlaza" 
+                    SelectedIndexChanged="SelectPlaza_SelectedIndexChanged" WidthRequest="350" HorizontalOptions="Center" 
+                    VerticalOptions="Center" FontSize="14" FontAttributes="Bold" FontFamily="Times" 
+                    Title="Select Plaza"></Picker>
+
+                    <Frame WidthRequest="200" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
+                    BorderColor="SandyBrown" BackgroundColor="SandyBrown">
+                        <CollectionView x:Name="selectLane" ItemsSource="{Binding TollLaneList}" WidthRequest="100" 
+                        SelectionMode="Multiple" SelectionChanged="SelectLane_SelectionChanged" HeightRequest="50" 
+                        VerticalScrollBarVisibility="Always" ></CollectionView>
+                    </Frame>
+
                 </HorizontalStackLayout>
 
-                <HorizontalStackLayout   
-                                      Spacing="10"
-                                      HorizontalOptions="Center">
-                    <Picker
-                        x:Name="select_requestor"
-                        HorizontalOptions="Center"
-                        FontSize="16"
-                        FontFamily="Times"
-                        Title="Select Requestor">
-                    </Picker>
+                <SearchBar Text="{Binding PersonaleSearch}" SearchCommand="{Binding ReturnPersonaleCommand}" 
+                    IsTextPredictionEnabled="True" Placeholder="Personale Lookup" CancelButtonColor="Black" 
+                    VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="200"></SearchBar>
 
-                    <Entry
-                      x:Name="requestor_phone_number"
-                      FontFamily="Times"
-                      FontSize="16"
-                      Placeholder="Requestor Phone Number"
-                      PlaceholderColor="DarkSlateGray">
-                    </Entry>
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
+
+                    <Entry Text="{Binding PersonaleSearch}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+                     x:Name="selectPersonale" VerticalTextAlignment="Start" Placeholder="Enter Requestor Name" 
+                     PlaceholderColor="Black"></Entry>
+
+                    <Entry Text="{Binding PersonalePhoneResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+                     x:Name="selectPhoneNumber" VerticalTextAlignment="Start" Placeholder="Enter Phone Number"
+                     PlaceholderColor="Black"></Entry>
+
+                    <Entry Text="{Binding Date}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+                     x:Name="selectDate" VerticalTextAlignment="Start" Placeholder="Enter Starting Date/Time" 
+                     PlaceholderColor="Black"></Entry>
+
                 </HorizontalStackLayout>
-                 
 
-                <HorizontalStackLayout
-                                      Spacing="10"
-                                      HorizontalOptions="Center">
-                    <Label
-                          VerticalOptions="Center"
-                          Text="Select Date/Time"
-                          FontSize="16"
-                          FontFamily="Times">
-                    </Label>
-                    
-                    <DatePicker
-                               x:Name="date"
-                               FontSize="16"
-                               FontFamily="Times">
-                    </DatePicker>
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
 
-                    <TimePicker
-                               x:Name="time"
-                               FontSize="16"
-                               FontFamily="Times">
-                    </TimePicker>
+                    <Entry Text="{Binding Duration}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+                     x:Name="selectDuration" VerticalTextAlignment="Start" Placeholder="Enter Work Duration" 
+                     PlaceholderColor="Black"></Entry>
+
+                    <RadioButton FontSize="16" FontFamily="Times" x:Name="hours" Content="Hours" Value="Hour(s)"></RadioButton>
+
+                    <RadioButton FontSize="16" FontFamily="Times" x:Name="minuets" Content="Minuets" Value="Minuets"></RadioButton>
                     
                 </HorizontalStackLayout>
 
-                <HorizontalStackLayout
-                                      HorizontalOptions="Center"
-                                      Spacing="10">
-                    <Label
-                          VerticalOptions="Center"
-                          Text="Duration Of Work"
-                          FontSize="16"
-                          FontFamily="Times">
-                    </Label>
+                <Entry Text="{Binding IncidentOrESR}" FontFamily="Times" FontSize="16" Placeholder="Incident/ESR" 
+                PlaceholderColor="DarkSlateGray"></Entry>
 
-                    <Stepper 
-                            x:Name="duration_stepper"
-                            Maximum="100"
-                            Minimum="1">
-                    </Stepper>
+                <Editor Text="{Binding Reason}" HeightRequest="90" FontFamily="Times" FontSize="16" Placeholder="Reason"
+                PlaceholderColor="DarkSlateGray" AutoSize="TextChanges"></Editor>
 
-                    <Label 
-                          FontSize="16"
-                          Text="{Binding Source={x:Reference duration_stepper}, Path=Value, StringFormat='{0:F0}'}"
-                          HorizontalOptions="Center"
-                          VerticalOptions="Center" />
-
-                    <VerticalStackLayout>
-                        <RadioButton
-                                    FontSize="16"
-                                    FontFamily="Times"
-                                    x:Name="hours"
-                                    Content="Hours"
-                                    Value="Hour(s)">
-                        </RadioButton>
-
-                        <RadioButton
-                                    FontSize="16"
-                                    FontFamily="Times"
-                                    x:Name="minuets"
-                                    Content="Minuets"
-                                    Value="Minuets">
-                        </RadioButton>
-                    </VerticalStackLayout>
+                <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="End">
+                    <Button Command="{Binding ClearCommand}" CornerRadius="20" Text="Clear"></Button>
+                    <Button Pressed="InconAlertEmail_Button_Pressed" CornerRadius="20" Text="Email"></Button>
                 </HorizontalStackLayout>
-          
-                <Entry
-                      FontFamily="Times"
-                      FontSize="16"
-                      Placeholder="Incident/ESR"
-                      PlaceholderColor="DarkSlateGray">
-                </Entry>
-
-                <Editor
-                       HeightRequest="90"
-                       FontFamily="Times"
-                       FontSize="16"
-                       Placeholder="Reason"
-                       PlaceholderColor="DarkSlateGray"
-                       AutoSize="TextChanges">
-                </Editor>
 
             </VerticalStackLayout>
 

@@ -1,11 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Google.Apis.Compute.v1.Data;
-using Master_of_Emails.Database;
 using Master_of_Emails.Table_Repositories;
 using Master_of_Emails.Tables;
 using SQLite;
-using System.Collections.ObjectModel;
 
 namespace Master_of_Emails.ViewModels;
 public partial class MainPageViewModel: ObservableObject
@@ -28,9 +25,7 @@ public partial class MainPageViewModel: ObservableObject
     [ObservableProperty]
     public string personalePhoneResult = "Phone: ";
     [ObservableProperty]
-    public string personaleEmailResult = "Name: ";
-
-
+    public string personaleEmailResult = "Email: ";
 
     public MainPageViewModel()
     {
@@ -145,9 +140,5 @@ public partial class MainPageViewModel: ObservableObject
     {
         Shell.Current.GoToAsync("FiberAlertPage");
     }
-
-
-
-
 }
 
