@@ -2,7 +2,6 @@ using Google.Apis.Compute.v1.Data;
 using Master_of_Emails.Table_Repositories;
 using Master_of_Emails.Tables;
 using Master_of_Emails.ViewModels;
-using Microsoft.Office.Core;
 using SQLite;
 using Outlook = Microsoft.Office.Interop.Outlook;
 
@@ -26,12 +25,21 @@ public partial class InconAlertPage : ContentPage
     public TableQuery<TollBomitem> tollBomitemQueryByLaneType;
 
     public List<string> TollLane = new();
+    public List<string> TollLaneList = new();
 
     public string Region;
     public int PlazaId;
     public string Plaza;
     public string Roadway;
     public string Lane;
+    public string Date;
+    public string Requestor;
+    public string RequestorPhoneNumber;
+    public string Duration;
+    public string Units;
+    public string IncidentOrESR;
+    public string Reason;
+    
 
     public InconAlertPage(InconAlertPageViewModel inconAlertPageViewModel)
 	{
@@ -93,17 +101,65 @@ public partial class InconAlertPage : ContentPage
 
         else
         {
+            TollLaneList.Clear();
             for (int i = 0; i < e.CurrentSelection.Count; i++)  
             {
-                TollLane.Add(e.CurrentSelection[i].ToString());
+                TollLaneList.Add(e.CurrentSelection[i].ToString());
                 //DisplayAlert("Check", TollLane[i], "Close");
             }
         }
     }
 
+    private void SelectRequestor_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        Requestor = e.NewTextValue;
+    }
+
+    private void SelectPhoneNumber_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        RequestorPhoneNumber = e.NewTextValue;
+    }
+    private void SelectDate_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        Date = e.NewTextValue;
+    }
+
     private void InconAlertEmail_Button_Pressed(object sender, EventArgs e)
     {
+        for (int i = 0; i <TollLaneList.Count; i++)
+        {
+            Lane+=TollLaneList[i]+" ";
+        }
+
+        TollLaneList.Clear();
+        Date=selectDate.Text;
+        Requestor=selectRequestor.Text;
+        RequestorPhoneNumber=selectPhoneNumber.Text;
+        Duration=selectDuration.Text;
+        Reason = selectReason.Text;
+
+        string To = "ali.shakoor2249@gmail.com";
+        string Subject = "InConAlert for Plaza - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
+        string Body = "****SunWatch InConAlert****" + "<br>" + "<br>" +
+        "Plaza: " + Plaza + "<br>" + "Roadway: " + Roadway + "<br>" + "Lane(s): " + Lane + "<br>" + "Date/Time: " + Date + "<br>" +
+        "Requestor: " + Requestor+" / "+RequestorPhoneNumber + "<br>" + "Duration: "+Duration+" "+Units+ "<br>" +"Reason: " + Reason;
+
+        mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
+        mail.To = To;
+        mail.Subject = Subject;
+        mail.HTMLBody = Body;
+        mail.Display();
 
     }
 
+    private void HoursRadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        
+        Units = "Hours";
+    }
+
+    private void MinuetsRadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        Units = "Minuets";
+    }
 }

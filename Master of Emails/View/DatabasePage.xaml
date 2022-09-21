@@ -117,7 +117,7 @@
                 <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
                  BackgroundColor="SandyBrown">
                     <ListView ItemsSource="{Binding PlazaList}" VerticalOptions="Center" HorizontalOptions="Center" 
-                     WidthRequest="350" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
+                     WidthRequest="400" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
                 </Frame>
             </HorizontalStackLayout>
 

@@ -50,6 +50,8 @@ public partial class PriorityOneMafPageViewModel : ObservableObject
     [ObservableProperty]
     public string actionTaken;
 
+    
+
     public PriorityOneMafPageViewModel()
     {
         tollPlazaList = new ObservableCollection<string>();

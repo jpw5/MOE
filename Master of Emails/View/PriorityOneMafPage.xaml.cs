@@ -33,8 +33,8 @@ public partial class PriorityOneMafPage : ContentPage
     public string Problem;
     public string ActionTaken;
     public string Technician;
-    public DateTime TimeContacted;
     public string MAF;
+    public DateTime Date = DateTime.Now;
 
     public PriorityOneMafPage(PriorityOneMafPageViewModel priorityOneMafPageViewModel)
     {
@@ -45,22 +45,12 @@ public partial class PriorityOneMafPage : ContentPage
     private void PriorityOneEmail_Button_Pressed(object sender, EventArgs e)
     {
 
-        Plaza = "Plaza:  " + Plaza.ToUpper();
-        Roadway = "Roadway: " + Roadway.ToUpper();
-        Lane = "Lane: " + Lane;
-        Bomitem = "BOM Item: " + Bomitem;
-        Problem = "Problem: " + selectProblem.Text;
-        ActionTaken = "Action Taken By SunWatch: " + selectActionTaken.Text;
-        Technician = "Technician: " + Technician;
-        TimeContacted = DateTime.Now;
-        MAF = "MAF Number: " + selectMafNumber.Text;
-
         string To = "ali.shakoor2249@gmail.com";
         string Subject = "Priority 1 - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
         string Body = "****SunWatch Priority 1 MAF****" + "<br>" + "<br>" +
-        Plaza + "<br>" + Roadway + "<br>" + Lane + "<br>" + Bomitem + "<br>" + Problem +
-        "<br>" + ActionTaken + "<br>" + Technician + "<br>" + " Date/Time Contacted: " +
-        TimeContacted + "<br>" + MAF;
+        "Plaza: "+Plaza + "<br>" + "Roadway: "+Roadway + "<br>" + "Lane: "+Lane + "<br>" + "Bomitem: "+Bomitem + "<br>" + 
+        "Problem: "+Problem + "<br>" + "Action Take: "+ActionTaken + "<br>" + "Technician: "+Technician + "<br>" + " Date/Time Contacted: " +
+         Date + "<br>" + "MAF#: "+MAF;
 
         mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
         mail.To = To;

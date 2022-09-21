@@ -45,12 +45,12 @@
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
 
-                    <Entry Text="{Binding PersonaleSearch}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
-                     x:Name="selectPersonale" VerticalTextAlignment="Start" Placeholder="Enter Requestor Name" 
+                    <Entry Text="{Binding PersonaleSearch}" TextChanged="SelectRequestor_TextChanged" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+                     x:Name="selectRequestor" VerticalTextAlignment="Start" Placeholder="Enter Requestor Name" 
                      PlaceholderColor="Black"></Entry>
 
-                    <Entry Text="{Binding PersonalePhoneResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
-                     x:Name="selectPhoneNumber" VerticalTextAlignment="Start" Placeholder="Enter Phone Number"
+                    <Entry Text="{Binding PersonalePhoneResult}" TextChanged="SelectPhoneNumber_TextChanged" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+                     x:Name="selectPhoneNumber"  VerticalTextAlignment="Start" Placeholder="Enter Phone Number"
                      PlaceholderColor="Black"></Entry>
 
                     <Entry Text="{Binding Date}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
@@ -65,16 +65,16 @@
                      x:Name="selectDuration" VerticalTextAlignment="Start" Placeholder="Enter Work Duration" 
                      PlaceholderColor="Black"></Entry>
 
-                    <RadioButton FontSize="16" FontFamily="Times" x:Name="hours" Content="Hours" Value="Hour(s)"></RadioButton>
+                    <RadioButton CheckedChanged="HoursRadioButton_CheckedChanged" Value="Hour(s)" Content="Hours" FontSize="16" FontFamily="Times"></RadioButton>
 
-                    <RadioButton FontSize="16" FontFamily="Times" x:Name="minuets" Content="Minuets" Value="Minuets"></RadioButton>
+                    <RadioButton CheckedChanged="MinuetsRadioButton_CheckedChanged" Value="Minuet(s)" Content="Minuets" FontSize="16" FontFamily="Times"></RadioButton>
                     
                 </HorizontalStackLayout>
 
-                <Entry Text="{Binding IncidentOrESR}" FontFamily="Times" FontSize="16" Placeholder="Incident/ESR" 
+                <Entry Text="{Binding IncidentOrESR}" x:Name="selectIncidentOrESR" FontFamily="Times" FontSize="16" Placeholder="Incident/ESR" 
                 PlaceholderColor="DarkSlateGray"></Entry>
 
-                <Editor Text="{Binding Reason}" HeightRequest="90" FontFamily="Times" FontSize="16" Placeholder="Reason"
+                <Editor Text="{Binding Reason}" x:Name="selectReason" HeightRequest="90" FontFamily="Times" FontSize="16" Placeholder="Reason"
                 PlaceholderColor="DarkSlateGray" AutoSize="TextChanges"></Editor>
 
                 <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="End">

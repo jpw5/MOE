@@ -51,6 +51,9 @@ namespace Master_of_Emails.ViewModels;
         [ObservableProperty]
         public string reason;
 
+        [ObservableProperty]
+        public string unit;
+
 
     public InconAlertPageViewModel()
     {
@@ -106,6 +109,7 @@ namespace Master_of_Emails.ViewModels;
         Duration = "";
         IncidentOrESR = "";
         Reason = "";
+        Date= DateTime.Now;
     }
 
 
