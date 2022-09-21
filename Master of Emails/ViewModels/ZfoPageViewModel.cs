@@ -7,8 +7,8 @@ using System.Collections.ObjectModel;
 
 namespace Master_of_Emails.ViewModels;
 
-    public partial class InconAlertPageViewModel : ObservableObject
-    {
+    public partial class  ZfoPageViewModel: ObservableObject
+{
         [ObservableProperty]
         public ObservableCollection<string> tollRegionList;
         [ObservableProperty]
@@ -38,25 +38,12 @@ namespace Master_of_Emails.ViewModels;
         public TableQuery<TollTechnician> TollTechnicianQuery;
 
         [ObservableProperty]
-        public DateTime date = DateTime.Now;
-
-        [ObservableProperty]
-        public string duration;
-
-        [ObservableProperty]
-        public string incidentOrESR;
-
-        [ObservableProperty]
         public string reason;
 
-        [ObservableProperty]
-        public string unit;
-
-    public InconAlertPageViewModel()
+    public ZfoPageViewModel()
     {
         tollRegionList = new ObservableCollection<string>();
         tollPlazaList = new ObservableCollection<string>();
-        tollLaneList = new ObservableCollection<string>();
         PopulateRegionList();
     }
 
@@ -81,7 +68,7 @@ namespace Master_of_Emails.ViewModels;
         {
             PhoneResult = "Failed to Retrive. The entered Name was invalid or nonexistant";
             await Task.Delay(2000);
-            PhoneResult = "";  
+            PhoneResult = "";
         }
 
         else
@@ -92,22 +79,6 @@ namespace Master_of_Emails.ViewModels;
             }
         }
     }
-
-    [RelayCommand]
-    public void Clear()
-    {
-        tollRegionList.Clear();
-        PopulateRegionList();
-        tollPlazaList.Clear();
-        tollLaneList.Clear();
-        Requestor = "";
-        PhoneResult = "";
-        Duration = "";
-        IncidentOrESR = "";
-        Reason = "";
-        Date= DateTime.Now;
-    }
-
 
 }
 

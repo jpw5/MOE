@@ -44,7 +44,8 @@ public partial class PriorityOneMafPage : ContentPage
 
     private void PriorityOneEmail_Button_Pressed(object sender, EventArgs e)
     {
-
+        
+        mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
         string To = "ali.shakoor2249@gmail.com";
         string Subject = "Priority 1 - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
         string Body = "****SunWatch Priority 1 MAF****" + "<br>" + "<br>" +
@@ -57,6 +58,7 @@ public partial class PriorityOneMafPage : ContentPage
         mail.Subject = Subject;
         mail.HTMLBody = Body;
         mail.Display();
+        mail = null;
     }
 
     private void SelectRegion_SelectedIndexChanged(object sender, EventArgs e)

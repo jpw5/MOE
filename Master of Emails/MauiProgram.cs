@@ -23,7 +23,10 @@ public static class MauiProgram
 		builder.Services.AddSingleton<InconAlertPage>();
 		builder.Services.AddSingleton<InconAlertPageViewModel>();
 
-		builder.Services.AddSingleton<DatabasePage>();
+        builder.Services.AddSingleton<ZfoPage>();
+        builder.Services.AddSingleton<ZfoPageViewModel>();
+
+        builder.Services.AddSingleton<DatabasePage>();
 		builder.Services.AddSingleton<DatabasePageViewModel>();
 
 		builder.Services.AddSingleton<MainPage>();

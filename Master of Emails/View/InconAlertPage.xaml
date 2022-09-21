@@ -39,17 +39,17 @@
 
                 </HorizontalStackLayout>
 
-                <SearchBar Text="{Binding PersonaleSearch}" SearchCommand="{Binding ReturnPersonaleCommand}" 
+                <SearchBar Text="{Binding Requestor}" SearchCommand="{Binding ReturnPersonaleCommand}" 
                     IsTextPredictionEnabled="True" Placeholder="Personale Lookup" CancelButtonColor="Black" 
                     VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="200"></SearchBar>
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
 
-                    <Entry Text="{Binding PersonaleSearch}" TextChanged="SelectRequestor_TextChanged" FontAttributes="Bold" HorizontalTextAlignment="Start" 
-                     x:Name="selectRequestor" VerticalTextAlignment="Start" Placeholder="Enter Requestor Name" 
-                     PlaceholderColor="Black"></Entry>
+                    <Entry Text="{Binding Requestor}" TextChanged="SelectRequestor_TextChanged" FontAttributes="Bold" 
+                     HorizontalTextAlignment="Start" x:Name="selectRequestor" VerticalTextAlignment="Start" 
+                     Placeholder="Enter Requestor Name" PlaceholderColor="Black"></Entry>
 
-                    <Entry Text="{Binding PersonalePhoneResult}" TextChanged="SelectPhoneNumber_TextChanged" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+                    <Entry Text="{Binding PhoneResult}" TextChanged="SelectPhoneNumber_TextChanged" FontAttributes="Bold" HorizontalTextAlignment="Start" 
                      x:Name="selectPhoneNumber"  VerticalTextAlignment="Start" Placeholder="Enter Phone Number"
                      PlaceholderColor="Black"></Entry>
 

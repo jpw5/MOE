@@ -2,76 +2,56 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="practice.Pages.ZfoPage"
+             xmlns:viewmodel="clr-namespace:Master_of_Emails.ViewModels"
+             x:DataType="viewmodel:ZfoPageViewModel"
              Title="ZFO">
 
-    <ScrollView
-               Background="#228B22">
-        
-        <Border
-           HeightRequest="600"
-           WidthRequest="600"
-           Stroke="#C49B33"
-           StrokeThickness="4"
-           Background="white"
-           Padding="16,8"
-           HorizontalOptions="Center">
+    <ScrollView Orientation="Both" HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always" 
+     Background="#228B22">
+
+        <Border HeightRequest="700" WidthRequest="700" Stroke="#C49B33" StrokeThickness="4" Background="white"
+        Padding="16,8" HorizontalOptions="Center">
             <Border.StrokeShape>
-                <RoundRectangle
-                           CornerRadius="40,0,0,40">
-                </RoundRectangle>
+                <RoundRectangle CornerRadius="40,0,0,40"></RoundRectangle>
             </Border.StrokeShape>
 
-            <VerticalStackLayout
-                                VerticalOptions="Center"
-                                HorizontalOptions="Center"
-                                Padding="5"
-                                Spacing="20">
+            <VerticalStackLayout Padding="10" Spacing="20" VerticalOptions="Center" HorizontalOptions="Start">
 
-                <HorizontalStackLayout
-                                      Spacing="20"
-                                      HorizontalOptions="Center"
-                                      VerticalOptions="Center">
-                    <Picker
-                       x:Name="selectRegion"
-                       FontAutoScalingEnabled="False"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center"
-                       FontSize="16"
-                       FontFamily="Times"
-                       Title="Select region">
-                    </Picker>
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
-                    <ListView
-                       x:Name="selectPlaza"
-                       SeparatorColor="Red"
-                       VerticalScrollBarVisibility="Always"
-                       HorizontalOptions="Center">
-                    </ListView>
+                    <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" 
+                     SelectedIndexChanged="SelectRegion_SelectedIndexChanged" x:Name="selectRegion" WidthRequest="110" 
+                     HorizontalOptions="Center" VerticalOptions="Center" FontSize="14" FontAttributes="Bold" 
+                     FontFamily="Times" Title="Select Region"></Picker>
 
-                    <Picker
-                       x:Name="lane"
-                       HorizontalOptions="Center"
-                       FontSize="16"
-                       FontFamily="Times"
-                       Title="Select Lane/Lane Type">
-                    </Picker>
+                    <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" x:Name="selectPlaza" 
+                    SelectedIndexChanged="SelectPlaza_SelectedIndexChanged" WidthRequest="350" HorizontalOptions="Center" 
+                    VerticalOptions="Center" FontSize="14" FontAttributes="Bold" FontFamily="Times" 
+                    Title="Select Plaza"></Picker>
+
+                    <Frame WidthRequest="200" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
+                    BorderColor="SandyBrown" BackgroundColor="SandyBrown">
+                        <CollectionView x:Name="selectLane" ItemsSource="{Binding TollLaneList}" WidthRequest="100" 
+                        SelectionMode="Multiple" SelectionChanged="SelectLane_SelectionChanged" HeightRequest="50" 
+                        VerticalScrollBarVisibility="Always" ></CollectionView>
+                    </Frame>
+                    
                 </HorizontalStackLayout>
 
-                <Entry
-                      x:Name="requestor"
-                      FontFamily="Times"
-                      FontSize="16"
-                      Placeholder="Requestor"
-                      PlaceholderColor="DarkSlateGray">
-                </Entry>
+                <HorizontalStackLayout>
+                    
+                    <SearchBar Text="{Binding Requestor}" SearchCommand="{Binding ReturnPersonaleCommand}" 
+                    IsTextPredictionEnabled="True" Placeholder="Personale Lookup" CancelButtonColor="Black" 
+                    VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="200"></SearchBar>
 
-                <Entry
-                      x:Name="reason"
-                      FontFamily="Times"
-                      FontSize="16"
-                      Placeholder="Reason"
-                      PlaceholderColor="DarkSlateGray">
-                </Entry>
+                    <Entry Text="{Binding Requestor}" TextChanged="SelectRequestor_TextChanged" FontAttributes="Bold" 
+                     HorizontalTextAlignment="Start" x:Name="selectRequestor" VerticalTextAlignment="Start" 
+                     Placeholder="Enter Requestor Name" PlaceholderColor="Black"></Entry>
+                    
+                </HorizontalStackLayout>
+
+                <Editor Text="{Binding Reason}" x:Name="selectReason" HeightRequest="90" FontFamily="Times" FontSize="16" Placeholder="Reason"
+                PlaceholderColor="DarkSlateGray" AutoSize="TextChanges"></Editor>
 
                 <HorizontalStackLayout
                                       Spacing="10"
