@@ -71,9 +71,6 @@ namespace Master_of_Emails.ViewModels;
                 tollRegionList.Add(region.Region_name);
             }
         }
-
-        
-        
     }
 
     [RelayCommand]
@@ -104,14 +101,12 @@ namespace Master_of_Emails.ViewModels;
         PopulateRegionList();
         tollPlazaList?.Clear();
         tollLaneList?.Clear();
-        Requestor ??= "";
-        PhoneResult ??= "";
-        Duration ??= "";
-        IncidentOrESR ??= "";
-        Reason ??= "";
+        Requestor = "";
+        PhoneResult = "";
+        Duration = "";
+        IncidentOrESR = "";
+        Reason = "";
         Date= DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
     }
-
-
 }
 

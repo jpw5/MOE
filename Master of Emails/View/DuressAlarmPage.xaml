@@ -2,122 +2,64 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="practice.Pages.DuressAlarmPage"
-             
+             xmlns:viewmodel="clr-namespace:Master_of_Emails.ViewModels"
+             x:DataType="viewmodel:DuressAlarmPageViewModel"
              Title="Duress Alarm">
 
-    <ScrollView
-               Background="#FFA500">
-        <Border
-           HeightRequest="600"
-           WidthRequest="600"
-           Stroke="#C49B33"
-           StrokeThickness="4"
-           Background="White"
-           Padding="16,8"
-           HorizontalOptions="Center"
-           VerticalOptions="Center">
+    <ScrollView Background="#FFA500">
+        
+        <Border HeightRequest="700" WidthRequest="700" Stroke="#C49B33" StrokeThickness="4" Background="White" Padding="16,8"
+        HorizontalOptions="Center" VerticalOptions="Center">
 
             <Border.StrokeShape>
-                <RoundRectangle
-                           CornerRadius="40,0,0,40">
-                </RoundRectangle>
+                <RoundRectangle CornerRadius="40,0,0,40"></RoundRectangle>
             </Border.StrokeShape>
 
-            <VerticalStackLayout
-                            Padding="30"
-                            Spacing="40"
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center">
+            <VerticalStackLayout Padding="10" Spacing="20" VerticalOptions="Center" HorizontalOptions="Start">
 
-                <HorizontalStackLayout
-                                      Spacing="10"
-                                      HorizontalOptions="Center">
-                    <Picker
-                       HorizontalOptions="Center"
-                       FontSize="16"
-                       FontFamily="Times"
-                       Title="Select Plaza">
-                    </Picker>
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
 
-                    <Picker
-                   HorizontalOptions="Center"
-                   FontSize="16"
-                   FontFamily="Times"
-                   Title="Select Lane/Lane Type">
-                    </Picker>
+                    <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" 
+                    SelectedIndexChanged="SelectRegion_SelectedIndexChanged" x:Name="selectRegion" WidthRequest="110" 
+                    HorizontalOptions="Center" VerticalOptions="Center" FontSize="14" FontAttributes="Bold" 
+                    FontFamily="Times" Title="Select Region"></Picker>
+
+                    <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" x:Name="selectPlaza" 
+                    SelectedIndexChanged="SelectPlaza_SelectedIndexChanged" WidthRequest="350" HorizontalOptions="Center" 
+                    VerticalOptions="Center" FontSize="14" FontAttributes="Bold" FontFamily="Times" Title="Select Plaza"></Picker>
+
+                    <Picker ItemsSource="{Binding TollLaneList}" SelectedItem="{Binding Lane}" x:Name="selectLane" 
+                    WidthRequest="100" HorizontalOptions="Center" VerticalOptions="Center" FontSize="14" 
+                    FontAttributes="Bold" FontFamily="Times" Title="Select Lane"></Picker>
 
                 </HorizontalStackLayout>
 
-                <HorizontalStackLayout
-                                      Spacing="10"
-                                      HorizontalOptions="Center">
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
 
-                    <Picker
-                   HorizontalOptions="Center"
-                   FontSize="16"
-                   FontFamily="Times"
-                   Title="Select Alarm">
-                    </Picker>
+                    <RadioButton CheckedChanged="VaultRadioButton_CheckedChanged" Value="Vault Under Duress" Content="Vault Under Duress" FontSize="16" FontFamily="Times"> </RadioButton>
+                    <RadioButton CheckedChanged="LaneRadioButton_CheckedChanged" Value="Lane Duress Alarm" Content="Lane Duress Alarm" FontSize="16" FontFamily="Times"></RadioButton>
 
-                    <Picker
-                   HorizontalOptions="Center"
-                   FontSize="16"
-                   FontFamily="Times"
-                   Title="Select Reason">
-                    </Picker>
-                </HorizontalStackLayout>
-
-                <Entry
-                  FontFamily="Times"
-                  FontSize="16"
-                  Placeholder="Supervisor Name"
-                  PlaceholderColor="DarkSlateGray">
-
-                </Entry>
-
-                <HorizontalStackLayout
-                                      Spacing="10"
-                                      HorizontalOptions="Center">
-                    <Label
-                          VerticalOptions="Center"
-                          Text="Select Date/Time"
-                          FontSize="16"
-                          FontFamily="Times">
-                    </Label>
-
-                    <DatePicker
-                               x:Name="date"
-                               FontSize="16"
-                               FontFamily="Times">
-                    </DatePicker>
-
-                    <TimePicker
-                               x:Name="time"
-                               FontSize="16"
-                               FontFamily="Times">
-                    </TimePicker>
-
-                </HorizontalStackLayout>
-
-                <HorizontalStackLayout
-                                      HorizontalOptions="End"
-                                      Spacing="10">
-
-                    <Button
-                           Text="Clear"
-                           VerticalOptions="Center"
-                           HorizontalOptions="Center"
-                           Clicked="ClearButtonClicked">
-                        
-                    </Button>
-
-
-                    <Button
-                           Text="Email">
-
-                    </Button>
+                    <Picker WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Center" FontSize="14" 
+                    FontAttributes="Bold" FontFamily="Times" Title="Select Alarm"></Picker>
                     
                 </HorizontalStackLayout>
+
+                <Entry FontAttributes="Bold" HorizontalTextAlignment="Start" x:Name="selectSupervisor" 
+                VerticalTextAlignment="Start" Placeholder="Enter Supervisor Name" PlaceholderColor="Black"></Entry>
+
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
+
+                    <Label VerticalOptions="Center" Text="Enter Start Date/Time" FontSize="14" FontFamily="Times"></Label>
+
+                    <Entry Text="{Binding Date}" FontAttributes="Bold" HorizontalTextAlignment="Start" x:Name="selectDate" 
+                    VerticalTextAlignment="Start"></Entry>
+
+                </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="End">
+                        <Button Command="{Binding ClearCommand}" CornerRadius="20" Text="Clear"></Button>
+                        <Button Pressed="DuressAlarmButton_Pressed" CornerRadius="20" Text="Email"></Button>
+                    </HorizontalStackLayout>
 
             </VerticalStackLayout>
 

@@ -30,18 +30,18 @@ public partial class PriorityOneMafPageViewModel : ObservableObject
     public List<TollLane> TollLane = new();
 
     [ObservableProperty]
-    public ObservableCollection<string> tollTechnicianList;
-    [ObservableProperty]
-    public string technician;
-    public TollTechnicianRepository TollTechnicianRepo = new();
-    public List<TollTechnician> TollTechnician = new();
-
-    [ObservableProperty]
     public ObservableCollection<string> tollBomitemList;
     [ObservableProperty]
     public string bomitem;
     public TollBomitemRepository TollBomitemRepo = new();
     public List<TollBomitem> TollBomitem = new();
+
+    [ObservableProperty]
+    public ObservableCollection<string> tollTechnicianList;
+    [ObservableProperty]
+    public string technician;
+    public TollTechnicianRepository TollTechnicianRepo = new();
+    public List<TollTechnician> TollTechnician = new();
 
     [ObservableProperty]
     public string date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
@@ -55,9 +55,9 @@ public partial class PriorityOneMafPageViewModel : ObservableObject
 
     public PriorityOneMafPageViewModel()
     {
+        tollRegionList = new ObservableCollection<string>();
         tollPlazaList = new ObservableCollection<string>();
         tollLaneList = new ObservableCollection<string>();
-        tollRegionList = new ObservableCollection<string>();
         tollTechnicianList=new ObservableCollection<string>();
         tollBomitemList=new ObservableCollection<string>();
         PopulateRegionList();
@@ -85,8 +85,8 @@ public partial class PriorityOneMafPageViewModel : ObservableObject
         tollBomitemList?.Clear();
         tollTechnicianList?.Clear();
         Date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
-        Problem ??= "";
-        MafNumber ??= "";
-        ActionTaken ??= "";
+        Problem= "";
+        MafNumber= "";
+        ActionTaken= "";
     }
 }

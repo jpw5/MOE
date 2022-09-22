@@ -40,6 +40,12 @@ namespace Master_of_Emails.ViewModels;
         [ObservableProperty]
         public string reason;
 
+        [ObservableProperty]
+        public string startDate = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
+
+        [ObservableProperty]
+        public string endDate = "TBD";
+
 
 
     public ZfoPageViewModel()

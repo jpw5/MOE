@@ -39,24 +39,30 @@
 
                 </HorizontalStackLayout>
 
-                <SearchBar Text="{Binding Requestor}" SearchCommand="{Binding ReturnPersonaleCommand}" 
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
+
+                    <SearchBar Text="{Binding Requestor}" SearchCommand="{Binding ReturnPersonaleCommand}" 
                     IsTextPredictionEnabled="True" Placeholder="Personale Lookup" CancelButtonColor="Black" 
                     VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="200"></SearchBar>
 
-                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Entry Text="{Binding Requestor}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+                    x:Name="selectRequestor" VerticalTextAlignment="Start" Placeholder="Enter Requestor Name" 
+                    PlaceholderColor="Black"></Entry>
 
-                    <Entry Text="{Binding Requestor}" TextChanged="SelectRequestor_TextChanged" FontAttributes="Bold" 
-                     HorizontalTextAlignment="Start" x:Name="selectRequestor" VerticalTextAlignment="Start" 
-                     Placeholder="Enter Requestor Name" PlaceholderColor="Black"></Entry>
-
-                    <Entry Text="{Binding PhoneResult}" TextChanged="SelectPhoneNumber_TextChanged" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+                    <Entry Text="{Binding PhoneResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
                      x:Name="selectPhoneNumber"  VerticalTextAlignment="Start" Placeholder="Enter Phone Number"
                      PlaceholderColor="Black"></Entry>
 
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
+                    
+                    <Label VerticalOptions="Center" Text="Enter Start Date/Time" FontSize="14" FontFamily="Times"></Label>
+                    
                     <Entry Text="{Binding Date}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
                      x:Name="selectDate" VerticalTextAlignment="Start" Placeholder="Enter Starting Date/Time" 
                      PlaceholderColor="Black"></Entry>
-
+                    
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
@@ -71,11 +77,11 @@
                     
                 </HorizontalStackLayout>
 
-                <Entry Text="{Binding IncidentOrESR}" x:Name="selectIncidentOrESR" FontFamily="Times" FontSize="16" Placeholder="Incident/ESR" 
-                PlaceholderColor="DarkSlateGray"></Entry>
+                <Entry Text="{Binding IncidentOrESR}" x:Name="selectIncidentOrESR" FontFamily="Times" FontSize="16" 
+                Placeholder="Incident/ESR" PlaceholderColor="DarkSlateGray"></Entry>
 
-                <Editor Text="{Binding Reason}" x:Name="selectReason" HeightRequest="90" FontFamily="Times" FontSize="16" Placeholder="Reason"
-                PlaceholderColor="DarkSlateGray" AutoSize="TextChanges"></Editor>
+                <Editor Text="{Binding Reason}" x:Name="selectReason" HeightRequest="90" FontFamily="Times" FontSize="16" 
+                Placeholder="Reason" PlaceholderColor="DarkSlateGray" AutoSize="TextChanges"></Editor>
 
                 <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="End">
                     <Button Command="{Binding ClearCommand}" CornerRadius="20" Text="Clear"></Button>

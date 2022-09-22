@@ -44,38 +44,32 @@
                     IsTextPredictionEnabled="True" Placeholder="Personale Lookup" CancelButtonColor="Black" 
                     VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="200"></SearchBar>
 
-                    <Entry Text="{Binding Requestor}" TextChanged="SelectRequestor_TextChanged" FontAttributes="Bold" 
-                     HorizontalTextAlignment="Start" x:Name="selectRequestor" VerticalTextAlignment="Start" 
-                     Placeholder="Enter Requestor Name" PlaceholderColor="Black"></Entry>
+                    <Entry Text="{Binding Requestor}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+                    x:Name="selectRequestor" VerticalTextAlignment="Start" Placeholder="Enter Requestor Name" 
+                    PlaceholderColor="Black"></Entry>
                     
                 </HorizontalStackLayout>
 
-                <Editor Text="{Binding Reason}" x:Name="selectReason" HeightRequest="90" FontFamily="Times" FontSize="16" Placeholder="Reason"
-                PlaceholderColor="DarkSlateGray" AutoSize="TextChanges"></Editor>
+                <Editor Text="{Binding Reason}" x:Name="selectReason" HeightRequest="90" FontFamily="Times" FontSize="16" 
+                Placeholder="Reason" PlaceholderColor="DarkSlateGray" AutoSize="TextChanges"></Editor>
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
                     <Label VerticalOptions="Center" Text="Select Start Date/Time" FontSize="16" FontFamily="Times"></Label>
-                    <DatePicker x:Name="startDate" FontSize="16" FontFamily="Times"></DatePicker>
-                    <TimePicker x:Name="startTime" FontSize="16" FontFamily="Times"></TimePicker>
+                    <Entry Text="{Binding StartDate}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+                     x:Name="selectStartDate" VerticalTextAlignment="Start" Placeholder="Enter Starting Date/Time" 
+                     PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
-                    <Label VerticalOptions="Center" Text="Select End Date/Time" FontSize="16" FontFamily="Times"></Label>
-                    <DatePicker x:Name="endDate" FontSize="16" FontFamily="Times"></DatePicker>
-                    <TimePicker x:Name="endTime"  FontSize="16" FontFamily="Times"></TimePicker>
+                    <Label VerticalOptions="Center" Text="Select End Date/Time" FontSize="14" FontFamily="Times"></Label>
+                    <Entry Text="{Binding EndDate}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+                     x:Name="selectEndDate" VerticalTextAlignment="Start" Placeholder="Enter Starting Date/Time" 
+                     PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
-
-                <HorizontalStackLayout HorizontalOptions="End">
-
-                    <Label FontSize="16" FontFamily="Times" HorizontalOptions="Center" VerticalOptions="Center" Text="TBD"></Label>
-                    <CheckBox CheckedChanged="ToBeDetermined_CheckedChanged" x:Name="ToBeDetermined" Color="Red"></CheckBox>
-                    
-                </HorizontalStackLayout>
-
 
                 <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="End">
                     <Button Command="{Binding ClearCommand}" CornerRadius="20" Text="Clear"></Button>

@@ -2,12 +2,12 @@
 using CommunityToolkit.Mvvm.Input;
 using Master_of_Emails.Table_Repositories;
 using Master_of_Emails.Tables;
-using SQLite;
 using System.Collections.ObjectModel;
+
 
 namespace Master_of_Emails.ViewModels;
 
-    public partial class DuressAlarmPageViewModel : ObservableObject
+    public partial class DuressAlarmPageViewModel: ObservableObject
     {
         [ObservableProperty]
         public ObservableCollection<string> tollRegionList;
@@ -31,14 +31,10 @@ namespace Master_of_Emails.ViewModels;
         public List<TollLane> TollLane = new();
 
         [ObservableProperty]
-        public string supervisor;
-
-        [ObservableProperty]
-        public string reason;
+        public string plazaSupervisor;
 
         [ObservableProperty]
         public string date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
-
 
     public DuressAlarmPageViewModel()
     {
@@ -58,6 +54,7 @@ namespace Master_of_Emails.ViewModels;
                 tollRegionList.Add(region.Region_name);
             }
         }
+
     }
 
     [RelayCommand]
@@ -67,11 +64,8 @@ namespace Master_of_Emails.ViewModels;
         PopulateRegionList();
         tollPlazaList?.Clear();
         tollLaneList?.Clear();
-        Supervisor ??= "";
-        Reason ??= "";
+        PlazaSupervisor = "";
         Date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
     }
-
-
 }
 

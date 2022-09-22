@@ -45,6 +45,44 @@ public partial class InconAlertPage : ContentPage
 		BindingContext=inconAlertPageViewModel;
 	}
 
+    private void InconAlertEmail_Button_Pressed(object sender, EventArgs e)
+    {
+        Plaza = (string)selectPlaza.SelectedItem;
+        var Split = Plaza.Split(" ", 2);
+        PlazaId = Int32.Parse(Split[0]);
+        tollPlazaQueryByPlazaId = TollPlazaRepo.QueryByPlazaId(PlazaId);
+        foreach (TollPlaza plaza in tollPlazaQueryByPlazaId)
+        {
+            Roadway = plaza.Plaza_roadway;
+        }
+        
+        for (int i = 0; i < TollLaneList.Count; i++)
+        {
+            Lane += TollLaneList[i] + " ";
+        }
+
+        TollLaneList.Clear();
+        Date = selectDate.Text;
+        Requestor = selectRequestor.Text;
+        RequestorPhoneNumber = selectPhoneNumber.Text;
+        Duration = selectDuration.Text;
+        Reason = selectReason.Text;
+
+        string To = "ali.shakoor2249@gmail.com";
+        string Subject = "InConAlert for Plaza - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
+        string Body = "****SunWatch InConAlert****" + "<br>" + "<br>" +
+        "Plaza: " + Plaza + "<br>" + "Roadway: " + Roadway + "<br>" + "Lane(s): " + Lane + "<br>" + "Date/Time: " +
+        Date + "<br>" + "Requestor: " + Requestor + " / " + RequestorPhoneNumber + "<br>" + "Duration: " + Duration + " "
+        + Units + "<br>" + "Reason: " + Reason;
+
+        mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
+        mail.To = To;
+        mail.Subject = Subject;
+        mail.HTMLBody = Body;
+        mail.Display();
+        mail = null;
+    }
+
     private void SelectRegion_SelectedIndexChanged(object sender, EventArgs e)
     {
         int selectedIndex = selectRegion.SelectedIndex;
@@ -74,13 +112,6 @@ public partial class InconAlertPage : ContentPage
             TollLane.Clear();
             var Split = selectPlaza.Items[selectedIndex].Split(" ", 2);
             PlazaId = Int32.Parse(Split[0]);
-            tollPlazaQueryByPlazaId = TollPlazaRepo.QueryByPlazaId(PlazaId);
-            foreach (TollPlaza plaza in tollPlazaQueryByPlazaId)
-            {
-                Plaza = plaza.Plaza_id.ToString() + " " + plaza.Plaza_name;
-                Roadway = plaza.Plaza_roadway;
-            }
-
             tollLanesQueryByPlazaId = TollLaneRepo.QueryByPlazaId(PlazaId);
             foreach (TollLane tollLane in tollLanesQueryByPlazaId)
             {
@@ -108,49 +139,7 @@ public partial class InconAlertPage : ContentPage
         }
     }
 
-    private void SelectRequestor_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        Requestor = e.NewTextValue;
-    }
-
-    private void SelectPhoneNumber_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        RequestorPhoneNumber = e.NewTextValue;
-    }
-    private void SelectDate_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        Date = e.NewTextValue;
-    }
-
-    private void InconAlertEmail_Button_Pressed(object sender, EventArgs e)
-    {
-        mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
-        for (int i = 0; i <TollLaneList.Count; i++)
-        {
-            Lane+=TollLaneList[i]+" ";
-        }
-
-        TollLaneList.Clear();
-        Date=selectDate.Text;
-        Requestor=selectRequestor.Text;
-        RequestorPhoneNumber=selectPhoneNumber.Text;
-        Duration=selectDuration.Text;
-        Reason = selectReason.Text;
-
-        string To = "ali.shakoor2249@gmail.com";
-        string Subject = "InConAlert for Plaza - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
-        string Body = "****SunWatch InConAlert****" + "<br>" + "<br>" +
-        "Plaza: " + Plaza + "<br>" + "Roadway: " + Roadway + "<br>" + "Lane(s): " + Lane + "<br>" + "Date/Time: " + 
-        Date + "<br>" + "Requestor: " + Requestor+" / "+RequestorPhoneNumber + "<br>" + "Duration: "+Duration+" "
-        +Units+ "<br>" +"Reason: " + Reason;
-
-        mail.To = To;
-        mail.Subject = Subject;
-        mail.HTMLBody = Body;
-        mail.Display();
-        mail = null;
-    }
-
+    
     private void HoursRadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
         Units = "Hours";

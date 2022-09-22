@@ -43,6 +43,32 @@ public partial class ZfoPage : ContentPage
         BindingContext=zfoPageViewModel;
     }
 
+    private void ZFOEmail_Button_Pressed(object sender, EventArgs e)
+    {
+        Plaza = (string)selectPlaza.SelectedItem;
+        for (int i = 0; i < TollLaneList.Count; i++)
+        {
+            Lane += TollLaneList[i] + " ";
+        }
+        TollLaneList.Clear();
+        Requestor = selectRequestor.Text;
+        Reason = selectReason.Text;
+        StartDate = selectStartDate.Text;
+        EndDate = selectEndDate.Text;
+
+        string To = "ali.shakoor2249@gmail.com";
+        string Subject = "SunWatch ZFO Alert - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
+        string Body = "****SunWatch ZFO Alert****" + "<br>" + "<br>" +
+        "Plaza: " + Plaza + "<br>" + "Lane(s): " + Lane + "<br>" + "Requestor: " + Requestor + "<br>"+
+        "Reason: " + Reason + "<br>" + "Start Date/Time: " + StartDate + "<br>" + "End Date/Time: " + EndDate;
+
+        mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
+        mail.To = To;
+        mail.Subject = Subject;
+        mail.HTMLBody = Body;
+        mail.Display();
+        mail = null;
+    }
     private void SelectRegion_SelectedIndexChanged(object sender, EventArgs e)
     {
         int selectedIndex = selectRegion.SelectedIndex;
@@ -58,7 +84,6 @@ public partial class ZfoPage : ContentPage
                 selectPlaza.ItemsSource.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name + " " + tollPlaza.Plaza_roadway
                 + " MP " + tollPlaza.Plaza_milepost);
             }
-
         }
     }
 
@@ -72,12 +97,6 @@ public partial class ZfoPage : ContentPage
             TollLane.Clear();
             var Split = selectPlaza.Items[selectedIndex].Split(" ", 2);
             PlazaId = Int32.Parse(Split[0]);
-            tollPlazaQueryByPlazaId = TollPlazaRepo.QueryByPlazaId(PlazaId);
-            foreach (TollPlaza plaza in tollPlazaQueryByPlazaId)
-            {
-                Plaza = plaza.Plaza_id.ToString() + " " + plaza.Plaza_name;
-            }
-
             tollLanesQueryByPlazaId = TollLaneRepo.QueryByPlazaId(PlazaId);
             foreach (TollLane tollLane in tollLanesQueryByPlazaId)
             {
@@ -85,7 +104,6 @@ public partial class ZfoPage : ContentPage
             }
             selectLane.ItemsSource = TollLane;
         }
-
     }
 
     private void SelectLane_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -104,56 +122,6 @@ public partial class ZfoPage : ContentPage
                 //DisplayAlert("Check", TollLane[i], "Close");
             }
         }
-    }
-
-
-    private void SelectRequestor_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        Requestor = e.NewTextValue;
-    }
-
-    private void ToBeDetermined_CheckedChanged(object sender, CheckedChangedEventArgs e)
-    {
-        if(e.Value==true)
-        {
-            endDate.IsEnabled = false;
-            endTime.IsEnabled = false;
-            EndDate = "TBD";
-        }
-
-        else
-        {
-            endDate.IsEnabled = true;
-            endTime.IsEnabled = true;
-        }
-        
-    }
-
-    private void ZFOEmail_Button_Pressed(object sender, EventArgs e)
-    {
-        mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
-        for (int i = 0; i < TollLaneList.Count; i++)
-        {
-            Lane += TollLaneList[i] + " ";
-        }
-
-        TollLaneList.Clear();
-        Requestor = selectRequestor.Text;
-        Reason = selectReason.Text;
-        StartDate = startDate.Date.ToString("dddd, MMMM dd, yyyy / HH:mm");
-       
-        string To = "ali.shakoor2249@gmail.com";
-        string Subject = "SunWatch ZFO Alert - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
-        string Body = "****SunWatch ZFO Alert****" + "<br>" + "<br>" +
-        "Plaza: " + Plaza + "<br>" + "Lane(s): " + Lane + "<br>" + "Date/Time: " + "Requestor: " + Requestor +
-        "Reason: " + Reason + "<br>" + "Start Date/Time: " + StartDate + "<br>" + "End Date/Time: " + EndDate;
-
-        mail.To = To;
-        mail.Subject = Subject;
-        mail.HTMLBody = Body;
-        mail.Display();
-        mail = null;
-
     }
 }
 

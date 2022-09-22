@@ -33,8 +33,8 @@ public partial class PriorityOneMafPage : ContentPage
     public string Problem;
     public string ActionTaken;
     public string Technician;
-    public string MAF;
-    public DateTime Date = DateTime.Now;
+    public string MAFNumber;
+    public string Date;
 
     public PriorityOneMafPage(PriorityOneMafPageViewModel priorityOneMafPageViewModel)
     {
@@ -44,14 +44,30 @@ public partial class PriorityOneMafPage : ContentPage
 
     private void PriorityOneEmail_Button_Pressed(object sender, EventArgs e)
     {
-        
+        Plaza = (string)selectPlaza.SelectedItem;
+        var Split = Plaza.Split(" ", 2);
+        PlazaId = Int32.Parse(Split[0]);
+        tollPlazaQueryByPlazaId = TollPlazaRepo.QueryByPlazaId(PlazaId);
+        foreach (TollPlaza plaza in tollPlazaQueryByPlazaId)
+        {
+            Roadway = plaza.Plaza_roadway;
+        }
+
+        Lane=(string)selectLane.SelectedItem;
+        Bomitem = (string)selectBomitem.SelectedItem;
+        Technician = (string)selectTechnician.SelectedItem;
+        Date = selectDate.Text;
+        MAFNumber= selectMafNumber.Text;
+        Problem=selectProblem.Text;
+        ActionTaken = selectActionTaken.Text;
+
         mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
         string To = "ali.shakoor2249@gmail.com";
         string Subject = "Priority 1 - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
         string Body = "****SunWatch Priority 1 MAF****" + "<br>" + "<br>" +
         "Plaza: "+Plaza + "<br>" + "Roadway: "+Roadway + "<br>" + "Lane: "+Lane + "<br>" + "Bomitem: "+Bomitem + "<br>" + 
         "Problem: "+Problem + "<br>" + "Action Take: "+ActionTaken + "<br>" + "Technician: "+Technician + "<br>" + " Date/Time Contacted: " +
-         Date + "<br>" + "MAF#: "+MAF;
+         Date + "<br>" + "MAF#: "+MAFNumber;
 
         mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
         mail.To = To;
@@ -95,12 +111,6 @@ public partial class PriorityOneMafPage : ContentPage
             selectLane.ItemsSource.Clear();
             var Split = selectPlaza.Items[selectedIndex].Split(" ", 2);
             PlazaId = Int32.Parse(Split[0]);
-            tollPlazaQueryByPlazaId = TollPlazaRepo.QueryByPlazaId(PlazaId);
-            foreach (TollPlaza plaza in tollPlazaQueryByPlazaId)
-            {
-                Plaza = plaza.Plaza_id.ToString() + " " + plaza.Plaza_name;
-                Roadway = plaza.Plaza_roadway;
-            }
 
             tollLanesQueryByPlazaId = TollLaneRepo.QueryByPlazaId(PlazaId);
             foreach (TollLane tollLane in tollLanesQueryByPlazaId)
@@ -119,7 +129,6 @@ public partial class PriorityOneMafPage : ContentPage
 
         if (selectedIndex != -1)
         {
-            Lane = selectLane.SelectedItem.ToString();
             var Split = selectLane.Items[selectedIndex].Split(" ", 2);
             LaneType = (Split[1]);
         }
@@ -213,39 +222,9 @@ public partial class PriorityOneMafPage : ContentPage
         //DisplayAlert("Check", Bomitem, "Close");
 
     }
-    private void SelectTechnician_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        int selectedIndex = selectTechnician.SelectedIndex;
 
-        if (selectedIndex != -1)
-        {
-            Technician = selectTechnician.Items[selectedIndex];
-        }
-    }
-
-    private void SelectBomitem_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        int selectedIndex = selectBomitem.SelectedIndex;
-        if (selectedIndex != -1)
-        {
-            Bomitem = selectBomitem.Items[selectedIndex];
-        }
-    }
-
-    private void SelectProblem_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        Problem = e.NewTextValue;
-    }
-
-    private void SelectMafNumber_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        MAF = e.NewTextValue;
-    }
-
-    private void SelectActionTaken_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        ActionTaken = e.NewTextValue;
-    }
+ 
+   
 
 }
 

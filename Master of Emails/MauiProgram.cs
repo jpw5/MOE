@@ -26,6 +26,9 @@ public static class MauiProgram
         builder.Services.AddSingleton<ZfoPage>();
         builder.Services.AddSingleton<ZfoPageViewModel>();
 
+        builder.Services.AddSingleton<DuressAlarmPage>();
+        builder.Services.AddSingleton<DuressAlarmPageViewModel>();
+
         builder.Services.AddSingleton<DatabasePage>();
 		builder.Services.AddSingleton<DatabasePageViewModel>();
 
