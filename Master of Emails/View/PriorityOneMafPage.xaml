@@ -41,19 +41,24 @@
                      SelectedIndexChanged="SelectBomitem_SelectedIndexChanged" FontAttributes="Bold" HorizontalOptions="Center" FontSize="14" FontFamily="Times" Title="Select BOM Item"
                      WidthRequest="200"></Picker>
 
-                </HorizontalStackLayout>
-
-                <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="Start">
-
                     <Picker ItemsSource="{Binding TollTechnicianList}" SelectedItem="{Binding Technician}" SelectedIndexChanged="SelectTechnician_SelectedIndexChanged" 
                      x:Name="selectTechnician" HorizontalOptions="Center" FontSize="14" FontFamily="Times" FontAttributes="Bold" 
                      Title="Select Technician" WidthRequest="200"></Picker>
 
-                    <Entry Text="{Binding Problem}" x:Name="selectProblem" TextChanged="SelectProblem_TextChanged" FontFamily="Times" FontSize="14" Placeholder="Enter Problem" HeightRequest="5" PlaceholderColor="DarkSlateGray" WidthRequest="250"></Entry>
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="Start">
+
+                    <Entry Text="{Binding Date}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+                     x:Name="selectDate" VerticalTextAlignment="Start" Placeholder="Enter Starting Date/Time" 
+                     PlaceholderColor="Black"></Entry>
 
                     <Entry Text="{Binding MafNumber}" x:Name="selectMafNumber" TextChanged="SelectMafNumber_TextChanged" FontFamily="Times" FontSize="14" Placeholder="Enter MAF#" HeightRequest="5" PlaceholderColor="DarkSlateGray"></Entry>
 
                 </HorizontalStackLayout>
+
+                
+                <Entry Text="{Binding Problem}" x:Name="selectProblem" HorizontalOptions="Start" TextChanged="SelectProblem_TextChanged" FontFamily="Times" FontSize="14" Placeholder="Enter Problem" HeightRequest="5" PlaceholderColor="DarkSlateGray" WidthRequest="550"></Entry>
 
                 <Editor Text="{Binding ActionTaken}" x:Name="selectActionTaken" TextChanged="SelectActionTaken_TextChanged" HeightRequest="100" FontFamily="Times" FontSize="16" Placeholder="Action Taken" 
                 PlaceholderColor="DarkSlateGray" AutoSize="TextChanges"></Editor>

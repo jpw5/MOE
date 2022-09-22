@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 
 namespace Master_of_Emails.ViewModels;
 
-    public partial class InconAlertPageViewModel : ObservableObject
+    public partial class DuressAlarmPageViewModel : ObservableObject
     {
         [ObservableProperty]
         public ObservableCollection<string> tollRegionList;
@@ -31,29 +31,16 @@ namespace Master_of_Emails.ViewModels;
         public List<TollLane> TollLane = new();
 
         [ObservableProperty]
-        public string requestor;
-        [ObservableProperty]
-        public string phoneResult;
-        public TollTechnicianRepository TollPersonaleRepo = new();
-        public TableQuery<TollTechnician> TollTechnicianQuery;
-
-       
-        [ObservableProperty]
-        public string date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
-    
-        [ObservableProperty]
-        public string duration;
-
-        [ObservableProperty]
-        public string incidentOrESR;
+        public string supervisor;
 
         [ObservableProperty]
         public string reason;
 
         [ObservableProperty]
-        public string unit;
+        public string date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
 
-    public InconAlertPageViewModel()
+
+    public DuressAlarmPageViewModel()
     {
         tollRegionList = new ObservableCollection<string>();
         tollPlazaList = new ObservableCollection<string>();
@@ -71,30 +58,6 @@ namespace Master_of_Emails.ViewModels;
                 tollRegionList.Add(region.Region_name);
             }
         }
-
-        
-        
-    }
-
-    [RelayCommand]
-    public async void ReturnPersonale()
-    {
-        TollTechnicianQuery = TollPersonaleRepo.QueryTechnicianByName(Requestor);
-
-        if (!TollTechnicianQuery.Any())
-        {
-            PhoneResult = "Failed to Retrive. The entered Name was invalid or nonexistant";
-            await Task.Delay(2000);
-            PhoneResult = "";  
-        }
-
-        else
-        {
-            foreach (TollTechnician personale in TollTechnicianQuery)
-            {
-                PhoneResult = "Phone: " + personale.Technician_phone_number;
-            }
-        }
     }
 
     [RelayCommand]
@@ -104,12 +67,9 @@ namespace Master_of_Emails.ViewModels;
         PopulateRegionList();
         tollPlazaList?.Clear();
         tollLaneList?.Clear();
-        Requestor ??= "";
-        PhoneResult ??= "";
-        Duration ??= "";
-        IncidentOrESR ??= "";
+        Supervisor ??= "";
         Reason ??= "";
-        Date= DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
+        Date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
     }
 
 

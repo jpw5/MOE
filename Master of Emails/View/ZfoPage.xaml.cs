@@ -29,16 +29,13 @@ public partial class ZfoPage : ContentPage
 
     public string Region;
     public int PlazaId;
+
     public string Plaza;
-    public string Roadway;
     public string Lane;
-    public string Date;
     public string Requestor;
-    public string RequestorPhoneNumber;
-    public string Duration;
-    public string Units;
-    public string IncidentOrESR;
     public string Reason;
+    public string StartDate;
+    public string EndDate;
 
     public ZfoPage(ZfoPageViewModel zfoPageViewModel)
 	{
@@ -79,7 +76,6 @@ public partial class ZfoPage : ContentPage
             foreach (TollPlaza plaza in tollPlazaQueryByPlazaId)
             {
                 Plaza = plaza.Plaza_id.ToString() + " " + plaza.Plaza_name;
-                Roadway = plaza.Plaza_roadway;
             }
 
             tollLanesQueryByPlazaId = TollLaneRepo.QueryByPlazaId(PlazaId);
@@ -114,6 +110,50 @@ public partial class ZfoPage : ContentPage
     private void SelectRequestor_TextChanged(object sender, TextChangedEventArgs e)
     {
         Requestor = e.NewTextValue;
+    }
+
+    private void ToBeDetermined_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        if(e.Value==true)
+        {
+            endDate.IsEnabled = false;
+            endTime.IsEnabled = false;
+            EndDate = "TBD";
+        }
+
+        else
+        {
+            endDate.IsEnabled = true;
+            endTime.IsEnabled = true;
+        }
+        
+    }
+
+    private void ZFOEmail_Button_Pressed(object sender, EventArgs e)
+    {
+        mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
+        for (int i = 0; i < TollLaneList.Count; i++)
+        {
+            Lane += TollLaneList[i] + " ";
+        }
+
+        TollLaneList.Clear();
+        Requestor = selectRequestor.Text;
+        Reason = selectReason.Text;
+        StartDate = startDate.Date.ToString("dddd, MMMM dd, yyyy / HH:mm");
+       
+        string To = "ali.shakoor2249@gmail.com";
+        string Subject = "SunWatch ZFO Alert - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
+        string Body = "****SunWatch ZFO Alert****" + "<br>" + "<br>" +
+        "Plaza: " + Plaza + "<br>" + "Lane(s): " + Lane + "<br>" + "Date/Time: " + "Requestor: " + Requestor +
+        "Reason: " + Reason + "<br>" + "Start Date/Time: " + StartDate + "<br>" + "End Date/Time: " + EndDate;
+
+        mail.To = To;
+        mail.Subject = Subject;
+        mail.HTMLBody = Body;
+        mail.Display();
+        mail = null;
+
     }
 }
 

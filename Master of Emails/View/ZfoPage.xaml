@@ -38,7 +38,7 @@
                     
                 </HorizontalStackLayout>
 
-                <HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
                     
                     <SearchBar Text="{Binding Requestor}" SearchCommand="{Binding ReturnPersonaleCommand}" 
                     IsTextPredictionEnabled="True" Placeholder="Personale Lookup" CancelButtonColor="Black" 
@@ -53,70 +53,35 @@
                 <Editor Text="{Binding Reason}" x:Name="selectReason" HeightRequest="90" FontFamily="Times" FontSize="16" Placeholder="Reason"
                 PlaceholderColor="DarkSlateGray" AutoSize="TextChanges"></Editor>
 
-                <HorizontalStackLayout
-                                      Spacing="10"
-                                      HorizontalOptions="Center">
-                    <Label
-                          VerticalOptions="Center"
-                          Text="Select Start Date/Time"
-                          FontSize="16"
-                          FontFamily="Times">
-                    </Label>
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
-                    <DatePicker
-                               x:Name="start_date"
-                               FontSize="16"
-                               FontFamily="Times">
-                    </DatePicker>
-
-                    <TimePicker
-                               x:Name="start_time"
-                               FontSize="16"
-                               FontFamily="Times">
-                    </TimePicker>
+                    <Label VerticalOptions="Center" Text="Select Start Date/Time" FontSize="16" FontFamily="Times"></Label>
+                    <DatePicker x:Name="startDate" FontSize="16" FontFamily="Times"></DatePicker>
+                    <TimePicker x:Name="startTime" FontSize="16" FontFamily="Times"></TimePicker>
 
                 </HorizontalStackLayout>
 
-                <HorizontalStackLayout
-                                      Spacing="10"
-                                      HorizontalOptions="Center">
-                    <Label
-                          VerticalOptions="Center"
-                          Text="Select End Date/Time"
-                          FontSize="16"
-                          FontFamily="Times">
-                    </Label>
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
-                    <DatePicker
-                               x:Name="end_date"
-                               FontSize="16"
-                               FontFamily="Times">
-                    </DatePicker>
-
-                    <TimePicker
-                               x:Name="end_time"
-                               FontSize="16"
-                               FontFamily="Times">
-                    </TimePicker>
+                    <Label VerticalOptions="Center" Text="Select End Date/Time" FontSize="16" FontFamily="Times"></Label>
+                    <DatePicker x:Name="endDate" FontSize="16" FontFamily="Times"></DatePicker>
+                    <TimePicker x:Name="endTime"  FontSize="16" FontFamily="Times"></TimePicker>
 
                 </HorizontalStackLayout>
 
-                <HorizontalStackLayout
-                                      HorizontalOptions="End">
-                    <Label
-                          FontSize="16"
-                          FontFamily="Times"
-                          HorizontalOptions="Center"
-                          VerticalOptions="Center"
-                          Text="TBD">
-                    </Label>
-                    <CheckBox
-                             x:Name="tbd"
-                             Color="Red">
+                <HorizontalStackLayout HorizontalOptions="End">
 
-                    </CheckBox>
+                    <Label FontSize="16" FontFamily="Times" HorizontalOptions="Center" VerticalOptions="Center" Text="TBD"></Label>
+                    <CheckBox CheckedChanged="ToBeDetermined_CheckedChanged" x:Name="ToBeDetermined" Color="Red"></CheckBox>
+                    
                 </HorizontalStackLayout>
-               
+
+
+                <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="End">
+                    <Button Command="{Binding ClearCommand}" CornerRadius="20" Text="Clear"></Button>
+                    <Button Pressed="ZFOEmail_Button_Pressed" CornerRadius="20" Text="Email"></Button>
+                </HorizontalStackLayout>
+
             </VerticalStackLayout>
             
         </Border>

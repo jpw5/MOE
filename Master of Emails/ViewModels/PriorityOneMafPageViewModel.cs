@@ -44,13 +44,14 @@ public partial class PriorityOneMafPageViewModel : ObservableObject
     public List<TollBomitem> TollBomitem = new();
 
     [ObservableProperty]
+    public string date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
+
+    [ObservableProperty]
     public string problem;
     [ObservableProperty]
     public string mafNumber;
     [ObservableProperty]
     public string actionTaken;
-
-    
 
     public PriorityOneMafPageViewModel()
     {
@@ -77,14 +78,15 @@ public partial class PriorityOneMafPageViewModel : ObservableObject
     [RelayCommand]
     public void Clear()
     {
-        tollRegionList.Clear();
+        tollRegionList?.Clear();
         PopulateRegionList();
-        tollPlazaList.Clear();
-        tollLaneList.Clear();
-        tollBomitemList.Clear();
-        tollTechnicianList.Clear();
-        Problem = "";
-        MafNumber = "";
-        ActionTaken = "";
+        tollPlazaList?.Clear();
+        tollLaneList?.Clear();
+        tollBomitemList?.Clear();
+        tollTechnicianList?.Clear();
+        Date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
+        Problem ??= "";
+        MafNumber ??= "";
+        ActionTaken ??= "";
     }
 }

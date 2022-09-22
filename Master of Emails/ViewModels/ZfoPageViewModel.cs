@@ -40,6 +40,8 @@ namespace Master_of_Emails.ViewModels;
         [ObservableProperty]
         public string reason;
 
+
+
     public ZfoPageViewModel()
     {
         tollRegionList = new ObservableCollection<string>();
@@ -78,6 +80,19 @@ namespace Master_of_Emails.ViewModels;
                 PhoneResult = "Phone: " + personale.Technician_phone_number;
             }
         }
+    }
+
+    [RelayCommand]
+    public void Clear()
+    {
+        tollRegionList?.Clear();
+        PopulateRegionList();
+        tollPlazaList?.Clear();
+        tollLaneList?.Clear();
+        Requestor ??= "";
+        PhoneResult ??= "";
+        Reason ??= "";
+        
     }
 
 }
