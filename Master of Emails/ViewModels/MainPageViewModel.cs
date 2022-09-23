@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Master_of_Emails.Table_Repositories;
 using Master_of_Emails.Tables;
 using SQLite;
+using System.Linq;
 
 namespace Master_of_Emails.ViewModels;
 public partial class MainPageViewModel: ObservableObject
@@ -10,8 +11,9 @@ public partial class MainPageViewModel: ObservableObject
     public TollPlazaRepository TollPlazaRepo = new();
     public TableQuery<TollPlaza> TollPlazaQuery;
 
-    public TollTechnicianRepository TollPersonaleRepo = new();
-    public TableQuery<TollTechnician> TollPersonaleQuery;
+    public TollTechnicianRepository TollTechnicianRepo = new();
+    public TableQuery<TollTechnician> TollTechnicianQuery;
+    public List<TollTechnician> TollTechnician = new();
 
     [ObservableProperty]
     public string plazaSearch;
@@ -27,20 +29,24 @@ public partial class MainPageViewModel: ObservableObject
     [ObservableProperty]
     public string personaleEmailResult = "Email: ";
 
+    public List<string> TechnicianList;
+
     public MainPageViewModel()
     {
+        
 
-     
     }
 
     [RelayCommand]
     public async void ReturnPersonale()
     {
+        List<string> Test = new();
+
         try
         {
-            TollPersonaleQuery = TollPersonaleRepo.QueryTechnicianByName(PersonaleSearch);
+            TollTechnicianQuery = TollTechnicianRepo.QueryTechnicianByName(PersonaleSearch);
 
-            if(!TollPersonaleQuery.Any())
+            if(!TollTechnicianQuery.Any())
             {
                 PersonalePhoneResult = "Failed to Retrive. The entered ID was invalid or nonexistant";
                 PersonaleEmailResult = "Failed to Retrive. The entered ID was invalid or nonexistant.";
@@ -51,9 +57,12 @@ public partial class MainPageViewModel: ObservableObject
 
             else
             {
-                foreach (TollTechnician personale in TollPersonaleQuery)
+               
+
+                foreach (TollTechnician personale in TollTechnicianQuery)
                 {
-                    PersonalePhoneResult = "Phone: " + personale.Technician_phone_number;
+                    Test.Add(personale.Technician_phone_number + " " + personale.Technician_email);
+                    PersonalePhoneResult = "Phone: " + Test[0];
                     PersonaleEmailResult = "Email: " + personale.Technician_email;
                 }
             }

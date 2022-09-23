@@ -34,7 +34,7 @@ namespace Master_of_Emails.ViewModels;
         public string requestor;
         [ObservableProperty]
         public string phoneResult;
-        public TollTechnicianRepository TollPersonaleRepo = new();
+        public TollTechnicianRepository TollTechnicianRepo = new();
         public TableQuery<TollTechnician> TollTechnicianQuery;
 
        
@@ -76,7 +76,7 @@ namespace Master_of_Emails.ViewModels;
     [RelayCommand]
     public async void ReturnPersonale()
     {
-        TollTechnicianQuery = TollPersonaleRepo.QueryTechnicianByName(Requestor);
+        TollTechnicianQuery = TollTechnicianRepo.QueryTechnicianByName(Requestor);
 
         if (!TollTechnicianQuery.Any())
         {
