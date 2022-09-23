@@ -28,8 +28,8 @@ namespace Master_of_Emails.Table_Repositories
             Init();
             var technician= new TollTechnician
             {
+                Technician_kn_id = NewTechnicianKnId,
                 Technician_email = NewTechnicianEmail,
-                Technician_kn_id= NewTechnicianKnId,
                 Technician_name= NewTechnicianName,
                 Technician_phone_number= NewTechnicianPhoneNumber,
                 Technician_region= NewTechnicianRegion

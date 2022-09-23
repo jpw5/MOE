@@ -39,7 +39,8 @@
                     <RadioButton CheckedChanged="VaultRadioButton_CheckedChanged" Value="Vault Under Duress" Content="Vault Under Duress" FontSize="16" FontFamily="Times"> </RadioButton>
                     <RadioButton CheckedChanged="LaneRadioButton_CheckedChanged" Value="Lane Duress Alarm" Content="Lane Duress Alarm" FontSize="16" FontFamily="Times"></RadioButton>
 
-                    <Picker WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Center" FontSize="14" 
+                    <Picker ItemsSource="{Binding TollDuressReasonList}" SelectedItem="{Binding DuressReason}" 
+                    WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Center" FontSize="14" x:Name="selectDuressReason" 
                     FontAttributes="Bold" FontFamily="Times" Title="Select Alarm"></Picker>
                     
                 </HorizontalStackLayout>

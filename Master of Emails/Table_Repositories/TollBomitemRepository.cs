@@ -52,7 +52,4 @@ namespace Master_of_Emails.Table_Repositories
 
 
     }
-
- 
-
 }

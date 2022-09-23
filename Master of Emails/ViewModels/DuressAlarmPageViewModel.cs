@@ -34,6 +34,13 @@ namespace Master_of_Emails.ViewModels;
         public string plazaSupervisor;
 
         [ObservableProperty]
+        public ObservableCollection<string> tollDuressReasonList;
+        public List<TollDuressReason> TollDuressReason= new();
+        public TollDuressReasonRepository TollDuressReasonRepo=new();   
+        [ObservableProperty]
+        public string duressReason;
+
+        [ObservableProperty]
         public string date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
 
     public DuressAlarmPageViewModel()
@@ -41,7 +48,9 @@ namespace Master_of_Emails.ViewModels;
         tollRegionList = new ObservableCollection<string>();
         tollPlazaList = new ObservableCollection<string>();
         tollLaneList = new ObservableCollection<string>();
+        tollDuressReasonList = new ObservableCollection<string>();
         PopulateRegionList();
+        PopulateDuressReasonList();
     }
 
     public void PopulateRegionList()
@@ -57,6 +66,21 @@ namespace Master_of_Emails.ViewModels;
 
     }
 
+    public void PopulateDuressReasonList()
+    {
+        
+        TollDuressReason=TollDuressReasonRepo.GetDuressReasons();
+        if (TollDuressReasonRepo != null)
+        {
+            foreach(TollDuressReason duressreason in TollDuressReason)
+            {
+                tollDuressReasonList.Add(duressreason.Duress_reason_name);
+            }
+        }
+
+
+    }
+
     [RelayCommand]
     public void Clear()
     {
@@ -64,6 +88,7 @@ namespace Master_of_Emails.ViewModels;
         PopulateRegionList();
         tollPlazaList?.Clear();
         tollLaneList?.Clear();
+        tollDuressReasonList?.Clear();
         PlazaSupervisor = "";
         Date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
     }

@@ -75,7 +75,7 @@ namespace Master_of_Emails.ViewModels;
         [ObservableProperty]
         public string newTechnicianEmail;
         [ObservableProperty]
-        public string newTechnicianRole;
+        public string newTechnicianRegion;
         [ObservableProperty]
         public string newTechnicianStatusMessage;
         [ObservableProperty]
@@ -100,6 +100,19 @@ namespace Master_of_Emails.ViewModels;
         [ObservableProperty]
         public ObservableCollection<string> bomitemList;
 
+        public TollDuressReasonRepository TollDuressReasonRepo = new();
+        public List<TollDuressReason> TollDuressReason = new();
+        [ObservableProperty]
+        public string newDuressReason;
+        [ObservableProperty]
+        public string newDuressReasonStatusMessage;
+        [ObservableProperty]
+        public string removeDuressReason;
+        [ObservableProperty]
+        public string removeDuressReasonStatusMessage;
+        [ObservableProperty]
+        public ObservableCollection<string> duressReasonList;
+
     public DatabasePageViewModel()
         {
             RegionList = new ObservableCollection<string>();
@@ -107,6 +120,7 @@ namespace Master_of_Emails.ViewModels;
             LaneList = new ObservableCollection<string>();
             TechnicianList = new ObservableCollection<string>();
             BomitemList = new ObservableCollection<string>();
+            DuressReasonList = new ObservableCollection<string>();
 
         if (DB.DatabaseConnection == null)
                 DB.DatabaseInit();
@@ -319,7 +333,7 @@ namespace Master_of_Emails.ViewModels;
     {
         if (string.IsNullOrWhiteSpace(NewTechnicianKnId) | string.IsNullOrWhiteSpace(NewTechnicianName) |
             string.IsNullOrWhiteSpace(NewTechnicianPhoneNumber) | string.IsNullOrWhiteSpace(NewTechnicianEmail) |
-            string.IsNullOrWhiteSpace(NewTechnicianRole))
+            string.IsNullOrWhiteSpace(NewTechnicianRegion))
         {
             NewTechnicianStatusMessage = "Error: Please enter valid inputs.";
             await Task.Delay(2000);
@@ -331,13 +345,13 @@ namespace Master_of_Emails.ViewModels;
         {
             
             TollTechnicianRepo.AddTechnician(NewTechnicianKnId, NewTechnicianName, NewTechnicianPhoneNumber, 
-            NewTechnicianEmail, NewTechnicianRole);
+            NewTechnicianEmail, NewTechnicianRegion);
 
             NewTechnicianKnId = "";
             NewTechnicianName = "";
             NewTechnicianPhoneNumber = "";
             NewTechnicianEmail = "";
-            NewTechnicianRole = "";
+            NewTechnicianRegion = "";
             NewTechnicianStatusMessage = "Success: Technician Added";
             await Task.Delay(2000);
             NewTechnicianStatusMessage = "";
@@ -478,6 +492,81 @@ namespace Master_of_Emails.ViewModels;
         catch (Exception)
         {
             BomitemList.Add("No Data Found");
+        }
+    }
+
+    [RelayCommand]
+    async void AddNewDuressReason ()
+    {
+        if (string.IsNullOrWhiteSpace(NewDuressReason))
+        {
+            NewDuressReasonStatusMessage = "Error: Please enter valid inputs.";
+            await Task.Delay(2000);
+            NewDuressReasonStatusMessage = "";
+            return;
+        }
+
+        try
+        {
+            TollDuressReasonRepo.AddDuressReason(NewDuressReason);
+            NewDuressReason = "";
+            
+            NewDuressReasonStatusMessage= "Success: Duress Reason Added";
+            await Task.Delay(2000);
+            NewDuressReasonStatusMessage = "";
+        }
+
+        catch (Exception)
+        {
+            NewDuressReasonStatusMessage = "Error: Please enter valid inputs.";
+            await Task.Delay(2000);
+            NewDuressReasonStatusMessage = "";
+        }
+    }
+
+    [RelayCommand]
+    async void DeleteDuressReason()
+    {
+        if (string.IsNullOrWhiteSpace(RemoveDuressReason))
+        {
+            RemoveDuressReasonStatusMessage = "Error: Please enter valid inputs.";
+            await Task.Delay(2000);
+            RemoveDuressReasonStatusMessage = "";
+            return;
+        }
+        try
+        {
+            TollDuressReasonRepo.DeleteDuressReason(Int32.Parse(RemoveDuressReason));
+            RemoveDuressReason = "";
+            RemoveDuressReasonStatusMessage = "Success: Duress Reason Deleted.";
+            await Task.Delay(2000);
+            RemoveDuressReasonStatusMessage = "";
+        }
+
+        catch (Exception)
+        {
+            RemoveDuressReasonStatusMessage = "Error: Please enter valid inputs.";
+            await Task.Delay(2000);
+            RemoveDuressReasonStatusMessage = "";
+        }
+    }
+
+    [RelayCommand]
+    private void GetAllDuressReasons()
+    {
+        DuressReasonList.Clear();
+        try
+        {
+            TollDuressReason = TollDuressReasonRepo.GetDuressReasons();
+            foreach (TollDuressReason duressreason in TollDuressReason)
+            {
+                DuressReasonList.Add(duressreason.Duress_reason_id + " " + duressreason.Duress_reason_name);
+            }
+        }
+
+        catch (Exception)
+        {
+            DuressReasonList.Add("No Data Found");
         }
     }
 

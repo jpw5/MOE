@@ -31,13 +31,46 @@ public partial class DuressAlarmPage : ContentPage
     public string Lane;
     public string Alarm;
     public string PlazaSupervisor;
-    public string Reason;
-    public DateTime Date = DateTime.Now;
+    public string DuressReason;
+    public string Date;
 
     public DuressAlarmPage(DuressAlarmPageViewModel duressAlarmPageViewModel)
 	{
         InitializeComponent();
         BindingContext = duressAlarmPageViewModel;
+    }
+
+    private void DuressAlarmButton_Pressed(object sender, EventArgs e)
+    {
+        Region = selectRegion.SelectedItem.ToString();
+        var Split = selectPlaza.SelectedItem.ToString().Split(" ", 2);
+        PlazaId = Int32.Parse(Split[0]);
+        tollPlazaQueryByPlazaId = TollPlazaRepo.QueryByPlazaId(PlazaId);
+        foreach (TollPlaza plaza in tollPlazaQueryByPlazaId)
+        {
+            Plaza = plaza.Plaza_id.ToString() + " " + plaza.Plaza_name;
+            Roadway = plaza.Plaza_roadway;
+        }
+
+        Lane = selectLane.SelectedItem.ToString();
+        DuressReason=selectDuressReason.SelectedItem.ToString();
+        Date = selectDate.Text.ToString();
+        PlazaSupervisor=selectSupervisor.Text.ToString();
+        DuressReason = selectDuressReason.SelectedItem.ToString();
+
+        string To = "ali.shakoor2249@gmail.com";
+        string Subject = "Duress Alarm at " + Plaza.ToUpper() + " / " + Lane.ToUpper();
+        string Body = "****SunWatch Priority 1 MAF****" + "<br>" + "<br>" +
+        "Plaza: " + Plaza + "<br>" + "Roadway: " + Roadway + "<br>" + "Lane: " + Lane + "<br>" + "Date/Time: " + Date+ "<br>" +
+        "Alarm: " + Alarm + "<br>" + "Supervisor: " + PlazaSupervisor + "<br>" + "Reason: " + DuressReason;
+
+        mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
+        mail.To = To;
+        mail.Subject = Subject;
+        mail.HTMLBody = Body;
+        mail.Display();
+        mail = null;
+
     }
 
     private void SelectRegion_SelectedIndexChanged(object sender, EventArgs e)
@@ -71,7 +104,6 @@ public partial class DuressAlarmPage : ContentPage
             foreach (TollPlaza plaza in tollPlazaQueryByPlazaId)
             {
                 Plaza = plaza.Plaza_id.ToString() + " " + plaza.Plaza_name;
-                Roadway = plaza.Plaza_roadway;
             }
 
             tollLanesQueryByPlazaId = TollLaneRepo.QueryByPlazaId(PlazaId);
@@ -94,8 +126,5 @@ public partial class DuressAlarmPage : ContentPage
         Alarm = "Lane Duress Alarm";
     }
 
-    private void DuressAlarmButton_Pressed(object sender, EventArgs e)
-    {
 
-    }
 }
