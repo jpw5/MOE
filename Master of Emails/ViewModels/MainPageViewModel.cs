@@ -40,7 +40,8 @@ public partial class MainPageViewModel: ObservableObject
     [RelayCommand]
     public async void ReturnPersonale()
     {
-        List<string> Test = new();
+        List<string> PhoneNumber = new();
+        List<string> Email=new();
 
         try
         {
@@ -48,8 +49,8 @@ public partial class MainPageViewModel: ObservableObject
 
             if(!TollTechnicianQuery.Any())
             {
-                PersonalePhoneResult = "Failed to Retrive. The entered ID was invalid or nonexistant";
-                PersonaleEmailResult = "Failed to Retrive. The entered ID was invalid or nonexistant.";
+                PersonalePhoneResult = "Failed to Retrive. The entered Name was invalid or nonexistant.";
+                PersonaleEmailResult = "Failed to Retrive. The entered Name was invalid or nonexistant.";
                 await Task.Delay(2000);
                 PersonalePhoneResult = "Phone: ";
                 PersonaleEmailResult = "Name: ";
@@ -57,21 +58,23 @@ public partial class MainPageViewModel: ObservableObject
 
             else
             {
-               
 
+                PhoneNumber.Clear();
+                Email.Clear();
                 foreach (TollTechnician personale in TollTechnicianQuery)
                 {
-                    Test.Add(personale.Technician_phone_number + " " + personale.Technician_email);
-                    PersonalePhoneResult = "Phone: " + Test[0];
-                    PersonaleEmailResult = "Email: " + personale.Technician_email;
+                    PhoneNumber.Add(personale.Technician_phone_number);
+                    Email.Add(personale.Technician_email);
+                    PersonalePhoneResult = "Phone: " + PhoneNumber[0];
+                    PersonaleEmailResult = "Email: " + Email[0];
                 }
             }
         }
 
         catch (Exception)
         {
-            PersonalePhoneResult = "Failed to Retrive. The entered ID was invalid or nonexistant";
-            PersonaleEmailResult = "Failed to Retrive. The entered ID was invalid or nonexistant.";
+            PersonalePhoneResult = "Failed to Retrive. The entered Name was invalid or nonexistant.";
+            PersonaleEmailResult = "Failed to Retrive. The entered Name was invalid or nonexistant.";
             await Task.Delay(2000);
             PersonalePhoneResult = "Phone: ";
             PersonaleEmailResult = "Name: ";
@@ -87,7 +90,7 @@ public partial class MainPageViewModel: ObservableObject
 
             if (!TollPlazaQuery.Any())
             {
-                PlazaPhoneResult= "Failed to Retrive. The entered ID was invalid or nonexistant";
+                PlazaPhoneResult= "Failed to Retrive. The entered ID was invalid or nonexistant.";
                 PlazaNameResult= "Failed to Retrive. The entered ID was invalid or nonexistant.";
                 await Task.Delay(2000);
                 PlazaPhoneResult = "Phone: ";
@@ -112,6 +115,22 @@ public partial class MainPageViewModel: ObservableObject
             PlazaPhoneResult = "Phone: ";
             PlazaNameResult = "Name: ";
         }
+    }
+
+    [RelayCommand]
+    public void ClearPersonaleSearch()
+    {
+        PersonaleSearch = "";
+        PersonalePhoneResult = "Phone: ";
+        PersonaleEmailResult = "Name: ";
+    }
+
+    [RelayCommand]
+    public void ClearPlazaSearch()
+    {
+        PlazaSearch = "";
+        PlazaPhoneResult = "Phone: ";
+        PlazaNameResult = "Name: ";
     }
 
     [RelayCommand]

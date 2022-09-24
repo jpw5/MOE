@@ -40,7 +40,7 @@ public partial class DuressAlarmPage : ContentPage
         BindingContext = duressAlarmPageViewModel;
     }
 
-    private void DuressAlarmButton_Pressed(object sender, EventArgs e)
+    private void DuressAlarmEmailButton_Pressed(object sender, EventArgs e)
     {
         Region = selectRegion.SelectedItem.ToString();
         var Split = selectPlaza.SelectedItem.ToString().Split(" ", 2);

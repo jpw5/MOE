@@ -6,7 +6,7 @@
              x:DataType="viewmodel:DuressAlarmPageViewModel"
              Title="Duress Alarm">
 
-    <ScrollView Background="#FFA500">
+    <ScrollView Orientation="Both" HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always" Background="#FFA500">
         
         <Border HeightRequest="700" WidthRequest="700" Stroke="#C49B33" StrokeThickness="4" Background="White" Padding="16,8"
         HorizontalOptions="Center" VerticalOptions="Center">
@@ -59,7 +59,7 @@
 
                     <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="End">
                         <Button Command="{Binding ClearCommand}" CornerRadius="20" Text="Clear"></Button>
-                        <Button Pressed="DuressAlarmButton_Pressed" CornerRadius="20" Text="Email"></Button>
+                        <Button Pressed="DuressAlarmEmailButton_Pressed" CornerRadius="20" Text="Email"></Button>
                     </HorizontalStackLayout>
 
             </VerticalStackLayout>
