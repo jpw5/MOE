@@ -113,6 +113,19 @@ namespace Master_of_Emails.ViewModels;
         [ObservableProperty]
         public ObservableCollection<string> duressReasonList;
 
+        public TollScadaAlarmRepository TollScadaAlarmRepo = new();
+        public List<TollScadaAlarm> TollScadaAlarm = new();
+        [ObservableProperty]
+        public string newScadaAlarm;
+        [ObservableProperty]
+        public string newScadaAlarmStatusMessage;
+        [ObservableProperty]
+        public string removeScadaAlarm;
+        [ObservableProperty]
+        public string removeScadaAlarmStatusMessage;
+        [ObservableProperty]
+        public ObservableCollection<string> scadaAlarmList;
+
     public DatabasePageViewModel()
         {
             RegionList = new ObservableCollection<string>();
@@ -121,6 +134,7 @@ namespace Master_of_Emails.ViewModels;
             TechnicianList = new ObservableCollection<string>();
             BomitemList = new ObservableCollection<string>();
             DuressReasonList = new ObservableCollection<string>();
+            ScadaAlarmList = new ObservableCollection<string>();
 
         if (DB.DatabaseConnection == null)
                 DB.DatabaseInit();
@@ -568,6 +582,24 @@ namespace Master_of_Emails.ViewModels;
         {
             DuressReasonList.Add("No Data Found");
         }
+    }
+
+    [RelayCommand]
+    private void AddNewScadaAlarm()
+    {
+
+    }
+
+    [RelayCommand]
+    private void DeleteScadaAlarm()
+    {
+
+    }
+
+    [RelayCommand]
+    private void GetAllScadaAlarms()
+    {
+
     }
 
 

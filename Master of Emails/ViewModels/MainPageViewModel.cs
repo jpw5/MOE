@@ -42,32 +42,39 @@ public partial class MainPageViewModel: ObservableObject
     {
         List<string> PhoneNumber = new();
         List<string> Email=new();
+        List<string> Region = new();
+        List<string> FullName = new();
 
         try
         {
             TollTechnicianQuery = TollTechnicianRepo.QueryTechnicianByName(PersonaleSearch);
 
-            if(!TollTechnicianQuery.Any())
+            if(TollTechnicianQuery.Any())
             {
-                PersonalePhoneResult = "Failed to Retrive. The entered Name was invalid or nonexistant.";
-                PersonaleEmailResult = "Failed to Retrive. The entered Name was invalid or nonexistant.";
-                await Task.Delay(2000);
-                PersonalePhoneResult = "Phone: ";
-                PersonaleEmailResult = "Name: ";
+                PhoneNumber.Clear();
+                Email.Clear();
+                Region.Clear();
+                FullName.Clear();
+                foreach (TollTechnician personale in TollTechnicianQuery)
+                {
+                    PhoneNumber.Add(personale.Technician_phone_number);
+                    Email.Add(personale.Technician_email);
+                    Region.Add(personale.Technician_region);
+                    FullName.Add(personale.Technician_name);
+                    PersonalePhoneResult = "Phone: " + PhoneNumber[0] + " (" + Region[0] + " Region)";
+                    PersonaleEmailResult = "Email: " + Email[0] + " (" + Region[0] + " Region)";
+                    PersonaleSearch = FullName[0];
+                }
             }
 
             else
             {
 
-                PhoneNumber.Clear();
-                Email.Clear();
-                foreach (TollTechnician personale in TollTechnicianQuery)
-                {
-                    PhoneNumber.Add(personale.Technician_phone_number);
-                    Email.Add(personale.Technician_email);
-                    PersonalePhoneResult = "Phone: " + PhoneNumber[0];
-                    PersonaleEmailResult = "Email: " + Email[0];
-                }
+                PersonalePhoneResult = "Failed to Retrive. The entered Name was invalid or nonexistant.";
+                PersonaleEmailResult = "Failed to Retrive. The entered Name was invalid or nonexistant.";
+                await Task.Delay(2000);
+                PersonalePhoneResult = "Phone: ";
+                PersonaleEmailResult = "Name: ";
             }
         }
 

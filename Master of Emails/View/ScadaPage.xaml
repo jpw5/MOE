@@ -2,13 +2,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="practice.Pages.ScadaPage"
+             xmlns:viewmodel="clr-namespace:Master_of_Emails.ViewModels"
+             x:DataType="viewmodel:ScadaPageViewModel"
              Title="SCADA">
 
-    <ScrollView Orientation="Both" HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always" Background="#98fb98">
+    <ScrollView Orientation="Both" HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always" 
+    Background="#98fb98">
         
         
-        <Border HeightRequest="700" WidthRequest="700" Stroke="#C49B33" StrokeThickness="4" Background="White" Padding="16,8"
-           HorizontalOptions="Center">
+        <Border HeightRequest="700" WidthRequest="700" Stroke="#C49B33" StrokeThickness="4" Background="White" 
+        Padding="16,8" HorizontalOptions="Center">
 
             <Border.StrokeShape>
                 <RoundRectangle  CornerRadius="40,0,0,40"></RoundRectangle>
@@ -16,36 +19,16 @@
 
             <VerticalStackLayout Padding="10" Spacing="20" VerticalOptions="Center" HorizontalOptions="Start">
 
-                <HorizontalStackLayout
-                                      Spacing="10"
-                                      HorizontalOptions="Center">
-                    <Picker
-                       x:Name="select_plaza"
-                       HorizontalOptions="Center"
-                       FontSize="16"
-                       FontFamily="Times"
-                       Title="Select Plaza">
-                    </Picker>
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
-                    <Entry
-                        Placeholder="Building Number"
-                        PlaceholderColor="DarkSlateGray"
-                        x:Name="bldg"     
-                        HorizontalOptions="Center"
-                        FontSize="16"
-                        FontFamily="Times"
-                        HeightRequest="10">
-                    </Entry>
+                    <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" 
+                     SelectedIndexChanged="SelectRegion_SelectedIndexChanged" x:Name="selectRegion" WidthRequest="110" 
+                     HorizontalOptions="Center" VerticalOptions="Center" FontSize="14" FontAttributes="Bold" 
+                     FontFamily="Times" Title="Select Region"></Picker>
 
-                    <Entry
-                        Placeholder="Mile Post"
-                        PlaceholderColor="DarkSlateGray"
-                        x:Name="mp"     
-                        HorizontalOptions="Center"
-                        FontSize="16"
-                        FontFamily="Times"
-                        HeightRequest="10">
-                    </Entry>
+                    <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" x:Name="selectPlaza" 
+                     WidthRequest="350" HorizontalOptions="Center" VerticalOptions="Center" FontSize="14" 
+                     FontAttributes="Bold" FontFamily="Times" Title="Select Plaza"></Picker>
 
                 </HorizontalStackLayout>
 

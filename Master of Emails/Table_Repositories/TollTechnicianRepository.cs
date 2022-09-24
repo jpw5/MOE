@@ -52,8 +52,8 @@ namespace Master_of_Emails.Table_Repositories
         public TableQuery<TollTechnician> QueryTechnicianByName(string TechnicianName)
         {
             Init();
-
-            return DatabaseConnection.Table<TollTechnician>().Where(value=> value.Technician_name.Contains(TechnicianName));
+            TechnicianName=TechnicianName.ToUpper();
+            return DatabaseConnection.Table<TollTechnician>().Where(value=> value.Technician_name.ToUpper().Contains(TechnicianName));
 
             //return DatabaseConnection.Table<TollTechnician>().Where(value => value.Technician_name.
             //Equals(TechnicianName));

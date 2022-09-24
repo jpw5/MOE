@@ -29,6 +29,9 @@ public static class MauiProgram
         builder.Services.AddSingleton<DuressAlarmPage>();
         builder.Services.AddSingleton<DuressAlarmPageViewModel>();
 
+        builder.Services.AddSingleton<ScadaPage>();
+        builder.Services.AddSingleton<ScadaPageViewModel>();
+
         builder.Services.AddSingleton<DatabasePage>();
 		builder.Services.AddSingleton<DatabasePageViewModel>();
 

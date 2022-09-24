@@ -5,7 +5,7 @@
              x:DataType="viewmodel:MainPageViewModel" 
              x:Class="Master_of_Emails.MainPage">
     
-    <!-- Start of code for the Grid Layout-->
+    <!-- START OF GRID LAYOUT-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -17,6 +17,8 @@
                 <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+
+        <!-- END OF GRID LAYOUT-->
 
         <!--Start of code for email form Imagebuttons-->
         

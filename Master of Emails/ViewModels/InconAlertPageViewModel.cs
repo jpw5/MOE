@@ -78,19 +78,27 @@ namespace Master_of_Emails.ViewModels;
     {
         TollTechnicianQuery = TollTechnicianRepo.QueryTechnicianByName(Requestor);
 
-        if (!TollTechnicianQuery.Any())
+        List<string> PhoneNumber = new();
+        List<string> FullName = new();
+
+        if (TollTechnicianQuery.Any())
         {
-            PhoneResult = "Failed to Retrive. The entered Name was invalid or nonexistant";
-            await Task.Delay(2000);
-            PhoneResult = "";  
+            PhoneNumber.Clear();
+            FullName.Clear();
+            foreach (TollTechnician personale in TollTechnicianQuery)
+            {
+                PhoneNumber.Add(personale.Technician_phone_number);
+                FullName.Add(personale.Technician_name);
+                PhoneResult = "Phone: " + PhoneNumber[0];
+                Requestor = FullName[0];
+            }
         }
 
         else
         {
-            foreach (TollTechnician personale in TollTechnicianQuery)
-            {
-                PhoneResult = "Phone: " + personale.Technician_phone_number;
-            }
+            PhoneResult = "Failed to Retrive. The entered Name was invalid or nonexistant";
+            await Task.Delay(2000);
+            PhoneResult = "";
         }
     }
 
