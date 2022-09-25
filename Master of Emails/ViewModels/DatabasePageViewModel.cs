@@ -585,21 +585,79 @@ namespace Master_of_Emails.ViewModels;
     }
 
     [RelayCommand]
-    private void AddNewScadaAlarm()
+    async void AddNewScadaAlarm()
     {
+        if (string.IsNullOrWhiteSpace(NewScadaAlarm))
+        {
+            NewScadaAlarmStatusMessage = "Error: Please enter valid inputs.";
+            await Task.Delay(2000);
+            NewScadaAlarmStatusMessage = "";
+            return;
+        }
+
+        try
+        {
+            TollScadaAlarmRepo.AddScadaAlarm(NewScadaAlarm);
+            NewScadaAlarm = "";
+
+            NewScadaAlarmStatusMessage = "Success: SCADA Alarm Added";
+            await Task.Delay(2000);
+            NewScadaAlarmStatusMessage = "";
+        }
+
+        catch (Exception)
+        {
+            NewScadaAlarmStatusMessage = "Error: Please enter valid inputs.";
+            await Task.Delay(2000);
+            NewScadaAlarmStatusMessage = "";
+        }
 
     }
 
     [RelayCommand]
-    private void DeleteScadaAlarm()
+    async void DeleteScadaAlarm()
     {
+        if (string.IsNullOrWhiteSpace(RemoveScadaAlarm))
+        {
+            RemoveScadaAlarmStatusMessage = "Error: Please enter valid inputs.";
+            await Task.Delay(2000);
+            RemoveScadaAlarmStatusMessage = "";
+            return;
+        }
+        try
+        {
+            TollScadaAlarmRepo.DeleteScadaAlarm(Int32.Parse(RemoveScadaAlarm));
+            RemoveScadaAlarm = "";
+            RemoveScadaAlarmStatusMessage = "Success: SCADA Alarm Deleted.";
+            await Task.Delay(2000);
+            RemoveScadaAlarmStatusMessage = "";
+        }
 
+        catch (Exception)
+        {
+            RemoveScadaAlarmStatusMessage = "Error: Please enter valid inputs.";
+            await Task.Delay(2000);
+            RemoveScadaAlarmStatusMessage = "";
+        }
     }
 
     [RelayCommand]
     private void GetAllScadaAlarms()
     {
+        ScadaAlarmList.Clear();
+        try
+        {
+            TollScadaAlarm = TollScadaAlarmRepo.GetScadaAlarms();
+            foreach (TollScadaAlarm scadaalarm in TollScadaAlarm)
+            {
+                ScadaAlarmList.Add(scadaalarm.Scada_alarm_id + " " + scadaalarm.Scada_alarm_name);
+            }
+        }
 
+        catch (Exception)
+        {
+            ScadaAlarmList.Add("No Data Found");
+        }
     }
 
 

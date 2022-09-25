@@ -31,7 +31,7 @@ namespace Master_of_Emails.Table_Repositories
             var id = DatabaseConnection.Insert(scadaalarm);
         }
 
-        public void DeleteBomitem(int Scada_alarm_id)
+        public void DeleteScadaAlarm(int Scada_alarm_id)
         {
             Init();
             DatabaseConnection.Delete<TollScadaAlarm>(Scada_alarm_id);

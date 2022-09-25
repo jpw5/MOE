@@ -295,18 +295,27 @@
                         FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
                     </HorizontalStackLayout>
                 </Frame>
+                
                 <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
                  BackgroundColor="SandyBrown">
                     <ListView ItemsSource="{Binding ScadaAlarmList}" VerticalOptions="Center" HorizontalOptions="Center" 
-                     WidthRequest="100" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
+                     WidthRequest="300" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
                 </Frame>
 
             </HorizontalStackLayout>
 
-
-
             <Label Text="----------SCADA ALARM END----------" TextColor="Black" Padding="10" 
             FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
+
+
+            <Label Text="----------FACILITIES AND TELECOM----------" TextColor="Black" Padding="10" 
+            FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
+            
+            
+
+            <Label Text="----------FACILITIES AND TELECOM END----------" TextColor="Black" Padding="10" 
+            FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
+
 
 
         </VerticalStackLayout>

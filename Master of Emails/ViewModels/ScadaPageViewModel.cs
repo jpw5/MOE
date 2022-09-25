@@ -24,26 +24,22 @@ namespace Master_of_Emails.ViewModels;
         public List<TollPlaza> TollPlaza = new();
 
         [ObservableProperty]
-        public ObservableCollection<string> tollScadaAlarmList;
-        [ObservableProperty]
-        public string scadaAlarm;
-        public TollScadaAlarmRepository TollScadaAlarmRepo = new();
-        public List<TollScadaAlarm> TollScadaAlarm = new();
-
-        [ObservableProperty]
-        public string requestor;
+        public string facilitiesTelecom;
         [ObservableProperty]
         public string phoneResult;
         public TollFacilitiesTelecomRepository TollFacilitiesTelecomRepo = new();
         public TableQuery<TollFacilitiesTelecom> TollFacilitiesTelecom;
 
         [ObservableProperty]
+        public string scadaAlarm;
+
+        [ObservableProperty]
         public string buildingNumber;
 
         [ObservableProperty]
-        public string alarm;
+        public string workOrderNumber;
 
-        [ObservableProperty]
+    [ObservableProperty]
         public string date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
 
 
@@ -51,6 +47,7 @@ namespace Master_of_Emails.ViewModels;
     {
         tollRegionList = new ObservableCollection<string>();
         tollPlazaList = new ObservableCollection<string>();
+      
         PopulateRegionList();
     }
 
@@ -64,6 +61,26 @@ namespace Master_of_Emails.ViewModels;
                 tollRegionList.Add(region.Region_name);
             }
         }
+    }
+
+    [RelayCommand]
+    public void ReturnPersonale()
+    {
+
+    }
+
+    [RelayCommand]
+    public void Clear()
+    {
+        tollRegionList?.Clear();
+        PopulateRegionList();
+        tollPlazaList?.Clear();
+        FacilitiesTelecom = "";
+        PhoneResult = "";
+        ScadaAlarm = "";
+        BuildingNumber = "";
+        WorkOrderNumber = "";
+        Date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
     }
 
 }

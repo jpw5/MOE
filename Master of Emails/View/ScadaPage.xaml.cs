@@ -24,15 +24,13 @@ public partial class ScadaPage : ContentPage
 
     public string Region;
     public int PlazaId;
+
     public string Plaza;
     public string Roadway;
-    public string Lane;
-    public string LaneType;
-    public string Bomitem;
-    public string Problem;
-    public string ActionTaken;
-    public string Technician;
-    public string MAFNumber;
+
+    public string SelectedHours;
+   
+
     public string Date;
     public ScadaPage(ScadaPageViewModel scadaPageViewModel)
 	{
@@ -58,5 +56,19 @@ public partial class ScadaPage : ContentPage
         }
 
     }
-   
+
+    private void After_hours_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        SelectedHours = "After Hours";
+    }
+
+    private void Normal_hours_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        SelectedHours = "Normal Hours";
+    }
+
+    private void ScadaEmailButton_Pressed(object sender, EventArgs e)
+    {
+
+    }
 }

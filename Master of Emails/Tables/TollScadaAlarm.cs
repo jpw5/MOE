@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Master_of_Emails.Tables
 {
+    [Table("scadaalarm")]
     public class TollScadaAlarm
     {
         [PrimaryKey, AutoIncrement]
