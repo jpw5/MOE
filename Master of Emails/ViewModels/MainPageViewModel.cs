@@ -32,8 +32,8 @@ public partial class MainPageViewModel: ObservableObject
     public string personalePhoneResult = "Phone: ";
     [ObservableProperty]
     public string personaleEmailResult = "Email: ";
-
-    public List<string> TechnicianList;
+    [ObservableProperty]
+    public string departmentResult = "Department: ";
 
     public MainPageViewModel()
     {
@@ -47,7 +47,7 @@ public partial class MainPageViewModel: ObservableObject
         List<string> Email=new();
         List<string> Region = new();
         List<string> FullName = new();
-
+        List<string> Department = new();
         try
         {
             TollTechnicianQuery = TollTechnicianRepo.QueryTechnicianByName(PersonaleSearch);
@@ -59,7 +59,6 @@ public partial class MainPageViewModel: ObservableObject
                 Email.Clear();
                 FullName.Clear();
                 Region.Clear();
-
                 foreach (TollTechnician personale in TollTechnicianQuery)
                 {
                     PhoneNumber.Add(personale.Technician_phone_number);
@@ -68,45 +67,41 @@ public partial class MainPageViewModel: ObservableObject
                     Region.Add(personale.Technician_region);
                     PersonalePhoneResult = "Phone: " + PhoneNumber[0];
                     PersonaleEmailResult = "Email: " + Email[0];
-                    PersonaleSearch = FullName[0] + " (" + Region[0] + " Tech)";
+                    DepartmentResult = "Department: " + Region[0] + " Technician";
+                    PersonaleSearch = FullName[0];                    
                 }
             }
-
             else if(TollFacilitiesTelecomQuery.Any())
             {
                 PhoneNumber.Clear();
                 Email.Clear();
                 FullName.Clear();
+                Department.Clear();
 
                 foreach(TollFacilitiesTelecom personale in TollFacilitiesTelecomQuery)
                 {
-                    PhoneNumber.Add(personale.Facilities_telecom_phone_number+" Alternate: "+personale.Facilities_telecom_alerternate_number);
+                    PhoneNumber.Add(personale.Facilities_telecom_phone_number+" | Alternate: "+personale.Facilities_telecom_alerternate_number);
                     Email.Add(personale.Facilities_telecom_email);
                     FullName.Add(personale.Facilities_telecom_name);
+                    Department.Add(personale.Department);
                     PersonalePhoneResult = "Phone: " + PhoneNumber[0];
                     PersonaleEmailResult = "Email: " + Email[0];
-                    PersonaleSearch = FullName[0]+" (Facilities/Telecom)";
+                    DepartmentResult = "Department: " + Department[0];
+                    PersonaleSearch = FullName[0]; 
                 }
-
             }
-
             else
             {
-                PersonalePhoneResult = "Failed to Retrive. The entered Name was invalid or nonexistant.";
-                PersonaleEmailResult = "Failed to Retrive. The entered Name was invalid or nonexistant.";
+                PersonaleSearch = "Search invalid or nonexistant.";
                 await Task.Delay(2000);
-                PersonalePhoneResult = "Phone: ";
-                PersonaleEmailResult = "Name: ";
+                PersonaleSearch = "";
             }
         }
-
         catch (Exception)
         {
-            PersonalePhoneResult = "Failed to Retrive. The entered Name was invalid or nonexistant.";
-            PersonaleEmailResult = "Failed to Retrive. The entered Name was invalid or nonexistant.";
-            await Task.Delay(2000);
-            PersonalePhoneResult = "Phone: ";
-            PersonaleEmailResult = "Name: ";
+                PersonaleSearch = "Search invalid or nonexistant.";
+                await Task.Delay(2000);
+                PersonaleSearch = "";
         }
     }
 
@@ -117,16 +112,7 @@ public partial class MainPageViewModel: ObservableObject
         {
             TollPlazaQuery = TollPlazaRepo.QueryByPlazaId(Int32.Parse(PlazaSearch));
 
-            if (!TollPlazaQuery.Any())
-            {
-                PlazaPhoneResult= "Failed to Retrive. The entered ID was invalid or nonexistant.";
-                PlazaNameResult= "Failed to Retrive. The entered ID was invalid or nonexistant.";
-                await Task.Delay(2000);
-                PlazaPhoneResult = "Phone: ";
-                PlazaNameResult = "Name: ";
-            }
-
-            else
+            if (TollPlazaQuery.Any())
             {
                 foreach (TollPlaza plaza in TollPlazaQuery)
                 {
@@ -134,15 +120,18 @@ public partial class MainPageViewModel: ObservableObject
                     PlazaNameResult = "Plaza: " + plaza.Plaza_name + " " + plaza.Plaza_roadway + " Mile Post " + plaza.Plaza_milepost + " " + plaza.Plaza_region;
                 }
             }
+            else
+            {
+                PlazaSearch = "Search invalid or nonexistant.";
+                await Task.Delay(2000);
+                PlazaSearch = "";
+            }
         }
-
         catch (Exception)
         {
-            PlazaPhoneResult = "Failed to Retrive. The entered ID was invalid or nonexistant.";
-            PlazaNameResult = "Failed to Retrive. The entered ID was invalid or nonexistant";
+            PlazaSearch = "Search invalid or nonexistant.";
             await Task.Delay(2000);
-            PlazaPhoneResult = "Phone: ";
-            PlazaNameResult = "Name: ";
+            PlazaSearch = "";
         }
     }
 
@@ -152,6 +141,7 @@ public partial class MainPageViewModel: ObservableObject
         PersonaleSearch = "";
         PersonalePhoneResult = "Phone: ";
         PersonaleEmailResult = "Name: ";
+        DepartmentResult = "Department: ";
     }
 
     [RelayCommand]

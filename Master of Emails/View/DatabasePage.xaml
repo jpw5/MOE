@@ -320,6 +320,7 @@
                     <Entry Text="{Binding NewFacilitiesTelecomPhoneNumber}" Placeholder="Enter Personale Phone Number" PlaceholderColor="Black"/>
                     <Entry Text="{Binding NewFacilitiesTelecomAlternatePhoneNumber}" Placeholder="Enter Personale Alternat Phone Number" PlaceholderColor="Black"/>
                     <Entry Text="{Binding NewFacilitiesTelecomEmail}" Placeholder="Enter Personale Email" PlaceholderColor="Black"/>
+                    <Entry Text="{Binding NewDepartment}" Placeholder="Enter Facilities or Telecomunication" PlaceholderColor="Black"/>
                     <Button Command="{Binding AddNewFacilitiesTelecomCommand}" Text="Add Personale" />
 
                 </VerticalStackLayout>

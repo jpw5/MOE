@@ -44,19 +44,14 @@
                     
                 </HorizontalStackLayout>
 
-                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
+                <Entry Text="{Binding Requestor}" x:Name="selectRequestor" FontSize="16" 
+                 FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                 VerticalTextAlignment="Start" Placeholder="Enter Requestor Name" 
+                 PlaceholderColor="Black"></Entry>
 
-                    <SearchBar Text="{Binding Requestor}" SearchCommand="{Binding ReturnPersonaleCommand}" 
-                     TextColor="Black" FontSize="16" FontAttributes="Bold" FontFamily="Times"
-                     IsTextPredictionEnabled="True" Placeholder="Personale Lookup" CancelButtonColor="Black" 
-                     VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="200"></SearchBar>
-
-                    <Entry Text="{Binding Requestor}" x:Name="selectRequestor" FontSize="16" 
-                     FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
-                     VerticalTextAlignment="Start" Placeholder="Enter Requestor Name" 
-                     PlaceholderColor="Black"></Entry>
-
-                </HorizontalStackLayout>
+                <Editor Text="{Binding Reason}" x:Name="selectReason" FontSize="16" 
+                 FontAttributes="Bold" FontFamily="Times" Placeholder="Reason" PlaceholderColor="Black" 
+                 AutoSize="TextChanges"></Editor>
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
@@ -80,10 +75,6 @@
                      PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
-
-                <Editor Text="{Binding Reason}" x:Name="selectReason" FontSize="16" 
-                 FontAttributes="Bold" FontFamily="Times" Placeholder="Reason" PlaceholderColor="Black" 
-                 AutoSize="TextChanges"></Editor>
 
                 <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="End">
 

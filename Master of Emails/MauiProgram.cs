@@ -32,6 +32,9 @@ public static class MauiProgram
         builder.Services.AddSingleton<ScadaPage>();
         builder.Services.AddSingleton<ScadaPageViewModel>();
 
+        builder.Services.AddSingleton<FiberAlertPage>();
+        builder.Services.AddSingleton<FiberAlertPageViewModel>();
+
         builder.Services.AddSingleton<DatabasePage>();
 		builder.Services.AddSingleton<DatabasePageViewModel>();
 

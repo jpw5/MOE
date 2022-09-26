@@ -23,7 +23,8 @@ namespace Master_of_Emails.Table_Repositories
         }
 
         public void AddFacilitiesTelecom(string Facilities_telecom_kn_id, string Facilities_telecom_name, 
-        string Facilities_telecom_phone_number, string Facilities_telecom_alternate_phone_number, string Facilities_telecom_email)
+        string Facilities_telecom_phone_number, string Facilities_telecom_alternate_phone_number, 
+        string Facilities_telecom_email, string Department)
         {
             Init();
             var facilitiestelecom = new TollFacilitiesTelecom
@@ -32,7 +33,9 @@ namespace Master_of_Emails.Table_Repositories
                 Facilities_telecom_name = Facilities_telecom_name,
                 Facilities_telecom_phone_number = Facilities_telecom_phone_number,
                 Facilities_telecom_alerternate_number= Facilities_telecom_alternate_phone_number,
-                Facilities_telecom_email = Facilities_telecom_email
+                Facilities_telecom_email = Facilities_telecom_email,
+                Department = Department
+
             };
              DatabaseConnection.Insert(facilitiestelecom);
         }

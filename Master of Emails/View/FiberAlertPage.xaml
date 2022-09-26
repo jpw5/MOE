@@ -2,179 +2,105 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="practice.Pages.FiberAlertPage"
+             xmlns:viewmodel="clr-namespace:Master_of_Emails.ViewModels"
+             x:DataType="viewmodel:FiberAlertPageViewModel"
              Title="Fiber Alert">
-    <ScrollView
-               Background="#D9D9D9">
 
-        <Border
-           HeightRequest="600"
-           WidthRequest="600"
-           Stroke="#C49B33"
-           StrokeThickness="4"
-           Background="white"
-           Padding="16,8"
-           HorizontalOptions="Center">
+    <ScrollView Orientation="Both" HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always"
+     Background="#D9D9D9">
+
+        <Border HeightRequest="700" WidthRequest="700" Stroke="#C49B33" StrokeThickness="4" 
+        Background="White" Padding="16,8" HorizontalOptions="Center" VerticalOptions="Center">
+          
             <Border.StrokeShape>
-                <RoundRectangle
-                           CornerRadius="40,0,0,40">
-                </RoundRectangle>
+                <RoundRectangle CornerRadius="40,0,0,40"></RoundRectangle>
             </Border.StrokeShape>
 
-            <VerticalStackLayout
-                                VerticalOptions="Center"
-                                HorizontalOptions="Center"
-                                Padding="5"
-                                Spacing="20">
+            <VerticalStackLayout Padding="10" Spacing="20" VerticalOptions="Center" HorizontalOptions="Start">
 
-                <Picker
-                       x:Name="select_region"
-                       HorizontalOptions="Center"
-                       FontSize="16"
-                       FontFamily="Times"
-                       Title="Select region">
-                </Picker>
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
 
-                <HorizontalStackLayout
-                                      Spacing="10"
-                                      HorizontalOptions="Center">
-
-
-                    <Entry
-                        Placeholder="Mile Post"
-                        PlaceholderColor="DarkSlateGray"
-                        x:Name="mp"     
-                        HorizontalOptions="Center"
-                        FontSize="16"
-                        FontFamily="Times"
-                        HeightRequest="10">
-                    </Entry>
-
-                    <Entry
-                        Placeholder="Affected Area"
-                        PlaceholderColor="DarkSlateGray"
-                        x:Name="affected"     
-                        HorizontalOptions="Center"
-                        FontSize="16"
-                        FontFamily="Times"
-                        HeightRequest="10"
-                        WidthRequest="200">
-                    </Entry>
-
-                    <Entry
-                        Placeholder="Who"
-                        PlaceholderColor="DarkSlateGray"
-                        x:Name="who"     
-                        HorizontalOptions="Center"
-                        FontSize="16"
-                        FontFamily="Times"
-                        HeightRequest="10"
-                        WidthRequest="150">
-                    </Entry>
+                 <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" 
+                  x:Name="selectRegion" WidthRequest="120" HorizontalOptions="Center" 
+                  VerticalOptions="Center" FontSize="16" FontAttributes="Bold" FontFamily="Times" 
+                  TextColor="Black" Title="Select Region"></Picker>
 
                 </HorizontalStackLayout>
 
-                <Entry
-                      x:Name="fiber_technician"
-                      FontFamily="Times"
-                      FontSize="16"
-                      Placeholder="Fiber Technician"
-                      PlaceholderColor="DarkSlateGray">
-                </Entry>
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
-                <Entry
-                      x:Name="amount_of_fiber_cut"
-                      FontFamily="Times"
-                      FontSize="16"
-                      Placeholder="Amount Of Fiber Cut"
-                      PlaceholderColor="DarkSlateGray">
-                </Entry>
+                    <Entry Text="{Binding MilePost}" x:Name="selectMilePost" FontSize="16" FontAttributes="Bold" 
+                     FontFamily="Times" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" 
+                     Placeholder="Mile Post" PlaceholderColor="Black"></Entry>
 
-                <HorizontalStackLayout
-                                      Spacing="10"
-                                      HorizontalOptions="Center">
-                    <Entry
-                      x:Name="reported_by"
-                       HeightRequest="10"
-                        WidthRequest="200"
-                      FontFamily="Times"
-                      FontSize="16"
-                      Placeholder="Reported By"
-                      PlaceholderColor="DarkSlateGray">
-                    </Entry>
+                    <Entry Text="{Binding AffectedArea}" x:Name="selectAffectedArea" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     VerticalTextAlignment="Start" Placeholder="Enter Affected Area" WidthRequest="300" 
+                     PlaceholderColor="Black"></Entry>
 
-                    <Entry
-                      x:Name="phone"
-                      HeightRequest="10"
-                      WidthRequest="200"
-                      FontFamily="Times"
-                      FontSize="16"
-                      Placeholder="Phone Number"
-                      PlaceholderColor="DarkSlateGray">
-                    </Entry>
-                </HorizontalStackLayout>
-
-
-                <HorizontalStackLayout
-                                      Spacing="10"
-                                      HorizontalOptions="Center">
-                    <Label
-                          VerticalOptions="Center"
-                          Text="Select Start Date/Time"
-                          FontSize="16"
-                          FontFamily="Times">
-                    </Label>
-
-                    <DatePicker
-                               x:Name="start_date"
-                               FontSize="16"
-                               FontFamily="Times">
-                    </DatePicker>
-
-                    <TimePicker
-                               x:Name="start_time"
-                               FontSize="16"
-                               FontFamily="Times">
-                    </TimePicker>
+                    <Entry Text="{Binding Who}" x:Name="selectWho" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     VerticalTextAlignment="Start" Placeholder="Enter Who" WidthRequest="200" 
+                     PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
 
-                <HorizontalStackLayout
-                                      Spacing="10"
-                                      HorizontalOptions="Center">
-                    <Label
-                          VerticalOptions="Center"
-                          Text="Select End Date/Time"
-                          FontSize="16"
-                          FontFamily="Times">
-                    </Label>
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
 
-                    <DatePicker
-                               x:Name="end_date"
-                               FontSize="16"
-                               FontFamily="Times">
-                    </DatePicker>
+                    <Entry Text="{Binding AmountCut}" x:Name="selectAmountCut" FontSize="16" 
+                     FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     VerticalTextAlignment="Start" Placeholder="Enter Fiber Cut Amount" 
+                     PlaceholderColor="Black"></Entry>
 
-                    <TimePicker
-                               x:Name="end_time"
-                               FontSize="16"
-                               FontFamily="Times">
-                    </TimePicker>
+                    <Entry Text="{Binding FiberTechnician}" x:Name="selectFiberTechnician" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     VerticalTextAlignment="Start" Placeholder="Enter Fiber Technician" WidthRequest="200" 
+                     PlaceholderColor="Black"></Entry>
+
+                </HorizontalStackLayout>
+                
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
+
+                    <Entry Text="{Binding ReportedBy}" x:Name="selectReportedBy" FontSize="16" 
+                     FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     VerticalTextAlignment="Start" Placeholder="Enter Reported By" 
+                     PlaceholderColor="Black"></Entry>
+
+                    <Entry Text="{Binding PhoneNumber}" x:Name="selectPhoneNumber" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     VerticalTextAlignment="Start" Placeholder="Enter Phone Number" WidthRequest="200" 
+                     PlaceholderColor="Black"></Entry>
+                    
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
+
+                    <Label Text="Enter Start Date/Time" FontSize="16" FontAttributes="Bold" FontFamily="Times"  
+                     TextColor="Black" VerticalOptions="Center"></Label>
+
+                    <Entry Text="{Binding StartDate}" x:Name="selectStartDate" FontSize="16" 
+                     FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     VerticalTextAlignment="Start" Placeholder="Enter Starting Date/Time" PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
 
-                <HorizontalStackLayout
-                                      HorizontalOptions="Start">
-                    <Label
-                          FontSize="16"
-                          FontFamily="Times"
-                          HorizontalOptions="Center"
-                          VerticalOptions="Center"
-                          Text="TBD">
-                    </Label>
-                    <CheckBox
-                             x:Name="tbd"
-                             Color="Red">
-                    </CheckBox>
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
+
+                    <Label Text="Enter End Date/Time" FontSize="16" FontAttributes="Bold" FontFamily="Times"  
+                     TextColor="Black" VerticalOptions="Center"></Label>
+
+                    <Entry Text="{Binding EndDate}" x:Name="selectEndDate" FontSize="16" 
+                     FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     VerticalTextAlignment="Start" Placeholder="Enter Starting Date/Time" 
+                     PlaceholderColor="Black"></Entry>
+
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="End">
+
+                    <Button Command="{Binding ClearCommand}" CornerRadius="20" Text="Clear"></Button>
+                    <Button Pressed="FiberAlertEmailButton_Pressed" CornerRadius="20" Text="Email"></Button>
+                    
                 </HorizontalStackLayout>
 
             </VerticalStackLayout>

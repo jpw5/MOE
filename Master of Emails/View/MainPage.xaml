@@ -4,7 +4,8 @@
              xmlns:viewmodel="clr-namespace:Master_of_Emails.ViewModels" 
              x:DataType="viewmodel:MainPageViewModel" 
              x:Class="Master_of_Emails.MainPage">
-    
+
+  
     <!-- START OF GRID LAYOUT-->
     <Grid>
         <Grid.RowDefinitions>
@@ -93,7 +94,11 @@
                 <Label Text="{Binding PersonaleEmailResult}" FontAttributes="Bold" 
                 HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Padding="5" 
                 BackgroundColor="LightBlue"></Label>
-                
+
+                <Label Text="{Binding DepartmentResult}" FontAttributes="Bold" 
+                HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Padding="5" 
+                BackgroundColor="LightBlue"></Label>
+
                 <Button Command="{Binding ClearPersonaleSearchCommand}" CornerRadius="20" Text="Clear"></Button>
 
             </VerticalStackLayout>

@@ -142,6 +142,8 @@ namespace Master_of_Emails.ViewModels;
         [ObservableProperty]
         public string newFacilitiesTelecomStatusMessage;
         [ObservableProperty]
+        public string newDepartment;
+        [ObservableProperty]
         public string removeFacilitiesTelecom;
         [ObservableProperty]
         public string removeFacilitiesTelecomStatusMessage;
@@ -698,7 +700,7 @@ namespace Master_of_Emails.ViewModels;
         try
         {
             TollFacilitiesTelecomRepo.AddFacilitiesTelecom(NewFacilitiesTelecomKnID, NewFacilitiesTelecomName, NewFacilitiesTelecomPhoneNumber,
-            NewFacilitiesTelecomAlternatePhoneNumber, NewFacilitiesTelecomEmail);
+            NewFacilitiesTelecomAlternatePhoneNumber, NewFacilitiesTelecomEmail, NewDepartment);
 
             NewFacilitiesTelecomStatusMessage = "Success: Personale Added";
             await Task.Delay(2000);
@@ -708,6 +710,7 @@ namespace Master_of_Emails.ViewModels;
             NewFacilitiesTelecomPhoneNumber = "";
             NewFacilitiesTelecomAlternatePhoneNumber = "";
             NewFacilitiesTelecomEmail = "";
+            NewDepartment = "";
         }
 
         catch (Exception)
