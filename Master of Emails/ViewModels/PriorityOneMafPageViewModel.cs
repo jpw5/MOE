@@ -48,8 +48,10 @@ public partial class PriorityOneMafPageViewModel : ObservableObject
 
     [ObservableProperty]
     public string problem;
+
     [ObservableProperty]
     public string mafNumber;
+
     [ObservableProperty]
     public string actionTaken;
 

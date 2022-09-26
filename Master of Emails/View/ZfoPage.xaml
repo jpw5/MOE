@@ -9,8 +9,9 @@
     <ScrollView Orientation="Both" HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always" 
      Background="#228B22">
 
-        <Border HeightRequest="700" WidthRequest="700" Stroke="#C49B33" StrokeThickness="4" Background="white"
-        Padding="16,8" HorizontalOptions="Center">
+        <Border HeightRequest="700" WidthRequest="700" Stroke="#C49B33" StrokeThickness="4" 
+        Background="white" Padding="16,8" HorizontalOptions="Center">
+            
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="40,0,0,40"></RoundRectangle>
             </Border.StrokeShape>
@@ -20,62 +21,77 @@
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
                     <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" 
-                     SelectedIndexChanged="SelectRegion_SelectedIndexChanged" x:Name="selectRegion" WidthRequest="110" 
-                     HorizontalOptions="Center" VerticalOptions="Center" FontSize="14" FontAttributes="Bold" 
-                     FontFamily="Times" Title="Select Region"></Picker>
+                     SelectedIndexChanged="SelectRegion_SelectedIndexChanged" x:Name="selectRegion" 
+                     WidthRequest="120" HorizontalOptions="Center" VerticalOptions="Center" 
+                     FontSize="16" FontAttributes="Bold" TextColor="Black" FontFamily="Times" 
+                     Title="Select Region"></Picker>
 
-                    <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" x:Name="selectPlaza" 
-                    SelectedIndexChanged="SelectPlaza_SelectedIndexChanged" WidthRequest="350" HorizontalOptions="Center" 
-                    VerticalOptions="Center" FontSize="14" FontAttributes="Bold" FontFamily="Times" 
-                    Title="Select Plaza"></Picker>
+                    <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" 
+                     x:Name="selectPlaza" SelectedIndexChanged="SelectPlaza_SelectedIndexChanged" 
+                     WidthRequest="350" HorizontalOptions="Center" VerticalOptions="Center"
+                     FontSize="16" FontAttributes="Bold" TextColor="Black" FontFamily="Times" 
+                     Title="Select Plaza"></Picker>
 
-                    <Frame WidthRequest="200" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
-                    BorderColor="SandyBrown" BackgroundColor="SandyBrown">
-                        <CollectionView x:Name="selectLane" ItemsSource="{Binding TollLaneList}" WidthRequest="100" 
-                        SelectionMode="Multiple" SelectionChanged="SelectLane_SelectionChanged" HeightRequest="50" 
-                        VerticalScrollBarVisibility="Always" ></CollectionView>
+                    <Frame WidthRequest="200" VerticalOptions="Center" HorizontalOptions="Center" 
+                    HasShadow="True" BorderColor="SandyBrown" BackgroundColor="SandyBrown">
+
+                        <CollectionView ItemsSource="{Binding TollLaneList}" x:Name="selectLane" 
+                         WidthRequest="100" HeightRequest="50" SelectionMode="Multiple" 
+                         SelectionChanged="SelectLane_SelectionChanged" 
+                         VerticalScrollBarVisibility="Always" ></CollectionView>
+                        
                     </Frame>
                     
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
-                    
+
                     <SearchBar Text="{Binding Requestor}" SearchCommand="{Binding ReturnPersonaleCommand}" 
-                    IsTextPredictionEnabled="True" Placeholder="Personale Lookup" CancelButtonColor="Black" 
-                    VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="200"></SearchBar>
+                     TextColor="Black" FontSize="16" FontAttributes="Bold" FontFamily="Times"
+                     IsTextPredictionEnabled="True" Placeholder="Personale Lookup" CancelButtonColor="Black" 
+                     VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="200"></SearchBar>
 
-                    <Entry Text="{Binding Requestor}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
-                    x:Name="selectRequestor" VerticalTextAlignment="Start" Placeholder="Enter Requestor Name" 
-                    PlaceholderColor="Black"></Entry>
-                    
-                </HorizontalStackLayout>
-
-                <Editor Text="{Binding Reason}" x:Name="selectReason" HeightRequest="90" FontFamily="Times" FontSize="16" 
-                Placeholder="Reason" PlaceholderColor="DarkSlateGray" AutoSize="TextChanges"></Editor>
-
-                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
-
-                    <Label VerticalOptions="Center" Text="Select Start Date/Time" FontSize="16" FontFamily="Times"></Label>
-                    <Entry Text="{Binding StartDate}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
-                     x:Name="selectStartDate" VerticalTextAlignment="Start" Placeholder="Enter Starting Date/Time" 
+                    <Entry Text="{Binding Requestor}" x:Name="selectRequestor" FontSize="16" 
+                     FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     VerticalTextAlignment="Start" Placeholder="Enter Requestor Name" 
                      PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
-                    <Label VerticalOptions="Center" Text="Select End Date/Time" FontSize="14" FontFamily="Times"></Label>
-                    <Entry Text="{Binding EndDate}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
-                     x:Name="selectEndDate" VerticalTextAlignment="Start" Placeholder="Enter Starting Date/Time" 
+                    <Label Text="Enter Start Date/Time" FontSize="16" FontAttributes="Bold" FontFamily="Times"  
+                     TextColor="Black" VerticalOptions="Center"></Label>
+
+                    <Entry Text="{Binding StartDate}" x:Name="selectStartDate" FontSize="16" 
+                     FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     VerticalTextAlignment="Start" Placeholder="Enter Starting Date/Time" PlaceholderColor="Black"></Entry>
+
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
+
+                    <Label Text="Enter End Date/Time" FontSize="16" FontAttributes="Bold" FontFamily="Times"  
+                     TextColor="Black" VerticalOptions="Center"></Label>
+
+                    <Entry Text="{Binding EndDate}" x:Name="selectEndDate" FontSize="16" 
+                     FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     VerticalTextAlignment="Start" Placeholder="Enter Starting Date/Time" 
                      PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
+
+                <Editor Text="{Binding Reason}" x:Name="selectReason" FontSize="16" 
+                 FontAttributes="Bold" FontFamily="Times" Placeholder="Reason" PlaceholderColor="Black" 
+                 AutoSize="TextChanges"></Editor>
 
                 <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="End">
+
                     <Button Command="{Binding ClearCommand}" CornerRadius="20" Text="Clear"></Button>
                     <Button Pressed="ZFOEmail_Button_Pressed" CornerRadius="20" Text="Email"></Button>
-                </HorizontalStackLayout>
 
+                </HorizontalStackLayout>
+                
             </VerticalStackLayout>
             
         </Border>

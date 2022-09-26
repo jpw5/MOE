@@ -310,8 +310,49 @@
 
             <Label Text="----------FACILITIES AND TELECOM----------" TextColor="Black" Padding="10" 
             FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
-            
-            
+
+
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+
+                    <Entry Text="{Binding NewFacilitiesTelecomKnID}" Placeholder="Enter Personale KNID" PlaceholderColor="Black"/>
+                    <Entry Text="{Binding NewFacilitiesTelecomName}" Placeholder="Enter Personale Name" PlaceholderColor="Black"/>
+                    <Entry Text="{Binding NewFacilitiesTelecomPhoneNumber}" Placeholder="Enter Personale Phone Number" PlaceholderColor="Black"/>
+                    <Entry Text="{Binding NewFacilitiesTelecomAlternatePhoneNumber}" Placeholder="Enter Personale Alternat Phone Number" PlaceholderColor="Black"/>
+                    <Entry Text="{Binding NewFacilitiesTelecomEmail}" Placeholder="Enter Personale Email" PlaceholderColor="Black"/>
+                    <Button Command="{Binding AddNewFacilitiesTelecomCommand}" Text="Add Personale" />
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+                    <Entry  Text="{Binding RemoveFacilitiesTelecom}" Placeholder="Enter Personale KNID" PlaceholderColor="Black"/>
+                    <Button Command="{Binding DeleteFacilitiesTelecomCommand}" Text="Delete Personale"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+                    <Button Command="{Binding GetAllFacilitiesTelecomCommand}" Text="Get All Personale" Grid.Row="3"/>
+                </VerticalStackLayout>
+
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
+                BackgroundColor="SandyBrown">
+                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
+                        <Label Text="{Binding NewFacilitiesTelecomStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" 
+                         VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                        <Label Text="{Binding RemoveFacilitiesTelecomStatusMessage}" TextColor="Black" FontSize="16" 
+                        FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
+                 BackgroundColor="SandyBrown">
+                    <ListView ItemsSource="{Binding FacilitiesTelecomList}" VerticalOptions="Center" HorizontalOptions="Center" 
+                     WidthRequest="300" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
+                </Frame>
+
+            </HorizontalStackLayout>
 
             <Label Text="----------FACILITIES AND TELECOM END----------" TextColor="Black" Padding="10" 
             FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>

@@ -8,12 +8,16 @@ using System.Linq;
 namespace Master_of_Emails.ViewModels;
 public partial class MainPageViewModel: ObservableObject
 {
-    public TollPlazaRepository TollPlazaRepo = new();
-    public TableQuery<TollPlaza> TollPlazaQuery;
-
     public TollTechnicianRepository TollTechnicianRepo = new();
     public TableQuery<TollTechnician> TollTechnicianQuery;
     public List<TollTechnician> TollTechnician = new();
+
+    public TollFacilitiesTelecomRepository TollFacilitiesTelecomRepo = new();
+    public TableQuery<TollFacilitiesTelecom> TollFacilitiesTelecomQuery;
+    public List<TollFacilitiesTelecom> TollFacilitiesTelecom = new();
+
+    public TollPlazaRepository TollPlazaRepo = new();
+    public TableQuery<TollPlaza> TollPlazaQuery;
 
     [ObservableProperty]
     public string plazaSearch;
@@ -34,7 +38,6 @@ public partial class MainPageViewModel: ObservableObject
     public MainPageViewModel()
     {
         
-
     }
 
     [RelayCommand]
@@ -48,28 +51,47 @@ public partial class MainPageViewModel: ObservableObject
         try
         {
             TollTechnicianQuery = TollTechnicianRepo.QueryTechnicianByName(PersonaleSearch);
+            TollFacilitiesTelecomQuery=TollFacilitiesTelecomRepo.QueryPersonaleByName(PersonaleSearch);
 
             if(TollTechnicianQuery.Any())
             {
                 PhoneNumber.Clear();
                 Email.Clear();
-                Region.Clear();
                 FullName.Clear();
+                Region.Clear();
+
                 foreach (TollTechnician personale in TollTechnicianQuery)
                 {
                     PhoneNumber.Add(personale.Technician_phone_number);
                     Email.Add(personale.Technician_email);
-                    Region.Add(personale.Technician_region);
                     FullName.Add(personale.Technician_name);
-                    PersonalePhoneResult = "Phone: " + PhoneNumber[0] + " (" + Region[0] + " Region)";
-                    PersonaleEmailResult = "Email: " + Email[0] + " (" + Region[0] + " Region)";
-                    PersonaleSearch = FullName[0];
+                    Region.Add(personale.Technician_region);
+                    PersonalePhoneResult = "Phone: " + PhoneNumber[0];
+                    PersonaleEmailResult = "Email: " + Email[0];
+                    PersonaleSearch = FullName[0] + " (" + Region[0] + " Tech)";
                 }
+            }
+
+            else if(TollFacilitiesTelecomQuery.Any())
+            {
+                PhoneNumber.Clear();
+                Email.Clear();
+                FullName.Clear();
+
+                foreach(TollFacilitiesTelecom personale in TollFacilitiesTelecomQuery)
+                {
+                    PhoneNumber.Add(personale.Facilities_telecom_phone_number+" Alternate: "+personale.Facilities_telecom_alerternate_number);
+                    Email.Add(personale.Facilities_telecom_email);
+                    FullName.Add(personale.Facilities_telecom_name);
+                    PersonalePhoneResult = "Phone: " + PhoneNumber[0];
+                    PersonaleEmailResult = "Email: " + Email[0];
+                    PersonaleSearch = FullName[0]+" (Facilities/Telecom)";
+                }
+
             }
 
             else
             {
-
                 PersonalePhoneResult = "Failed to Retrive. The entered Name was invalid or nonexistant.";
                 PersonaleEmailResult = "Failed to Retrive. The entered Name was invalid or nonexistant.";
                 await Task.Delay(2000);

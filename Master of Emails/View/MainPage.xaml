@@ -56,10 +56,16 @@
 
             <VerticalStackLayout Padding="10">
 
-                <SearchBar Text="{Binding PlazaSearch}" SearchCommand="{Binding ReturnPlazaCommand}" Margin="20" 
-                Placeholder="Plaza Lookup" FontSize="20" CancelButtonColor="Black" IsTextPredictionEnabled="True"></SearchBar>
-                <Label Text="{Binding PlazaPhoneResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Padding="5" ></Label>
-                <Label Text="{Binding PlazaNameResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Padding="5"></Label>
+                <SearchBar Text="{Binding PlazaSearch}" SearchCommand="{Binding ReturnPlazaCommand}" 
+                Margin="20" Placeholder="Plaza" FontSize="16" CancelButtonColor="Black" 
+                IsTextPredictionEnabled="True"></SearchBar>
+                
+                <Label Text="{Binding PlazaPhoneResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+                VerticalTextAlignment="Start" Padding="5" ></Label>
+                
+                <Label Text="{Binding PlazaNameResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+                VerticalTextAlignment="Start" Padding="5"></Label>
+                
                 <Button Command="{Binding ClearPlazaSearchCommand}" CornerRadius="20" Text="Clear"></Button>
 
             </VerticalStackLayout>
@@ -77,9 +83,17 @@
             <VerticalStackLayout Padding="10">
 
                 <SearchBar Text="{Binding PersonaleSearch}" SearchCommand="{Binding ReturnPersonaleCommand}" 
-                IsTextPredictionEnabled="True" Margin="20" Placeholder="Personale" FontSize="20" CancelButtonColor="Black"></SearchBar>
-                <Label Text="{Binding PersonalePhoneResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Padding="5" BackgroundColor="LightBlue"></Label>
-                <Label Text="{Binding PersonaleEmailResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Padding="5" BackgroundColor="LightBlue"></Label>
+                IsTextPredictionEnabled="True" Margin="18" Placeholder="Personale" FontSize="16" 
+                CancelButtonColor="Black"></SearchBar>
+                
+                <Label Text="{Binding PersonalePhoneResult}" FontAttributes="Bold" 
+                HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Padding="5" 
+                BackgroundColor="LightBlue"></Label>
+                
+                <Label Text="{Binding PersonaleEmailResult}" FontAttributes="Bold" 
+                HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Padding="5" 
+                BackgroundColor="LightBlue"></Label>
+                
                 <Button Command="{Binding ClearPersonaleSearchCommand}" CornerRadius="20" Text="Clear"></Button>
 
             </VerticalStackLayout>
@@ -96,7 +110,7 @@
                       SearchButtonPressed="organization_search"
                       IsTextPredictionEnabled="True"
                       Margin="20"
-                      Placeholder="Organization Lookup"
+                      Placeholder="Organization"
                       FontSize="20"
                       CancelButtonColor="Black">
             </SearchBar>

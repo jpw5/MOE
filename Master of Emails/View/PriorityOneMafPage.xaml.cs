@@ -25,6 +25,7 @@ public partial class PriorityOneMafPage : ContentPage
 
     public string Region;
     public int PlazaId;
+
     public string Plaza;
     public string Roadway;
     public string Lane;
@@ -44,7 +45,49 @@ public partial class PriorityOneMafPage : ContentPage
 
     private void PriorityOneEmail_Button_Pressed(object sender, EventArgs e)
     {
-        Plaza = (string)selectPlaza.SelectedItem;
+        if(selectPlaza.SelectedItem==null)
+        {
+            DisplayAlert("Alert", "Choose a Plaza", "Close");
+            return;
+        }
+
+        else if(selectLane.SelectedItem==null)
+        {
+            DisplayAlert("Alert", "Choose Lane", "Close");
+            return;
+        }
+
+        else if (selectBomitem.SelectedItem == null)
+        {
+            DisplayAlert("Alert", "Choose Bomitem", "Close");
+            return;
+        }
+
+        else if (selectTechnician.SelectedItem == null)
+        {
+            DisplayAlert("Alert", "Choose Technician", "Close");
+            return;
+        }
+
+        else if (string.IsNullOrEmpty(selectMafNumber.Text))
+        {
+            DisplayAlert("Alert", "Enter MAF#", "Close");
+            return;
+        }
+
+        else if (string.IsNullOrEmpty(selectProblem.Text))
+        {
+            DisplayAlert("Alert", "Enter Problem", "Close");
+            return;
+        }
+
+        else if (string.IsNullOrEmpty(selectActionTaken.Text))
+        {
+            DisplayAlert("Alert", "Enter Action Taken", "Close");
+            return;
+        }
+
+        Plaza = selectPlaza.SelectedItem.ToString();
         var Split = Plaza.Split(" ", 2);
         PlazaId = Int32.Parse(Split[0]);
         tollPlazaQueryByPlazaId = TollPlazaRepo.QueryByPlazaId(PlazaId);
@@ -53,9 +96,9 @@ public partial class PriorityOneMafPage : ContentPage
             Roadway = plaza.Plaza_roadway;
         }
 
-        Lane=(string)selectLane.SelectedItem;
-        Bomitem = (string)selectBomitem.SelectedItem;
-        Technician = (string)selectTechnician.SelectedItem;
+        Lane=selectLane.SelectedItem.ToString();
+        Bomitem = selectBomitem.SelectedItem.ToString();
+        Technician = selectTechnician.SelectedItem.ToString();
         Date = selectDate.Text;
         MAFNumber= selectMafNumber.Text;
         Problem=selectProblem.Text;
@@ -64,10 +107,17 @@ public partial class PriorityOneMafPage : ContentPage
         mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
         string To = "ali.shakoor2249@gmail.com";
         string Subject = "Priority 1 - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
-        string Body = "****SunWatch Priority 1 MAF****" + "<br>" + "<br>" +
-        "Plaza: "+Plaza + "<br>" + "Roadway: "+Roadway + "<br>" + "Lane: "+Lane + "<br>" + "Bomitem: "+Bomitem + "<br>" + 
-        "Problem: "+Problem + "<br>" + "Action Take: "+ActionTaken + "<br>" + "Technician: "+Technician + "<br>" + " Date/Time Contacted: " +
-         Date + "<br>" + "MAF#: "+MAFNumber;
+
+        string Body = "<font size=5>"+ "<b>"+"****SunWatch Priority 1 MAF****"+"</b>"+"</font>" + "<br>" + "<br>" +
+        "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>"+ "<br>" +
+        "<font size=4>" + "<b>" + "Roadway: "+ "</b>" + Roadway + "</font>"+ "<br>" +
+        "<font size=4>" + "<b>" + "Lane: "+ "</b>" + Lane + "</font>"+ "<br>" +
+        "<font size=4>" + "<b>" + "Bomitem: " + "</b>" +Bomitem + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Problem: " + "</b>" + Problem + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Action Take: " + "</b>" + ActionTaken + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Technician: " + "</b>" + Technician + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Date/Time Contacted: " + "</b>" + Date + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "MAF#: " + "</b>" + MAFNumber + "</font>";
 
         mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
         mail.To = To;
@@ -118,7 +168,7 @@ public partial class PriorityOneMafPage : ContentPage
                 selectLane.ItemsSource.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_Type);
             }
 
-            //DisplayAlert("Check", Plaza + " "+Roadway, "Close");
+            
         }
 
     }
@@ -219,7 +269,7 @@ public partial class PriorityOneMafPage : ContentPage
             }
         }
 
-        //DisplayAlert("Check", Bomitem, "Close");
+        
 
     }
 

@@ -126,6 +126,28 @@ namespace Master_of_Emails.ViewModels;
         [ObservableProperty]
         public ObservableCollection<string> scadaAlarmList;
 
+        public TollFacilitiesTelecomRepository TollFacilitiesTelecomRepo = new();
+        public List<TollFacilitiesTelecom> TollFacilitiesTelecom = new();
+
+        [ObservableProperty]
+        public string newFacilitiesTelecomKnID;
+        [ObservableProperty]
+        public string newFacilitiesTelecomName;
+        [ObservableProperty]
+        public string newFacilitiesTelecomPhoneNumber;
+        [ObservableProperty]
+        public string newFacilitiesTelecomAlternatePhoneNumber;
+        [ObservableProperty]
+        public string newFacilitiesTelecomEmail;
+        [ObservableProperty]
+        public string newFacilitiesTelecomStatusMessage;
+        [ObservableProperty]
+        public string removeFacilitiesTelecom;
+        [ObservableProperty]
+        public string removeFacilitiesTelecomStatusMessage;
+        [ObservableProperty]
+        public ObservableCollection<string> facilitiesTelecomList;
+
     public DatabasePageViewModel()
         {
             RegionList = new ObservableCollection<string>();
@@ -135,6 +157,7 @@ namespace Master_of_Emails.ViewModels;
             BomitemList = new ObservableCollection<string>();
             DuressReasonList = new ObservableCollection<string>();
             ScadaAlarmList = new ObservableCollection<string>();
+            FacilitiesTelecomList = new ObservableCollection<string>();
 
         if (DB.DatabaseConnection == null)
                 DB.DatabaseInit();
@@ -599,7 +622,6 @@ namespace Master_of_Emails.ViewModels;
         {
             TollScadaAlarmRepo.AddScadaAlarm(NewScadaAlarm);
             NewScadaAlarm = "";
-
             NewScadaAlarmStatusMessage = "Success: SCADA Alarm Added";
             await Task.Delay(2000);
             NewScadaAlarmStatusMessage = "";
@@ -657,6 +679,93 @@ namespace Master_of_Emails.ViewModels;
         catch (Exception)
         {
             ScadaAlarmList.Add("No Data Found");
+        }
+    }
+
+    [RelayCommand]
+    async void AddNewFacilitiesTelecom()
+    {
+        if (string.IsNullOrWhiteSpace(NewFacilitiesTelecomKnID) | string.IsNullOrWhiteSpace(NewFacilitiesTelecomName)|
+            string.IsNullOrWhiteSpace(NewFacilitiesTelecomPhoneNumber) | string.IsNullOrWhiteSpace(NewFacilitiesTelecomAlternatePhoneNumber)| 
+            string.IsNullOrWhiteSpace(NewFacilitiesTelecomEmail))
+        {
+            NewFacilitiesTelecomStatusMessage = "Error: Please enter valid inputs.";
+            await Task.Delay(2000);
+            NewFacilitiesTelecomStatusMessage = "";
+            return;
+        }
+
+        try
+        {
+            TollFacilitiesTelecomRepo.AddFacilitiesTelecom(NewFacilitiesTelecomKnID, NewFacilitiesTelecomName, NewFacilitiesTelecomPhoneNumber,
+            NewFacilitiesTelecomAlternatePhoneNumber, NewFacilitiesTelecomEmail);
+
+            NewFacilitiesTelecomStatusMessage = "Success: Personale Added";
+            await Task.Delay(2000);
+            NewFacilitiesTelecomStatusMessage = "";
+            NewFacilitiesTelecomKnID = "";
+            NewFacilitiesTelecomName = "";
+            NewFacilitiesTelecomPhoneNumber = "";
+            NewFacilitiesTelecomAlternatePhoneNumber = "";
+            NewFacilitiesTelecomEmail = "";
+        }
+
+        catch (Exception)
+        {
+            NewFacilitiesTelecomStatusMessage = "Error: Please enter valid inputs.";
+            await Task.Delay(2000);
+            NewFacilitiesTelecomStatusMessage = "";
+        }
+
+    }
+
+    [RelayCommand]
+    async void DeleteFacilitiesTelecom()
+    {
+        if (string.IsNullOrWhiteSpace(RemoveFacilitiesTelecom))
+        {
+            RemoveFacilitiesTelecomStatusMessage = "Error: Please enter valid inputs.";
+            await Task.Delay(2000);
+            RemoveFacilitiesTelecomStatusMessage = "";
+            return;
+        }
+        try
+        {
+            TollFacilitiesTelecomRepo.DeleteFacilitiesTelecom(RemoveFacilitiesTelecom);
+            RemoveFacilitiesTelecom = "";
+            RemoveFacilitiesTelecomStatusMessage = "Success: Personale Deleted.";
+            await Task.Delay(2000);
+            RemoveFacilitiesTelecomStatusMessage = "";
+        }
+
+        catch (Exception)
+        {
+            RemoveFacilitiesTelecomStatusMessage = "Error: Please enter valid inputs.";
+            await Task.Delay(2000);
+            RemoveFacilitiesTelecomStatusMessage = "";
+        }
+    }
+
+    [RelayCommand]
+    private void GetAllFacilitiesTelecom()
+    {
+        FacilitiesTelecomList.Clear();
+        try
+        {
+            TollFacilitiesTelecom = TollFacilitiesTelecomRepo.GetFacilitiesTelecoms();
+            foreach (TollFacilitiesTelecom facilitiestelecom in TollFacilitiesTelecom)
+            {
+                FacilitiesTelecomList.Add(facilitiestelecom.Facilities_telecom_kn_id + " " 
+                + facilitiestelecom.Facilities_telecom_name + " "+facilitiestelecom.Facilities_telecom_phone_number
+                +" "+facilitiestelecom.Facilities_telecom_email);
+
+                FacilitiesTelecomList.Add(" ");
+            }
+        }
+
+        catch (Exception)
+        {
+            FacilitiesTelecomList.Add("No Data Found");
         }
     }
 

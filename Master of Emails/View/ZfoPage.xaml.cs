@@ -45,6 +45,31 @@ public partial class ZfoPage : ContentPage
 
     private void ZFOEmail_Button_Pressed(object sender, EventArgs e)
     {
+
+        if (selectPlaza.SelectedItem == null)
+        {
+            DisplayAlert("Alert", "Choose a Plaza", "Close");
+            return;
+        }
+
+        else if (!TollLaneList.Any())
+        {
+            DisplayAlert("Alert", "Choose Lane(s)", "Close");
+            return;
+        }
+
+        else if(string.IsNullOrEmpty(selectRequestor.Text))
+        {
+            DisplayAlert("Alert", "Enter Requestor", "Close");
+            return;
+        }
+
+        else if (selectReason.Text == null)
+        {
+            DisplayAlert("Alert", "Enter Reason", "Close");
+            return;
+        }
+
         Plaza = (string)selectPlaza.SelectedItem;
         for (int i = 0; i < TollLaneList.Count; i++)
         {
@@ -58,16 +83,22 @@ public partial class ZfoPage : ContentPage
 
         string To = "ali.shakoor2249@gmail.com";
         string Subject = "SunWatch ZFO Alert - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
-        string Body = "****SunWatch ZFO Alert****" + "<br>" + "<br>" +
-        "Plaza: " + Plaza + "<br>" + "Lane(s): " + Lane + "<br>" + "Requestor: " + Requestor + "<br>"+
-        "Reason: " + Reason + "<br>" + "Start Date/Time: " + StartDate + "<br>" + "End Date/Time: " + EndDate;
 
+        string Body = "<font size=5>" + "<b>" + "****SunWatch ZFO Alert****" + "</b>" + "</font>" + "<br>" + "<br>" +
+        "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Lane(s): " + "</b>" + Lane + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Requestor: " + "</b>" + Requestor + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Reason: " + "</b>" + Reason + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Start Date/Time: " + "</b>" + StartDate + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "End Date/Time: " + "</b>" + EndDate + "</font>" + "<br>";
+        
         mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
         mail.To = To;
         mail.Subject = Subject;
         mail.HTMLBody = Body;
         mail.Display();
         mail = null;
+        Lane = null;
     }
     private void SelectRegion_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -86,7 +117,6 @@ public partial class ZfoPage : ContentPage
             }
         }
     }
-
     private void SelectPlaza_SelectedIndexChanged(object sender, EventArgs e)
     {
         int selectedIndex = selectPlaza.SelectedIndex;
@@ -105,7 +135,6 @@ public partial class ZfoPage : ContentPage
             selectLane.ItemsSource = TollLane;
         }
     }
-
     private void SelectLane_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         //DisplayAlert("Check",sender.ToString(),"Close");

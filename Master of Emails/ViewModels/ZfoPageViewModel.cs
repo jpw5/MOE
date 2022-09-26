@@ -32,8 +32,6 @@ namespace Master_of_Emails.ViewModels;
 
         [ObservableProperty]
         public string requestor;
-        [ObservableProperty]
-        public string phoneResult;
         public TollTechnicianRepository TollPersonaleRepo = new();
         public TableQuery<TollTechnician> TollTechnicianQuery;
 
@@ -72,19 +70,23 @@ namespace Master_of_Emails.ViewModels;
     {
         TollTechnicianQuery = TollPersonaleRepo.QueryTechnicianByName(Requestor);
 
-        if (!TollTechnicianQuery.Any())
+        List<string> FullName = new();
+
+        if (TollTechnicianQuery.Any())
         {
-            PhoneResult = "Failed to Retrive. The entered Name was invalid or nonexistant";
-            await Task.Delay(2000);
-            PhoneResult = "";
+            FullName.Clear();
+            foreach (TollTechnician personale in TollTechnicianQuery)
+            {
+                FullName.Add(personale.Technician_name);
+                Requestor = FullName[0];
+            }
         }
 
         else
         {
-            foreach (TollTechnician personale in TollTechnicianQuery)
-            {
-                PhoneResult = "Phone: " + personale.Technician_phone_number;
-            }
+            Requestor = "Failed to Retrive. The entered Name was invalid or nonexistant";
+            await Task.Delay(2000);
+            Requestor = "";
         }
     }
 
@@ -96,7 +98,6 @@ namespace Master_of_Emails.ViewModels;
         tollPlazaList?.Clear();
         tollLaneList?.Clear();
         Requestor ??= "";
-        PhoneResult ??= "";
         Reason ??= "";
         
     }

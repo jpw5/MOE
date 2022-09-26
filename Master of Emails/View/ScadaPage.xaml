@@ -31,6 +31,30 @@
 
                 </HorizontalStackLayout>
 
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
+
+                    <SearchBar Text="{Binding FacilitiesTelecomPersonaleName}" SearchCommand="{Binding ReturnPersonaleCommand}" 
+                    IsTextPredictionEnabled="True" Placeholder="Personale Lookup" CancelButtonColor="Black" 
+                    VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="300"></SearchBar>
+
+                </HorizontalStackLayout >
+
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
+
+                    <Entry Text="{Binding FacilitiesTelecomPersonaleName}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+                    x:Name="selectContact" VerticalTextAlignment="Start" Placeholder="Enter Contact Name" 
+                    PlaceholderColor="Black" WidthRequest="200"></Entry>
+                    
+                    <Entry Text="{Binding PhoneResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+                     x:Name="selectPhoneNumber"  VerticalTextAlignment="Start" Placeholder="Enter Phone Number"
+                     PlaceholderColor="Black"></Entry>
+
+                    <Entry Text="{Binding AlternatePhoneResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+                     x:Name="selectAlternatePhoneNumber"  VerticalTextAlignment="Start" Placeholder="Alternate Phone Number"
+                     PlaceholderColor="Black"></Entry>
+
+                </HorizontalStackLayout>
+
                 <HorizontalStackLayout Spacing="30" VerticalOptions="Center" HorizontalOptions="Start">
 
                     <Entry Text="{Binding ScadaAlarm}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
@@ -48,27 +72,17 @@
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
-
-                    <SearchBar Text="{Binding FacilitiesTelecom}" SearchCommand="{Binding ReturnPersonaleCommand}" 
-                    IsTextPredictionEnabled="True" Placeholder="Personale Lookup" CancelButtonColor="Black" 
-                    VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="200"></SearchBar>
-
-                    <Entry Text="{Binding FacilitiesTelecom}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
-                    x:Name="selectRequestor" VerticalTextAlignment="Start" Placeholder="Enter Contact Name" 
-                    PlaceholderColor="Black" WidthRequest="200"></Entry>
-
-                    <Entry Text="{Binding PhoneResult}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
-                     x:Name="selectPhoneNumber"  VerticalTextAlignment="Start" Placeholder="Enter Phone Number"
-                     PlaceholderColor="Black"></Entry>
-
-                </HorizontalStackLayout>
-
-                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
                     
                     <Label VerticalOptions="Center" Text="Enter Date/Time" FontSize="16" FontFamily="Times"></Label>
 
                     <Entry Text="{Binding Date}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
                      x:Name="selectDate" VerticalTextAlignment="Start" Placeholder="Enter Starting Date/Time" 
+                     PlaceholderColor="Black"></Entry>
+
+                    <Label VerticalOptions="Center" Text="Enter Temperature" FontSize="16" FontFamily="Times"></Label>
+                    
+                    <Entry Text="{Binding Temperature}" FontAttributes="Bold" HorizontalTextAlignment="Start" 
+                     x:Name="selectTemperature"  VerticalTextAlignment="Start" Placeholder="Enter Temperature"
                      PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
@@ -83,6 +97,7 @@
                 <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="End">
                     <Button Command="{Binding ClearCommand}" CornerRadius="20" Text="Clear"></Button>
                     <Button Pressed="ScadaEmailButton_Pressed" CornerRadius="20" Text="Email"></Button>
+                    
                 </HorizontalStackLayout>
 
             </VerticalStackLayout>

@@ -4,9 +4,7 @@ using Master_of_Emails.Table_Repositories;
 using Master_of_Emails.Tables;
 using System.Collections.ObjectModel;
 
-
 namespace Master_of_Emails.ViewModels;
-
     public partial class DuressAlarmPageViewModel: ObservableObject
     {
         [ObservableProperty]
@@ -31,9 +29,6 @@ namespace Master_of_Emails.ViewModels;
         public List<TollLane> TollLane = new();
 
         [ObservableProperty]
-        public string plazaSupervisor;
-
-        [ObservableProperty]
         public ObservableCollection<string> tollDuressReasonList;
         public List<TollDuressReason> TollDuressReason= new();
         public TollDuressReasonRepository TollDuressReasonRepo=new();   
@@ -42,6 +37,9 @@ namespace Master_of_Emails.ViewModels;
 
         [ObservableProperty]
         public string date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
+
+        [ObservableProperty]
+        public string plazaSupervisor;
 
     public DuressAlarmPageViewModel()
     {
@@ -63,7 +61,6 @@ namespace Master_of_Emails.ViewModels;
                 tollRegionList.Add(region.Region_name);
             }
         }
-
     }
 
     public void PopulateDuressReasonList()
@@ -77,8 +74,6 @@ namespace Master_of_Emails.ViewModels;
                 tollDuressReasonList.Add(duressreason.Duress_reason_name);
             }
         }
-
-
     }
 
     [RelayCommand]

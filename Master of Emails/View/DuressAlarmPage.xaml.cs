@@ -14,15 +14,11 @@ public partial class DuressAlarmPage : ContentPage
 
     public TollPlazaRepository TollPlazaRepo = new();
     public TollLaneRepository TollLaneRepo = new();
-    public TollTechnicianRepository TollTechnicianRepo = new();
-    public TollBomitemRepository TollBomitemRepo = new();
-
+    
     public TableQuery<TollLane> tollLanesQueryByPlazaId;
     public TableQuery<TollPlaza> tollPlazaQueryByRegionName;
     public TableQuery<TollPlaza> tollPlazaQueryByPlazaId;
-    public TableQuery<TollTechnician> tollTechnicianQueryByRegion;
-    public TableQuery<TollBomitem> tollBomitemQueryByLaneType;
-
+  
     public string Region;
     public int PlazaId;
 
@@ -42,6 +38,36 @@ public partial class DuressAlarmPage : ContentPage
 
     private void DuressAlarmEmailButton_Pressed(object sender, EventArgs e)
     {
+        if (selectPlaza.SelectedItem == null)
+        {
+            DisplayAlert("Alert", "Choose a Plaza", "Close");
+            return;
+        }
+
+        else if (selectLane.SelectedItem == null)
+        {
+            DisplayAlert("Alert", "Choose Lane", "Close");
+            return;
+        }
+
+        else if (selectDuressReason.SelectedItem == null)
+        {
+            DisplayAlert("Alert", "Choose Alarm Reason", "Close");
+            return;
+        }
+
+        else if (string.IsNullOrEmpty(Alarm))
+        {
+            DisplayAlert("Alert", "Choose Alarm", "Close");
+            return;
+        }
+
+        else if (string.IsNullOrEmpty(selectPlazaSupervisor.Text))
+        {
+            DisplayAlert("Alert", "Enter Plaza Supervisor", "Close");
+            return;
+        }
+
         Region = selectRegion.SelectedItem.ToString();
         var Split = selectPlaza.SelectedItem.ToString().Split(" ", 2);
         PlazaId = Int32.Parse(Split[0]);
@@ -54,15 +80,21 @@ public partial class DuressAlarmPage : ContentPage
 
         Lane = selectLane.SelectedItem.ToString();
         DuressReason=selectDuressReason.SelectedItem.ToString();
-        Date = selectDate.Text.ToString();
-        PlazaSupervisor=selectSupervisor.Text.ToString();
+        Date = selectDate.Text;
+        PlazaSupervisor= selectPlazaSupervisor.Text;
         DuressReason = selectDuressReason.SelectedItem.ToString();
 
         string To = "ali.shakoor2249@gmail.com";
         string Subject = "Duress Alarm at " + Plaza.ToUpper() + " / " + Lane.ToUpper();
-        string Body = "****SunWatch Priority 1 MAF****" + "<br>" + "<br>" +
-        "Plaza: " + Plaza + "<br>" + "Roadway: " + Roadway + "<br>" + "Lane: " + Lane + "<br>" + "Date/Time: " + Date+ "<br>" +
-        "Alarm: " + Alarm + "<br>" + "Supervisor: " + PlazaSupervisor + "<br>" + "Reason: " + DuressReason;
+        
+        string Body = "<font size=5>" + "<b>" + "****SunWatch Duress Alarm****" + "</b>" + "</font>" + "<br>" + "<br>" +
+        "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Roadway:: " + "</b>" + Roadway + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Lane(s): " + "</b>" + Lane + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Date/Time: " + "</b>" + Date + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Alarm: " + "</b>" + Alarm + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Supervisor: " + "</b>" + PlazaSupervisor + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Reason: " + "</b>" + DuressReason + "</font>" + "<br>";
 
         mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
         mail.To = To;
@@ -70,9 +102,7 @@ public partial class DuressAlarmPage : ContentPage
         mail.HTMLBody = Body;
         mail.Display();
         mail = null;
-
     }
-
     private void SelectRegion_SelectedIndexChanged(object sender, EventArgs e)
     {
         int selectedIndex = selectRegion.SelectedIndex;
@@ -90,7 +120,6 @@ public partial class DuressAlarmPage : ContentPage
             }
         }
     }
-
     private void SelectPlaza_SelectedIndexChanged(object sender, EventArgs e)
     {
         int selectedIndex = selectPlaza.SelectedIndex;
@@ -115,7 +144,6 @@ public partial class DuressAlarmPage : ContentPage
             //DisplayAlert("Check", Plaza + " "+Roadway, "Close");
         }
     }
-
     private void VaultRadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
         Alarm = "Vault Under Duress";
@@ -125,6 +153,4 @@ public partial class DuressAlarmPage : ContentPage
     {
         Alarm = "Lane Duress Alarm";
     }
-
-
 }

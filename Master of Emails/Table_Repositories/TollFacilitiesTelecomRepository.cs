@@ -22,7 +22,8 @@ namespace Master_of_Emails.Table_Repositories
             DatabaseConnection.CreateTable<TollFacilitiesTelecom>();
         }
 
-        public void AddFacilitiesTelecom(string Facilities_telecom_kn_id, string Facilities_telecom_name, string Facilities_telecom_phone_number, string Facilities_telecom_email)
+        public void AddFacilitiesTelecom(string Facilities_telecom_kn_id, string Facilities_telecom_name, 
+        string Facilities_telecom_phone_number, string Facilities_telecom_alternate_phone_number, string Facilities_telecom_email)
         {
             Init();
             var facilitiestelecom = new TollFacilitiesTelecom
@@ -30,7 +31,8 @@ namespace Master_of_Emails.Table_Repositories
                 Facilities_telecom_kn_id = Facilities_telecom_kn_id,
                 Facilities_telecom_name = Facilities_telecom_name,
                 Facilities_telecom_phone_number = Facilities_telecom_phone_number,
-                Facilities_telecom_email= Facilities_telecom_email
+                Facilities_telecom_alerternate_number= Facilities_telecom_alternate_phone_number,
+                Facilities_telecom_email = Facilities_telecom_email
             };
              DatabaseConnection.Insert(facilitiestelecom);
         }
@@ -45,6 +47,16 @@ namespace Master_of_Emails.Table_Repositories
         {
             Init();
             return DatabaseConnection.Table<TollFacilitiesTelecom>().ToList();
+        }
+
+        public TableQuery<TollFacilitiesTelecom> QueryPersonaleByName(string FacilitiesTelecomName)
+        {
+            Init();
+            FacilitiesTelecomName = FacilitiesTelecomName.ToUpper();
+            return DatabaseConnection.Table<TollFacilitiesTelecom>().Where(value => value.Facilities_telecom_name.ToUpper().Contains(FacilitiesTelecomName));
+
+            //return DatabaseConnection.Table<TollTechnician>().Where(value => value.Technician_name.
+            //Equals(TechnicianName));
         }
 
 

@@ -57,8 +57,6 @@ namespace Master_of_Emails.Table_Repositories
 
             //return DatabaseConnection.Table<TollTechnician>().Where(value => value.Technician_name.
             //Equals(TechnicianName));
-
-            
         }
 
         public TableQuery<TollTechnician> QueryTechnicianByRegion(string TechnicianRegion)

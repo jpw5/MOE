@@ -37,7 +37,6 @@ namespace Master_of_Emails.ViewModels;
         public TollTechnicianRepository TollTechnicianRepo = new();
         public TableQuery<TollTechnician> TollTechnicianQuery;
 
-       
         [ObservableProperty]
         public string date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
     
@@ -45,7 +44,7 @@ namespace Master_of_Emails.ViewModels;
         public string duration;
 
         [ObservableProperty]
-        public string incidentOrESR;
+        public string incidentOrESR="NA";
 
         [ObservableProperty]
         public string reason;

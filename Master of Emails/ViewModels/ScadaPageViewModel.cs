@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Master_of_Emails.Table_Repositories;
 using Master_of_Emails.Tables;
@@ -24,11 +25,13 @@ namespace Master_of_Emails.ViewModels;
         public List<TollPlaza> TollPlaza = new();
 
         [ObservableProperty]
-        public string facilitiesTelecom;
+        public string facilitiesTelecomPersonaleName;
         [ObservableProperty]
         public string phoneResult;
+        [ObservableProperty]
+        public string alternatePhoneResult;
         public TollFacilitiesTelecomRepository TollFacilitiesTelecomRepo = new();
-        public TableQuery<TollFacilitiesTelecom> TollFacilitiesTelecom;
+        public TableQuery<TollFacilitiesTelecom> TollFacilitiesTelecomQuery;
 
         [ObservableProperty]
         public string scadaAlarm;
@@ -39,15 +42,17 @@ namespace Master_of_Emails.ViewModels;
         [ObservableProperty]
         public string workOrderNumber;
 
-    [ObservableProperty]
+        [ObservableProperty]
         public string date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
+
+        [ObservableProperty]
+        public string temperature="NA";
 
 
     public ScadaPageViewModel()
     {
         tollRegionList = new ObservableCollection<string>();
         tollPlazaList = new ObservableCollection<string>();
-      
         PopulateRegionList();
     }
 
@@ -64,8 +69,37 @@ namespace Master_of_Emails.ViewModels;
     }
 
     [RelayCommand]
-    public void ReturnPersonale()
+    public async void ReturnPersonale()
     {
+        TollFacilitiesTelecomQuery = TollFacilitiesTelecomRepo.QueryPersonaleByName(FacilitiesTelecomPersonaleName);
+
+        List<string> PhoneNumber = new();
+        List<string> AlternatePhoneNumber = new();
+        List<string> FullName = new();
+        
+        if (TollFacilitiesTelecomQuery.Any())
+        {
+            PhoneNumber.Clear();
+            AlternatePhoneNumber.Clear();
+            FullName.Clear();
+            foreach (TollFacilitiesTelecom facilitiestelecom in TollFacilitiesTelecomQuery)
+            {
+                PhoneNumber.Add(facilitiestelecom.Facilities_telecom_phone_number);
+                AlternatePhoneNumber.Add(facilitiestelecom.Facilities_telecom_alerternate_number);
+                FullName.Add(facilitiestelecom.Facilities_telecom_name);
+                PhoneResult = "Phone: " + PhoneNumber[0];
+                AlternatePhoneResult = "Alternate Phone: " + AlternatePhoneNumber[0];
+                FacilitiesTelecomPersonaleName = FullName[0];
+                
+            }
+        }
+
+        else
+        {
+            PhoneResult = "Failed to Retrive. The entered Name was invalid or nonexistant";
+            await Task.Delay(2000);
+            PhoneResult = "";
+        }
 
     }
 
@@ -75,11 +109,13 @@ namespace Master_of_Emails.ViewModels;
         tollRegionList?.Clear();
         PopulateRegionList();
         tollPlazaList?.Clear();
-        FacilitiesTelecom = "";
+        FacilitiesTelecomPersonaleName = "";
         PhoneResult = "";
+        AlternatePhoneResult = "";
         ScadaAlarm = "";
         BuildingNumber = "";
         WorkOrderNumber = "";
+        Temperature = "";
         Date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
     }
 

@@ -28,6 +28,7 @@ public partial class InconAlertPage : ContentPage
 
     public string Region;
     public int PlazaId;
+
     public string Plaza;
     public string Roadway;
     public string Lane;
@@ -47,6 +48,48 @@ public partial class InconAlertPage : ContentPage
 
     private void InconAlertEmail_Button_Pressed(object sender, EventArgs e)
     {
+        if (selectPlaza.SelectedItem == null)
+        {
+            DisplayAlert("Alert", "Choose a Plaza", "Close");
+            return;
+        }
+
+        else if (!TollLaneList.Any())
+        {
+            DisplayAlert("Alert", "Choose Lane(s)", "Close");
+            return;
+        }
+
+        else if(string.IsNullOrEmpty(selectRequestor.Text))
+        {
+            DisplayAlert("Alert", "Enter Requestor", "Close");
+            return;
+        }
+
+        else if (string.IsNullOrEmpty(selectPhoneNumber.Text))
+        {
+            DisplayAlert("Alert", "Enter Requestor Phone Number", "Close");
+            return;
+        }
+
+        else if (string.IsNullOrEmpty(selectDuration.Text))
+        {
+            DisplayAlert("Alert", "Enter Duration", "Close");
+            return;
+        }
+
+        else if (string.IsNullOrEmpty(Units))
+        {
+            DisplayAlert("Alert", "Choose Unit", "Close");
+            return;
+        }
+
+        else if (selectReason.Text==null)
+        {
+            DisplayAlert("Alert", "Enter Reason", "Close");
+            return;
+        }
+
         Plaza = (string)selectPlaza.SelectedItem;
         var Split = Plaza.Split(" ", 2);
         PlazaId = Int32.Parse(Split[0]);
@@ -70,10 +113,15 @@ public partial class InconAlertPage : ContentPage
 
         string To = "ali.shakoor2249@gmail.com";
         string Subject = "InConAlert for Plaza - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
-        string Body = "****SunWatch InConAlert****" + "<br>" + "<br>" +
-        "Plaza: " + Plaza + "<br>" + "Roadway: " + Roadway + "<br>" + "Lane(s): " + Lane + "<br>" + "Date/Time: " +
-        Date + "<br>" + "Requestor: " + Requestor + " / " + RequestorPhoneNumber + "<br>" + "Duration: " + Duration + " "
-        + Units + "<br>" + "Reason: " + Reason;
+
+        string Body = "<font size=5>" + "<b>" + "****SunWatch InConAlert****" + "</b>" + "</font>" + "<br>" + "<br>" +
+        "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Roadway: " + "</b>" + Roadway + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Lane: " + "</b>" + Lane + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Date/Time Contacted: " + "</b>" + Date + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Requestor: " + "</b>" + Requestor + " / " + RequestorPhoneNumber + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Duration of Work: " + "</b>" + Duration + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Reason: " + "</b>" + Reason + "</font>" + "<br>";
 
         mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
         mail.To = To;
@@ -81,8 +129,8 @@ public partial class InconAlertPage : ContentPage
         mail.HTMLBody = Body;
         mail.Display();
         mail = null;
+        Lane = null;
     }
-
     private void SelectRegion_SelectedIndexChanged(object sender, EventArgs e)
     {
         int selectedIndex = selectRegion.SelectedIndex;
@@ -123,8 +171,6 @@ public partial class InconAlertPage : ContentPage
 
     private void SelectLane_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        //DisplayAlert("Check",sender.ToString(),"Close");
-
         if (e.CurrentSelection.Count == 0)
             return;
 
@@ -139,7 +185,6 @@ public partial class InconAlertPage : ContentPage
         }
     }
 
-    
     private void HoursRadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
         Units = "Hours";
