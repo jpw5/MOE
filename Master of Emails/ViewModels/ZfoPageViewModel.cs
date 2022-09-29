@@ -97,8 +97,8 @@ namespace Master_of_Emails.ViewModels;
         PopulateRegionList();
         tollPlazaList?.Clear();
         tollLaneList?.Clear();
-        Requestor ??= "";
-        Reason ??= "";
+        Requestor = "";
+        Reason = "";
         
     }
 

@@ -7,10 +7,10 @@
              Title="Duress Alarm">
 
     <ScrollView Orientation="Both" HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always" 
-    Background="#FFA500">
+    Background="#AA6C39">
         
         <Border HeightRequest="700" WidthRequest="700" Stroke="#C49B33" StrokeThickness="4" 
-        Background="White" Padding="16,8" HorizontalOptions="Center" VerticalOptions="Center">
+        Background="white" Padding="16,8" HorizontalOptions="Center" VerticalOptions="Center">
 
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="40,0,0,40"></RoundRectangle>
@@ -43,7 +43,7 @@
                     <Picker ItemsSource="{Binding TollDuressReasonList}" SelectedItem="{Binding DuressReason}"
                      x:Name="selectDuressReason" WidthRequest="400" HorizontalOptions="Center" 
                      VerticalOptions="Center" FontSize="16" FontAttributes="Bold" FontFamily="Times"       
-                     Title="Select Reason"></Picker>
+                     Title="Select Reason" TextColor="Black"></Picker>
 
                     <VerticalStackLayout  VerticalOptions="Center" HorizontalOptions="Center">
 
@@ -51,12 +51,12 @@
                          TextColor="Black" VerticalOptions="Center"></Label>
 
                         <RadioButton CheckedChanged="VaultRadioButton_CheckedChanged" FontAttributes="Bold" 
-                         FontSize="16" FontFamily="Times"  Content="Vault Under Duress" 
+                         FontSize="16" FontFamily="Times" TextColor="Black" Content="Vault Under Duress" 
                          Value="Vault Under Duress"></RadioButton>
 
                         <RadioButton CheckedChanged="LaneRadioButton_CheckedChanged" FontAttributes="Bold" 
                          FontSize="16" FontFamily="Times" Content="Lane Duress Alarm" 
-                         Value="Lane Duress Alarm"></RadioButton>
+                         Value="Lane Duress Alarm" TextColor="Black"></RadioButton>
 
                     </VerticalStackLayout>
 
@@ -65,22 +65,27 @@
                 <Entry Text="{Binding PlazaSupervisor}" x:Name="selectPlazaSupervisor" 
                  FontSize="16" FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
                  VerticalTextAlignment="Start" Placeholder="Enter Supervisor Name" 
-                 PlaceholderColor="Black"></Entry>
+                 TextColor="Black" PlaceholderColor="Black"></Entry>
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
-                    <Label Text="Enter Start Date/Time" FontSize="16" FontAttributes="Bold" FontFamily="Times" 
-                     VerticalOptions="Center"></Label>
+                    <Label Text="Enter Start Date/Time" FontSize="16" FontAttributes="Bold" 
+                     FontFamily="Times" VerticalOptions="Center" TextColor="Black"></Label>
 
                     <Entry Text="{Binding Date}" x:Name="selectDate" FontSize="16" FontAttributes="Bold" 
-                     FontFamily="Times" HorizontalTextAlignment="Start" VerticalTextAlignment="Start"></Entry>
+                     TextColor="Black" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     VerticalTextAlignment="Start"></Entry>
 
                 </HorizontalStackLayout>
 
                     <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="End">
-                        
-                     <Button Command="{Binding ClearCommand}" CornerRadius="20" Text="Clear"></Button>
-                     <Button Pressed="DuressAlarmEmailButton_Pressed" CornerRadius="20" Text="Email"></Button>
+
+                    <Button Command="{Binding ClearCommand}" BackgroundColor="LightGray" FontSize="16" 
+                     FontAttributes="Bold" FontFamily="Times"  CornerRadius="20" Text="Clear"></Button>
+
+                    <Button Pressed="DuressAlarmEmailButton_Pressed" BackgroundColor="LightGray" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="Times" CornerRadius="20" 
+                     Text="Email"></Button>
                         
                     </HorizontalStackLayout>
 

@@ -7,16 +7,17 @@
              Title="Priority One Maf">
 
     <ScrollView Orientation="Both" HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always" 
-    BackgroundColor="#ff0000">
+    BackgroundColor="#8B0000">
         
-        <Border HeightRequest="700" WidthRequest="700" Stroke="#C49B33" StrokeThickness="4" Background="White" 
-        Padding="16,8" HorizontalOptions="Center">
+        <Border HeightRequest="700" WidthRequest="700" Stroke="#C49B33" StrokeThickness="4" 
+         Background="White" Padding="16,8" HorizontalOptions="Center">
 
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="40,0,0,40"></RoundRectangle>
             </Border.StrokeShape>
 
-            <VerticalStackLayout Padding="10" Spacing="20" VerticalOptions="Center" HorizontalOptions="Start">
+            <VerticalStackLayout Padding="10" Spacing="20" VerticalOptions="Center" 
+             HorizontalOptions="Start">
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
@@ -32,15 +33,15 @@
                      FontSize="16" FontAttributes="Bold" TextColor="Black" FontFamily="Times" 
                      Title="Select Plaza"></Picker> 
 
-                    <Picker ItemsSource="{Binding TollLaneList}" SelectedItem="{Binding Lane}" 
-                     x:Name="selectLane" SelectedIndexChanged="SelectLane_SelectedIndexChanged" 
-                     WidthRequest="100" HorizontalOptions="Center" VerticalOptions="Center" 
-                     FontSize="16" FontAttributes="Bold" TextColor="Black" FontFamily="Times"  
-                     Title="Select Lane"></Picker>
-
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="Start">
+
+                    <Picker ItemsSource="{Binding TollLaneList}" SelectedItem="{Binding Lane}" 
+                     x:Name="selectLane" SelectedIndexChanged="SelectLane_SelectedIndexChanged" 
+                     WidthRequest="150" HorizontalOptions="Center" VerticalOptions="Center" 
+                     FontSize="16" FontAttributes="Bold" TextColor="Black" FontFamily="Times"  
+                     Title="Select Lane"></Picker>
 
                     <Picker ItemsSource="{Binding TollBomitemList}" SelectedItem="{Binding Bomitem}" 
                      x:Name="selectBomitem" FontAttributes="Bold" FontSize="16" FontFamily="Times" 
@@ -51,34 +52,42 @@
                      x:Name="selectTechnician" FontAttributes="Bold" FontSize="16" FontFamily="Times"
                      TextColor="Black" WidthRequest="200" HorizontalOptions="Center" 
                      Title="Select Technician"></Picker>
-                    
+
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="Start">
 
-                    <Label Text="Select End Date/Time" FontSize="16" FontAttributes="Bold" FontFamily="Times"  
-                     TextColor="Black" VerticalOptions="Center"></Label>
+                    <Label Text="Select End Date/Time" FontSize="16" FontAttributes="Bold" 
+                     FontFamily="Times" TextColor="Black" VerticalOptions="Center"></Label>
 
                     <Entry Text="{Binding Date}" x:Name="selectDate" FontAttributes="Bold" FontSize="16"
-                     HorizontalTextAlignment="Start" VerticalTextAlignment="Start" 
+                     HorizontalTextAlignment="Start" VerticalTextAlignment="Start" TextColor="Black" 
                      Placeholder="Enter Starting Date/Time" PlaceholderColor="Black"></Entry>
 
                     <Entry Text="{Binding MafNumber}" x:Name="selectMafNumber" FontAttributes="Bold"
-                     FontSize="16" FontFamily="Times" Placeholder="Enter MAF#" PlaceholderColor="Black"></Entry>
+                     FontSize="16" FontFamily="Times" Placeholder="Enter MAF#" TextColor="Black" 
+                     PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
 
                 <Entry Text="{Binding Problem}" x:Name="selectProblem" FontAttributes="Bold" FontSize="16"
-                 FontFamily="Times" Placeholder="Enter Problem" PlaceholderColor="Black" WidthRequest="600"      
-                 HorizontalOptions="Start"  ></Entry>
+                 FontFamily="Times" Placeholder="Enter Problem" TextColor="Black" 
+                 PlaceholderColor="Black" WidthRequest="600" HorizontalOptions="Start"></Entry>
 
                 <Editor Text="{Binding ActionTaken}" x:Name="selectActionTaken" FontAttributes="Bold" 
-                 FontSize="16" FontFamily="Times" Placeholder="Action Taken" PlaceholderColor="Black"   
-                 AutoSize="TextChanges"></Editor>
+                 FontSize="16" FontFamily="Times" Placeholder="Action Taken" TextColor="Black" 
+                 PlaceholderColor="Black" AutoSize="TextChanges"></Editor>
 
                 <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="End">
-                    <Button Command="{Binding ClearCommand}" CornerRadius="20" Text="Clear"></Button>
-                    <Button Pressed="PriorityOneEmail_Button_Pressed" CornerRadius="20" Text="Email"></Button>
+
+                    <Button Command="{Binding ClearCommand}" BackgroundColor="LightGray" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="Times" CornerRadius="20" 
+                     Text="Clear"></Button>
+
+                    <Button Pressed="PriorityOneEmail_Button_Pressed" BackgroundColor="LightGray" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="Times" CornerRadius="20" 
+                     Text="Email"></Button>
+                    
                 </HorizontalStackLayout>
 
             </VerticalStackLayout>

@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Master_of_Emails.Table_Repositories;
 using Master_of_Emails.Tables;
+using SQLite;
 using System.Collections.ObjectModel;
 
 namespace Master_of_Emails.ViewModels;
@@ -42,6 +43,7 @@ public partial class PriorityOneMafPageViewModel : ObservableObject
     public string technician;
     public TollTechnicianRepository TollTechnicianRepo = new();
     public List<TollTechnician> TollTechnician = new();
+    public TableQuery<TollTechnician> TollTechnicianQuery;
 
     [ObservableProperty]
     public string date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
@@ -91,4 +93,5 @@ public partial class PriorityOneMafPageViewModel : ObservableObject
         MafNumber= "";
         ActionTaken= "";
     }
+
 }

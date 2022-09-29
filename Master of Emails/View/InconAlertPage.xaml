@@ -7,7 +7,7 @@
              Title="Incon Alert">
 
     <ScrollView Orientation="Both" HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always" 
-    Background="#00FFFF">
+    Background="#00008B">
         
         <Border HeightRequest="700" WidthRequest="700" Stroke="#C49B33" StrokeThickness="4" 
         Background="white" Padding="16,8" HorizontalOptions="Center">
@@ -32,11 +32,13 @@
 
                     <Frame WidthRequest="200" VerticalOptions="Center" HorizontalOptions="Center" 
                     HasShadow="True" BorderColor="SandyBrown" BackgroundColor="SandyBrown">
-                        
+
                         <CollectionView ItemsSource="{Binding TollLaneList}" SelectedItem="{Binding Lane}" 
                          x:Name="selectLane" WidthRequest="100" HeightRequest="50"               
                          SelectionMode="Multiple" SelectionChanged="SelectLane_SelectionChanged" 
-                         VerticalScrollBarVisibility="Always"></CollectionView>
+                         VerticalScrollBarVisibility="Always">
+                           
+                        </CollectionView>
                         
                     </Frame>
 
@@ -52,63 +54,68 @@
                     <Entry Text="{Binding Requestor}" x:Name="selectRequestor" FontSize="16" 
                      FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
                      VerticalTextAlignment="Start" Placeholder="Enter Requestor Name" 
-                     PlaceholderColor="Black"></Entry>
+                     TextColor="Black" PlaceholderColor="Black"></Entry>
 
                     <Entry Text="{Binding PhoneResult}" x:Name="selectPhoneNumber" FontSize="16" 
                      FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
                      VerticalTextAlignment="Start" Placeholder="Enter Phone Number"
-                     PlaceholderColor="Black"></Entry>
+                     TextColor="Black" PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
 
-                    <Label Text="Enter Start Date/Time" FontSize="16" FontAttributes="Bold" FontFamily="Times"  
-                     TextColor="Black" VerticalOptions="Center"></Label>
+                    <Label Text="Enter Start Date/Time" FontSize="16" FontAttributes="Bold" 
+                     FontFamily="Times" TextColor="Black" VerticalOptions="Center"></Label>
 
                     <Entry Text="{Binding Date}" x:Name="selectDate" FontSize="16" 
                      FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
                      VerticalTextAlignment="Start" Placeholder="Enter Starting Date/Time" 
-                     PlaceholderColor="Black"></Entry>
+                     TextColor="Black" PlaceholderColor="Black"></Entry>
                     
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
 
-                    <Label Text="Enter Incident Or ESR" FontSize="16" FontAttributes="Bold" FontFamily="Times"   
-                     TextColor="Black" VerticalOptions="Center" ></Label>
+                    <Label Text="Enter Incident Or ESR" FontSize="16" FontAttributes="Bold" 
+                     FontFamily="Times" TextColor="Black" VerticalOptions="Center" ></Label>
 
                     <Entry Text="{Binding IncidentOrESR}" x:Name="selectIncidentOrESR" FontSize="16" 
                      FontAttributes="Bold" FontFamily="Times" Placeholder="Incident/ESR" 
-                     PlaceholderColor="Black" HeightRequest="20"></Entry>
+                     TextColor="Black" PlaceholderColor="Black" HeightRequest="20"></Entry>
 
                     <Entry Text="{Binding Duration}" x:Name="selectDuration" FontSize="16" 
                      FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
-                     VerticalTextAlignment="Start" Placeholder="Enter Work Duration" PlaceholderColor="Black" 
-                     HeightRequest="20"></Entry>
+                     VerticalTextAlignment="Start" Placeholder="Enter Work Duration" 
+                     TextColor="Black" PlaceholderColor="Black" HeightRequest="20"></Entry>
 
                     <VerticalStackLayout>
 
                         <RadioButton FontSize="16" FontAttributes="Bold" FontFamily="Times" 
                          CheckedChanged="HoursRadioButton_CheckedChanged" Value="Hour(s)" 
-                         Content="Hours"></RadioButton>
+                         Content="Hours" TextColor="Black"></RadioButton>
 
                         <RadioButton FontSize="16" FontAttributes="Bold" FontFamily="Times" 
                          CheckedChanged="MinuetsRadioButton_CheckedChanged" Value="Minuet(s)" 
-                         Content="Minuets"></RadioButton>
+                         Content="Minuets" TextColor="Black"></RadioButton>
 
                     </VerticalStackLayout>
               
                 </HorizontalStackLayout>
 
                 <Editor Text="{Binding Reason}" x:Name="selectReason" FontSize="16" FontAttributes="Bold" 
-                 FontFamily="Times" Placeholder="Reason" PlaceholderColor="Black" 
+                 FontFamily="Times" Placeholder="Reason" TextColor="Black" PlaceholderColor="Black" 
                  AutoSize="TextChanges"></Editor>
 
                 <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="End">
-                    
-                    <Button Command="{Binding ClearCommand}" CornerRadius="20" Text="Clear"></Button>
-                    <Button Pressed="InconAlertEmail_Button_Pressed" CornerRadius="20" Text="Email"></Button>
+
+                    <Button Command="{Binding ClearCommand}" BackgroundColor="LightGray" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="Times" CornerRadius="20" 
+                     Text="Clear"></Button>
+
+                    <Button Pressed="InconAlertEmail_Button_Pressed" BackgroundColor="LightGray" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="Times" CornerRadius="20" 
+                     Text="Email"></Button>
                     
                 </HorizontalStackLayout>
 

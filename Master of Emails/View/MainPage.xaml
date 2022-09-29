@@ -51,7 +51,7 @@
 
         <!-- Start of Code for the Plaza Lookup section-->
         
-        <BoxView Grid.Row="2" Grid.ColumnSpan="3" Color="LightBlue"/>
+        <BoxView Grid.Row="2" Grid.ColumnSpan="3"/>
 
         <ScrollView Grid.Row="2" Grid.Column="1" Padding="10">
 
@@ -88,16 +88,13 @@
                 CancelButtonColor="Black"></SearchBar>
                 
                 <Label Text="{Binding PersonalePhoneResult}" FontAttributes="Bold" 
-                HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Padding="5" 
-                BackgroundColor="LightBlue"></Label>
+                HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Padding="5"></Label>
                 
                 <Label Text="{Binding PersonaleEmailResult}" FontAttributes="Bold" 
-                HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Padding="5" 
-                BackgroundColor="LightBlue"></Label>
+                HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Padding="5"></Label>
 
                 <Label Text="{Binding DepartmentResult}" FontAttributes="Bold" 
-                HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Padding="5" 
-                BackgroundColor="LightBlue"></Label>
+                HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Padding="5"></Label>
 
                 <Button Command="{Binding ClearPersonaleSearchCommand}" CornerRadius="20" Text="Clear"></Button>
 
@@ -125,8 +122,7 @@
                   Text="Phone: "
                   HorizontalTextAlignment="Start"
                   VerticalTextAlignment="Start"
-                  Padding="10"
-                  BackgroundColor="LightBlue">
+                  Padding="10">
             </Label>
             <Label
                   x:Name="organization_search_result_email_label"
@@ -134,8 +130,7 @@
                   Text="Email: "
                   HorizontalTextAlignment="Start"
                   VerticalTextAlignment="Start"
-                  Padding="10"
-                  BackgroundColor="LightBlue">
+                  Padding="10">
             </Label>
             
         </VerticalStackLayout>

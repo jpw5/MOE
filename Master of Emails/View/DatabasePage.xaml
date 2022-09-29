@@ -7,358 +7,705 @@
     x:DataType="viewmodel:DatabasePageViewModel" 
     Title="Database">
 
-    <ScrollView BackgroundColor="AliceBlue" Orientation="Both" HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always">
+    <ScrollView  Orientation="Both" HorizontalScrollBarVisibility="Always" 
+     VerticalScrollBarVisibility="Always">
 
         <VerticalStackLayout Padding="5">
-
-            <Label Text="----------REGION SECTION----------" TextColor="Black" FontSize="20" 
-            FontFamily="Times" HorizontalOptions="Center"></Label>
-
-            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Entry  Text="{Binding NewRegion}" PlaceholderColor="Black" Placeholder="Enter Region Name" />
-                    <Button Command="{Binding AddNewRegionCommand}" Text="Add Region"/>
-                </VerticalStackLayout>
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Entry  Text="{Binding RemoveRegion}" Placeholder="Enter a Region ID" PlaceholderColor="Black"/>
-                    <Button Command="{Binding DeleteRegionCommand}" Text="Delete Region"/>
-                </VerticalStackLayout>
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Button Command="{Binding GetAllRegionsCommand}" Text="Get All Regions" Grid.Row="3"/>
-                </VerticalStackLayout>
-            </HorizontalStackLayout>
-
-            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
-                BackgroundColor="SandyBrown">
-                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
-                        <Label Text="{Binding NewRegionStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" 
-                         VerticalOptions="Center" HorizontalOptions="Center"></Label>
-                        <Label Text="{Binding RemoveRegionStatusMessage}" TextColor="Black" FontSize="16" 
-                        FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
-                    </HorizontalStackLayout>
-                </Frame>
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
-                 BackgroundColor="SandyBrown">
-                    <ListView ItemsSource="{Binding RegionList}" VerticalOptions="Center" HorizontalOptions="Center" 
-                     WidthRequest="100" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
-                </Frame>
-
-            </HorizontalStackLayout>
-
-            <Label Text="----------REGION SECTION END----------" TextColor="Black" FontSize="20" 
-            FontFamily="Times" HorizontalOptions="Center"></Label>
-
-            <Label Text="----------PLAZA SECTION----------" TextColor="Black" Padding="10" FontSize="20" 
-            FontFamily="Times" HorizontalOptions="Center"></Label>
-
-            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
-
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-
-                    <Entry Text="{Binding NewPlazaId}" Placeholder="Enter Plaza ID" PlaceholderColor="Black"/>
-                    <Entry Text="{Binding NewPlazaName}" Placeholder="Enter Plaza Name" PlaceholderColor="Black"/>
-                    <Entry Text="{Binding NewPlazaRoadway}" Placeholder="Enter Plaza Roadway" PlaceholderColor="Black"/>
-                    <Entry Text="{Binding NewPlazaMilepost}" Placeholder="Enter Plaza Mile Post" PlaceholderColor="Black"/>
-                    <Entry Text="{Binding NewPlazaRegionName}" Placeholder="Enter Plaza Region" PlaceholderColor="Black"/>
-                    <Entry Text="{Binding NewPlazaPhoneNumber}" Placeholder="Enter Plaza Phone Number" PlaceholderColor="Black"/>
-                    <Button Command="{Binding AddNewPlazaCommand}" Text="Add Plaza" />
-
-                </VerticalStackLayout>
-
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Entry Text="{Binding RemoveRegion}" Placeholder="Enter Plaza ID" PlaceholderColor="Black"/>
-                    <Button Command="{Binding DeletePlazaCommand}" Text="Delete Plaza" />
-                </VerticalStackLayout>
-
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Button Command="{Binding GetAllPlazasCommand}" Text="Get All Plazas" />
-                </VerticalStackLayout>
-
-            </HorizontalStackLayout>
-
-            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
-                BackgroundColor="SandyBrown">
-                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" Padding="10">
-                        <Label Text="{Binding NewPlazaStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" 
-                         VerticalOptions="Center" HorizontalOptions="Center"></Label>
-                        <Label Text="{Binding RemovePlazaStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" 
-                         VerticalOptions="Center" HorizontalOptions="Center"></Label>
-                    </HorizontalStackLayout>
-                </Frame>
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
-                 BackgroundColor="SandyBrown">
-                    <ListView ItemsSource="{Binding PlazaList}" VerticalOptions="Center" HorizontalOptions="Center" 
-                     WidthRequest="400" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
-                </Frame>
-            </HorizontalStackLayout>
-
-            <Label Text="----------PLAZA SECTION END----------" TextColor="Black" Padding="10" FontSize="20" 
-            FontFamily="Times" HorizontalOptions="Center"></Label>
-
-            <Label Text="----------LANE SECTION----------" Padding="10" TextColor="Black" FontSize="20" 
-            FontFamily="Times" HorizontalOptions="Center"></Label>
-
-            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
-
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Entry Text="{Binding NewLanePlazaId}" Placeholder="Enter Lane Plaza ID" PlaceholderColor="Black"/>
-                    <Entry Text="{Binding NewLaneNumber}" Placeholder="Enter Lane Number" PlaceholderColor="Black"/>
-                    <Entry Text="{Binding NewLaneType}" Placeholder="Enter Lane Type" PlaceholderColor="Black"/>
-                    <Button Command="{Binding AddNewLaneCommand}" Text="Add Lane"/>
-                </VerticalStackLayout>
-
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Entry Text="{Binding RemoveLane}" Placeholder="Enter Lane ID" PlaceholderColor="Black"/>
-                    <Button Command="{Binding DeleteLaneCommand}" Text="Delete Lane"/>
-                </VerticalStackLayout>
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Button Command="{Binding GetAllLanesCommand}" Text="Get All Lanes"/>
-                </VerticalStackLayout>
-
-            </HorizontalStackLayout>
-
-            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
-                BackgroundColor="SandyBrown">
-                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" Padding="10" 
-                     Grid.Row="6">
-                        <Label Text="{Binding NewLaneStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" 
-                         VerticalOptions="Center" HorizontalOptions="Center"></Label>
-                        <Label Text="{Binding RemoveLaneStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" 
-                        VerticalOptions="Center" HorizontalOptions="Center"></Label>
-                    </HorizontalStackLayout>
-                </Frame>
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
-                BackgroundColor="SandyBrown">
-                    <ListView ItemsSource="{Binding LaneList}" VerticalOptions="Center" HorizontalOptions="Center" 
-                     WidthRequest="200" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
-                </Frame>
-            </HorizontalStackLayout>
-
-            <Label Text="----------LANE SECTION END----------" TextColor="Black" Padding="10" FontSize="20" 
-             FontFamily="Times" HorizontalOptions="Center"></Label>
-
-            <Label Text="----------TECHNICIAN SECTION----------" TextColor="Black" Padding="10" FontSize="20" 
-             FontFamily="Times" HorizontalOptions="Center"></Label>
-
-            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
-
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Entry Text="{Binding NewTechnicianKnId}" Placeholder="Enter Technician KN ID" PlaceholderColor="Black"/>
-                    <Entry Text="{Binding NewTechnicianName}" Placeholder="Enter Technician Name (First Last)" 
-                    PlaceholderColor="Black"/>
-                    <Entry Text="{Binding NewTechnicianPhoneNumber}" Placeholder="Enter Technician Phone Number" 
-                    PlaceholderColor="Black"/>
-                    <Entry Text="{Binding NewTechnicianEmail}" Placeholder="Enter Technician E-Mail" PlaceholderColor="Black"/>
-                    <Entry Text="{Binding NewTechnicianRegion}" Placeholder="Enter Technician Region" PlaceholderColor="Black"/>
-                    <Button Command="{Binding AddNewTechnicianCommand}" Text="Add Technician"/>
-                </VerticalStackLayout>
-
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Entry Text="{Binding RemoveTechnician}" Placeholder="Enter Technician KNID" PlaceholderColor="Black"/>
-                    <Button Command="{Binding DeleteTechnicianCommand}" Text="Delete Technician"/>
-                </VerticalStackLayout>
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Button Command="{Binding GetAllTechniciansCommand}" Text="Get All Technicians"/>
-                </VerticalStackLayout>
-
-            </HorizontalStackLayout>
-
-            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
-                BackgroundColor="SandyBrown">
-                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" Padding="10" 
-                     Grid.Row="6">
-                        <Label Text="{Binding NewTechnicianStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" 
-                        VerticalOptions="Center" HorizontalOptions="Center"></Label>
-                        <Label Text="{Binding RemoveTechnicianStatusMessage}" TextColor="Black" FontSize="16" 
-                        FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
-                    </HorizontalStackLayout>
-                </Frame>
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
-                BackgroundColor="SandyBrown">
-                    <ListView ItemsSource="{Binding TechnicianList}" VerticalOptions="Center" HorizontalOptions="Center" 
-                    WidthRequest="400" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
-                </Frame>
-            </HorizontalStackLayout>
-
-            <Label Text="----------TECHNICIAN SECTION END----------" TextColor="Black" Padding="10"
-            FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
-
-            <Label Text="----------BOM ITEM SECTION----------" TextColor="Black" Padding="10" 
-            FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
-
-            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
-
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Entry Text="{Binding NewBomitemLaneType}" Placeholder="Enter Bom Item Lane Type" PlaceholderColor="Black"/>
-                    <Entry Text="{Binding NewBomitemName}" Placeholder="Enter Bom Item Name" 
-                    PlaceholderColor="Black"/>
-                    <Button Command="{Binding AddNewBomitemCommand}" Text="Add Bom Item"/>
-                </VerticalStackLayout>
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Entry Text="{Binding RemoveBomitem}" Placeholder="Enter Bomitem ID" PlaceholderColor="Black"/>
-                    <Button Command="{Binding DeleteBomitemCommand}" Text="Delete Bomitem"/>
-                </VerticalStackLayout>
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Button Command="{Binding GetAllBomitemsCommand}" Text="Get All Bomitems"/>
-                </VerticalStackLayout>
-
-            </HorizontalStackLayout>
-
-            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
-                BackgroundColor="SandyBrown">
-                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" Padding="10">
-                        <Label Text="{Binding NewBomitemStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" 
-                        VerticalOptions="Center" HorizontalOptions="Center"></Label>
-                        <Label Text="{Binding RemoveBomitemStatusMessage}" TextColor="Black" FontSize="16" 
-                        FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
-                    </HorizontalStackLayout>
-                </Frame>
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
-                BackgroundColor="SandyBrown">
-                    <ListView ItemsSource="{Binding BomitemList}" VerticalOptions="Center" HorizontalOptions="Center" 
-                    WidthRequest="400" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
-                </Frame>
-            </HorizontalStackLayout>
-
-            <Label Text="----------BOM ITEM SECTION END----------" TextColor="Black" Padding="10" 
-            FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
-
-            <Label Text="----------DURESS REASON START----------" TextColor="Black" Padding="10" 
-            FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
-
-            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Entry  Text="{Binding NewDuressReason}" PlaceholderColor="Black" Placeholder="Enter Duress Reason" />
-                    <Button Command="{Binding AddNewDuressReasonCommand}" Text="Add Reason"/>
-                </VerticalStackLayout>
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Entry  Text="{Binding RemoveDuressReason}" Placeholder="Enter Duress Reason ID" PlaceholderColor="Black"/>
-                    <Button Command="{Binding DeleteDuressReasonCommand}" Text="Delete Reason"/>
-                </VerticalStackLayout>
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Button Command="{Binding GetAllDuressReasonsCommand}" Text="Get All Duress Reasons" Grid.Row="3"/>
-                </VerticalStackLayout>
-            </HorizontalStackLayout>
-
-            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+            
+            <Label Text="----------REGION SECTION----------" FontSize="24" 
+            FontFamily="Times" FontAttributes="Italic,Bold" HorizontalOptions="Center"></Label>
+            
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+             Padding="10">
                 
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
-                BackgroundColor="SandyBrown">
-                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
-                        <Label Text="{Binding NewDuressReasonStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" 
-                         VerticalOptions="Center" HorizontalOptions="Center"></Label>
-                        <Label Text="{Binding RemoveDuressReasonStatusMessage}" TextColor="Black" FontSize="16" 
-                        FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
-                    </HorizontalStackLayout>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+                    
+                    <Entry  Text="{Binding NewRegion}" Placeholder="Enter Region Name" FontSize="20" 
+                     FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True"/>
+                    
+                    <Button Command="{Binding AddNewRegionCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" FontAutoScalingEnabled="True" Text="Add Region"/>
+                    
+                </VerticalStackLayout>
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+                    
+                    <Entry  Text="{Binding RemoveRegion}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                     Placeholder="Enter a Region ID" />
+                    
+                    <Button Command="{Binding DeleteRegionCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" FontAutoScalingEnabled="True" Text="Delete Region"/>
+                    
+                </VerticalStackLayout>
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+                    
+                    <Button Command="{Binding GetAllRegionsCommand}" Text="Get All Regions" FontSize="20" 
+                     FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True"/>
+                    
+                </VerticalStackLayout>
+                
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+             Padding="10">
+
+                <Frame BorderColor="SandyBrown" VerticalOptions="Center" HorizontalOptions="Center" 
+                 HasShadow="True">
+                    
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                     Padding="10">
+                        
+                        <Label Text="{Binding NewRegionStatusMessage}" TextColor="Black" FontSize="20" 
+                         FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                         VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="200"></Label>
+                        
+                        <Label Text="{Binding RemoveRegionStatusMessage}" TextColor="Black" FontSize="20" 
+                         FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                         VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="200"></Label>
+                        
+                    </VerticalStackLayout>
+                    
                 </Frame>
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
-                 BackgroundColor="SandyBrown">
-                    <ListView ItemsSource="{Binding DuressReasonList}" VerticalOptions="Center" HorizontalOptions="Center" 
-                     WidthRequest="300" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
+
+                <Frame BorderColor="SandyBrown" VerticalOptions="Center" HorizontalOptions="Center" 
+                 HasShadow="True">
+                    
+                    <ListView ItemsSource="{Binding RegionList}" VerticalOptions="Center" 
+                     HorizontalOptions="Center" WidthRequest="200" HeightRequest="100" 
+                     VerticalScrollBarVisibility="Always" >
+
+                        <ListView.Header>
+                            <Label TextColor="Black" FontSize="20" FontFamily="Times" 
+                             FontAttributes="Bold" FontAutoScalingEnabled="True" Margin="10,0,0,0" 
+                             HorizontalOptions="Center" Text="Region List"/>
+                        </ListView.Header>
+                        
+                    </ListView>
+                    
                 </Frame>
 
             </HorizontalStackLayout>
 
-            <Label Text="----------DURESS REASON END----------" TextColor="Black" Padding="10" 
-            FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
+            <Label Text="----------REGION SECTION END----------" FontSize="24" FontFamily="Times" 
+             FontAttributes="Italic,Bold" HorizontalOptions="Center"></Label>
 
-            <Label Text="----------SCADA ALARM----------" TextColor="Black" Padding="10" 
-            FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
+            <Label Text="----------PLAZA SECTION----------"  Padding="10" FontSize="24" 
+            FontFamily="Times" FontAttributes="Italic,Bold" HorizontalOptions="Center"></Label>
 
-            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Entry  Text="{Binding NewScadaAlarm}" PlaceholderColor="Black" Placeholder="Enter Scada Alarm" />
-                    <Button Command="{Binding AddNewScadaAlarmCommand}" Text="Add Scada Alarm"/>
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Entry Text="{Binding NewPlazaId}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" FontAutoScalingEnabled="True" Placeholder="Enter Plaza ID"/>
+
+                    <Entry Text="{Binding NewPlazaName}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Plaza Name"/>
+
+                    <Entry Text="{Binding NewPlazaRoadway}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Plaza Roadway"/>
+
+                    <Entry Text="{Binding NewPlazaMilepost}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Plaza Mile Post"/>
+
+                    <Entry Text="{Binding NewPlazaRegionName}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Plaza Region"/>
+
+                    <Entry Text="{Binding NewPlazaPhoneNumber}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Plaza Phone Number"/>
+
+                    <Button Command="{Binding AddNewPlazaCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Text="Add Plaza"/>
+
                 </VerticalStackLayout>
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Entry  Text="{Binding RemoveScadaAlarm}" Placeholder="Enter Scada Alarm ID" PlaceholderColor="Black"/>
-                    <Button Command="{Binding DeleteScadaAlarmCommand}" Text="Delete Scada Alarm"/>
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Entry Text="{Binding RemoveRegion}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Plaza ID"/>
+
+                    <Button Command="{Binding DeletePlazaCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Text="Delete Plaza" />
+                    
                 </VerticalStackLayout>
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Button Command="{Binding GetAllScadaAlarmsCommand}" Text="Get All Scada Alarms" Grid.Row="3"/>
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Button Command="{Binding GetAllPlazasCommand}" FontSize="20" 
+                     FontFamily="Times" FontAttributes="Bold" Text="Get All Plazas" />
+                    
                 </VerticalStackLayout>
+
             </HorizontalStackLayout>
 
-            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+             Padding="10">
+                
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
+                 BorderColor="SandyBrown">
+                    
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10"
+                     Padding="10">
 
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
-                BackgroundColor="SandyBrown">
-                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
-                        <Label Text="{Binding NewScadaAlarmStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" 
-                         VerticalOptions="Center" HorizontalOptions="Center"></Label>
-                        <Label Text="{Binding RemoveScadaAlarmStatusMessage}" TextColor="Black" FontSize="16" 
-                        FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
-                    </HorizontalStackLayout>
+                        <Label Text="{Binding NewPlazaStatusMessage}" FontSize="20" FontFamily="Times" 
+                         TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" 
+                         HorizontalOptions="Center" WidthRequest="200"></Label>
+
+                        <Label Text="{Binding RemovePlazaStatusMessage}" FontSize="20" FontFamily="Times" 
+                         TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" 
+                         HorizontalOptions="Center" WidthRequest="200"></Label>
+                        
+                    </VerticalStackLayout>
+                    
                 </Frame>
                 
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
-                 BackgroundColor="SandyBrown">
-                    <ListView ItemsSource="{Binding ScadaAlarmList}" VerticalOptions="Center" HorizontalOptions="Center" 
-                     WidthRequest="300" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
+                 BorderColor="SandyBrown">
+                    
+                    <ListView ItemsSource="{Binding PlazaList}" VerticalOptions="Center" 
+                     HorizontalOptions="Center" WidthRequest="400" HeightRequest="100" 
+                     VerticalScrollBarVisibility="Always">
+
+                        <ListView.Header>
+                            <Label HorizontalOptions="Center" TextColor="Black" FontSize="20" 
+                             FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                             Margin="10,0,0,0" Text="Plaza List"/>
+                        </ListView.Header>
+
+                    </ListView>
+                    
+                </Frame>
+                
+            </HorizontalStackLayout>
+
+            <Label Text="----------PLAZA SECTION END----------" FontSize="24" FontFamily="Times" 
+             FontAttributes="Italic,Bold" Padding="10" HorizontalOptions="Center"></Label>
+
+            <Label Text="----------LANE SECTION----------" FontSize="24" FontFamily="Times" 
+             FontAttributes="Italic,Bold" Padding="10" HorizontalOptions="Center"></Label>
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Entry Text="{Binding NewLanePlazaId}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Lane Plaza ID" />
+
+                    <Entry Text="{Binding NewLaneNumber}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Lane Number" />
+
+                    <Entry Text="{Binding NewLaneType}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Lane Type" />
+
+                    <Button Command="{Binding AddNewLaneCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Text="Add Lane"/>
+                    
+                </VerticalStackLayout>
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Entry Text="{Binding RemoveLane}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Lane ID" />
+
+                    <Button Command="{Binding DeleteLaneCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Text="Delete Lane"/>
+                    
+                </VerticalStackLayout>
+                
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Button Command="{Binding GetAllLanesCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Text="Get All Lanes"/>
+                    
+                </VerticalStackLayout>
+
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+             Padding="10">
+                
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
+                 BorderColor="SandyBrown">
+                    
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10"
+                     Padding="10">
+
+                        <Label Text="{Binding NewLaneStatusMessage}" FontSize="20" FontFamily="Times" 
+                         TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" 
+                         HorizontalOptions="Center" WidthRequest="200"></Label>
+
+                        <Label Text="{Binding RemoveLaneStatusMessage}" FontSize="20" FontFamily="Times" 
+                         TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" 
+                         HorizontalOptions="Center" WidthRequest="200"></Label>
+                        
+                    </VerticalStackLayout>
+                    
+                </Frame>
+                
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True"
+                 BorderColor="SandyBrown">
+                    
+                    <ListView ItemsSource="{Binding LaneList}" VerticalOptions="Center" 
+                     HorizontalOptions="Center" WidthRequest="200" HeightRequest="100" 
+                     VerticalScrollBarVisibility="Always">
+
+                        <ListView.Header>
+                            <Label HorizontalOptions="Center" TextColor="Black" FontSize="20" 
+                             FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                             Margin="10,0,0,0" Text="Lane List"/>
+                        </ListView.Header>
+
+                    </ListView>
+                    
+                </Frame>
+            </HorizontalStackLayout>
+
+            <Label Text="----------LANE SECTION END----------" FontSize="24" FontFamily="Times" 
+             FontAttributes="Italic, Bold" Padding="10"  HorizontalOptions="Center"></Label>
+
+            <Label Text="----------TECHNICIAN SECTION----------" FontSize="24" FontFamily="Times" 
+             FontAttributes="Italic,Bold" Padding="10"  HorizontalOptions="Center"></Label>
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Entry Text="{Binding NewTechnicianKnId}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Technician KN ID" />
+
+                    <Entry Text="{Binding NewTechnicianName}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Technician Name (First Last)"/>
+
+                    <Entry Text="{Binding NewTechnicianPhoneNumber}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Technician Phone Number"/>
+
+                    <Entry Text="{Binding NewTechnicianEmail}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Technician E-Mail" />
+
+                    <Entry Text="{Binding NewTechnicianRegion}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Technician Region" />
+
+                    <Button Command="{Binding AddNewTechnicianCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Text="Add Technician"/>
+                    
+                </VerticalStackLayout>
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Entry Text="{Binding RemoveTechnician}" FontSize="20" 
+                     FontFamily="Times" FontAttributes="Bold" Placeholder="Enter Technician KNID" />
+
+                    <Button Command="{Binding DeleteTechnicianCommand}" FontSize="20" 
+                     FontFamily="Times" FontAttributes="Bold" Text="Delete Technician"/>
+                    
+                </VerticalStackLayout>
+                
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+                    
+                    <Button Command="{Binding GetAllTechniciansCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Text="Get All Technicians"/>
+                    
+                </VerticalStackLayout>
+
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+             Padding="10">
+                
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
+                 BorderColor="SandyBrown">
+                   
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" 
+                     Padding="10">
+
+                        <Label Text="{Binding NewTechnicianStatusMessage}" TextColor="Black" FontSize="20" 
+                         FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         HorizontalOptions="Center" WidthRequest="200"></Label>
+
+                        <Label Text="{Binding RemoveTechnicianStatusMessage}" TextColor="Black" 
+                         FontSize="20" FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         HorizontalOptions="Center" WidthRequest="200"></Label>
+                        
+                    </VerticalStackLayout>
+                    
+                </Frame>
+                
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
+                 BorderColor="SandyBrown">
+                    
+                    <ListView ItemsSource="{Binding TechnicianList}" VerticalOptions="Center" 
+                     HorizontalOptions="Center" WidthRequest="400" HeightRequest="100" 
+                     VerticalScrollBarVisibility="Always">
+
+                        <ListView.Header>
+                            <Label HorizontalOptions="Center" TextColor="Black" FontSize="20" 
+                             FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                             Margin="10,0,0,0" Text="Technician List"/>
+                        </ListView.Header>
+
+                    </ListView>
+                    
+                </Frame>
+                
+            </HorizontalStackLayout>
+
+            <Label Text="----------TECHNICIAN SECTION END----------" FontSize="24" FontFamily="Times" 
+             FontAttributes="Italic, Bold" Padding="10" HorizontalOptions="Center"></Label>
+
+            <Label Text="----------BOM ITEM SECTION----------" FontSize="24" FontFamily="Times" 
+             FontAttributes="Italic, Bold"  Padding="10" HorizontalOptions="Center"></Label>
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Entry Text="{Binding NewBomitemLaneType}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Bom Item Lane Type"/>
+
+                    <Entry Text="{Binding NewBomitemName}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Bom Item Name"/>
+
+                    <Button Command="{Binding AddNewBomitemCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Text="Add Bom Item"/>
+                    
+                </VerticalStackLayout>
+                
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Entry Text="{Binding RemoveBomitem}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Bomitem ID" />
+
+                    <Button Command="{Binding DeleteBomitemCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Text="Delete Bomitem"/>
+                    
+                </VerticalStackLayout>
+                
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+                    
+                    <Button Command="{Binding GetAllBomitemsCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Text="Get All Bomitems"/>
+                    
+                </VerticalStackLayout>
+
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+             Padding="10">
+                
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
+                 BorderColor="SandyBrown">
+                    
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10"
+                     Padding="10">
+
+                        <Label Text="{Binding NewBomitemStatusMessage}" TextColor="Black" FontSize="20" 
+                         FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         HorizontalOptions="Center" WidthRequest="200"></Label>
+
+                        <Label Text="{Binding RemoveBomitemStatusMessage}" TextColor="Black" FontSize="20"
+                         FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         HorizontalOptions="Center" WidthRequest="200"></Label>
+                        
+                    </VerticalStackLayout>
+                    
+                </Frame>
+                
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
+                 BorderColor="SandyBrown">
+                    
+                    <ListView ItemsSource="{Binding BomitemList}" VerticalOptions="Center" 
+                     HorizontalOptions="Center" WidthRequest="200" HeightRequest="100" 
+                     VerticalScrollBarVisibility="Always">
+
+                        <ListView.Header>
+                            <Label HorizontalOptions="Center" TextColor="Black" FontSize="20" 
+                             FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                             Margin="10,0,0,0" Text="Bomitem List"/>
+                        </ListView.Header>
+
+                    </ListView>
+                    
+                </Frame>
+            </HorizontalStackLayout>
+
+            <Label Text="----------BOM ITEM SECTION END----------" FontSize="24" FontFamily="Times" 
+             FontAttributes="Italic, Bold" Padding="10" HorizontalOptions="Center"></Label>
+
+            <Label Text="----------DURESS REASON START----------" FontSize="24" FontFamily="Times" 
+             FontAttributes="Italic, Bold" Padding="10" HorizontalOptions="Center"></Label>
+
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+             Padding="10">
+                
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Entry  Text="{Binding NewDuressReason}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Duress Reason" />
+
+                    <Button Command="{Binding AddNewDuressReasonCommand}" FontSize="20" 
+                     FontFamily="Times" FontAttributes="Bold" Text="Add Reason"/>
+                    
+                </VerticalStackLayout>
+                
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Entry  Text="{Binding RemoveDuressReason}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Duress Reason ID"/>
+
+                    <Button Command="{Binding DeleteDuressReasonCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Text="Delete Reason"/>
+                    
+                </VerticalStackLayout>
+                
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Button Command="{Binding GetAllDuressReasonsCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Text="Get All Duress Reasons"/>
+                    
+                </VerticalStackLayout>
+                
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+             Padding="10">
+                
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
+                  BorderColor="SandyBrown">
+                    
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
+
+                        <Label Text="{Binding NewDuressReasonStatusMessage}" TextColor="Black" 
+                         FontSize="20" FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         HorizontalOptions="Center" WidthRequest="200"></Label>
+
+                        <Label Text="{Binding RemoveDuressReasonStatusMessage}" TextColor="Black" 
+                         FontSize="20" FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         HorizontalOptions="Center" WidthRequest="200"></Label>
+                        
+                    </VerticalStackLayout>
+                    
+                </Frame>
+                
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
+                 BorderColor="SandyBrown">
+                    
+                    <ListView ItemsSource="{Binding DuressReasonList}" VerticalOptions="Center" 
+                     HorizontalOptions="Center" WidthRequest="300" HeightRequest="100" 
+                     VerticalScrollBarVisibility="Always" >
+                        
+                        <ListView.Header>
+                            <Label HorizontalOptions="Center" TextColor="Black" FontSize="20" 
+                             FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                             Margin="10,0,0,0" Text="Duress Reason List"/>
+                        </ListView.Header>
+
+                    </ListView>
+                    
                 </Frame>
 
             </HorizontalStackLayout>
 
-            <Label Text="----------SCADA ALARM END----------" TextColor="Black" Padding="10" 
-            FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
+            <Label Text="----------DURESS REASON END----------" FontSize="24" FontFamily="Times" 
+             FontAttributes="Italic,Bold" Padding="10" HorizontalOptions="Center"></Label>
+
+            <Label Text="----------SCADA ALARM----------" FontSize="24" FontFamily="Times" 
+             FontAttributes="Italic,Bold"  Padding="10" HorizontalOptions="Center"></Label>
+
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+             Padding="10">
+                
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Entry  Text="{Binding NewScadaAlarm}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Scada Alarm"/>
+
+                    <Button Command="{Binding AddNewScadaAlarmCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Text="Add Scada Alarm"/>
+                    
+                </VerticalStackLayout>
+                
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Entry  Text="{Binding RemoveScadaAlarm}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Scada Alarm ID"/>
+
+                    <Button Command="{Binding DeleteScadaAlarmCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Text="Delete Scada Alarm"/>
+                    
+                </VerticalStackLayout>
+                
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Button Command="{Binding GetAllScadaAlarmsCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Text="Get All Scada Alarms"/>
+                    
+                </VerticalStackLayout>
+                
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+             Padding="10">
+
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
+                 BorderColor="SandyBrown">
+                    
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
+
+                        <Label Text="{Binding NewScadaAlarmStatusMessage}" TextColor="Black" FontSize="20" 
+                         FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         HorizontalOptions="Center" WidthRequest="200"></Label>
+
+                        <Label Text="{Binding RemoveScadaAlarmStatusMessage}" TextColor="Black" 
+                         FontSize="20" FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         HorizontalOptions="Center" WidthRequest="200"></Label>
+                        
+                    </VerticalStackLayout>
+                    
+                </Frame>
+                
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
+                 BorderColor="SandyBrown">
+                    
+                    <ListView ItemsSource="{Binding ScadaAlarmList}" VerticalOptions="Center" 
+                     HorizontalOptions="Center" WidthRequest="300" HeightRequest="100" 
+                     VerticalScrollBarVisibility="Always">
+
+                        <ListView.Header>
+                            <Label HorizontalOptions="Center" TextColor="Black" FontSize="20" 
+                             FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                             Margin="10,0,0,0" Text="SCADA Alarm List">
+                            </Label>
+                        </ListView.Header>
+                        
+                    </ListView>
+                    
+                </Frame>
+
+            </HorizontalStackLayout>
+
+            <Label Text="----------SCADA ALARM END----------" FontSize="24" FontFamily="Times" 
+             FontAttributes="Italic, Bold" Padding="10" HorizontalOptions="Center"></Label>
 
 
-            <Label Text="----------FACILITIES AND TELECOM----------" TextColor="Black" Padding="10" 
-            FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
+            <Label Text="----------FACILITIES AND TELECOM----------" FontSize="24" FontFamily="Times" 
+             FontAttributes="Italic, Bold" Padding="10" HorizontalOptions="Center"></Label>
 
 
-            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+             Padding="10">
+                
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
 
-                    <Entry Text="{Binding NewFacilitiesTelecomKnID}" Placeholder="Enter Personale KNID" PlaceholderColor="Black"/>
-                    <Entry Text="{Binding NewFacilitiesTelecomName}" Placeholder="Enter Personale Name" PlaceholderColor="Black"/>
-                    <Entry Text="{Binding NewFacilitiesTelecomPhoneNumber}" Placeholder="Enter Personale Phone Number" PlaceholderColor="Black"/>
-                    <Entry Text="{Binding NewFacilitiesTelecomAlternatePhoneNumber}" Placeholder="Enter Personale Alternat Phone Number" PlaceholderColor="Black"/>
-                    <Entry Text="{Binding NewFacilitiesTelecomEmail}" Placeholder="Enter Personale Email" PlaceholderColor="Black"/>
-                    <Entry Text="{Binding NewDepartment}" Placeholder="Enter Facilities or Telecomunication" PlaceholderColor="Black"/>
-                    <Button Command="{Binding AddNewFacilitiesTelecomCommand}" Text="Add Personale" />
+                    <Entry Text="{Binding NewFacilitiesTelecomKnID}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Personale KNID"/>
+
+                    <Entry Text="{Binding NewFacilitiesTelecomName}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Personale Name"/>
+
+                    <Entry Text="{Binding NewFacilitiesTelecomPhoneNumber}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Personale Phone Number"/>
+
+                    <Entry Text="{Binding NewFacilitiesTelecomAlternatePhoneNumber}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Personale Alternat Phone Number"/>
+
+                    <Entry Text="{Binding NewFacilitiesTelecomEmail}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Personale Email" />
+
+                    <Entry Text="{Binding NewDepartment}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Facilities or Telecomunication" />
+
+                    <Button Command="{Binding AddNewFacilitiesTelecomCommand}" FontSize="20" 
+                     FontFamily="Times" FontAttributes="Bold" Text="Add Personale" />
 
                 </VerticalStackLayout>
 
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Entry  Text="{Binding RemoveFacilitiesTelecom}" Placeholder="Enter Personale KNID" PlaceholderColor="Black"/>
-                    <Button Command="{Binding DeleteFacilitiesTelecomCommand}" Text="Delete Personale"/>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Entry  Text="{Binding RemoveFacilitiesTelecom}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Personale KNID" />
+
+                    <Button Command="{Binding DeleteFacilitiesTelecomCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Text="Delete Personale"/>
+                    
                 </VerticalStackLayout>
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
-                    <Button Command="{Binding GetAllFacilitiesTelecomCommand}" Text="Get All Personale" Grid.Row="3"/>
+                
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Button Command="{Binding GetAllFacilitiesTelecomCommand}" FontSize="20" 
+                     FontFamily="Times" FontAttributes="Bold" Text="Get All Personale"/>
+                    
                 </VerticalStackLayout>
 
             </HorizontalStackLayout>
 
-            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="10">
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+             Padding="10">
 
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
-                BackgroundColor="SandyBrown">
-                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
-                        <Label Text="{Binding NewFacilitiesTelecomStatusMessage}" TextColor="Black" FontSize="16" FontFamily="Times" 
-                         VerticalOptions="Center" HorizontalOptions="Center"></Label>
-                        <Label Text="{Binding RemoveFacilitiesTelecomStatusMessage}" TextColor="Black" FontSize="16" 
-                        FontFamily="Times" VerticalOptions="Center" HorizontalOptions="Center"></Label>
-                    </HorizontalStackLayout>
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
+                 BorderColor="SandyBrown">
+                    
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
+
+                        <Label Text="{Binding NewFacilitiesTelecomStatusMessage}" TextColor="Black" 
+                         FontSize="20" FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         HorizontalOptions="Center" WidthRequest="200"></Label>
+
+                        <Label Text="{Binding RemoveFacilitiesTelecomStatusMessage}" TextColor="Black" 
+                         FontSize="20" FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         HorizontalOptions="Center" WidthRequest="200"></Label>
+                        
+                    </VerticalStackLayout>
+                    
                 </Frame>
 
-                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" BorderColor="SandyBrown" 
-                 BackgroundColor="SandyBrown">
-                    <ListView ItemsSource="{Binding FacilitiesTelecomList}" VerticalOptions="Center" HorizontalOptions="Center" 
-                     WidthRequest="300" HeightRequest="100" VerticalScrollBarVisibility="Always" ></ListView>
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
+                 BorderColor="SandyBrown">
+                    
+                    <ListView ItemsSource="{Binding FacilitiesTelecomList}" VerticalOptions="Center" 
+                     HorizontalOptions="Center" WidthRequest="300" HeightRequest="100" 
+                     VerticalScrollBarVisibility="Always">
+
+                        <ListView.Header>
+                            <Label HorizontalOptions="Center" TextColor="Black" FontSize="20" 
+                             FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                             Margin="10,0,0,0" Text="Facilities And Telecom Personale List">
+                            </Label>
+                        </ListView.Header>
+
+                    </ListView>
+                    
                 </Frame>
 
             </HorizontalStackLayout>
 
-            <Label Text="----------FACILITIES AND TELECOM END----------" TextColor="Black" Padding="10" 
-            FontSize="20" FontFamily="Times" HorizontalOptions="Center"></Label>
-
-
+            <Label Text="----------FACILITIES AND TELECOM END----------" FontSize="20" FontFamily="Times" 
+             FontAttributes="Bold" Padding="10" HorizontalOptions="Center"></Label>
 
         </VerticalStackLayout>
 

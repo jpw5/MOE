@@ -81,24 +81,33 @@ public partial class ZfoPage : ContentPage
         StartDate = selectStartDate.Text;
         EndDate = selectEndDate.Text;
 
-        string To = "ali.shakoor2249@gmail.com";
-        string Subject = "SunWatch ZFO Alert - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
+        try
+        {
+            string To = "ali.shakoor2249@gmail.com";
+            string Subject = "SunWatch ZFO Alert - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
 
-        string Body = "<font size=5>" + "<b>" + "****SunWatch ZFO Alert****" + "</b>" + "</font>" + "<br>" + "<br>" +
-        "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Lane(s): " + "</b>" + Lane + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Requestor: " + "</b>" + Requestor + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Reason: " + "</b>" + Reason + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Start Date/Time: " + "</b>" + StartDate + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "End Date/Time: " + "</b>" + EndDate + "</font>" + "<br>";
-        
-        mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
-        mail.To = To;
-        mail.Subject = Subject;
-        mail.HTMLBody = Body;
-        mail.Display();
-        mail = null;
-        Lane = null;
+            string Body = "<font size=5>" + "<b>" + "****SunWatch ZFO Alert****" + "</b>" + "</font>" + "<br>" + "<br>" +
+            "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Lane(s): " + "</b>" + Lane + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Requestor: " + "</b>" + Requestor + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Reason: " + "</b>" + Reason + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Start Date/Time: " + "</b>" + StartDate + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "End Date/Time: " + "</b>" + EndDate + "</font>" + "<br>";
+
+            mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
+            mail.To = To;
+            mail.Subject = Subject;
+            mail.HTMLBody = Body;
+            mail.Display();
+            mail = null;
+            Lane = null;
+        }
+
+        catch(Exception ex)
+        {
+            DisplayAlert("Alert", "Close MOE, make sure Outlook is running, and try again. " + ex.Message, "close");
+        }
+      
     }
     private void SelectRegion_SelectedIndexChanged(object sender, EventArgs e)
     {

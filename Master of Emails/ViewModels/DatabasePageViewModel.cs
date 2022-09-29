@@ -235,14 +235,12 @@ namespace Master_of_Emails.ViewModels;
                 {
                     RegionList.Add(region.Region_id.ToString() + " " + region.Region_name);
                 }
-
             }
 
             catch (Exception)
             {
                 RegionList.Add("No Data in database");
             }      
-           
         }
 
         [RelayCommand]

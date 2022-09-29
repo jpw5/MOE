@@ -103,28 +103,35 @@ public partial class PriorityOneMafPage : ContentPage
         MAFNumber= selectMafNumber.Text;
         Problem=selectProblem.Text;
         ActionTaken = selectActionTaken.Text;
+        try
+        {
+            
+            string To = "ali.shakoor2249@gmail.com";
+            string Subject = "Priority 1 - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
+            string Body = "<font size=5>" + "<b>" + "****SunWatch Priority 1 MAF****" + "</b>" + "</font>" + "<br>" + "<br>" +
+            "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Roadway: " + "</b>" + Roadway + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Lane: " + "</b>" + Lane + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Bomitem: " + "</b>" + Bomitem + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Problem: " + "</b>" + Problem + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Action Take: " + "</b>" + ActionTaken + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Technician: " + "</b>" + Technician + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Date/Time Contacted: " + "</b>" + Date + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "MAF#: " + "</b>" + MAFNumber + "</font>";
 
-        mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
-        string To = "ali.shakoor2249@gmail.com";
-        string Subject = "Priority 1 - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
+            mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
+            mail.To = To;
+            mail.Subject = Subject;
+            mail.HTMLBody = Body;
+            mail.Display();
+            mail = null;
+        }
 
-        string Body = "<font size=5>"+ "<b>"+"****SunWatch Priority 1 MAF****"+"</b>"+"</font>" + "<br>" + "<br>" +
-        "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>"+ "<br>" +
-        "<font size=4>" + "<b>" + "Roadway: "+ "</b>" + Roadway + "</font>"+ "<br>" +
-        "<font size=4>" + "<b>" + "Lane: "+ "</b>" + Lane + "</font>"+ "<br>" +
-        "<font size=4>" + "<b>" + "Bomitem: " + "</b>" +Bomitem + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Problem: " + "</b>" + Problem + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Action Take: " + "</b>" + ActionTaken + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Technician: " + "</b>" + Technician + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Date/Time Contacted: " + "</b>" + Date + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "MAF#: " + "</b>" + MAFNumber + "</font>";
-
-        mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
-        mail.To = To;
-        mail.Subject = Subject;
-        mail.HTMLBody = Body;
-        mail.Display();
-        mail = null;
+        catch(Exception ex)
+        {
+            DisplayAlert("Alert", "Close MOE, make sure Outlook is running, and try again. "+ ex.Message, "close");
+        }
+    
     }
 
     private void SelectRegion_SelectedIndexChanged(object sender, EventArgs e)

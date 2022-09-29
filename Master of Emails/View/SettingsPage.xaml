@@ -2,11 +2,34 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="practice.Pages.Settings"
+             xmlns:viewmodel="clr-namespace:Master_of_Emails.ViewModels"
+             x:DataType="viewmodel:SettingsPageViewModel"
              Title="Settings">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    
+
+        <ScrollView Orientation="Both" HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always">
+            
+            <Border HeightRequest="700" WidthRequest="700" Stroke="#C49B33" StrokeThickness="4" 
+        Background="white" Padding="16,8" HorizontalOptions="Center">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="40,0,0,40"></RoundRectangle>
+            </Border.StrokeShape>
+
+            <HorizontalStackLayout Spacing="250">
+
+                <ImageButton Command="{Binding LightThemeCommand}" Source="light_theme.png" VerticalOptions="Start" HorizontalOptions="Start" 
+             HeightRequest="200" WidthRequest="200" />
+
+                <ImageButton Command="{Binding DarkThemeCommand}" Source="dark_theme.png" VerticalOptions="Start" HorizontalOptions="End" 
+             HeightRequest="200" WidthRequest="200" />
+
+            </HorizontalStackLayout>
+                
+        </Border>
+
+        </ScrollView>
+        
+    
+
 </ContentPage>

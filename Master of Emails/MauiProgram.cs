@@ -17,7 +17,16 @@ public static class MauiProgram
 				fonts.AddFont("TimesNewRoman.otf", "Times");
 			});
 
-		builder.Services.AddSingleton<PriorityOneMafPage>();
+        builder.Services.AddSingleton<MainPage>();
+        builder.Services.AddSingleton<MainPageViewModel>();
+
+        builder.Services.AddSingleton<DatabasePage>();
+        builder.Services.AddSingleton<DatabasePageViewModel>();
+
+		builder.Services.AddSingleton<Settings>();
+		builder.Services.AddSingleton<SettingsPageViewModel>();
+
+        builder.Services.AddSingleton<PriorityOneMafPage>();
 		builder.Services.AddSingleton<PriorityOneMafPageViewModel>();
 
 		builder.Services.AddSingleton<InconAlertPage>();
@@ -34,12 +43,6 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<FiberAlertPage>();
         builder.Services.AddSingleton<FiberAlertPageViewModel>();
-
-        builder.Services.AddSingleton<DatabasePage>();
-		builder.Services.AddSingleton<DatabasePageViewModel>();
-
-		builder.Services.AddSingleton<MainPage>();
-		builder.Services.AddSingleton<MainPageViewModel>();
 
 		return builder.Build();
 	}

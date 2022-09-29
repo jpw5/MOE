@@ -111,25 +111,33 @@ public partial class InconAlertPage : ContentPage
         Duration = selectDuration.Text;
         Reason = selectReason.Text;
 
-        string To = "ali.shakoor2249@gmail.com";
-        string Subject = "InConAlert for Plaza - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
+        try
+        {
+            string To = "ali.shakoor2249@gmail.com";
+            string Subject = "InConAlert for Plaza - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
 
-        string Body = "<font size=5>" + "<b>" + "****SunWatch InConAlert****" + "</b>" + "</font>" + "<br>" + "<br>" +
-        "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Roadway: " + "</b>" + Roadway + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Lane: " + "</b>" + Lane + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Date/Time Contacted: " + "</b>" + Date + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Requestor: " + "</b>" + Requestor + " / " + RequestorPhoneNumber + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Duration of Work: " + "</b>" + Duration + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Reason: " + "</b>" + Reason + "</font>" + "<br>";
+            string Body = "<font size=5>" + "<b>" + "****SunWatch InConAlert****" + "</b>" + "</font>" + "<br>" + "<br>" +
+            "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Roadway: " + "</b>" + Roadway + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Lane: " + "</b>" + Lane + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Date/Time Contacted: " + "</b>" + Date + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Requestor: " + "</b>" + Requestor + " / " + RequestorPhoneNumber + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Duration of Work: " + "</b>" + Duration + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Reason: " + "</b>" + Reason + "</font>" + "<br>";
 
-        mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
-        mail.To = To;
-        mail.Subject = Subject;
-        mail.HTMLBody = Body;
-        mail.Display();
-        mail = null;
-        Lane = null;
+            mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
+            mail.To = To;
+            mail.Subject = Subject;
+            mail.HTMLBody = Body;
+            mail.Display();
+            mail = null;
+            Lane = null;
+        }
+     
+        catch(Exception ex)
+        {
+            DisplayAlert("Alert", "Close MOE, make sure Outlook is running, and try again. " + ex.Message, "close");
+        }
     }
     private void SelectRegion_SelectedIndexChanged(object sender, EventArgs e)
     {

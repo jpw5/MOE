@@ -99,27 +99,36 @@ public partial class ScadaPage : ContentPage
         Date = selectDate.Text;
         Temperature = selectTemperature.Text;
         FacilitiesContact = selectContact.Text;
-        
 
-        string To = "ali.shakoor2249@gmail.com";
-        string Subject = "SCADA Alarm - " + Plaza.ToUpper();
 
-        string Body = "<font size=5>" + "<b>" + "****SunWatch SCADA Alarm - "+ SelectedHours+"*****" + "</b>" + "</font>" + "<br>" + "<br>" +
-        "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Roadway: " + "</b>" + Roadway + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Building Number: " + "</b>" + BuildingNumber + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Alarm: " + "</b>" + Alarm + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Contact: " + "</b>" + FacilitiesContact + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Date/Time Contacted: " + "</b>" + Date + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Mile Post: " + "</b>" + MilePost + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Work Order #: " + "</b>" + WorkOrderNumber + "</font>" + "<br>";
+        try
+        {
+            string To = "ali.shakoor2249@gmail.com";
+            string Subject = "SCADA Alarm - " + Plaza.ToUpper();
 
-        mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
-        mail.To = To;
-        mail.Subject = Subject;
-        mail.HTMLBody = Body;
-        mail.Display();
-        mail = null;
+            string Body = "<font size=5>" + "<b>" + "****SunWatch SCADA Alarm - " + SelectedHours + "*****" + "</b>" + "</font>" + "<br>" + "<br>" +
+            "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Roadway: " + "</b>" + Roadway + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Building Number: " + "</b>" + BuildingNumber + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Alarm: " + "</b>" + Alarm + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Contact: " + "</b>" + FacilitiesContact + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Date/Time Contacted: " + "</b>" + Date + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Mile Post: " + "</b>" + MilePost + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Work Order #: " + "</b>" + WorkOrderNumber + "</font>" + "<br>";
+
+            mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
+            mail.To = To;
+            mail.Subject = Subject;
+            mail.HTMLBody = Body;
+            mail.Display();
+            mail = null;
+        }
+
+        catch(Exception ex)
+        {
+            DisplayAlert("Alert", "Close MOE, make sure Outlook is running, and try again. " + ex.Message, "close");
+        }
+      
 
     }
     private void SelectRegion_SelectedIndexChanged(object sender, EventArgs e)

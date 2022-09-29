@@ -83,26 +83,36 @@ public partial class FiberAlertPage : ContentPage
         StartDate = selectStartDate.Text;
         EndDate= selectEndDate.Text;
 
-        string To = "ali.shakoor2249@gmail.com";
-        string Subject = "SunWatch Fiber Alert";
+        try
+        {
+            string To = "ali.shakoor2249@gmail.com";
+            string Subject = "SunWatch Fiber Alert";
 
-        string Body = "<font size=5>" + "<b>" + "****SunWatch Fiber Alert****" + "</b>" + "</font>" + "<br>" + "<br>" +
-       "<font size=4>" + "<b>" + "Region: " + "</b>" + Region + "</font>" + "<br>" +
-       "<font size=4>" + "<b>" + "Mile Post: " + "</b>" + MilePost + "</font>" + "<br>" +
-       "<font size=4>" + "<b>" + "Affected Area: " + "</b>" + AffectedArea + "</font>" + "<br>" +
-       "<font size=4>" + "<b>" + "Who: " + "</b>" + Who + "</font>" + "<br>" +
-       "<font size=4>" + "<b>" + "Amount Cut: " + "</b>" + AmountCut + "</font>" + "<br>" +
-       "<font size=4>" + "<b>" + "Fiber Technician: " + "</b>" + FiberTechnician + "</font>" + "<br>" +
-       "<font size=4>" + "<b>" + "Reported By: " + "</b>" + ReportedBy + "</font>" + "<br>" +
-       "<font size=4>" + "<b>" + "Phone Number: " + "</b>" + PhoneNumber + "</font>" + "<br>" +
-       "<font size=4>" + "<b>" + "Start Date: " + "</b>" + StartDate + "</font>" + "<br>" +
-       "<font size=4>" + "<b>" + "End Date: " + "</b>" + EndDate + "</font>" + "<br>";
+            string Body = "<font size=5>" + "<b>" + "****SunWatch Fiber Alert****" + "</b>" + "</font>" + "<br>" + "<br>" +
+           "<font size=4>" + "<b>" + "Region: " + "</b>" + Region + "</font>" + "<br>" +
+           "<font size=4>" + "<b>" + "Mile Post: " + "</b>" + MilePost + "</font>" + "<br>" +
+           "<font size=4>" + "<b>" + "Affected Area: " + "</b>" + AffectedArea + "</font>" + "<br>" +
+           "<font size=4>" + "<b>" + "Who: " + "</b>" + Who + "</font>" + "<br>" +
+           "<font size=4>" + "<b>" + "Amount Cut: " + "</b>" + AmountCut + "</font>" + "<br>" +
+           "<font size=4>" + "<b>" + "Fiber Technician: " + "</b>" + FiberTechnician + "</font>" + "<br>" +
+           "<font size=4>" + "<b>" + "Reported By: " + "</b>" + ReportedBy + "</font>" + "<br>" +
+           "<font size=4>" + "<b>" + "Phone Number: " + "</b>" + PhoneNumber + "</font>" + "<br>" +
+           "<font size=4>" + "<b>" + "Start Date: " + "</b>" + StartDate + "</font>" + "<br>" +
+           "<font size=4>" + "<b>" + "End Date: " + "</b>" + EndDate + "</font>" + "<br>";
 
-        mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
-        mail.To = To;
-        mail.Subject = Subject;
-        mail.HTMLBody = Body;
-        mail.Display();
-        mail = null;
+            mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
+            mail.To = To;
+            mail.Subject = Subject;
+            mail.HTMLBody = Body;
+            mail.Display();
+            mail = null;
+        }
+
+        catch(Exception ex)
+        {
+            DisplayAlert("Alert", "Close MOE, make sure Outlook is running, and try again. " + ex.Message, "close");
+        }
+
+     
     }
 }

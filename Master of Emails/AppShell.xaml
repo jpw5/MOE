@@ -8,7 +8,7 @@
     Shell.FlyoutBehavior="Disabled" >
 
     <TabBar>
-        <ShellContent Title="Master Of Emails" Shell.TitleColor="Gold" ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" />
+        <ShellContent Title="Master Of Emails" ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" />
         <ShellContent Title="Database" ContentTemplate="{DataTemplate pages:DatabasePage}" Route="DatabasePage" />
         <ShellContent Title="Settings" ContentTemplate="{DataTemplate pages:Settings}" Route="Settings" />
         <ShellContent Title="On-Call Schedule" ContentTemplate="{DataTemplate pages:OnCallPage}" Route="OnCallPage" />
