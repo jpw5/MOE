@@ -14,5 +14,6 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(nameof(DuressAlarmPage), typeof(DuressAlarmPage));
         Routing.RegisterRoute(nameof(ScadaPage), typeof(ScadaPage));
         Routing.RegisterRoute(nameof(FiberAlertPage), typeof(FiberAlertPage));
+        Routing.RegisterRoute(nameof(Settings), typeof(Settings));
     }
 }

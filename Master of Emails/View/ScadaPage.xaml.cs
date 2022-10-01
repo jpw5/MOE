@@ -31,7 +31,9 @@ public partial class ScadaPage : ContentPage
     public string WorkOrderNumber;
     public string Temperature;
     public string FacilitiesContact;
-    
+    public string FacilitiesContactPhone;
+
+
     public ScadaPage(ScadaPageViewModel scadaPageViewModel)
 	{
 		InitializeComponent();
@@ -99,11 +101,13 @@ public partial class ScadaPage : ContentPage
         Date = selectDate.Text;
         Temperature = selectTemperature.Text;
         FacilitiesContact = selectContact.Text;
+        FacilitiesContactPhone = selectPhoneNumber.Text;
 
 
         try
         {
-            string To = "ali.shakoor2249@gmail.com";
+            string To = "TPKWODESK";
+            string CC = "TPKSUNWATCHGROUP; TPKScadaAlarmGroup; TPKTMCOPERATOR";
             string Subject = "SCADA Alarm - " + Plaza.ToUpper();
 
             string Body = "<font size=5>" + "<b>" + "****SunWatch SCADA Alarm - " + SelectedHours + "*****" + "</b>" + "</font>" + "<br>" + "<br>" +
@@ -111,13 +115,14 @@ public partial class ScadaPage : ContentPage
             "<font size=4>" + "<b>" + "Roadway: " + "</b>" + Roadway + "</font>" + "<br>" +
             "<font size=4>" + "<b>" + "Building Number: " + "</b>" + BuildingNumber + "</font>" + "<br>" +
             "<font size=4>" + "<b>" + "Alarm: " + "</b>" + Alarm + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Contact: " + "</b>" + FacilitiesContact + "</font>" + "<br>" +
+            "<font size=4>" + "<b>" + "Contact: " + "</b>" + FacilitiesContact+ " / " + FacilitiesContactPhone + "</font>" + "<br>" +
             "<font size=4>" + "<b>" + "Date/Time Contacted: " + "</b>" + Date + "</font>" + "<br>" +
             "<font size=4>" + "<b>" + "Mile Post: " + "</b>" + MilePost + "</font>" + "<br>" +
             "<font size=4>" + "<b>" + "Work Order #: " + "</b>" + WorkOrderNumber + "</font>" + "<br>";
 
             mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
             mail.To = To;
+            mail.CC = CC;
             mail.Subject = Subject;
             mail.HTMLBody = Body;
             mail.Display();

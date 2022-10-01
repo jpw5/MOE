@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Master_of_Emails.Table_Repositories;
 using Master_of_Emails.Tables;
@@ -20,20 +21,14 @@ public partial class MainPageViewModel: ObservableObject
     public TableQuery<TollPlaza> TollPlazaQuery;
 
     [ObservableProperty]
-    public string plazaSearch;
-    [ObservableProperty]
-    public string plazaPhoneResult="Phone: ";
-    [ObservableProperty]
-    public string plazaNameResult="Name: ";
-
-    [ObservableProperty]
     public string personaleSearch;
     [ObservableProperty]
-    public string personalePhoneResult = "Phone: ";
+    public string personaleSearchResult = "Search Result Area";
+
     [ObservableProperty]
-    public string personaleEmailResult = "Email: ";
+    public string plazaSearch;
     [ObservableProperty]
-    public string departmentResult = "Department: ";
+    public string plazaSearchResult="Search Result Area";
 
     public MainPageViewModel()
     {
@@ -43,11 +38,10 @@ public partial class MainPageViewModel: ObservableObject
     [RelayCommand]
     public async void ReturnPersonale()
     {
-        List<string> PhoneNumber = new();
-        List<string> Email=new();
-        List<string> Region = new();
         List<string> FullName = new();
-        List<string> Department = new();
+        PersonaleSearchResult = "";
+        int PersonaleSearchResultAmount = 0;
+
         try
         {
             TollTechnicianQuery = TollTechnicianRepo.QueryTechnicianByName(PersonaleSearch);
@@ -55,51 +49,45 @@ public partial class MainPageViewModel: ObservableObject
 
             if(TollTechnicianQuery.Any())
             {
-                PhoneNumber.Clear();
-                Email.Clear();
                 FullName.Clear();
-                Region.Clear();
                 foreach (TollTechnician personale in TollTechnicianQuery)
                 {
-                    PhoneNumber.Add(personale.Technician_phone_number);
-                    Email.Add(personale.Technician_email);
-                    FullName.Add(personale.Technician_name);
-                    Region.Add(personale.Technician_region);
-                    PersonalePhoneResult = "Phone: " + PhoneNumber[0];
-                    PersonaleEmailResult = "Email: " + Email[0];
-                    DepartmentResult = "Department: " + Region[0] + " Technician";
-                    PersonaleSearch = FullName[0];                    
+                    PersonaleSearchResult+=(
+                    "Name: "+personale.Technician_name+" \n"+
+                    "Phone: " + personale.Technician_phone_number + " \n" +
+                    "Email: " + personale.Technician_email + " \n" + 
+                    "Dpeartment: " + personale.Technician_region +" Technician \n\n");
+                    PersonaleSearchResultAmount++;
+                    PersonaleSearch = PersonaleSearchResultAmount+" Record(s) Found.";
                 }
             }
-            else if(TollFacilitiesTelecomQuery.Any())
-            {
-                PhoneNumber.Clear();
-                Email.Clear();
-                FullName.Clear();
-                Department.Clear();
 
+            if(TollFacilitiesTelecomQuery.Any())
+            {
                 foreach(TollFacilitiesTelecom personale in TollFacilitiesTelecomQuery)
                 {
-                    PhoneNumber.Add(personale.Facilities_telecom_phone_number+" | Alternate: "+personale.Facilities_telecom_alerternate_number);
-                    Email.Add(personale.Facilities_telecom_email);
-                    FullName.Add(personale.Facilities_telecom_name);
-                    Department.Add(personale.Department);
-                    PersonalePhoneResult = "Phone: " + PhoneNumber[0];
-                    PersonaleEmailResult = "Email: " + Email[0];
-                    DepartmentResult = "Department: " + Department[0];
-                    PersonaleSearch = FullName[0]; 
+                    
+                    PersonaleSearchResult+= (
+                    "Name: " + personale.Facilities_telecom_name + " \n" +
+                    "Phone: " + personale.Facilities_telecom_phone_number + " \n" +
+                    "Alternate Phone: " + personale.Facilities_telecom_alerternate_number + " \n" +
+                    "Email: " + personale.Facilities_telecom_email + " \n" +
+                    "Dpeartment: " + personale.Department + " \n");
+
+                    PersonaleSearchResultAmount++;
+                    PersonaleSearch = PersonaleSearchResultAmount + " Record(s) Found.";
                 }
             }
-            else
+            if(!TollTechnicianQuery.Any() && !TollFacilitiesTelecomQuery.Any())
             {
-                PersonaleSearch = "Search invalid or nonexistant.";
+                PersonaleSearch = "No Record Found.";
                 await Task.Delay(2000);
                 PersonaleSearch = "";
             }
         }
         catch (Exception)
         {
-                PersonaleSearch = "Search invalid or nonexistant.";
+                PersonaleSearch = ".";
                 await Task.Delay(2000);
                 PersonaleSearch = "";
         }
@@ -108,6 +96,7 @@ public partial class MainPageViewModel: ObservableObject
     [RelayCommand]
     public async void ReturnPlaza()
     {
+        
         try
         {
             TollPlazaQuery = TollPlazaRepo.QueryByPlazaId(Int32.Parse(PlazaSearch));
@@ -116,20 +105,24 @@ public partial class MainPageViewModel: ObservableObject
             {
                 foreach (TollPlaza plaza in TollPlazaQuery)
                 {
-                    PlazaPhoneResult = "Phone: " + plaza.Plaza_phone_number;
-                    PlazaNameResult = "Plaza: " + plaza.Plaza_name + " " + plaza.Plaza_roadway + " Mile Post " + plaza.Plaza_milepost + " " + plaza.Plaza_region;
+                    PlazaSearchResult=(
+                    "Plaza: " + plaza.Plaza_name + " \n" +
+                    "Roadway: " + plaza.Plaza_roadway + " \n" +
+                    "Mile Post: " + plaza.Plaza_milepost + " \n" +
+                    "Phone Number: " + plaza.Plaza_phone_number + " \n" +
+                    "Region: " + plaza.Plaza_region + " \n");
                 }
             }
             else
             {
-                PlazaSearch = "Search invalid or nonexistant.";
+                PlazaSearch = "No Record Found.";
                 await Task.Delay(2000);
                 PlazaSearch = "";
             }
         }
         catch (Exception)
         {
-            PlazaSearch = "Search invalid or nonexistant.";
+            PlazaSearch = "No Record Found.";
             await Task.Delay(2000);
             PlazaSearch = "";
         }
@@ -139,17 +132,15 @@ public partial class MainPageViewModel: ObservableObject
     public void ClearPersonaleSearch()
     {
         PersonaleSearch = "";
-        PersonalePhoneResult = "Phone: ";
-        PersonaleEmailResult = "Name: ";
-        DepartmentResult = "Department: ";
+        PersonaleSearchResult = "Search Result Area";
+        
     }
 
     [RelayCommand]
     public void ClearPlazaSearch()
     {
         PlazaSearch = "";
-        PlazaPhoneResult = "Phone: ";
-        PlazaNameResult = "Name: ";
+        PlazaSearchResult = "Search Result Area";
     }
 
     [RelayCommand]

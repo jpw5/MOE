@@ -91,6 +91,9 @@
                      FontAttributes="Bold" FontFamily="Times" TextColor="Black" 
                      PlaceholderColor="Black"></Entry>
 
+                    <Label VerticalOptions="Center" TextColor="Black" Text="Enter Temperature" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="Times"></Label>
+
                     <Entry Text="{Binding Temperature}" x:Name="selectTemperature" 
                      HorizontalTextAlignment="Start" VerticalTextAlignment="Start" 
                      Placeholder="Enter Temperature" FontSize="16" FontAttributes="Bold" FontFamily="Times" 

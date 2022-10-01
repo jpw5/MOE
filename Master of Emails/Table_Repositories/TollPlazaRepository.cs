@@ -51,7 +51,7 @@ namespace Master_of_Emails.Table_Repositories
          public TableQuery<TollPlaza> QueryByPlazaId(int Plaza_Id)
         {
             Init();
-            return DatabaseConnection.Table<TollPlaza>().Where(value => value.Plaza_id.Equals(Plaza_Id));
+            return DatabaseConnection.Table<TollPlaza>().Where(value => value.Plaza_id.Equals(Plaza_Id) );
         }
 
         public TableQuery<TollPlaza> QueryByRegionName(string Region)

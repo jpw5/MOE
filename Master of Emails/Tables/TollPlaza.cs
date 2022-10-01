@@ -11,21 +11,17 @@ namespace Master_of_Emails.Tables
     [Table("plaza")]
     public class TollPlaza
     {
-        [PrimaryKey, Unique]
+        [PrimaryKey, Unique, NotNull]
         public int Plaza_id { get; set; }
-
-        [MaxLength(250), Unique]
+        [MaxLength(250), Unique, NotNull]
         public string Plaza_name { get; set; }
-
-        [MaxLength(250)]
+        [MaxLength(250), NotNull]
         public string Plaza_roadway { get; set; }
-
+        [NotNull]
         public int Plaza_milepost { get; set; }
-
+        [NotNull]
         public string Plaza_phone_number{ get; set; }
-
+        [NotNull]
         public string Plaza_region { get; set; }
-
-
     }
 }

@@ -37,6 +37,9 @@ public partial class PriorityOneMafPage : ContentPage
     public string MAFNumber;
     public string Date;
 
+    public string To;
+    public string CC;
+
     public PriorityOneMafPage(PriorityOneMafPageViewModel priorityOneMafPageViewModel)
     {
         InitializeComponent();
@@ -87,6 +90,7 @@ public partial class PriorityOneMafPage : ContentPage
             return;
         }
 
+       
         Plaza = selectPlaza.SelectedItem.ToString();
         var Split = Plaza.Split(" ", 2);
         PlazaId = Int32.Parse(Split[0]);
@@ -96,6 +100,7 @@ public partial class PriorityOneMafPage : ContentPage
             Roadway = plaza.Plaza_roadway;
         }
 
+        Region = selectRegion.SelectedItem.ToString();
         Lane=selectLane.SelectedItem.ToString();
         Bomitem = selectBomitem.SelectedItem.ToString();
         Technician = selectTechnician.SelectedItem.ToString();
@@ -103,9 +108,15 @@ public partial class PriorityOneMafPage : ContentPage
         MAFNumber= selectMafNumber.Text;
         Problem=selectProblem.Text;
         ActionTaken = selectActionTaken.Text;
+
+        if (Region == "Broward")
+        {
+            To = "TPKTOLLSFSBROWARD";
+            CC = "Mason, Gary; TPKSUNWATCHGROUP; TPKSLAMNotify";
+        }
+
         try
         {
-            
             string To = "ali.shakoor2249@gmail.com";
             string Subject = "Priority 1 - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
             string Body = "<font size=5>" + "<b>" + "****SunWatch Priority 1 MAF****" + "</b>" + "</font>" + "<br>" + "<br>" +

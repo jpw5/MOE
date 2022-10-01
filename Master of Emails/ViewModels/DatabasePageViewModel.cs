@@ -113,22 +113,8 @@ namespace Master_of_Emails.ViewModels;
         [ObservableProperty]
         public ObservableCollection<string> duressReasonList;
 
-        public TollScadaAlarmRepository TollScadaAlarmRepo = new();
-        public List<TollScadaAlarm> TollScadaAlarm = new();
-        [ObservableProperty]
-        public string newScadaAlarm;
-        [ObservableProperty]
-        public string newScadaAlarmStatusMessage;
-        [ObservableProperty]
-        public string removeScadaAlarm;
-        [ObservableProperty]
-        public string removeScadaAlarmStatusMessage;
-        [ObservableProperty]
-        public ObservableCollection<string> scadaAlarmList;
-
         public TollFacilitiesTelecomRepository TollFacilitiesTelecomRepo = new();
         public List<TollFacilitiesTelecom> TollFacilitiesTelecom = new();
-
         [ObservableProperty]
         public string newFacilitiesTelecomKnID;
         [ObservableProperty]
@@ -140,15 +126,32 @@ namespace Master_of_Emails.ViewModels;
         [ObservableProperty]
         public string newFacilitiesTelecomEmail;
         [ObservableProperty]
-        public string newFacilitiesTelecomStatusMessage;
-        [ObservableProperty]
         public string newDepartment;
+        [ObservableProperty]
+        public string newFacilitiesTelecomStatusMessage;
         [ObservableProperty]
         public string removeFacilitiesTelecom;
         [ObservableProperty]
         public string removeFacilitiesTelecomStatusMessage;
         [ObservableProperty]
         public ObservableCollection<string> facilitiesTelecomList;
+
+        public TollOrganizationRepository TollOrganizationRepo = new();
+        public List<TollOrganization> TollOrganization = new();
+        [ObservableProperty]
+        public string newOrganizationName;
+        [ObservableProperty]
+        public string newOrganizationPhoneNumber;
+        [ObservableProperty]
+        public string newOrganizationEmail;
+        [ObservableProperty]
+        public string newOrganizationStatusMessage;
+        [ObservableProperty]
+        public string removeOrganization;
+        [ObservableProperty]
+        public string removeOrganizationStatusMessage;
+        [ObservableProperty]
+        public ObservableCollection<string> organizationList;
 
     public DatabasePageViewModel()
         {
@@ -158,8 +161,8 @@ namespace Master_of_Emails.ViewModels;
             TechnicianList = new ObservableCollection<string>();
             BomitemList = new ObservableCollection<string>();
             DuressReasonList = new ObservableCollection<string>();
-            ScadaAlarmList = new ObservableCollection<string>();
             FacilitiesTelecomList = new ObservableCollection<string>();
+            OrganizationList= new ObservableCollection<string>();
 
         if (DB.DatabaseConnection == null)
                 DB.DatabaseInit();
@@ -168,15 +171,6 @@ namespace Master_of_Emails.ViewModels;
         [RelayCommand]
         async void AddNewRegion()
             {
-
-            if (string.IsNullOrWhiteSpace(NewRegion))
-               {
-                    NewRegionStatusMessage = "Error: Please enter a valid name."+NewRegion;
-                    await Task.Delay(2000);
-                    NewRegionStatusMessage = "";
-                    return;
-                 }
-                  
             try
                  {
                     TollRegionRepo.AddRegion(NewRegion);
@@ -186,9 +180,9 @@ namespace Master_of_Emails.ViewModels;
                     NewRegionStatusMessage = "";
                   }
 
-            catch (Exception)
+            catch (Exception ex)
                   {
-                    NewRegionStatusMessage = "Error: Failed to add region.";
+                    NewRegionStatusMessage = "Error: Failed to add region. "+ex.Message;
                     await Task.Delay(2000);
                     NewRegionStatusMessage = "";
                   }
@@ -198,14 +192,6 @@ namespace Master_of_Emails.ViewModels;
         [RelayCommand]
         async void DeleteRegion()
         {
-        if (string.IsNullOrWhiteSpace(RemoveRegion))
-            {
-            RemoveRegionStatusMessage = "Error: Please enter a valid Region ID number.";
-            await Task.Delay(2000);
-            RemoveRegionStatusMessage = "";
-            return;
-            }
-
         try
             {
             TollRegionRepo.DeleteRegion(Int32.Parse(RemoveRegion));
@@ -215,10 +201,10 @@ namespace Master_of_Emails.ViewModels;
             RemoveRegionStatusMessage = "";
         }
 
-        catch (Exception)
+        catch (Exception ex)
 
             {
-            RemoveRegionStatusMessage = "Error: Failed to delete.";
+            RemoveRegionStatusMessage = "Error: Failed to delete. "+ex.Message;
             await Task.Delay(2000);
             RemoveRegionStatusMessage = "";
             }
@@ -233,13 +219,17 @@ namespace Master_of_Emails.ViewModels;
                 TollRegion = TollRegionRepo.GetRegions();
                 foreach (TollRegion region in TollRegion)
                 {
-                    RegionList.Add(region.Region_id.ToString() + " " + region.Region_name);
+                    RegionList.Add
+                        (
+                        region.Region_id.ToString() + " " + 
+                        region.Region_name
+                        );
                 }
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                RegionList.Add("No Data in database");
+                RegionList.Add("No Data in database. "+ex.Message);
             }      
         }
 
@@ -248,7 +238,16 @@ namespace Master_of_Emails.ViewModels;
         {
             try
             {
-            TollPlazaRepo.AddPlaza(Int32.Parse(NewPlazaId), NewPlazaName, NewPlazaRoadway, Int32.Parse(NewPlazaMilepost), NewPlazaRegionName, NewPlazaPhoneNumber);
+
+                TollPlazaRepo.AddPlaza
+                (
+                Int32.Parse(NewPlazaId), 
+                NewPlazaName, NewPlazaRoadway, 
+                Int32.Parse(NewPlazaMilepost), 
+                NewPlazaRegionName, 
+                NewPlazaPhoneNumber
+                );
+
             NewPlazaId = "";
             NewPlazaName= "";
             NewPlazaRoadway = "";
@@ -260,9 +259,9 @@ namespace Master_of_Emails.ViewModels;
             NewPlazaStatusMessage = "";
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                NewPlazaStatusMessage = "Error: Please enter valid inputs.";
+                NewPlazaStatusMessage = "Error: Please enter valid inputs. "+ex.Message;
                 await Task.Delay(2000);
                 NewPlazaStatusMessage = "";
             }
@@ -280,9 +279,9 @@ namespace Master_of_Emails.ViewModels;
                 await Task.Delay(2000);
                 RemovePlazaStatusMessage = "";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                RemovePlazaStatusMessage = "Error: Enter a valid plaza ID.";
+                RemovePlazaStatusMessage = "Error: Enter a valid plaza ID. "+ex.Message;
                 await Task.Delay(2000);
                 RemovePlazaStatusMessage = "";
 
@@ -298,14 +297,19 @@ namespace Master_of_Emails.ViewModels;
             TollPlaza = TollPlazaRepo.GetPlazas();
             foreach (TollPlaza plaza in TollPlaza)
             {
-              PlazaList.Add(plaza.Plaza_id.ToString() + " " + plaza.Plaza_name + " " + plaza.Plaza_roadway + " MP:" + plaza.Plaza_milepost + " " + plaza.Plaza_region);
+              PlazaList.Add
+                    (
+                    plaza.Plaza_id.ToString() + " " + 
+                    plaza.Plaza_name + " " + 
+                    plaza.Plaza_roadway + " MP:" + 
+                    plaza.Plaza_milepost + " " + 
+                    plaza.Plaza_region
+                    );
             }
-
         }
-
-        catch
+        catch(Exception ex)
         {
-            PlazaList.Add("No Data in database");
+            PlazaList.Add("No Data in database. "+ex.Message);
         }
     }
 
@@ -314,7 +318,13 @@ namespace Master_of_Emails.ViewModels;
     {
         try
         {
-            TollLaneRepo.AddLane(Int32.Parse(NewLanePlazaId), Int32.Parse(NewLaneNumber), NewLaneType);
+            TollLaneRepo.AddLane
+                (
+                Int32.Parse(NewLanePlazaId), 
+                Int32.Parse(NewLaneNumber), 
+                NewLaneType
+                );
+
             NewLanePlazaId = "";
             NewLaneNumber = "";
             NewLaneType = "";
@@ -323,9 +333,9 @@ namespace Master_of_Emails.ViewModels;
             NewLaneStatusMessage = "";
         }
 
-        catch (Exception)
+        catch (Exception ex)
         {
-            NewLaneStatusMessage = "Error: Please enter valid inputs.";
+            NewLaneStatusMessage = "Error: Please enter valid inputs. "+ex.Message;
             await Task.Delay(2000);
             NewLaneStatusMessage = "";
         }
@@ -336,7 +346,6 @@ namespace Master_of_Emails.ViewModels;
     {
         try
         {
-            
             int id = Int32.Parse(RemoveLane);
             TollLaneRepo.DeleteLane(id);
             RemoveLane = "";
@@ -344,10 +353,10 @@ namespace Master_of_Emails.ViewModels;
             await Task.Delay(2000);
             RemoveLaneStatusMessage = "";
         }
-        catch (Exception)
+        catch (Exception ex)
 
         {
-            RemoveLaneStatusMessage = "Error: Please enter valid inputs.";
+            RemoveLaneStatusMessage = "Error: Please enter valid inputs. "+ex.Message;
             await Task.Delay(2000);
             RemoveLaneStatusMessage = "";
         }
@@ -361,28 +370,29 @@ namespace Master_of_Emails.ViewModels;
         foreach (TollLane lane in TollLane)
         {
 
-            LaneList.Add("Plaza "+lane.Plaza_id+" Lane "+lane.Lane_number.ToString() + " " + lane.Lane_Type);
+            LaneList.Add
+                (
+                "Plaza "+lane.Plaza_id + " Lane " +
+                lane.Lane_number.ToString() + " " + 
+                lane.Lane_Type
+                );
         }
     }
 
     [RelayCommand]
     async void AddNewTechnician()
     {
-        if (string.IsNullOrWhiteSpace(NewTechnicianKnId) | string.IsNullOrWhiteSpace(NewTechnicianName) |
-            string.IsNullOrWhiteSpace(NewTechnicianPhoneNumber) | string.IsNullOrWhiteSpace(NewTechnicianEmail) |
-            string.IsNullOrWhiteSpace(NewTechnicianRegion))
-        {
-            NewTechnicianStatusMessage = "Error: Please enter valid inputs.";
-            await Task.Delay(2000);
-            NewTechnicianStatusMessage = "";
-            return;
-        }
-           
         try
         {
             
-            TollTechnicianRepo.AddTechnician(NewTechnicianKnId, NewTechnicianName, NewTechnicianPhoneNumber, 
-            NewTechnicianEmail, NewTechnicianRegion);
+            TollTechnicianRepo.AddTechnician
+                (
+                NewTechnicianKnId, 
+                NewTechnicianName, 
+                NewTechnicianPhoneNumber, 
+                NewTechnicianEmail, 
+                NewTechnicianRegion
+                );
 
             NewTechnicianKnId = "";
             NewTechnicianName = "";
@@ -394,9 +404,9 @@ namespace Master_of_Emails.ViewModels;
             NewTechnicianStatusMessage = "";
         }
 
-        catch (Exception)
+        catch (Exception ex)
         {
-            NewTechnicianStatusMessage = "Error: Please enter valid inputs.";
+            NewTechnicianStatusMessage = "Error: Please enter valid inputs. "+ex.Message;
             await Task.Delay(2000);
             NewTechnicianStatusMessage = "";
         }
@@ -405,14 +415,6 @@ namespace Master_of_Emails.ViewModels;
     [RelayCommand]
     async void DeleteTechnician()
     {
-       if(RemoveTechnician==null)
-        {
-            RemoveTechnicianStatusMessage = "Error: Please enter valid inputs.";
-            await Task.Delay(2000);
-            RemoveTechnicianStatusMessage = "";
-            return;
-       }
-
         try
         {
             TollTechnicianRepo.DeleteTechnician(RemoveTechnician);
@@ -422,15 +424,12 @@ namespace Master_of_Emails.ViewModels;
             RemoveTechnicianStatusMessage = "";
         }
 
-        catch (Exception)
+        catch (Exception ex)
         {
-            RemoveTechnicianStatusMessage = "Error: Please enter valid inputs.";
+            RemoveTechnicianStatusMessage = "Error: Please enter valid inputs. "+ex.Message;
             await Task.Delay(2000);
             RemoveTechnicianStatusMessage = "";
         }
-        
-         
-        
     }
     [RelayCommand]
     private void GetAllTechnicians()
@@ -441,35 +440,30 @@ namespace Master_of_Emails.ViewModels;
             TollTechnician = TollTechnicianRepo.GetTechnician();
             foreach (TollTechnician technician in TollTechnician)
             {
-                TechnicianList.Add(technician.Technician_kn_id + " " + technician.Technician_name + " " + 
-                technician.Technician_region+" \n" + technician.Technician_phone_number + " " + 
-                technician.Technician_email);
+                TechnicianList.Add
+                    (
+                    technician.Technician_kn_id + " " + 
+                    technician.Technician_name + " " + 
+                    technician.Technician_region+" \n" + 
+                    technician.Technician_phone_number + " " + 
+                    technician.Technician_email
+                    );
 
                 TechnicianList.Add(" ");
             }
         }
 
-        catch(Exception)
+        catch(Exception ex)
         {
-            TechnicianList.Add("No Data Found");
+            TechnicianList.Add("No Data Found"+ex.Message);
         }
-      
     }
 
     [RelayCommand]
     async void AddNewBomitem()
     {
-        if (string.IsNullOrWhiteSpace(NewBomitemLaneType) | string.IsNullOrWhiteSpace(NewBomitemName))
-        {
-            NewBomitemStatusMessage = "Error: Please enter valid inputs.";
-            await Task.Delay(2000);
-            NewBomitemStatusMessage = "";
-            return;
-        }
-
         try
         {
-
             TollBomitemRepo.AddBomitem(NewBomitemLaneType, NewBomitemName);
             NewBomitemLaneType = "";
             NewBomitemName = "";
@@ -478,9 +472,9 @@ namespace Master_of_Emails.ViewModels;
             NewBomitemStatusMessage = "";
         }
 
-        catch(Exception)
+        catch(Exception ex)
         {
-            NewBomitemStatusMessage = "Error: Please enter valid inputs.";
+            NewBomitemStatusMessage = "Error: Please enter valid inputs. " +ex.Message;
             await Task.Delay(2000);
             NewBomitemStatusMessage = "";
         }
@@ -489,13 +483,6 @@ namespace Master_of_Emails.ViewModels;
     [RelayCommand]
     async void DeleteBomitem()
     {
-        if (string.IsNullOrWhiteSpace(RemoveBomitem))
-        {
-            RemoveBomitemStatusMessage = "Error: Please enter valid inputs.";
-            await Task.Delay(2000);
-            RemoveBomitemStatusMessage = "";
-            return ;
-        }
         try
         {
             TollBomitemRepo.DeleteBomitem(Int32.Parse(RemoveBomitem));
@@ -505,9 +492,9 @@ namespace Master_of_Emails.ViewModels;
             RemoveBomitemStatusMessage = "";
         }
 
-        catch (Exception)
+        catch (Exception ex)
         {
-            RemoveBomitemStatusMessage = "Error: Please enter valid inputs.";
+            RemoveBomitemStatusMessage = "Error: Please enter valid inputs. "+ex.Message;
             await Task.Delay(2000);
             RemoveBomitemStatusMessage = "";
         }
@@ -522,7 +509,11 @@ namespace Master_of_Emails.ViewModels;
             TollBomitem = TollBomitemRepo.GetBomitems();
             foreach (TollBomitem bomitem in TollBomitem)
             {
-                BomitemList.Add(bomitem.Bomitem_id + " " + bomitem.Bomitem_name);
+                BomitemList.Add
+                    (
+                    bomitem.Bomitem_id + " " + 
+                    bomitem.Bomitem_name
+                    );
             }
         }
 
@@ -535,14 +526,6 @@ namespace Master_of_Emails.ViewModels;
     [RelayCommand]
     async void AddNewDuressReason ()
     {
-        if (string.IsNullOrWhiteSpace(NewDuressReason))
-        {
-            NewDuressReasonStatusMessage = "Error: Please enter valid inputs.";
-            await Task.Delay(2000);
-            NewDuressReasonStatusMessage = "";
-            return;
-        }
-
         try
         {
             TollDuressReasonRepo.AddDuressReason(NewDuressReason);
@@ -553,9 +536,9 @@ namespace Master_of_Emails.ViewModels;
             NewDuressReasonStatusMessage = "";
         }
 
-        catch (Exception)
+        catch (Exception ex)
         {
-            NewDuressReasonStatusMessage = "Error: Please enter valid inputs.";
+            NewDuressReasonStatusMessage = "Error: Please enter valid inputs. "+ex.Message;
             await Task.Delay(2000);
             NewDuressReasonStatusMessage = "";
         }
@@ -597,7 +580,11 @@ namespace Master_of_Emails.ViewModels;
             TollDuressReason = TollDuressReasonRepo.GetDuressReasons();
             foreach (TollDuressReason duressreason in TollDuressReason)
             {
-                DuressReasonList.Add(duressreason.Duress_reason_id + " " + duressreason.Duress_reason_name);
+                DuressReasonList.Add
+                    (
+                    duressreason.Duress_reason_id + " " + 
+                    duressreason.Duress_reason_name
+                    );
             }
         }
 
@@ -608,97 +595,19 @@ namespace Master_of_Emails.ViewModels;
     }
 
     [RelayCommand]
-    async void AddNewScadaAlarm()
-    {
-        if (string.IsNullOrWhiteSpace(NewScadaAlarm))
-        {
-            NewScadaAlarmStatusMessage = "Error: Please enter valid inputs.";
-            await Task.Delay(2000);
-            NewScadaAlarmStatusMessage = "";
-            return;
-        }
-
-        try
-        {
-            TollScadaAlarmRepo.AddScadaAlarm(NewScadaAlarm);
-            NewScadaAlarm = "";
-            NewScadaAlarmStatusMessage = "Success: SCADA Alarm Added";
-            await Task.Delay(2000);
-            NewScadaAlarmStatusMessage = "";
-        }
-
-        catch (Exception)
-        {
-            NewScadaAlarmStatusMessage = "Error: Please enter valid inputs.";
-            await Task.Delay(2000);
-            NewScadaAlarmStatusMessage = "";
-        }
-
-    }
-
-    [RelayCommand]
-    async void DeleteScadaAlarm()
-    {
-        if (string.IsNullOrWhiteSpace(RemoveScadaAlarm))
-        {
-            RemoveScadaAlarmStatusMessage = "Error: Please enter valid inputs.";
-            await Task.Delay(2000);
-            RemoveScadaAlarmStatusMessage = "";
-            return;
-        }
-        try
-        {
-            TollScadaAlarmRepo.DeleteScadaAlarm(Int32.Parse(RemoveScadaAlarm));
-            RemoveScadaAlarm = "";
-            RemoveScadaAlarmStatusMessage = "Success: SCADA Alarm Deleted.";
-            await Task.Delay(2000);
-            RemoveScadaAlarmStatusMessage = "";
-        }
-
-        catch (Exception)
-        {
-            RemoveScadaAlarmStatusMessage = "Error: Please enter valid inputs.";
-            await Task.Delay(2000);
-            RemoveScadaAlarmStatusMessage = "";
-        }
-    }
-
-    [RelayCommand]
-    private void GetAllScadaAlarms()
-    {
-        ScadaAlarmList.Clear();
-        try
-        {
-            TollScadaAlarm = TollScadaAlarmRepo.GetScadaAlarms();
-            foreach (TollScadaAlarm scadaalarm in TollScadaAlarm)
-            {
-                ScadaAlarmList.Add(scadaalarm.Scada_alarm_id + " " + scadaalarm.Scada_alarm_name);
-            }
-        }
-
-        catch (Exception)
-        {
-            ScadaAlarmList.Add("No Data Found");
-        }
-    }
-
-    [RelayCommand]
     async void AddNewFacilitiesTelecom()
     {
-        if (string.IsNullOrWhiteSpace(NewFacilitiesTelecomKnID) | string.IsNullOrWhiteSpace(NewFacilitiesTelecomName)|
-            string.IsNullOrWhiteSpace(NewFacilitiesTelecomPhoneNumber) | string.IsNullOrWhiteSpace(NewFacilitiesTelecomAlternatePhoneNumber)| 
-            string.IsNullOrWhiteSpace(NewFacilitiesTelecomEmail))
-        {
-            NewFacilitiesTelecomStatusMessage = "Error: Please enter valid inputs.";
-            await Task.Delay(2000);
-            NewFacilitiesTelecomStatusMessage = "";
-            return;
-        }
-
         try
         {
-            TollFacilitiesTelecomRepo.AddFacilitiesTelecom(NewFacilitiesTelecomKnID, NewFacilitiesTelecomName, NewFacilitiesTelecomPhoneNumber,
-            NewFacilitiesTelecomAlternatePhoneNumber, NewFacilitiesTelecomEmail, NewDepartment);
+            TollFacilitiesTelecomRepo.AddFacilitiesTelecom
+               (
+               NewFacilitiesTelecomKnID, 
+               NewFacilitiesTelecomName, 
+               NewFacilitiesTelecomPhoneNumber,
+               NewFacilitiesTelecomAlternatePhoneNumber, 
+               NewFacilitiesTelecomEmail, 
+               NewDepartment
+               );
 
             NewFacilitiesTelecomStatusMessage = "Success: Personale Added";
             await Task.Delay(2000);
@@ -711,25 +620,18 @@ namespace Master_of_Emails.ViewModels;
             NewDepartment = "";
         }
 
-        catch (Exception)
+        catch (Exception ex)
         {
-            NewFacilitiesTelecomStatusMessage = "Error: Please enter valid inputs.";
+            NewFacilitiesTelecomStatusMessage = "Error: Please enter valid inputs. "+ex.Message;
             await Task.Delay(2000);
             NewFacilitiesTelecomStatusMessage = "";
         }
-
     }
 
     [RelayCommand]
     async void DeleteFacilitiesTelecom()
     {
-        if (string.IsNullOrWhiteSpace(RemoveFacilitiesTelecom))
-        {
-            RemoveFacilitiesTelecomStatusMessage = "Error: Please enter valid inputs.";
-            await Task.Delay(2000);
-            RemoveFacilitiesTelecomStatusMessage = "";
-            return;
-        }
+      
         try
         {
             TollFacilitiesTelecomRepo.DeleteFacilitiesTelecom(RemoveFacilitiesTelecom);
@@ -739,9 +641,9 @@ namespace Master_of_Emails.ViewModels;
             RemoveFacilitiesTelecomStatusMessage = "";
         }
 
-        catch (Exception)
+        catch (Exception ex)
         {
-            RemoveFacilitiesTelecomStatusMessage = "Error: Please enter valid inputs.";
+            RemoveFacilitiesTelecomStatusMessage = "Error: Please enter valid inputs. "+ex.Message;
             await Task.Delay(2000);
             RemoveFacilitiesTelecomStatusMessage = "";
         }
@@ -756,20 +658,96 @@ namespace Master_of_Emails.ViewModels;
             TollFacilitiesTelecom = TollFacilitiesTelecomRepo.GetFacilitiesTelecoms();
             foreach (TollFacilitiesTelecom facilitiestelecom in TollFacilitiesTelecom)
             {
-                FacilitiesTelecomList.Add(facilitiestelecom.Facilities_telecom_kn_id + " " 
-                + facilitiestelecom.Facilities_telecom_name + " "+facilitiestelecom.Facilities_telecom_phone_number
-                +" "+facilitiestelecom.Facilities_telecom_email);
+                FacilitiesTelecomList.Add
+                  (
+                  facilitiestelecom.Facilities_telecom_kn_id + " " + 
+                  facilitiestelecom.Facilities_telecom_name + " " +
+                  facilitiestelecom.Facilities_telecom_phone_number + " " + 
+                  facilitiestelecom.Facilities_telecom_email
+                  );
 
                 FacilitiesTelecomList.Add(" ");
             }
         }
 
-        catch (Exception)
+        catch (Exception ex)
         {
-            FacilitiesTelecomList.Add("No Data Found");
+            FacilitiesTelecomList.Add("No Data Found. "+ex.Message);
         }
     }
 
+    [RelayCommand]
+    async void AddNewOrganization()
+    {
+        try
+        {
+            TollOrganizationRepo.AddOrganization
+            (
+            NewOrganizationName, 
+            NewOrganizationPhoneNumber, 
+            NewOrganizationEmail 
+            );
+
+            NewOrganizationStatusMessage = "Success: Personale Added";
+            await Task.Delay(2000);
+            NewOrganizationStatusMessage = "";
+            NewOrganizationName = "";
+            NewOrganizationPhoneNumber = "";
+            NewOrganizationEmail = "";
+        }
+
+        catch (Exception ex)
+        {
+            NewOrganizationStatusMessage = "Error: Please enter valid inputs. "+ex.Message;
+            await Task.Delay(2000);
+            NewOrganizationStatusMessage = "";
+        }
+    }
+
+    [RelayCommand]
+    async void DeleteOrganization()
+    {
+        try
+        {
+            TollOrganizationRepo.DeleteOrgnization(Int32.Parse(RemoveOrganization));
+            RemoveOrganization = "";
+            RemoveOrganizationStatusMessage = "Success: Personale Deleted.";
+            await Task.Delay(2000);
+            RemoveOrganizationStatusMessage = "";
+        }
+
+        catch (Exception ex)
+        {
+            RemoveOrganizationStatusMessage = "Error: Please enter valid inputs. "+ex.Message;
+            await Task.Delay(2000);
+            RemoveOrganizationStatusMessage = "";
+        }
+    }
+
+    [RelayCommand]
+    private void GetAllOrganizations()
+    {
+        OrganizationList.Clear();
+        try
+        {
+            TollOrganization = TollOrganizationRepo.GetOrganizations();
+            foreach (TollOrganization organization in TollOrganization)
+            {
+                OrganizationList.Add
+                (
+                organization.Organization_id+ " "+
+                organization.Organization_name+" " +
+                organization.Organization_phone_number
+                );
+                OrganizationList.Add(" ");
+            }
+        }
+
+        catch (Exception ex)
+        {
+            OrganizationList.Add("No Data Found. "+ex.Message);
+        }
+    }
 
 }
 
