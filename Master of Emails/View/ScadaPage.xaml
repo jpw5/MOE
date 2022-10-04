@@ -23,25 +23,39 @@
 
                     <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" 
                      SelectedIndexChanged="SelectRegion_SelectedIndexChanged" x:Name="selectRegion" 
-                     WidthRequest="120" HorizontalOptions="Center" VerticalOptions="Center" FontSize="16" 
-                     FontAttributes="Bold" FontFamily="Times" Title="Select Region" TextColor="Black"></Picker>
+                     WidthRequest="120" FontSize="16" FontAttributes="Bold" FontFamily="Times" 
+                     Title="Select Region" TextColor="Black"></Picker>
 
                     <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" 
-                     x:Name="selectPlaza" WidthRequest="350" HorizontalOptions="Center" 
-                     VerticalOptions="Center" FontSize="16" FontAttributes="Bold" FontFamily="Times" 
-                     Title="Select Plaza"></Picker>
+                     x:Name="selectPlaza" WidthRequest="500" FontSize="16" FontAttributes="Bold" 
+                     FontFamily="Times" Title="Select Plaza"></Picker>
 
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
-                  <SearchBar Text="{Binding FacilitiesTelecomPersonaleName}" 
-                   SearchCommand="{Binding ReturnPersonaleCommand}" TextColor="Black" 
-                   IsTextPredictionEnabled="True" Placeholder="Personale Lookup" CancelButtonColor="Black" 
-                   VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="400"  FontSize="16" 
-                   FontAttributes="Bold" FontFamily="Times"></SearchBar>
+                    <SearchBar Text="{Binding FacilitiesTelecomPersonaleName}" 
+                    SearchCommand="{Binding ReturnPersonaleCommand}" TextColor="Black" 
+                    IsTextPredictionEnabled="True" Placeholder="Personale Lookup" CancelButtonColor="Black" 
+                    VerticalOptions="Center" WidthRequest="400"  FontSize="16" 
+                    FontAttributes="Bold" FontFamily="Times"></SearchBar>
 
-                </HorizontalStackLayout >
+                    <VerticalStackLayout>
+                        
+                        <RadioButton CheckedChanged="After_hours_CheckedChanged" x:Name="after_hours"  
+                        FontSize="16" FontAttributes="Bold" FontFamily="Times" TextColor="Black" 
+                        Content="After Hours" Value="After Hours"></RadioButton>
+
+                        <RadioButton CheckedChanged="Normal_hours_CheckedChanged" x:Name="normal_hours" 
+                        FontSize="16" FontAttributes="Bold" FontFamily="Times" TextColor="Black"         
+                        Content="Normal Hours" Value="Normal Hours"></RadioButton>
+                        
+                    </VerticalStackLayout>
+                    
+
+                </HorizontalStackLayout>
+
+               
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
@@ -51,13 +65,13 @@
                      FontSize="16" FontAttributes="Bold" FontFamily="Times" WidthRequest="200"></Entry>
 
                     <Entry Text="{Binding PhoneResult}" x:Name="selectPhoneNumber" 
-                     HorizontalTextAlignment="Start" VerticalTextAlignment="Start" 
-                     Placeholder="Enter Phone Number" FontSize="16" 
-                     FontAttributes="Bold" FontFamily="Times" TextColor="Black" PlaceholderColor="Black"></Entry>
+                     HorizontalTextAlignment="Start" VerticalTextAlignment="Start" FontSize="16"  
+                     FontAttributes="Bold" FontFamily="Times" TextColor="Black" 
+                     Placeholder="Enter Phone Number" PlaceholderColor="Black"></Entry>
 
                     <Entry Text="{Binding AlternatePhoneResult}" x:Name="selectAlternatePhoneNumber" 
                      HorizontalTextAlignment="Start" VerticalTextAlignment="Start" 
-                     Placeholder="Alternate Phone Number"  FontSize="16" FontAttributes="Bold" 
+                     Placeholder="Alternate Phone Number:"  FontSize="16" FontAttributes="Bold" 
                      FontFamily="Times" TextColor="Black" PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
@@ -70,9 +84,9 @@
                      TextColor="Black" PlaceholderColor="Black" ></Entry>
 
                     <Entry Text="{Binding BuildingNumber}" x:Name="selectBuildingNumber"
-                     HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Placeholder="Enter Building#"
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" TextColor="Black" 
-                     PlaceholderColor="Black"></Entry>
+                     HorizontalTextAlignment="Start" VerticalTextAlignment="Start"  FontSize="16" 
+                     FontAttributes="Bold" FontFamily="Times" Placeholder="Enter Building#" 
+                     TextColor="Black" PlaceholderColor="Black"></Entry>
 
                     <Entry Text="{Binding WorkOrderNumber}" x:Name="selectWorkOrderNumber" 
                      HorizontalTextAlignment="Start" VerticalTextAlignment="Start" 
@@ -96,22 +110,12 @@
 
                     <Entry Text="{Binding Temperature}" x:Name="selectTemperature" 
                      HorizontalTextAlignment="Start" VerticalTextAlignment="Start" 
-                     Placeholder="Enter Temperature" FontSize="16" FontAttributes="Bold" FontFamily="Times" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="Times" 
                      TextColor="Black" PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
 
-                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
-
-                    <RadioButton CheckedChanged="After_hours_CheckedChanged" x:Name="after_hours"  
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" TextColor="Black" 
-                     Content="After Hours" Value="After Hours"></RadioButton>
-                    
-                    <RadioButton CheckedChanged="Normal_hours_CheckedChanged" x:Name="normal_hours" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" TextColor="Black"         
-                     Content="Normal Hours" Value="Normal Hours"></RadioButton>
-                    
-                </HorizontalStackLayout>
+             
 
                 <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="End">
 

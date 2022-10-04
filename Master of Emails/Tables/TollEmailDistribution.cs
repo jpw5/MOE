@@ -12,8 +12,15 @@ namespace Master_of_Emails.Tables
     {
         [PrimaryKey, AutoIncrement]
         public int Email_distribution_id { get; set; }
-        public int Email_distribution_region { get; set; }
+        [NotNull]
+        public string Email_distribution_region { get; set; }
+        [NotNull]
+        public string Email_distribution_type { get; set; }
+        [NotNull]
+        public string Email_distribution_plaza_id { get; set; }
+        
         public string Email_distribution_to { get; set; }
+        
         public string Email_distribution_cc { get; set; }
     }
 }

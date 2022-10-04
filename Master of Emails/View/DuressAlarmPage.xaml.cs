@@ -14,11 +14,14 @@ public partial class DuressAlarmPage : ContentPage
 
     public TollPlazaRepository TollPlazaRepo = new();
     public TollLaneRepository TollLaneRepo = new();
-    
+    public TollEmailDistributionRepository TollEmailDistributionRepo = new();
+
     public TableQuery<TollLane> tollLanesQueryByPlazaId;
     public TableQuery<TollPlaza> tollPlazaQueryByRegionName;
     public TableQuery<TollPlaza> tollPlazaQueryByPlazaId;
-  
+    public TableQuery<TollEmailDistribution> tollEmailDistributionQueryByRegionAndEmailType;
+    public TableQuery<TollEmailDistribution> StandardDistributionDuress;
+
     public string Region;
     public int PlazaId;
 
@@ -29,6 +32,12 @@ public partial class DuressAlarmPage : ContentPage
     public string PlazaSupervisor;
     public string DuressReason;
     public string Date;
+
+    public string EmailType = "Duress";
+    public string To;
+    public string Cc;
+    public string Subject;
+    public string Body;
 
     public DuressAlarmPage(DuressAlarmPageViewModel duressAlarmPageViewModel)
 	{
@@ -74,32 +83,43 @@ public partial class DuressAlarmPage : ContentPage
         tollPlazaQueryByPlazaId = TollPlazaRepo.QueryByPlazaId(PlazaId);
         foreach (TollPlaza plaza in tollPlazaQueryByPlazaId)
         {
-            Plaza = plaza.Plaza_id.ToString() + " " + plaza.Plaza_name;
+            Plaza = plaza.Plaza_id + " " + plaza.Plaza_name;
             Roadway = plaza.Plaza_roadway;
         }
 
+        Region = selectRegion.SelectedItem.ToString();
         Lane = selectLane.SelectedItem.ToString();
         DuressReason=selectDuressReason.SelectedItem.ToString();
         Date = selectDate.Text;
         PlazaSupervisor= selectPlazaSupervisor.Text;
         DuressReason = selectDuressReason.SelectedItem.ToString();
 
+        StandardDistributionDuress =
+        TollEmailDistributionRepo.QueryByRegionEmailTypeAndPlazaId(Region, EmailType, PlazaId.ToString());
+
+        To = "";
+        Cc = "";
+        foreach (TollEmailDistribution emaildistributionDuress in StandardDistributionDuress)
+        {
+                To = emaildistributionDuress.Email_distribution_to;
+                Cc = emaildistributionDuress.Email_distribution_cc;  
+        }
+
+        string Subject = "Duress Alarm at " + Plaza.ToUpper() + " / " + Lane.ToUpper();
+        string Body = "<font size=5>" + "<b>" + "****SunWatch Duress Alarm****" + "</b>" + "</font>" + "<br>" + "<br>" +
+        "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Roadway: " + "</b>" + Roadway + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Lane(s): " + "</b>" + Lane + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Date/Time: " + "</b>" + Date + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Alarm: " + "</b>" + Alarm + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Supervisor: " + "</b>" + PlazaSupervisor + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Reason: " + "</b>" + DuressReason + "</font>" + "<br>";
+
         try
         {
-            string To = "ali.shakoor2249@gmail.com";
-            string Subject = "Duress Alarm at " + Plaza.ToUpper() + " / " + Lane.ToUpper();
-
-            string Body = "<font size=5>" + "<b>" + "****SunWatch Duress Alarm****" + "</b>" + "</font>" + "<br>" + "<br>" +
-            "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Roadway: " + "</b>" + Roadway + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Lane(s): " + "</b>" + Lane + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Date/Time: " + "</b>" + Date + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Alarm: " + "</b>" + Alarm + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Supervisor: " + "</b>" + PlazaSupervisor + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Reason: " + "</b>" + DuressReason + "</font>" + "<br>";
-
             mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
             mail.To = To;
+            mail.CC = Cc;
             mail.Subject = Subject;
             mail.HTMLBody = Body;
             mail.Display();

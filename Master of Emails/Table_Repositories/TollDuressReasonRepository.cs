@@ -12,7 +12,7 @@ namespace Master_of_Emails.Table_Repositories
     public class TollDuressReasonRepository
     {
         public DB DB;
-        public string StatusMessage;
+        
         public static SQLiteConnection DatabaseConnection { get; set; }
 
         public static void Init()

@@ -20,6 +20,10 @@ public partial class MainPageViewModel: ObservableObject
     public TollPlazaRepository TollPlazaRepo = new();
     public TableQuery<TollPlaza> TollPlazaQuery;
 
+    public TollOrganizationRepository TollOrgnizationRepo = new();
+    public TableQuery<TollOrganization> TollOrganizationQuery;
+    public List<TollOrganization> TollOrganization = new();
+
     [ObservableProperty]
     public string personaleSearch;
     [ObservableProperty]
@@ -30,6 +34,11 @@ public partial class MainPageViewModel: ObservableObject
     [ObservableProperty]
     public string plazaSearchResult="Search Result Area";
 
+    [ObservableProperty]
+    public string organizationSearch;
+    [ObservableProperty]
+    public string organizationSearchResult = "Search Result Area";
+
     public MainPageViewModel()
     {
         
@@ -38,7 +47,6 @@ public partial class MainPageViewModel: ObservableObject
     [RelayCommand]
     public async void ReturnPersonale()
     {
-        List<string> FullName = new();
         PersonaleSearchResult = "";
         int PersonaleSearchResultAmount = 0;
 
@@ -49,7 +57,7 @@ public partial class MainPageViewModel: ObservableObject
 
             if(TollTechnicianQuery.Any())
             {
-                FullName.Clear();
+                
                 foreach (TollTechnician personale in TollTechnicianQuery)
                 {
                     PersonaleSearchResult+=(
@@ -64,6 +72,7 @@ public partial class MainPageViewModel: ObservableObject
 
             if(TollFacilitiesTelecomQuery.Any())
             {
+
                 foreach(TollFacilitiesTelecom personale in TollFacilitiesTelecomQuery)
                 {
                     
@@ -72,7 +81,7 @@ public partial class MainPageViewModel: ObservableObject
                     "Phone: " + personale.Facilities_telecom_phone_number + " \n" +
                     "Alternate Phone: " + personale.Facilities_telecom_alerternate_number + " \n" +
                     "Email: " + personale.Facilities_telecom_email + " \n" +
-                    "Dpeartment: " + personale.Department + " \n");
+                    "Dpeartment: " + personale.Department + " \n\n");
 
                     PersonaleSearchResultAmount++;
                     PersonaleSearch = PersonaleSearchResultAmount + " Record(s) Found.";
@@ -96,7 +105,10 @@ public partial class MainPageViewModel: ObservableObject
     [RelayCommand]
     public async void ReturnPlaza()
     {
-        
+
+        PlazaSearchResult = "";
+        int PlazaSearchResultAmount = 0;
+
         try
         {
             TollPlazaQuery = TollPlazaRepo.QueryByPlazaId(Int32.Parse(PlazaSearch));
@@ -105,12 +117,15 @@ public partial class MainPageViewModel: ObservableObject
             {
                 foreach (TollPlaza plaza in TollPlazaQuery)
                 {
-                    PlazaSearchResult=(
-                    "Plaza: " + plaza.Plaza_name + " \n" +
+                    PlazaSearchResult+=(
+                    "Plaza: "+plaza.Plaza_id + " " + plaza.Plaza_name + " \n" +
                     "Roadway: " + plaza.Plaza_roadway + " \n" +
                     "Mile Post: " + plaza.Plaza_milepost + " \n" +
                     "Phone Number: " + plaza.Plaza_phone_number + " \n" +
-                    "Region: " + plaza.Plaza_region + " \n");
+                    "Region: " + plaza.Plaza_region + " \n\n");
+
+                    PlazaSearchResultAmount++;
+                    PlazaSearch = PlazaSearchResultAmount + " Record(s) Found.";
                 }
             }
             else
@@ -122,10 +137,49 @@ public partial class MainPageViewModel: ObservableObject
         }
         catch (Exception)
         {
-            PlazaSearch = "No Record Found.";
+            PlazaSearch = "No Record Found Test.";
             await Task.Delay(2000);
             PlazaSearch = "";
         }
+    }
+
+    [RelayCommand]
+    public async void ReturnOrganization()
+    {
+        OrganizationSearchResult = "";
+        int OrganizationSearchResultAmount = 0;
+
+        try
+        {
+            TollOrganizationQuery = TollOrgnizationRepo.QueryByOrganizationName(OrganizationSearch);
+
+            if (TollOrganizationQuery.Any())
+            {
+                foreach (TollOrganization organization in TollOrganizationQuery)
+                {
+                    OrganizationSearchResult += (
+                    "Organization: " + organization.Organization_name + " \n" +
+                    "Phone Number: " + organization.Organization_phone_number + " \n" +
+                    "Email: " + organization.Organization_email + " \n\n");
+
+                    OrganizationSearchResultAmount++;
+                    OrganizationSearch = OrganizationSearchResultAmount + " Record(s) Found.";
+                }
+            }
+            else
+            {
+                OrganizationSearch = "No Record Found.";
+                await Task.Delay(2000);
+                OrganizationSearch = "";
+            }
+        }
+        catch (Exception)
+        {
+            OrganizationSearch = "No Record Found.";
+            await Task.Delay(2000);
+            OrganizationSearch = "";
+        }
+
     }
 
     [RelayCommand]
@@ -141,6 +195,13 @@ public partial class MainPageViewModel: ObservableObject
     {
         PlazaSearch = "";
         PlazaSearchResult = "Search Result Area";
+    }
+
+    [RelayCommand]
+    public void ClearOrganizationSearch()
+    {
+        OrganizationSearch = "";
+        OrganizationSearchResult = "Search Result Area";
     }
 
     [RelayCommand]

@@ -16,12 +16,15 @@ public partial class PriorityOneMafPage : ContentPage
     public TollLaneRepository TollLaneRepo = new();
     public TollTechnicianRepository TollTechnicianRepo = new();
     public TollBomitemRepository TollBomitemRepo = new();
+    public TollEmailDistributionRepository TollEmailDistributionRepo = new();
 
     public TableQuery<TollLane> tollLanesQueryByPlazaId;
     public TableQuery<TollPlaza> tollPlazaQueryByRegionName;
     public TableQuery<TollPlaza> tollPlazaQueryByPlazaId;
     public TableQuery<TollTechnician> tollTechnicianQueryByRegion;
     public TableQuery<TollBomitem> tollBomitemQueryByLaneType;
+    public TableQuery<TollEmailDistribution> tollEmailDistributionQueryByRegionEmailTypeAndPlazaId;
+    public TableQuery<TollEmailDistribution> StandardDistributionP1;
 
     public string Region;
     public int PlazaId;
@@ -37,8 +40,11 @@ public partial class PriorityOneMafPage : ContentPage
     public string MAFNumber;
     public string Date;
 
+    public string EmailType = "P1";
     public string To;
-    public string CC;
+    public string Cc;
+    public string Subject;
+    public string Body;
 
     public PriorityOneMafPage(PriorityOneMafPageViewModel priorityOneMafPageViewModel)
     {
@@ -109,29 +115,32 @@ public partial class PriorityOneMafPage : ContentPage
         Problem=selectProblem.Text;
         ActionTaken = selectActionTaken.Text;
 
-        if (Region == "Broward")
+        To = "";
+        Cc = "";
+        StandardDistributionP1 = TollEmailDistributionRepo.QueryByRegionEmailTypeAndPlazaId(Region, EmailType, "ALL");
+        foreach(TollEmailDistribution standarddistributionP1 in StandardDistributionP1)
         {
-            To = "TPKTOLLSFSBROWARD";
-            CC = "Mason, Gary; TPKSUNWATCHGROUP; TPKSLAMNotify";
+            To = standarddistributionP1.Email_distribution_to;
+            Cc= standarddistributionP1.Email_distribution_cc;
         }
+
+        Subject = "Priority 1 - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
+        Body = "<font size=5>" + "<b>" + "****SunWatch Priority 1 MAF****" + "</b>" + "</font>" + "<br>" + "<br>" +
+        "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Roadway: " + "</b>" + Roadway + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Lane: " + "</b>" + Lane + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Bomitem: " + "</b>" + Bomitem + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Problem: " + "</b>" + Problem + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Action Take: " + "</b>" + ActionTaken + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Technician: " + "</b>" + Technician + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Date/Time Contacted: " + "</b>" + Date + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "MAF#: " + "</b>" + MAFNumber + "</font>";
 
         try
         {
-            string To = "ali.shakoor2249@gmail.com";
-            string Subject = "Priority 1 - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
-            string Body = "<font size=5>" + "<b>" + "****SunWatch Priority 1 MAF****" + "</b>" + "</font>" + "<br>" + "<br>" +
-            "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Roadway: " + "</b>" + Roadway + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Lane: " + "</b>" + Lane + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Bomitem: " + "</b>" + Bomitem + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Problem: " + "</b>" + Problem + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Action Take: " + "</b>" + ActionTaken + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Technician: " + "</b>" + Technician + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Date/Time Contacted: " + "</b>" + Date + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "MAF#: " + "</b>" + MAFNumber + "</font>";
-
             mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
             mail.To = To;
+            mail.CC = Cc;
             mail.Subject = Subject;
             mail.HTMLBody = Body;
             mail.Display();
@@ -185,8 +194,6 @@ public partial class PriorityOneMafPage : ContentPage
             {
                 selectLane.ItemsSource.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_Type);
             }
-
-            
         }
 
     }

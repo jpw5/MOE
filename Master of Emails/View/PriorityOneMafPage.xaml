@@ -16,22 +16,20 @@
                 <RoundRectangle CornerRadius="40,0,0,40"></RoundRectangle>
             </Border.StrokeShape>
 
-            <VerticalStackLayout Padding="10" Spacing="20" VerticalOptions="Center" 
+            <VerticalStackLayout Padding="10" Spacing="30" VerticalOptions="Center" 
              HorizontalOptions="Start">
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
                     <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" 
                      x:Name="selectRegion" SelectedIndexChanged="SelectRegion_SelectedIndexChanged" 
-                     WidthRequest="120" HorizontalOptions="Center" VerticalOptions="Center" 
-                     FontSize="16" FontAttributes="Bold" TextColor="Black" FontFamily="Times" 
-                     Title="Select Region"></Picker>
+                     WidthRequest="120" FontSize="16" FontAttributes="Bold" TextColor="Black" 
+                     FontFamily="Times" Title="Select Region"></Picker>
 
                     <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" 
                      x:Name="selectPlaza" SelectedIndexChanged="SelectPlaza_SelectedIndexChanged"
-                     WidthRequest="350" HorizontalOptions="Center" VerticalOptions="Center" 
-                     FontSize="16" FontAttributes="Bold" TextColor="Black" FontFamily="Times" 
-                     Title="Select Plaza"></Picker> 
+                     WidthRequest="500" FontSize="16" FontAttributes="Bold" TextColor="Black" 
+                     FontFamily="Times" Title="Select Plaza"></Picker> 
 
                 </HorizontalStackLayout>
 
@@ -39,19 +37,16 @@
 
                     <Picker ItemsSource="{Binding TollLaneList}" SelectedItem="{Binding Lane}" 
                      x:Name="selectLane" SelectedIndexChanged="SelectLane_SelectedIndexChanged" 
-                     WidthRequest="150" HorizontalOptions="Center" VerticalOptions="Center" 
-                     FontSize="16" FontAttributes="Bold" TextColor="Black" FontFamily="Times"  
-                     Title="Select Lane"></Picker>
+                     WidthRequest="150" FontSize="16" FontAttributes="Bold" TextColor="Black" 
+                     FontFamily="Times" Title="Select Lane"></Picker>
 
                     <Picker ItemsSource="{Binding TollBomitemList}" SelectedItem="{Binding Bomitem}" 
                      x:Name="selectBomitem" FontAttributes="Bold" FontSize="16" FontFamily="Times" 
-                     TextColor="Black" WidthRequest="200" HorizontalOptions="Center" 
-                     Title="Select BOM Item"></Picker>
+                     TextColor="Black" WidthRequest="200" Title="Select BOM Item"></Picker>
 
                     <Picker ItemsSource="{Binding TollTechnicianList}" SelectedItem="{Binding Technician}" 
                      x:Name="selectTechnician" FontAttributes="Bold" FontSize="16" FontFamily="Times"
-                     TextColor="Black" WidthRequest="200" HorizontalOptions="Center" 
-                     Title="Select Technician"></Picker>
+                     TextColor="Black" WidthRequest="200" Title="Select Technician"></Picker>
 
                 </HorizontalStackLayout>
 
@@ -72,7 +67,7 @@
 
                 <Entry Text="{Binding Problem}" x:Name="selectProblem" FontAttributes="Bold" FontSize="16"
                  FontFamily="Times" Placeholder="Enter Problem" TextColor="Black" 
-                 PlaceholderColor="Black" WidthRequest="600" HorizontalOptions="Start"></Entry>
+                 PlaceholderColor="Black" WidthRequest="600"></Entry>
 
                 <Editor Text="{Binding ActionTaken}" x:Name="selectActionTaken" FontAttributes="Bold" 
                  FontSize="16" FontFamily="Times" Placeholder="Action Taken" TextColor="Black" 

@@ -37,7 +37,10 @@ namespace Master_of_Emails.ViewModels;
         public TollTechnicianRepository TollTechnicianRepo = new();
         public TableQuery<TollTechnician> TollTechnicianQuery;
 
-        [ObservableProperty]
+        public TollOrganizationRepository TollOrgnizationRepo = new();
+        public TableQuery<TollOrganization> TollOrganizationQuery;
+
+    [ObservableProperty]
         public string date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
     
         [ObservableProperty]
@@ -76,6 +79,7 @@ namespace Master_of_Emails.ViewModels;
     public async void ReturnPersonale()
     {
         TollTechnicianQuery = TollTechnicianRepo.QueryTechnicianByName(Requestor);
+        TollOrganizationQuery = TollOrgnizationRepo.QueryByOrganizationName(Requestor);
 
         List<string> PhoneNumber = new();
         List<string> FullName = new();
@@ -88,6 +92,20 @@ namespace Master_of_Emails.ViewModels;
             {
                 PhoneNumber.Add(personale.Technician_phone_number);
                 FullName.Add(personale.Technician_name);
+                PhoneResult = "Phone: " + PhoneNumber[0];
+                Requestor = FullName[0];
+            }
+        }
+
+        else if(TollOrganizationQuery.Any())
+        {
+            PhoneNumber.Clear();
+            FullName.Clear();
+
+            foreach(TollOrganization organization in TollOrganizationQuery)
+            {
+                PhoneNumber.Add(organization.Organization_phone_number);
+                FullName.Add(organization.Organization_name);
                 PhoneResult = "Phone: " + PhoneNumber[0];
                 Requestor = FullName[0];
             }

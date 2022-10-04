@@ -13,11 +13,13 @@ public partial class ScadaPage : ContentPage
 
     public TollPlazaRepository TollPlazaRepo = new();
     public TollLaneRepository TollLaneRepo = new();
+    public TollEmailDistributionRepository TollEmailDistributionRepo = new();
 
     public TableQuery<TollLane> tollLanesQueryByPlazaId;
     public TableQuery<TollPlaza> tollPlazaQueryByRegionName;
     public TableQuery<TollPlaza> tollPlazaQueryByPlazaId;
-    
+    public TableQuery<TollEmailDistribution> StandardDistributionSCADA;
+
     public string Region;
     public int PlazaId;
 
@@ -33,6 +35,11 @@ public partial class ScadaPage : ContentPage
     public string FacilitiesContact;
     public string FacilitiesContactPhone;
 
+    public string EmailType = "SCADA";
+    public string To;
+    public string Cc;
+    public string Subject;
+    public string Body;
 
     public ScadaPage(ScadaPageViewModel scadaPageViewModel)
 	{
@@ -103,26 +110,31 @@ public partial class ScadaPage : ContentPage
         FacilitiesContact = selectContact.Text;
         FacilitiesContactPhone = selectPhoneNumber.Text;
 
+        StandardDistributionSCADA = 
+        TollEmailDistributionRepo.QueryByRegionEmailTypeAndPlazaId(Region, EmailType, "ALL");
+
+        foreach (TollEmailDistribution emaildistributionSCADA in StandardDistributionSCADA)
+        {
+            To = emaildistributionSCADA.Email_distribution_to;
+            Cc = emaildistributionSCADA.Email_distribution_cc;
+        }
+
+        Subject = "SCADA Alarm - " + Plaza.ToUpper();
+        Body = "<font size=5>" + "<b>" + "****SunWatch SCADA Alarm - " + SelectedHours + "*****" + "</b>" + "</font>" + "<br>" + "<br>" +
+        "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Roadway: " + "</b>" + Roadway + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Building Number: " + "</b>" + BuildingNumber + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Alarm: " + "</b>" + Alarm + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Contact: " + "</b>" + FacilitiesContact + " / " + FacilitiesContactPhone + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Date/Time Contacted: " + "</b>" + Date + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Mile Post: " + "</b>" + MilePost + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Work Order #: " + "</b>" + WorkOrderNumber + "</font>" + "<br>";
 
         try
         {
-            string To = "TPKWODESK";
-            string CC = "TPKSUNWATCHGROUP; TPKScadaAlarmGroup; TPKTMCOPERATOR";
-            string Subject = "SCADA Alarm - " + Plaza.ToUpper();
-
-            string Body = "<font size=5>" + "<b>" + "****SunWatch SCADA Alarm - " + SelectedHours + "*****" + "</b>" + "</font>" + "<br>" + "<br>" +
-            "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Roadway: " + "</b>" + Roadway + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Building Number: " + "</b>" + BuildingNumber + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Alarm: " + "</b>" + Alarm + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Contact: " + "</b>" + FacilitiesContact+ " / " + FacilitiesContactPhone + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Date/Time Contacted: " + "</b>" + Date + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Mile Post: " + "</b>" + MilePost + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Work Order #: " + "</b>" + WorkOrderNumber + "</font>" + "<br>";
-
             mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
             mail.To = To;
-            mail.CC = CC;
+            mail.CC = Cc;
             mail.Subject = Subject;
             mail.HTMLBody = Body;
             mail.Display();
@@ -133,8 +145,6 @@ public partial class ScadaPage : ContentPage
         {
             DisplayAlert("Alert", "Close MOE, make sure Outlook is running, and try again. " + ex.Message, "close");
         }
-      
-
     }
     private void SelectRegion_SelectedIndexChanged(object sender, EventArgs e)
     {

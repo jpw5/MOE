@@ -12,7 +12,7 @@ namespace Master_of_Emails.Table_Repositories
     public class TollFacilitiesTelecomRepository
     {
         public DB DB;
-        public string StatusMessage;
+        
         public static SQLiteConnection DatabaseConnection { get; set; }
 
 

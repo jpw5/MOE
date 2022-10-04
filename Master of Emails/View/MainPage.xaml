@@ -58,7 +58,7 @@
             <VerticalStackLayout Padding="10">
 
                 <SearchBar Text="{Binding PersonaleSearch}" SearchCommand="{Binding ReturnPersonaleCommand}" 
-                 IsTextPredictionEnabled="True" Margin="18" Placeholder="Personale Search" FontSize="16" 
+                 IsTextPredictionEnabled="True" Margin="18" Placeholder="Personale" FontSize="16" 
                  FontAttributes="Bold" FontFamily="Times" TextColor="Black" CancelButtonColor="White"></SearchBar>
 
                 <Label Text="{Binding PersonaleSearchResult}" FontSize="16" FontAttributes="Bold" 
@@ -95,35 +95,23 @@
         <!-- End of Code for the Plaza Lookup section-->
         
         <!-- Start of Code for the Organization Lookup section-->
-        <VerticalStackLayout Grid.Row="2" Grid.Column="2" Spacing="10">
-            
-            <SearchBar
-                      
-                      
-                      IsTextPredictionEnabled="True"
-                      Margin="20"
-                      Placeholder="Organization"
-                      FontSize="20"
-                      CancelButtonColor="Black">
-            </SearchBar>
-            <Label
-                  x:Name="organization_search_result_phone_label"
-                  FontAttributes="Bold"
-                  Text="Phone: "
-                  HorizontalTextAlignment="Start"
-                  VerticalTextAlignment="Start"
-                  Padding="10">
-            </Label>
-            <Label
-                  x:Name="organization_search_result_email_label"
-                  FontAttributes="Bold"
-                  Text="Email: "
-                  HorizontalTextAlignment="Start"
-                  VerticalTextAlignment="Start"
-                  Padding="10">
-            </Label>
-            
+
+        <ScrollView Grid.Row="2" Grid.Column="2" Padding="10">
+
+            <VerticalStackLayout Padding="10">
+
+            <SearchBar Text="{Binding OrganizationSearch}" SearchCommand="{Binding ReturnOrganizationCommand}" 
+                 IsTextPredictionEnabled="True" Margin="18" Placeholder="Organization" FontSize="16" 
+                 FontAttributes="Bold" FontFamily="Times" TextColor="Black" CancelButtonColor="White"></SearchBar>
+
+            <Label Text="{Binding OrganizationSearchResult}" FontSize="16" FontAttributes="Bold" 
+                 FontFamily="Times" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" 
+                 Padding="5" ></Label>
+
+            <Button Command="{Binding ClearOrganizationSearchCommand}" CornerRadius="20" Text="Clear"></Button>
+
         </VerticalStackLayout>
+        </ScrollView>
         <!-- End of Code for the Organzaiton Lookup section-->
 
     </Grid>

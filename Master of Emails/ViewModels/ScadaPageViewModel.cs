@@ -71,7 +71,8 @@ namespace Master_of_Emails.ViewModels;
     [RelayCommand]
     public async void ReturnPersonale()
     {
-        TollFacilitiesTelecomQuery = TollFacilitiesTelecomRepo.QueryPersonaleByName(FacilitiesTelecomPersonaleName);
+        TollFacilitiesTelecomQuery = TollFacilitiesTelecomRepo.QueryPersonaleByName
+        (FacilitiesTelecomPersonaleName);
 
         List<string> PhoneNumber = new();
         List<string> AlternatePhoneNumber = new();
@@ -88,7 +89,7 @@ namespace Master_of_Emails.ViewModels;
                 AlternatePhoneNumber.Add(facilitiestelecom.Facilities_telecom_alerternate_number);
                 FullName.Add(facilitiestelecom.Facilities_telecom_name);
                 PhoneResult = "Phone: " + PhoneNumber[0];
-                AlternatePhoneResult = "Alternate Phone: " + AlternatePhoneNumber[0];
+                AlternatePhoneResult = "Alternate: " + AlternatePhoneNumber[0];
                 FacilitiesTelecomPersonaleName = FullName[0];
                 
             }
@@ -115,7 +116,7 @@ namespace Master_of_Emails.ViewModels;
         ScadaAlarm = "";
         BuildingNumber = "";
         WorkOrderNumber = "";
-        Temperature = "";
+        Temperature = "NA";
         Date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
     }
 

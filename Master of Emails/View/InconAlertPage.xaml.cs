@@ -16,12 +16,15 @@ public partial class InconAlertPage : ContentPage
     public TollLaneRepository TollLaneRepo = new();
     public TollTechnicianRepository TollTechnicianRepo = new();
     public TollBomitemRepository TollBomitemRepo = new();
+    public TollEmailDistributionRepository TollEmailDistributionRepo = new();
 
     public TableQuery<TollLane> tollLanesQueryByPlazaId;
     public TableQuery<TollPlaza> tollPlazaQueryByRegionName;
     public TableQuery<TollPlaza> tollPlazaQueryByPlazaId;
     public TableQuery<TollTechnician> tollTechnicianQueryByRegion;
     public TableQuery<TollBomitem> tollBomitemQueryByLaneType;
+    public TableQuery<TollEmailDistribution> StandardDistributionIncon;
+    
 
     public List<string> TollLane = new();
     public List<string> TollLaneList = new();
@@ -39,7 +42,13 @@ public partial class InconAlertPage : ContentPage
     public string Units;
     public string IncidentOrESR;
     public string Reason;
-    
+
+    public string EmailType = "Incon";
+    public string To;
+    public string Cc;
+    public string Subject;
+    public string Body;
+
     public InconAlertPage(InconAlertPageViewModel inconAlertPageViewModel)
 	{
 		InitializeComponent();
@@ -98,35 +107,46 @@ public partial class InconAlertPage : ContentPage
         {
             Roadway = plaza.Plaza_roadway;
         }
-        
+
         for (int i = 0; i < TollLaneList.Count; i++)
         {
             Lane += TollLaneList[i] + " ";
         }
 
         TollLaneList.Clear();
+        Region = selectRegion.SelectedItem.ToString();
         Date = selectDate.Text;
         Requestor = selectRequestor.Text;
         RequestorPhoneNumber = selectPhoneNumber.Text;
         Duration = selectDuration.Text;
         Reason = selectReason.Text;
 
+        To = "";
+        Cc = "";
+        StandardDistributionIncon = 
+        TollEmailDistributionRepo.QueryByRegionEmailTypeAndPlazaId(Region, EmailType, "ALL");
+
+        foreach (TollEmailDistribution standarddistributionIncon in StandardDistributionIncon)
+        {
+            To = standarddistributionIncon.Email_distribution_to;
+            Cc = standarddistributionIncon.Email_distribution_cc;
+        }
+
+        string Subject = "InConAlert for Plaza - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
+        string Body = "<font size=5>" + "<b>" + "****SunWatch InConAlert****" + "</b>" + "</font>" + "<br>" + "<br>" +
+        "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Roadway: " + "</b>" + Roadway + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Lane: " + "</b>" + Lane + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Date/Time Contacted: " + "</b>" + Date + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Requestor: " + "</b>" + Requestor + " / " + RequestorPhoneNumber + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Duration of Work: " + "</b>" + Duration + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Reason: " + "</b>" + Reason + "</font>" + "<br>";
+
         try
         {
-            string To = "ali.shakoor2249@gmail.com";
-            string Subject = "InConAlert for Plaza - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
-
-            string Body = "<font size=5>" + "<b>" + "****SunWatch InConAlert****" + "</b>" + "</font>" + "<br>" + "<br>" +
-            "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Roadway: " + "</b>" + Roadway + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Lane: " + "</b>" + Lane + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Date/Time Contacted: " + "</b>" + Date + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Requestor: " + "</b>" + Requestor + " / " + RequestorPhoneNumber + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Duration of Work: " + "</b>" + Duration + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Reason: " + "</b>" + Reason + "</font>" + "<br>";
-
             mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
             mail.To = To;
+            mail.CC = Cc;
             mail.Subject = Subject;
             mail.HTMLBody = Body;
             mail.Display();
@@ -157,7 +177,6 @@ public partial class InconAlertPage : ContentPage
 
         }
     }
-
 	private void SelectPlaza_SelectedIndexChanged(object sender, EventArgs e)
 	{
         int selectedIndex = selectPlaza.SelectedIndex;
@@ -176,7 +195,6 @@ public partial class InconAlertPage : ContentPage
             selectLane.ItemsSource = TollLane;
         }
     }
-
     private void SelectLane_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (e.CurrentSelection.Count == 0)
@@ -192,12 +210,10 @@ public partial class InconAlertPage : ContentPage
             }
         }
     }
-
     private void HoursRadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
         Units = "Hours";
     }
-
     private void MinuetsRadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
         Units = "Minuets";

@@ -153,6 +153,27 @@ namespace Master_of_Emails.ViewModels;
         [ObservableProperty]
         public ObservableCollection<string> organizationList;
 
+        public TollEmailDistributionRepository TollEmailDistributionRepo = new();
+        public List<TollEmailDistribution> TollEmailDistribution = new();
+        [ObservableProperty]
+        public string newEmailDistributionRegion;
+        [ObservableProperty]
+        public string newEmailDistributionType;
+        [ObservableProperty]
+        public string newEmailDistributionPlazaId;
+        [ObservableProperty]
+        public string newEmailDistributionTo;
+        [ObservableProperty]
+        public string newEmailDistributionCc;
+        [ObservableProperty]
+        public string newEmailDistributionStatusMessage;
+        [ObservableProperty]
+        public string removeEmailDistribution;
+        [ObservableProperty]
+        public string removeEmailDistributionStatusMessage;
+        [ObservableProperty]
+        public ObservableCollection<string> emailDistributionList;
+
     public DatabasePageViewModel()
         {
             RegionList = new ObservableCollection<string>();
@@ -163,6 +184,7 @@ namespace Master_of_Emails.ViewModels;
             DuressReasonList = new ObservableCollection<string>();
             FacilitiesTelecomList = new ObservableCollection<string>();
             OrganizationList= new ObservableCollection<string>();
+            EmailDistributionList = new ObservableCollection<string>();
 
         if (DB.DatabaseConnection == null)
                 DB.DatabaseInit();
@@ -221,8 +243,8 @@ namespace Master_of_Emails.ViewModels;
                 {
                     RegionList.Add
                         (
-                        region.Region_id.ToString() + " " + 
-                        region.Region_name
+                        "ID: "+region.Region_id + " \n" + 
+                        "Name: "+region.Region_name + " \n"
                         );
                 }
             }
@@ -299,11 +321,11 @@ namespace Master_of_Emails.ViewModels;
             {
               PlazaList.Add
                     (
-                    plaza.Plaza_id.ToString() + " " + 
-                    plaza.Plaza_name + " " + 
-                    plaza.Plaza_roadway + " MP:" + 
-                    plaza.Plaza_milepost + " " + 
-                    plaza.Plaza_region
+                    "Plaza: "+plaza.Plaza_id + " \n" + 
+                    "Name: "+plaza.Plaza_name + " \n" + 
+                    "Roadway: "+plaza.Plaza_roadway + " \n" + 
+                    "MP: "+plaza.Plaza_milepost + " \n" + 
+                    "Region: "+plaza.Plaza_region + " \n"
                     );
             }
         }
@@ -372,9 +394,9 @@ namespace Master_of_Emails.ViewModels;
 
             LaneList.Add
                 (
-                "Plaza "+lane.Plaza_id + " Lane " +
-                lane.Lane_number.ToString() + " " + 
-                lane.Lane_Type
+                "Plaza "+lane.Plaza_id + " \n" +
+                "Lane: "+lane.Lane_number + " \n" + 
+                "Type: "+lane.Lane_Type + " \n"
                 );
         }
     }
@@ -442,14 +464,14 @@ namespace Master_of_Emails.ViewModels;
             {
                 TechnicianList.Add
                     (
-                    technician.Technician_kn_id + " " + 
-                    technician.Technician_name + " " + 
-                    technician.Technician_region+" \n" + 
-                    technician.Technician_phone_number + " " + 
-                    technician.Technician_email
+                    "KNID: "+technician.Technician_kn_id + " \n" + 
+                    "Name: "+technician.Technician_name + " \n" + 
+                    "Region: "+technician.Technician_region+" \n" + 
+                    "Phone: "+technician.Technician_phone_number + " \n" + 
+                    "Email: "+technician.Technician_email+" \n"
                     );
 
-                TechnicianList.Add(" ");
+                
             }
         }
 
@@ -582,8 +604,8 @@ namespace Master_of_Emails.ViewModels;
             {
                 DuressReasonList.Add
                     (
-                    duressreason.Duress_reason_id + " " + 
-                    duressreason.Duress_reason_name
+                    "ID: "+duressreason.Duress_reason_id + " \n" + 
+                    "Reason: "+duressreason.Duress_reason_name + " \n"
                     );
             }
         }
@@ -660,13 +682,12 @@ namespace Master_of_Emails.ViewModels;
             {
                 FacilitiesTelecomList.Add
                   (
-                  facilitiestelecom.Facilities_telecom_kn_id + " " + 
-                  facilitiestelecom.Facilities_telecom_name + " " +
-                  facilitiestelecom.Facilities_telecom_phone_number + " " + 
-                  facilitiestelecom.Facilities_telecom_email
+                  "KNID: " + facilitiestelecom.Facilities_telecom_kn_id + " \n" +
+                  "Name: " + facilitiestelecom.Facilities_telecom_name + " \n" +
+                  "Phone Number: " + facilitiestelecom.Facilities_telecom_phone_number + " \n" +
+                  "Email: " + facilitiestelecom.Facilities_telecom_email + " \n"
                   );
-
-                FacilitiesTelecomList.Add(" ");
+              
             }
         }
 
@@ -688,7 +709,7 @@ namespace Master_of_Emails.ViewModels;
             NewOrganizationEmail 
             );
 
-            NewOrganizationStatusMessage = "Success: Personale Added";
+            NewOrganizationStatusMessage = "Success: Organization Added";
             await Task.Delay(2000);
             NewOrganizationStatusMessage = "";
             NewOrganizationName = "";
@@ -711,7 +732,7 @@ namespace Master_of_Emails.ViewModels;
         {
             TollOrganizationRepo.DeleteOrgnization(Int32.Parse(RemoveOrganization));
             RemoveOrganization = "";
-            RemoveOrganizationStatusMessage = "Success: Personale Deleted.";
+            RemoveOrganizationStatusMessage = "Success: Organization Deleted.";
             await Task.Delay(2000);
             RemoveOrganizationStatusMessage = "";
         }
@@ -735,11 +756,12 @@ namespace Master_of_Emails.ViewModels;
             {
                 OrganizationList.Add
                 (
-                organization.Organization_id+ " "+
-                organization.Organization_name+" " +
-                organization.Organization_phone_number
+                "ID: "+organization.Organization_id+ " \n"+
+                "Name: "+organization.Organization_name+" \n" +
+                "Number: "+organization.Organization_phone_number+" \n"+
+                "Email: "+organization.Organization_email+"\n"
                 );
-                OrganizationList.Add(" ");
+                
             }
         }
 
@@ -749,5 +771,84 @@ namespace Master_of_Emails.ViewModels;
         }
     }
 
+    [RelayCommand]
+    async void AddNewEmailDistribution()
+    {
+        try
+        {
+            TollEmailDistributionRepo.AddEmailDistribution
+            (
+            NewEmailDistributionRegion, 
+            NewEmailDistributionType,
+            NewEmailDistributionPlazaId,
+            NewEmailDistributionTo,
+            NewEmailDistributionCc
+            );
+
+            NewEmailDistributionStatusMessage = "Success: Email Distribution Added";
+            await Task.Delay(2000);
+            NewEmailDistributionStatusMessage = "";
+            NewEmailDistributionRegion = "";
+            NewEmailDistributionType = "";
+            NewEmailDistributionPlazaId = "";
+            NewEmailDistributionTo = "";
+            NewEmailDistributionCc = "";
+        }
+
+        catch (Exception ex)
+        {
+            NewEmailDistributionStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
+            await Task.Delay(2000);
+            NewEmailDistributionStatusMessage = "";
+        }
+    }
+
+    [RelayCommand]
+    async void DeleteEmailDistribution()
+    {
+        try
+        {
+            TollEmailDistributionRepo.DeleteEmailDistribution(Int32.Parse(RemoveEmailDistribution));
+            RemoveEmailDistribution = "";
+            RemoveEmailDistributionStatusMessage = "Success: Email Distribution Deleted.";
+            await Task.Delay(2000);
+            RemoveEmailDistributionStatusMessage = "";
+        }
+
+        catch (Exception ex)
+        {
+            RemoveEmailDistributionStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
+            await Task.Delay(2000);
+            RemoveEmailDistributionStatusMessage = "";
+        }
+    }
+
+
+    [RelayCommand]
+    private void GetAllEmailDistributions()
+    {
+        EmailDistributionList.Clear();
+        try
+        {
+            TollEmailDistribution = TollEmailDistributionRepo.GetEmailDistributions();
+            foreach (TollEmailDistribution emaildistribution in TollEmailDistribution)
+            {
+                EmailDistributionList.Add
+                (
+                "Region: " + emaildistribution.Email_distribution_region + " \n" +
+                "Type: " + emaildistribution.Email_distribution_type + " \n" +
+                "Plaza: " + emaildistribution.Email_distribution_plaza_id + " \n" +
+                "To: " + emaildistribution.Email_distribution_to + " \n" +
+                "CC: " + emaildistribution.Email_distribution_cc + " \n"
+                );
+
+            }
+        }
+
+        catch (Exception ex)
+        {
+            EmailDistributionList.Add("No Data Found. " + ex.Message);
+        }
+    }
 }
 

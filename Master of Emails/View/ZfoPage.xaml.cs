@@ -17,12 +17,15 @@ public partial class ZfoPage : ContentPage
     public TollLaneRepository TollLaneRepo = new();
     public TollTechnicianRepository TollTechnicianRepo = new();
     public TollBomitemRepository TollBomitemRepo = new();
+    public TollEmailDistributionRepository TollEmailDistributionRepo = new();
 
     public TableQuery<TollLane> tollLanesQueryByPlazaId;
     public TableQuery<TollPlaza> tollPlazaQueryByRegionName;
     public TableQuery<TollPlaza> tollPlazaQueryByPlazaId;
     public TableQuery<TollTechnician> tollTechnicianQueryByRegion;
     public TableQuery<TollBomitem> tollBomitemQueryByLaneType;
+    public TableQuery<TollEmailDistribution> tollEmailDistributionQueryByRegionAndEmailType;
+    public TableQuery<TollEmailDistribution> StandardDistributionZFO;
 
     public List<string> TollLane = new();
     public List<string> TollLaneList = new();
@@ -36,6 +39,12 @@ public partial class ZfoPage : ContentPage
     public string Reason;
     public string StartDate;
     public string EndDate;
+
+    public string EmailType = "ZFO";
+    public string To;
+    public string Cc;
+    public string Subject;
+    public string Body;
 
     public ZfoPage(ZfoPageViewModel zfoPageViewModel)
 	{
@@ -75,27 +84,38 @@ public partial class ZfoPage : ContentPage
         {
             Lane += TollLaneList[i] + " ";
         }
+
         TollLaneList.Clear();
+        Region = selectRegion.SelectedItem.ToString();
         Requestor = selectRequestor.Text;
         Reason = selectReason.Text;
         StartDate = selectStartDate.Text;
         EndDate = selectEndDate.Text;
 
+        To = "";
+        Cc = "";
+        StandardDistributionZFO = TollEmailDistributionRepo.QueryByRegionEmailTypeAndPlazaId(Region, EmailType, "ALL");
+
+        foreach (TollEmailDistribution emaildistributionZFO in StandardDistributionZFO)
+        {
+            To = emaildistributionZFO.Email_distribution_to;
+            Cc = emaildistributionZFO.Email_distribution_cc;
+        }
+
+        string Subject = "SunWatch ZFO Alert - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
+        string Body = "<font size=5>" + "<b>" + "****SunWatch ZFO Alert****" + "</b>" + "</font>" + "<br>" + "<br>" +
+        "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Lane(s): " + "</b>" + Lane + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Requestor: " + "</b>" + Requestor + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Reason: " + "</b>" + Reason + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Start Date/Time: " + "</b>" + StartDate + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "End Date/Time: " + "</b>" + EndDate + "</font>" + "<br>";
+
         try
         {
-            string To = "ali.shakoor2249@gmail.com";
-            string Subject = "SunWatch ZFO Alert - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
-
-            string Body = "<font size=5>" + "<b>" + "****SunWatch ZFO Alert****" + "</b>" + "</font>" + "<br>" + "<br>" +
-            "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Lane(s): " + "</b>" + Lane + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Requestor: " + "</b>" + Requestor + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Reason: " + "</b>" + Reason + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "Start Date/Time: " + "</b>" + StartDate + "</font>" + "<br>" +
-            "<font size=4>" + "<b>" + "End Date/Time: " + "</b>" + EndDate + "</font>" + "<br>";
-
             mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
             mail.To = To;
+            mail.CC = Cc;
             mail.Subject = Subject;
             mail.HTMLBody = Body;
             mail.Display();

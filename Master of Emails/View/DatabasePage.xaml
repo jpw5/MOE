@@ -12,7 +12,7 @@
 
         <VerticalStackLayout Padding="5">
             
-            <Label Text="----------REGION SECTION----------" FontSize="24" 
+            <Label Text="----------REGION SECTION START----------" FontSize="24" 
             FontFamily="Times" FontAttributes="Italic,Bold" HorizontalOptions="Center"></Label>
             
             <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
@@ -94,7 +94,7 @@
             <Label Text="----------REGION SECTION END----------" FontSize="24" FontFamily="Times" 
              FontAttributes="Italic,Bold" HorizontalOptions="Center"></Label>
 
-            <Label Text="----------PLAZA SECTION----------"  Padding="10" FontSize="24" 
+            <Label Text="----------PLAZA SECTION START----------"  Padding="10" FontSize="24" 
             FontFamily="Times" FontAttributes="Italic,Bold" HorizontalOptions="Center"></Label>
 
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
@@ -189,7 +189,7 @@
             <Label Text="----------PLAZA SECTION END----------" FontSize="24" FontFamily="Times" 
              FontAttributes="Italic,Bold" Padding="10" HorizontalOptions="Center"></Label>
 
-            <Label Text="----------LANE SECTION----------" FontSize="24" FontFamily="Times" 
+            <Label Text="----------LANE SECTION START----------" FontSize="24" FontFamily="Times" 
              FontAttributes="Italic,Bold" Padding="10" HorizontalOptions="Center"></Label>
 
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
@@ -274,7 +274,7 @@
             <Label Text="----------LANE SECTION END----------" FontSize="24" FontFamily="Times" 
              FontAttributes="Italic, Bold" Padding="10"  HorizontalOptions="Center"></Label>
 
-            <Label Text="----------TECHNICIAN SECTION----------" FontSize="24" FontFamily="Times" 
+            <Label Text="----------TECHNICIAN SECTION START----------" FontSize="24" FontFamily="Times" 
              FontAttributes="Italic,Bold" Padding="10"  HorizontalOptions="Center"></Label>
 
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
@@ -366,7 +366,7 @@
             <Label Text="----------TECHNICIAN SECTION END----------" FontSize="24" FontFamily="Times" 
              FontAttributes="Italic, Bold" Padding="10" HorizontalOptions="Center"></Label>
 
-            <Label Text="----------BOM ITEM SECTION----------" FontSize="24" FontFamily="Times" 
+            <Label Text="----------BOM ITEM SECTION START----------" FontSize="24" FontFamily="Times" 
              FontAttributes="Italic, Bold"  Padding="10" HorizontalOptions="Center"></Label>
 
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
@@ -528,7 +528,7 @@
             <Label Text="----------DURESS REASON END----------" FontSize="24" FontFamily="Times" 
              FontAttributes="Italic,Bold" Padding="10" HorizontalOptions="Center"></Label>
 
-            <Label Text="----------FACILITIES AND TELECOM----------" FontSize="24" FontFamily="Times" 
+            <Label Text="----------FACILITIES AND TELECOM START----------" FontSize="24" FontFamily="Times" 
              FontAttributes="Italic, Bold" Padding="10" HorizontalOptions="Center"></Label>
 
 
@@ -606,7 +606,8 @@
                  BorderColor="SandyBrown">
                     
                     <ListView ItemsSource="{Binding FacilitiesTelecomList}" VerticalOptions="Center" 
-                     HorizontalOptions="Center" WidthRequest="300" HeightRequest="100" 
+                     HorizontalOptions="Center" WidthRequest="300" HeightRequest="100"
+                     
                      VerticalScrollBarVisibility="Always">
 
                         <ListView.Header>
@@ -614,6 +615,7 @@
                              FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
                              Margin="10,0,0,0" Text="Facilities And Telecom Personale List">
                             </Label>
+                            
                         </ListView.Header>
 
                     </ListView>
@@ -622,7 +624,187 @@
 
             </HorizontalStackLayout>
 
-            <Label Text="----------FACILITIES AND TELECOM END----------" FontSize="20" FontFamily="Times" 
+            <Label Text="----------FACILITIES AND TELECOM END----------" FontSize="24" FontFamily="Times" 
+             FontAttributes="Bold" Padding="10" HorizontalOptions="Center"></Label>
+
+            <Label Text="----------ORGANIZATION START----------" FontSize="24" FontFamily="Times" 
+             FontAttributes="Bold" Padding="10" HorizontalOptions="Center"></Label>
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Entry Text="{Binding NewOrganizationName}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Organization Name"/>
+
+                    <Entry Text="{Binding NewOrganizationPhoneNumber}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Organization Phone Number"/>
+
+                    <Entry Text="{Binding NewOrganizationEmail}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Organization Email"/>
+
+                    <Button Command="{Binding AddNewOrganizationCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Text="Add Organization"/>
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Entry  Text="{Binding RemoveOrganization}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Organization ID" />
+
+                    <Button Command="{Binding DeleteOrganizationCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Text="Delete Organization"/>
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Button Command="{Binding GetAllOrganizationsCommand}" FontSize="20" 
+                     FontFamily="Times" FontAttributes="Bold" Text="Get All Organizations"/>
+
+                </VerticalStackLayout>
+                
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+             Padding="10">
+
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
+                 BorderColor="SandyBrown">
+
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
+
+                        <Label Text="{Binding NewOrganizationStatusMessage}" TextColor="Black" 
+                         FontSize="20" FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         HorizontalOptions="Center" WidthRequest="200"></Label>
+
+                        <Label Text="{Binding RemoveOrganizationStatusMessage}" TextColor="Black" 
+                         FontSize="20" FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         HorizontalOptions="Center" WidthRequest="200"></Label>
+
+                    </VerticalStackLayout>
+
+                </Frame>
+
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
+                 BorderColor="SandyBrown">
+
+                    <ListView ItemsSource="{Binding OrganizationList}" VerticalOptions="Center" 
+                     HorizontalOptions="Center" WidthRequest="300" HeightRequest="100" 
+                     VerticalScrollBarVisibility="Always">
+
+                        <ListView.Header>
+                            <Label HorizontalOptions="Center" TextColor="Black" FontSize="20" 
+                             FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                             Margin="10,0,0,0" Text="Organization List">
+                            </Label>
+                        </ListView.Header>
+
+                    </ListView>
+
+                </Frame>
+
+            </HorizontalStackLayout>
+
+            <Label Text="----------ORGANIZATION END----------" FontSize="24" FontFamily="Times" 
+             FontAttributes="Bold" Padding="10" HorizontalOptions="Center"></Label>
+
+            <Label Text="----------EMAIL DISTRIBUTION START----------" FontSize="24" FontFamily="Times" 
+             FontAttributes="Bold" Padding="10" HorizontalOptions="Center"></Label>
+
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Entry Text="{Binding NewEmailDistributionRegion}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Email Distribution Region"/>
+
+                    <Entry Text="{Binding NewEmailDistributionType}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Email Distribution Type"/>
+
+                    <Entry Text="{Binding NewEmailDistributionPlazaId}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Email Distribution Plaza ID"/>
+
+                    <Entry Text="{Binding NewEmailDistributionTo}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Email Distribution To"/>
+
+                    <Entry Text="{Binding NewEmailDistributionCc}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Email Distribution CC"/>
+
+                    <Button Command="{Binding AddNewEmailDistributionCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Text="Add Email Distribution"/>
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Entry  Text="{Binding RemoveEmailDistribution}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Placeholder="Enter Email Distribution ID" />
+
+                    <Button Command="{Binding DeleteEmailDistributionCommand}" FontSize="20" FontFamily="Times" 
+                     FontAttributes="Bold" Text="Delete Email Distribution"/>
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Button Command="{Binding GetAllEmailDistributionsCommand}" FontSize="20" 
+                     FontFamily="Times" FontAttributes="Bold" Text="Get All Email Distributions"/>
+
+                </VerticalStackLayout>
+
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+             Padding="10">
+
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
+                 BorderColor="SandyBrown">
+
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
+
+                        <Label Text="{Binding NewEmailDistributionStatusMessage}" TextColor="Black" 
+                         FontSize="20" FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         HorizontalOptions="Center" WidthRequest="200"></Label>
+
+                        <Label Text="{Binding RemoveEmailDistributionStatusMessage}" TextColor="Black" 
+                         FontSize="20" FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         HorizontalOptions="Center" WidthRequest="200"></Label>
+
+                    </VerticalStackLayout>
+
+                </Frame>
+
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
+                 BorderColor="SandyBrown">
+
+                    <ListView ItemsSource="{Binding EmailDistributionList}" VerticalOptions="Center" 
+                     HorizontalOptions="Center" WidthRequest="300" HeightRequest="100" 
+                     VerticalScrollBarVisibility="Always">
+
+                        <ListView.Header>
+                            <Label HorizontalOptions="Center" TextColor="Black" FontSize="20" 
+                             FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                             Margin="10,0,0,0" Text="Email Distribution List">
+                            </Label>
+                        </ListView.Header>
+
+                    </ListView>
+
+                </Frame>
+
+            </HorizontalStackLayout>
+
+
+            <Label Text="----------EMAIL DISTRIBUTION END----------" FontSize="24" FontFamily="Times" 
              FontAttributes="Bold" Padding="10" HorizontalOptions="Center"></Label>
 
         </VerticalStackLayout>

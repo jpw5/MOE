@@ -12,7 +12,7 @@ namespace Master_of_Emails.Table_Repositories
     public class TollOrganizationRepository
     {
         public DB DB;
-        public string StatusMessage;
+       
         public static SQLiteConnection DatabaseConnection { get; set; }
 
         public static void Init()
@@ -44,6 +44,13 @@ namespace Master_of_Emails.Table_Repositories
         {
             Init();
             return DatabaseConnection.Table<TollOrganization>().ToList();
+        }
+
+        public TableQuery<TollOrganization> QueryByOrganizationName(string OrganizationName)
+        {
+            Init();
+            OrganizationName = OrganizationName.ToUpper();
+            return DatabaseConnection.Table<TollOrganization>().Where(value => value.Organization_name.ToUpper().Contains(OrganizationName));
         }
     }
 }
