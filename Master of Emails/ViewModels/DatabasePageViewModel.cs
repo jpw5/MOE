@@ -39,6 +39,8 @@ namespace Master_of_Emails.ViewModels;
         [ObservableProperty]
         public string newPlazaPhoneNumber;
         [ObservableProperty]
+        public string newPlazaCompany;
+        [ObservableProperty]
         public string newPlazaStatusMessage;
         [ObservableProperty]
         public string removePlaza;
@@ -267,7 +269,8 @@ namespace Master_of_Emails.ViewModels;
                 NewPlazaName, NewPlazaRoadway, 
                 Int32.Parse(NewPlazaMilepost), 
                 NewPlazaRegionName, 
-                NewPlazaPhoneNumber
+                NewPlazaPhoneNumber,
+                NewPlazaCompany
                 );
 
             NewPlazaId = "";
@@ -276,6 +279,7 @@ namespace Master_of_Emails.ViewModels;
             NewPlazaMilepost = "";
             NewPlazaRegionName = "";
             NewPlazaPhoneNumber = "";
+            NewPlazaCompany = "";
             NewPlazaStatusMessage = "Success: Plaza Added.";
             await Task.Delay(2000);
             NewPlazaStatusMessage = "";

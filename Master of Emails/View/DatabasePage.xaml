@@ -13,7 +13,7 @@
         <VerticalStackLayout Padding="5">
             
             <Label Text="----------REGION SECTION START----------" FontSize="24" 
-            FontFamily="Times" FontAttributes="Italic,Bold" HorizontalOptions="Center"></Label>
+            FontFamily="ArialBlack" FontAttributes="Italic,Bold" HorizontalOptions="Center"></Label>
             
             <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
              Padding="10">
@@ -22,9 +22,9 @@
                  Padding="10">
                     
                     <Entry  Text="{Binding NewRegion}" Placeholder="Enter Region Name" FontSize="20" 
-                     FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True"/>
+                     FontFamily="ArialBlack" FontAttributes="Bold" FontAutoScalingEnabled="True"/>
                     
-                    <Button Command="{Binding AddNewRegionCommand}" FontSize="20" FontFamily="Times" 
+                    <Button Command="{Binding AddNewRegionCommand}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" FontAutoScalingEnabled="True" Text="Add Region"/>
                     
                 </VerticalStackLayout>
@@ -32,11 +32,11 @@
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
                  Padding="10">
                     
-                    <Entry  Text="{Binding RemoveRegion}" FontSize="20" FontFamily="Times" 
+                    <Entry  Text="{Binding RemoveRegion}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" FontAutoScalingEnabled="True" 
                      Placeholder="Enter a Region ID" />
                     
-                    <Button Command="{Binding DeleteRegionCommand}" FontSize="20" FontFamily="Times" 
+                    <Button Command="{Binding DeleteRegionCommand}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" FontAutoScalingEnabled="True" Text="Delete Region"/>
                     
                 </VerticalStackLayout>
@@ -45,7 +45,7 @@
                  Padding="10">
                     
                     <Button Command="{Binding GetAllRegionsCommand}" Text="Get All Regions" FontSize="20" 
-                     FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True"/>
+                     FontFamily="ArialBlack" FontAttributes="Bold" FontAutoScalingEnabled="True"/>
                     
                 </VerticalStackLayout>
                 
@@ -61,11 +61,11 @@
                      Padding="10">
                         
                         <Label Text="{Binding NewRegionStatusMessage}" TextColor="Black" FontSize="20" 
-                         FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                         FontFamily="ArialBlack" FontAttributes="Bold" FontAutoScalingEnabled="True" 
                          VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="200"></Label>
                         
                         <Label Text="{Binding RemoveRegionStatusMessage}" TextColor="Black" FontSize="20" 
-                         FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                         FontFamily="ArialBlack" FontAttributes="Bold" FontAutoScalingEnabled="True" 
                          VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="200"></Label>
                         
                     </VerticalStackLayout>
@@ -80,7 +80,7 @@
                      VerticalScrollBarVisibility="Always" >
 
                         <ListView.Header>
-                            <Label TextColor="Black" FontSize="20" FontFamily="Times" 
+                            <Label TextColor="Black" FontSize="20" FontFamily="ArialBlack" 
                              FontAttributes="Bold" FontAutoScalingEnabled="True" Margin="10,0,0,0" 
                              HorizontalOptions="Center" Text="Region List"/>
                         </ListView.Header>
@@ -91,36 +91,39 @@
 
             </HorizontalStackLayout>
 
-            <Label Text="----------REGION SECTION END----------" FontSize="24" FontFamily="Times" 
+            <Label Text="----------REGION SECTION END----------" FontSize="24" FontFamily="ArialBlack" 
              FontAttributes="Italic,Bold" HorizontalOptions="Center"></Label>
 
             <Label Text="----------PLAZA SECTION START----------"  Padding="10" FontSize="24" 
-            FontFamily="Times" FontAttributes="Italic,Bold" HorizontalOptions="Center"></Label>
+            FontFamily="ArialBlack" FontAttributes="Italic,Bold" HorizontalOptions="Center"></Label>
 
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
 
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
                  Padding="10">
 
-                    <Entry Text="{Binding NewPlazaId}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewPlazaId}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" FontAutoScalingEnabled="True" Placeholder="Enter Plaza ID"/>
 
-                    <Entry Text="{Binding NewPlazaName}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewPlazaName}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Plaza Name"/>
 
-                    <Entry Text="{Binding NewPlazaRoadway}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewPlazaRoadway}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Plaza Roadway"/>
 
-                    <Entry Text="{Binding NewPlazaMilepost}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewPlazaMilepost}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Plaza Mile Post"/>
 
-                    <Entry Text="{Binding NewPlazaRegionName}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewPlazaRegionName}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Plaza Region"/>
 
-                    <Entry Text="{Binding NewPlazaPhoneNumber}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewPlazaPhoneNumber}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Plaza Phone Number"/>
 
-                    <Button Command="{Binding AddNewPlazaCommand}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewPlazaCompany}" FontSize="20" FontFamily="ArialBlack" 
+                     FontAttributes="Bold" Placeholder="Enter Plaza Company"/>
+
+                    <Button Command="{Binding AddNewPlazaCommand}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Text="Add Plaza"/>
 
                 </VerticalStackLayout>
@@ -128,10 +131,10 @@
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
                  Padding="10">
 
-                    <Entry Text="{Binding RemoveRegion}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding RemoveRegion}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Plaza ID"/>
 
-                    <Button Command="{Binding DeletePlazaCommand}" FontSize="20" FontFamily="Times" 
+                    <Button Command="{Binding DeletePlazaCommand}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Text="Delete Plaza" />
                     
                 </VerticalStackLayout>
@@ -140,7 +143,7 @@
                  Padding="10">
 
                     <Button Command="{Binding GetAllPlazasCommand}" FontSize="20" 
-                     FontFamily="Times" FontAttributes="Bold" Text="Get All Plazas" />
+                     FontFamily="ArialBlack" FontAttributes="Bold" Text="Get All Plazas" />
                     
                 </VerticalStackLayout>
 
@@ -155,11 +158,11 @@
                     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10"
                      Padding="10">
 
-                        <Label Text="{Binding NewPlazaStatusMessage}" FontSize="20" FontFamily="Times" 
+                        <Label Text="{Binding NewPlazaStatusMessage}" FontSize="20" FontFamily="ArialBlack" 
                          TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
 
-                        <Label Text="{Binding RemovePlazaStatusMessage}" FontSize="20" FontFamily="Times" 
+                        <Label Text="{Binding RemovePlazaStatusMessage}" FontSize="20" FontFamily="ArialBlack" 
                          TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
                         
@@ -176,7 +179,7 @@
 
                         <ListView.Header>
                             <Label HorizontalOptions="Center" TextColor="Black" FontSize="20" 
-                             FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                             FontFamily="ArialBlack" FontAttributes="Bold" FontAutoScalingEnabled="True" 
                              Margin="10,0,0,0" Text="Plaza List"/>
                         </ListView.Header>
 
@@ -186,10 +189,10 @@
                 
             </HorizontalStackLayout>
 
-            <Label Text="----------PLAZA SECTION END----------" FontSize="24" FontFamily="Times" 
+            <Label Text="----------PLAZA SECTION END----------" FontSize="24" FontFamily="ArialBlack" 
              FontAttributes="Italic,Bold" Padding="10" HorizontalOptions="Center"></Label>
 
-            <Label Text="----------LANE SECTION START----------" FontSize="24" FontFamily="Times" 
+            <Label Text="----------LANE SECTION START----------" FontSize="24" FontFamily="ArialBlack" 
              FontAttributes="Italic,Bold" Padding="10" HorizontalOptions="Center"></Label>
 
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
@@ -197,16 +200,16 @@
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
                  Padding="10">
 
-                    <Entry Text="{Binding NewLanePlazaId}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewLanePlazaId}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Lane Plaza ID" />
 
-                    <Entry Text="{Binding NewLaneNumber}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewLaneNumber}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Lane Number" />
 
-                    <Entry Text="{Binding NewLaneType}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewLaneType}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Lane Type" />
 
-                    <Button Command="{Binding AddNewLaneCommand}" FontSize="20" FontFamily="Times" 
+                    <Button Command="{Binding AddNewLaneCommand}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Text="Add Lane"/>
                     
                 </VerticalStackLayout>
@@ -214,10 +217,10 @@
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
                  Padding="10">
 
-                    <Entry Text="{Binding RemoveLane}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding RemoveLane}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Lane ID" />
 
-                    <Button Command="{Binding DeleteLaneCommand}" FontSize="20" FontFamily="Times" 
+                    <Button Command="{Binding DeleteLaneCommand}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Text="Delete Lane"/>
                     
                 </VerticalStackLayout>
@@ -225,7 +228,7 @@
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
                  Padding="10">
 
-                    <Button Command="{Binding GetAllLanesCommand}" FontSize="20" FontFamily="Times" 
+                    <Button Command="{Binding GetAllLanesCommand}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Text="Get All Lanes"/>
                     
                 </VerticalStackLayout>
@@ -241,11 +244,11 @@
                     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10"
                      Padding="10">
 
-                        <Label Text="{Binding NewLaneStatusMessage}" FontSize="20" FontFamily="Times" 
+                        <Label Text="{Binding NewLaneStatusMessage}" FontSize="20" FontFamily="ArialBlack" 
                          TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
 
-                        <Label Text="{Binding RemoveLaneStatusMessage}" FontSize="20" FontFamily="Times" 
+                        <Label Text="{Binding RemoveLaneStatusMessage}" FontSize="20" FontFamily="ArialBlack" 
                          TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
                         
@@ -262,7 +265,7 @@
 
                         <ListView.Header>
                             <Label HorizontalOptions="Center" TextColor="Black" FontSize="20" 
-                             FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                             FontFamily="ArialBlack" FontAttributes="Bold" FontAutoScalingEnabled="True" 
                              Margin="10,0,0,0" Text="Lane List"/>
                         </ListView.Header>
 
@@ -271,10 +274,10 @@
                 </Frame>
             </HorizontalStackLayout>
 
-            <Label Text="----------LANE SECTION END----------" FontSize="24" FontFamily="Times" 
+            <Label Text="----------LANE SECTION END----------" FontSize="24" FontFamily="ArialBlack" 
              FontAttributes="Italic, Bold" Padding="10"  HorizontalOptions="Center"></Label>
 
-            <Label Text="----------TECHNICIAN SECTION START----------" FontSize="24" FontFamily="Times" 
+            <Label Text="----------TECHNICIAN SECTION START----------" FontSize="24" FontFamily="ArialBlack" 
              FontAttributes="Italic,Bold" Padding="10"  HorizontalOptions="Center"></Label>
 
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
@@ -282,22 +285,22 @@
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
                  Padding="10">
 
-                    <Entry Text="{Binding NewTechnicianKnId}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewTechnicianKnId}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Technician KN ID" />
 
-                    <Entry Text="{Binding NewTechnicianName}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewTechnicianName}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Technician Name (First Last)"/>
 
-                    <Entry Text="{Binding NewTechnicianPhoneNumber}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewTechnicianPhoneNumber}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Technician Phone Number"/>
 
-                    <Entry Text="{Binding NewTechnicianEmail}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewTechnicianEmail}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Technician E-Mail" />
 
-                    <Entry Text="{Binding NewTechnicianRegion}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewTechnicianRegion}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Technician Region" />
 
-                    <Button Command="{Binding AddNewTechnicianCommand}" FontSize="20" FontFamily="Times" 
+                    <Button Command="{Binding AddNewTechnicianCommand}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Text="Add Technician"/>
                     
                 </VerticalStackLayout>
@@ -306,17 +309,17 @@
                  Padding="10">
 
                     <Entry Text="{Binding RemoveTechnician}" FontSize="20" 
-                     FontFamily="Times" FontAttributes="Bold" Placeholder="Enter Technician KNID" />
+                     FontFamily="ArialBlack" FontAttributes="Bold" Placeholder="Enter Technician KNID" />
 
                     <Button Command="{Binding DeleteTechnicianCommand}" FontSize="20" 
-                     FontFamily="Times" FontAttributes="Bold" Text="Delete Technician"/>
+                     FontFamily="ArialBlack" FontAttributes="Bold" Text="Delete Technician"/>
                     
                 </VerticalStackLayout>
                 
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
                  Padding="10">
                     
-                    <Button Command="{Binding GetAllTechniciansCommand}" FontSize="20" FontFamily="Times" 
+                    <Button Command="{Binding GetAllTechniciansCommand}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Text="Get All Technicians"/>
                     
                 </VerticalStackLayout>
@@ -333,11 +336,11 @@
                      Padding="10">
 
                         <Label Text="{Binding NewTechnicianStatusMessage}" TextColor="Black" FontSize="20" 
-                         FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
 
                         <Label Text="{Binding RemoveTechnicianStatusMessage}" TextColor="Black" 
-                         FontSize="20" FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
                         
                     </VerticalStackLayout>
@@ -353,7 +356,7 @@
 
                         <ListView.Header>
                             <Label HorizontalOptions="Center" TextColor="Black" FontSize="20" 
-                             FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                             FontFamily="ArialBlack" FontAttributes="Bold" FontAutoScalingEnabled="True" 
                              Margin="10,0,0,0" Text="Technician List"/>
                         </ListView.Header>
 
@@ -363,10 +366,10 @@
                 
             </HorizontalStackLayout>
 
-            <Label Text="----------TECHNICIAN SECTION END----------" FontSize="24" FontFamily="Times" 
+            <Label Text="----------TECHNICIAN SECTION END----------" FontSize="24" FontFamily="ArialBlack" 
              FontAttributes="Italic, Bold" Padding="10" HorizontalOptions="Center"></Label>
 
-            <Label Text="----------BOM ITEM SECTION START----------" FontSize="24" FontFamily="Times" 
+            <Label Text="----------BOM ITEM SECTION START----------" FontSize="24" FontFamily="ArialBlack" 
              FontAttributes="Italic, Bold"  Padding="10" HorizontalOptions="Center"></Label>
 
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
@@ -374,13 +377,13 @@
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
                  Padding="10">
 
-                    <Entry Text="{Binding NewBomitemLaneType}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewBomitemLaneType}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Bom Item Lane Type"/>
 
-                    <Entry Text="{Binding NewBomitemName}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewBomitemName}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Bom Item Name"/>
 
-                    <Button Command="{Binding AddNewBomitemCommand}" FontSize="20" FontFamily="Times" 
+                    <Button Command="{Binding AddNewBomitemCommand}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Text="Add Bom Item"/>
                     
                 </VerticalStackLayout>
@@ -388,10 +391,10 @@
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
                  Padding="10">
 
-                    <Entry Text="{Binding RemoveBomitem}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding RemoveBomitem}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Bomitem ID" />
 
-                    <Button Command="{Binding DeleteBomitemCommand}" FontSize="20" FontFamily="Times" 
+                    <Button Command="{Binding DeleteBomitemCommand}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Text="Delete Bomitem"/>
                     
                 </VerticalStackLayout>
@@ -399,7 +402,7 @@
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
                  Padding="10">
                     
-                    <Button Command="{Binding GetAllBomitemsCommand}" FontSize="20" FontFamily="Times" 
+                    <Button Command="{Binding GetAllBomitemsCommand}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Text="Get All Bomitems"/>
                     
                 </VerticalStackLayout>
@@ -416,11 +419,11 @@
                      Padding="10">
 
                         <Label Text="{Binding NewBomitemStatusMessage}" TextColor="Black" FontSize="20" 
-                         FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
 
                         <Label Text="{Binding RemoveBomitemStatusMessage}" TextColor="Black" FontSize="20"
-                         FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
                         
                     </VerticalStackLayout>
@@ -436,7 +439,7 @@
 
                         <ListView.Header>
                             <Label HorizontalOptions="Center" TextColor="Black" FontSize="20" 
-                             FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                             FontFamily="ArialBlack" FontAttributes="Bold" FontAutoScalingEnabled="True" 
                              Margin="10,0,0,0" Text="Bomitem List"/>
                         </ListView.Header>
 
@@ -445,10 +448,10 @@
                 </Frame>
             </HorizontalStackLayout>
 
-            <Label Text="----------BOM ITEM SECTION END----------" FontSize="24" FontFamily="Times" 
+            <Label Text="----------BOM ITEM SECTION END----------" FontSize="24" FontFamily="ArialBlack" 
              FontAttributes="Italic, Bold" Padding="10" HorizontalOptions="Center"></Label>
 
-            <Label Text="----------DURESS REASON START----------" FontSize="24" FontFamily="Times" 
+            <Label Text="----------DURESS REASON START----------" FontSize="24" FontFamily="ArialBlack" 
              FontAttributes="Italic, Bold" Padding="10" HorizontalOptions="Center"></Label>
 
             <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
@@ -457,21 +460,21 @@
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
                  Padding="10">
 
-                    <Entry  Text="{Binding NewDuressReason}" FontSize="20" FontFamily="Times" 
+                    <Entry  Text="{Binding NewDuressReason}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Duress Reason" />
 
                     <Button Command="{Binding AddNewDuressReasonCommand}" FontSize="20" 
-                     FontFamily="Times" FontAttributes="Bold" Text="Add Reason"/>
+                     FontFamily="ArialBlack" FontAttributes="Bold" Text="Add Reason"/>
                     
                 </VerticalStackLayout>
                 
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
                  Padding="10">
 
-                    <Entry  Text="{Binding RemoveDuressReason}" FontSize="20" FontFamily="Times" 
+                    <Entry  Text="{Binding RemoveDuressReason}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Duress Reason ID"/>
 
-                    <Button Command="{Binding DeleteDuressReasonCommand}" FontSize="20" FontFamily="Times" 
+                    <Button Command="{Binding DeleteDuressReasonCommand}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Text="Delete Reason"/>
                     
                 </VerticalStackLayout>
@@ -479,7 +482,7 @@
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
                  Padding="10">
 
-                    <Button Command="{Binding GetAllDuressReasonsCommand}" FontSize="20" FontFamily="Times" 
+                    <Button Command="{Binding GetAllDuressReasonsCommand}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Text="Get All Duress Reasons"/>
                     
                 </VerticalStackLayout>
@@ -495,11 +498,11 @@
                     <VerticalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
 
                         <Label Text="{Binding NewDuressReasonStatusMessage}" TextColor="Black" 
-                         FontSize="20" FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
 
                         <Label Text="{Binding RemoveDuressReasonStatusMessage}" TextColor="Black" 
-                         FontSize="20" FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
                         
                     </VerticalStackLayout>
@@ -515,7 +518,7 @@
                         
                         <ListView.Header>
                             <Label HorizontalOptions="Center" TextColor="Black" FontSize="20" 
-                             FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                             FontFamily="ArialBlack" FontAttributes="Bold" FontAutoScalingEnabled="True" 
                              Margin="10,0,0,0" Text="Duress Reason List"/>
                         </ListView.Header>
 
@@ -525,10 +528,10 @@
 
             </HorizontalStackLayout>
 
-            <Label Text="----------DURESS REASON END----------" FontSize="24" FontFamily="Times" 
+            <Label Text="----------DURESS REASON END----------" FontSize="24" FontFamily="ArialBlack" 
              FontAttributes="Italic,Bold" Padding="10" HorizontalOptions="Center"></Label>
 
-            <Label Text="----------FACILITIES AND TELECOM START----------" FontSize="24" FontFamily="Times" 
+            <Label Text="----------FACILITIES AND TELECOM START----------" FontSize="24" FontFamily="ArialBlack" 
              FontAttributes="Italic, Bold" Padding="10" HorizontalOptions="Center"></Label>
 
 
@@ -538,36 +541,36 @@
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
                  Padding="10">
 
-                    <Entry Text="{Binding NewFacilitiesTelecomKnID}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewFacilitiesTelecomKnID}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Personale KNID"/>
 
-                    <Entry Text="{Binding NewFacilitiesTelecomName}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewFacilitiesTelecomName}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Personale Name"/>
 
-                    <Entry Text="{Binding NewFacilitiesTelecomPhoneNumber}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewFacilitiesTelecomPhoneNumber}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Personale Phone Number"/>
 
-                    <Entry Text="{Binding NewFacilitiesTelecomAlternatePhoneNumber}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewFacilitiesTelecomAlternatePhoneNumber}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Personale Alternat Phone Number"/>
 
-                    <Entry Text="{Binding NewFacilitiesTelecomEmail}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewFacilitiesTelecomEmail}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Personale Email" />
 
-                    <Entry Text="{Binding NewDepartment}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewDepartment}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Facilities or Telecomunication" />
 
                     <Button Command="{Binding AddNewFacilitiesTelecomCommand}" FontSize="20" 
-                     FontFamily="Times" FontAttributes="Bold" Text="Add Personale" />
+                     FontFamily="ArialBlack" FontAttributes="Bold" Text="Add Personale" />
 
                 </VerticalStackLayout>
 
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
                  Padding="10">
 
-                    <Entry  Text="{Binding RemoveFacilitiesTelecom}" FontSize="20" FontFamily="Times" 
+                    <Entry  Text="{Binding RemoveFacilitiesTelecom}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Personale KNID" />
 
-                    <Button Command="{Binding DeleteFacilitiesTelecomCommand}" FontSize="20" FontFamily="Times" 
+                    <Button Command="{Binding DeleteFacilitiesTelecomCommand}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Text="Delete Personale"/>
                     
                 </VerticalStackLayout>
@@ -576,7 +579,7 @@
                  Padding="10">
 
                     <Button Command="{Binding GetAllFacilitiesTelecomCommand}" FontSize="20" 
-                     FontFamily="Times" FontAttributes="Bold" Text="Get All Personale"/>
+                     FontFamily="ArialBlack" FontAttributes="Bold" Text="Get All Personale"/>
                     
                 </VerticalStackLayout>
 
@@ -591,11 +594,11 @@
                     <VerticalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
 
                         <Label Text="{Binding NewFacilitiesTelecomStatusMessage}" TextColor="Black" 
-                         FontSize="20" FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
 
                         <Label Text="{Binding RemoveFacilitiesTelecomStatusMessage}" TextColor="Black" 
-                         FontSize="20" FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
                         
                     </VerticalStackLayout>
@@ -612,7 +615,7 @@
 
                         <ListView.Header>
                             <Label HorizontalOptions="Center" TextColor="Black" FontSize="20" 
-                             FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                             FontFamily="ArialBlack" FontAttributes="Bold" FontAutoScalingEnabled="True" 
                              Margin="10,0,0,0" Text="Facilities And Telecom Personale List">
                             </Label>
                             
@@ -624,10 +627,10 @@
 
             </HorizontalStackLayout>
 
-            <Label Text="----------FACILITIES AND TELECOM END----------" FontSize="24" FontFamily="Times" 
+            <Label Text="----------FACILITIES AND TELECOM END----------" FontSize="24" FontFamily="ArialBlack" 
              FontAttributes="Bold" Padding="10" HorizontalOptions="Center"></Label>
 
-            <Label Text="----------ORGANIZATION START----------" FontSize="24" FontFamily="Times" 
+            <Label Text="----------ORGANIZATION START----------" FontSize="24" FontFamily="ArialBlack" 
              FontAttributes="Bold" Padding="10" HorizontalOptions="Center"></Label>
 
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
@@ -635,16 +638,16 @@
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
                  Padding="10">
 
-                    <Entry Text="{Binding NewOrganizationName}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewOrganizationName}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Organization Name"/>
 
-                    <Entry Text="{Binding NewOrganizationPhoneNumber}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewOrganizationPhoneNumber}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Organization Phone Number"/>
 
-                    <Entry Text="{Binding NewOrganizationEmail}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewOrganizationEmail}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Organization Email"/>
 
-                    <Button Command="{Binding AddNewOrganizationCommand}" FontSize="20" FontFamily="Times" 
+                    <Button Command="{Binding AddNewOrganizationCommand}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Text="Add Organization"/>
 
                 </VerticalStackLayout>
@@ -652,10 +655,10 @@
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
                  Padding="10">
 
-                    <Entry  Text="{Binding RemoveOrganization}" FontSize="20" FontFamily="Times" 
+                    <Entry  Text="{Binding RemoveOrganization}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Organization ID" />
 
-                    <Button Command="{Binding DeleteOrganizationCommand}" FontSize="20" FontFamily="Times" 
+                    <Button Command="{Binding DeleteOrganizationCommand}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Text="Delete Organization"/>
 
                 </VerticalStackLayout>
@@ -664,7 +667,7 @@
                  Padding="10">
 
                     <Button Command="{Binding GetAllOrganizationsCommand}" FontSize="20" 
-                     FontFamily="Times" FontAttributes="Bold" Text="Get All Organizations"/>
+                     FontFamily="ArialBlack" FontAttributes="Bold" Text="Get All Organizations"/>
 
                 </VerticalStackLayout>
                 
@@ -679,11 +682,11 @@
                     <VerticalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
 
                         <Label Text="{Binding NewOrganizationStatusMessage}" TextColor="Black" 
-                         FontSize="20" FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
 
                         <Label Text="{Binding RemoveOrganizationStatusMessage}" TextColor="Black" 
-                         FontSize="20" FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
 
                     </VerticalStackLayout>
@@ -699,7 +702,7 @@
 
                         <ListView.Header>
                             <Label HorizontalOptions="Center" TextColor="Black" FontSize="20" 
-                             FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                             FontFamily="ArialBlack" FontAttributes="Bold" FontAutoScalingEnabled="True" 
                              Margin="10,0,0,0" Text="Organization List">
                             </Label>
                         </ListView.Header>
@@ -710,10 +713,10 @@
 
             </HorizontalStackLayout>
 
-            <Label Text="----------ORGANIZATION END----------" FontSize="24" FontFamily="Times" 
+            <Label Text="----------ORGANIZATION END----------" FontSize="24" FontFamily="ArialBlack" 
              FontAttributes="Bold" Padding="10" HorizontalOptions="Center"></Label>
 
-            <Label Text="----------EMAIL DISTRIBUTION START----------" FontSize="24" FontFamily="Times" 
+            <Label Text="----------EMAIL DISTRIBUTION START----------" FontSize="24" FontFamily="ArialBlack" 
              FontAttributes="Bold" Padding="10" HorizontalOptions="Center"></Label>
 
 
@@ -722,22 +725,22 @@
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
                  Padding="10">
 
-                    <Entry Text="{Binding NewEmailDistributionRegion}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewEmailDistributionRegion}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Email Distribution Region"/>
 
-                    <Entry Text="{Binding NewEmailDistributionType}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewEmailDistributionType}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Email Distribution Type"/>
 
-                    <Entry Text="{Binding NewEmailDistributionPlazaId}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewEmailDistributionPlazaId}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Email Distribution Plaza ID"/>
 
-                    <Entry Text="{Binding NewEmailDistributionTo}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewEmailDistributionTo}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Email Distribution To"/>
 
-                    <Entry Text="{Binding NewEmailDistributionCc}" FontSize="20" FontFamily="Times" 
+                    <Entry Text="{Binding NewEmailDistributionCc}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Email Distribution CC"/>
 
-                    <Button Command="{Binding AddNewEmailDistributionCommand}" FontSize="20" FontFamily="Times" 
+                    <Button Command="{Binding AddNewEmailDistributionCommand}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Text="Add Email Distribution"/>
 
                 </VerticalStackLayout>
@@ -745,10 +748,10 @@
                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
                  Padding="10">
 
-                    <Entry  Text="{Binding RemoveEmailDistribution}" FontSize="20" FontFamily="Times" 
+                    <Entry  Text="{Binding RemoveEmailDistribution}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Email Distribution ID" />
 
-                    <Button Command="{Binding DeleteEmailDistributionCommand}" FontSize="20" FontFamily="Times" 
+                    <Button Command="{Binding DeleteEmailDistributionCommand}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Text="Delete Email Distribution"/>
 
                 </VerticalStackLayout>
@@ -757,7 +760,7 @@
                  Padding="10">
 
                     <Button Command="{Binding GetAllEmailDistributionsCommand}" FontSize="20" 
-                     FontFamily="Times" FontAttributes="Bold" Text="Get All Email Distributions"/>
+                     FontFamily="ArialBlack" FontAttributes="Bold" Text="Get All Email Distributions"/>
 
                 </VerticalStackLayout>
 
@@ -772,11 +775,11 @@
                     <VerticalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
 
                         <Label Text="{Binding NewEmailDistributionStatusMessage}" TextColor="Black" 
-                         FontSize="20" FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
 
                         <Label Text="{Binding RemoveEmailDistributionStatusMessage}" TextColor="Black" 
-                         FontSize="20" FontFamily="Times" FontAttributes="Bold" VerticalOptions="Center" 
+                         FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
 
                     </VerticalStackLayout>
@@ -792,7 +795,7 @@
 
                         <ListView.Header>
                             <Label HorizontalOptions="Center" TextColor="Black" FontSize="20" 
-                             FontFamily="Times" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                             FontFamily="ArialBlack" FontAttributes="Bold" FontAutoScalingEnabled="True" 
                              Margin="10,0,0,0" Text="Email Distribution List">
                             </Label>
                         </ListView.Header>
@@ -804,7 +807,7 @@
             </HorizontalStackLayout>
 
 
-            <Label Text="----------EMAIL DISTRIBUTION END----------" FontSize="24" FontFamily="Times" 
+            <Label Text="----------EMAIL DISTRIBUTION END----------" FontSize="24" FontFamily="ArialBlack" 
              FontAttributes="Bold" Padding="10" HorizontalOptions="Center"></Label>
 
         </VerticalStackLayout>

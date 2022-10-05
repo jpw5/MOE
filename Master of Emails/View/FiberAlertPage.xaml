@@ -22,7 +22,7 @@
 
                  <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" 
                   x:Name="selectRegion" WidthRequest="120" HorizontalOptions="Center" 
-                  VerticalOptions="Center" FontSize="16" FontAttributes="Bold" FontFamily="Times" 
+                  VerticalOptions="Center" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" 
                   TextColor="Black" Title="Select Region"></Picker>
 
                 </HorizontalStackLayout>
@@ -30,16 +30,16 @@
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
                     <Entry Text="{Binding MilePost}" x:Name="selectMilePost" FontSize="16" FontAttributes="Bold" 
-                     FontFamily="Times" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" 
+                     FontFamily="ArialBlack" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" 
                      Placeholder="Mile Post" TextColor="Black" PlaceholderColor="Black"></Entry>
 
                     <Entry Text="{Binding AffectedArea}" x:Name="selectAffectedArea" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" HorizontalTextAlignment="Start" 
                      VerticalTextAlignment="Start" Placeholder="Enter Affected Area" WidthRequest="300" 
                      TextColor="Black" PlaceholderColor="Black"></Entry>
 
                     <Entry Text="{Binding Who}" x:Name="selectWho" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" HorizontalTextAlignment="Start" 
                      VerticalTextAlignment="Start" Placeholder="Enter Who" WidthRequest="200" 
                      TextColor="Black" PlaceholderColor="Black"></Entry>
 
@@ -48,12 +48,12 @@
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
 
                     <Entry Text="{Binding AmountCut}" x:Name="selectAmountCut" FontSize="16" 
-                     FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     FontAttributes="Bold" FontFamily="ArialBlack" HorizontalTextAlignment="Start" 
                      VerticalTextAlignment="Start" Placeholder="Enter Fiber Cut Amount" 
                      TextColor="Black" PlaceholderColor="Black"></Entry>
 
                     <Entry Text="{Binding FiberTechnician}" x:Name="selectFiberTechnician" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" HorizontalTextAlignment="Start" 
                      VerticalTextAlignment="Start" Placeholder="Enter Fiber Technician" WidthRequest="200" 
                      TextColor="Black" PlaceholderColor="Black"></Entry>
 
@@ -62,12 +62,12 @@
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
 
                     <Entry Text="{Binding ReportedBy}" x:Name="selectReportedBy" FontSize="16" 
-                     FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     FontAttributes="Bold" FontFamily="ArialBlack" HorizontalTextAlignment="Start" 
                      VerticalTextAlignment="Start" Placeholder="Enter Reported By" 
                      TextColor="Black" PlaceholderColor="Black"></Entry>
 
                     <Entry Text="{Binding PhoneNumber}" x:Name="selectPhoneNumber" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" HorizontalTextAlignment="Start" 
                      VerticalTextAlignment="Start" Placeholder="Enter Phone Number" WidthRequest="200" 
                      TextColor="Black" PlaceholderColor="Black"></Entry>
                     
@@ -75,11 +75,11 @@
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
-                    <Label Text="Enter Start Date/Time" FontSize="16" FontAttributes="Bold" FontFamily="Times"  
+                    <Label Text="Enter Start Date/Time" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack"  
                      TextColor="Black" VerticalOptions="Center"></Label>
 
                     <Entry Text="{Binding StartDate}" x:Name="selectStartDate" FontSize="16" 
-                     FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     FontAttributes="Bold" FontFamily="ArialBlack" HorizontalTextAlignment="Start" 
                      VerticalTextAlignment="Start" Placeholder="Enter Starting Date/Time" 
                      TextColor="Black" PlaceholderColor="Black"></Entry>
 
@@ -87,11 +87,11 @@
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
-                    <Label Text="Enter End Date/Time" FontSize="16" FontAttributes="Bold" FontFamily="Times"  
+                    <Label Text="Enter End Date/Time" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack"  
                      TextColor="Black" VerticalOptions="Center"></Label>
 
                     <Entry Text="{Binding EndDate}" x:Name="selectEndDate" FontSize="16" 
-                     FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     FontAttributes="Bold" FontFamily="ArialBlack" HorizontalTextAlignment="Start" 
                      VerticalTextAlignment="Start" Placeholder="Enter Starting Date/Time" 
                      TextColor="Black" PlaceholderColor="Black"></Entry>
 
@@ -100,11 +100,11 @@
                 <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="End">
 
                     <Button Command="{Binding ClearCommand}" BackgroundColor="LightGray" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" CornerRadius="20" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" CornerRadius="20" 
                      Text="Clear"></Button>
 
                     <Button Pressed="FiberAlertEmailButton_Pressed" BackgroundColor="LightGray" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" CornerRadius="20" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" CornerRadius="20" 
                      Text="Email"></Button>
                     
                 </HorizontalStackLayout>

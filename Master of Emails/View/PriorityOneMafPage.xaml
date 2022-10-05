@@ -23,13 +23,13 @@
 
                     <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" 
                      x:Name="selectRegion" SelectedIndexChanged="SelectRegion_SelectedIndexChanged" 
-                     WidthRequest="120" FontSize="16" FontAttributes="Bold" TextColor="Black" 
-                     FontFamily="Times" Title="Select Region"></Picker>
+                     WidthRequest="150" FontSize="16" FontAttributes="Bold" TextColor="Black" 
+                     FontFamily="ArialBlack" Title="Select Region"></Picker>
 
                     <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" 
                      x:Name="selectPlaza" SelectedIndexChanged="SelectPlaza_SelectedIndexChanged"
                      WidthRequest="500" FontSize="16" FontAttributes="Bold" TextColor="Black" 
-                     FontFamily="Times" Title="Select Plaza"></Picker> 
+                     FontFamily="ArialBlack" Title="Select Plaza"></Picker> 
 
                 </HorizontalStackLayout>
 
@@ -38,14 +38,14 @@
                     <Picker ItemsSource="{Binding TollLaneList}" SelectedItem="{Binding Lane}" 
                      x:Name="selectLane" SelectedIndexChanged="SelectLane_SelectedIndexChanged" 
                      WidthRequest="150" FontSize="16" FontAttributes="Bold" TextColor="Black" 
-                     FontFamily="Times" Title="Select Lane"></Picker>
+                     FontFamily="ArialBlack" Title="Select Lane"></Picker>
 
                     <Picker ItemsSource="{Binding TollBomitemList}" SelectedItem="{Binding Bomitem}" 
-                     x:Name="selectBomitem" FontAttributes="Bold" FontSize="16" FontFamily="Times" 
+                     x:Name="selectBomitem" FontAttributes="Bold" FontSize="16" FontFamily="ArialBlack" 
                      TextColor="Black" WidthRequest="200" Title="Select BOM Item"></Picker>
 
                     <Picker ItemsSource="{Binding TollTechnicianList}" SelectedItem="{Binding Technician}" 
-                     x:Name="selectTechnician" FontAttributes="Bold" FontSize="16" FontFamily="Times"
+                     x:Name="selectTechnician" FontAttributes="Bold" FontSize="16" FontFamily="ArialBlack"
                      TextColor="Black" WidthRequest="200" Title="Select Technician"></Picker>
 
                 </HorizontalStackLayout>
@@ -53,34 +53,34 @@
                 <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="Start">
 
                     <Label Text="Select End Date/Time" FontSize="16" FontAttributes="Bold" 
-                     FontFamily="Times" TextColor="Black" VerticalOptions="Center"></Label>
+                     FontFamily="ArialBlack" TextColor="Black" VerticalOptions="Center"></Label>
 
                     <Entry Text="{Binding Date}" x:Name="selectDate" FontAttributes="Bold" FontSize="16"
                      HorizontalTextAlignment="Start" VerticalTextAlignment="Start" TextColor="Black" 
                      Placeholder="Enter Starting Date/Time" PlaceholderColor="Black"></Entry>
 
                     <Entry Text="{Binding MafNumber}" x:Name="selectMafNumber" FontAttributes="Bold"
-                     FontSize="16" FontFamily="Times" Placeholder="Enter MAF#" TextColor="Black" 
+                     FontSize="16" FontFamily="ArialBlack" Placeholder="Enter MAF#" TextColor="Black" 
                      PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
 
                 <Entry Text="{Binding Problem}" x:Name="selectProblem" FontAttributes="Bold" FontSize="16"
-                 FontFamily="Times" Placeholder="Enter Problem" TextColor="Black" 
+                 FontFamily="ArialBlack" Placeholder="Enter Problem" TextColor="Black" 
                  PlaceholderColor="Black" WidthRequest="600"></Entry>
 
                 <Editor Text="{Binding ActionTaken}" x:Name="selectActionTaken" FontAttributes="Bold" 
-                 FontSize="16" FontFamily="Times" Placeholder="Action Taken" TextColor="Black" 
+                 FontSize="16" FontFamily="ArialBlack" Placeholder="Action Taken" TextColor="Black" 
                  PlaceholderColor="Black" AutoSize="TextChanges"></Editor>
 
                 <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="End">
 
                     <Button Command="{Binding ClearCommand}" BackgroundColor="LightGray" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" CornerRadius="20" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" CornerRadius="20" 
                      Text="Clear"></Button>
 
                     <Button Pressed="PriorityOneEmail_Button_Pressed" BackgroundColor="LightGray" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" CornerRadius="20" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" CornerRadius="20" 
                      Text="Email"></Button>
                     
                 </HorizontalStackLayout>

@@ -21,19 +21,19 @@
 
                 <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" 
                  SelectedIndexChanged="SelectRegion_SelectedIndexChanged" x:Name="selectRegion" 
-                 WidthRequest="120" FontSize="16" FontAttributes="Bold" FontFamily="Times" 
+                 WidthRequest="150" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" 
                  TextColor="Black" Title="Select Region"></Picker>
                 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
 
                     <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" 
                      x:Name="selectPlaza" SelectedIndexChanged="SelectPlaza_SelectedIndexChanged" 
-                     WidthRequest="500" FontSize="16" FontAttributes="Bold" FontFamily="Times" 
+                     WidthRequest="500" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" 
                      TextColor="Black" Title="Select Plaza"></Picker>
 
                     <Picker ItemsSource="{Binding TollLaneList}" SelectedItem="{Binding Lane}" 
                      x:Name="selectLane" WidthRequest="100" FontSize="16" FontAttributes="Bold" 
-                     FontFamily="Times" TextColor="Black" Title="Select Lane"></Picker>
+                     FontFamily="ArialBlack" TextColor="Black" Title="Select Lane"></Picker>
 
                 </HorizontalStackLayout>
 
@@ -41,19 +41,19 @@
 
                     <Picker ItemsSource="{Binding TollDuressReasonList}" SelectedItem="{Binding DuressReason}"
                      x:Name="selectDuressReason" WidthRequest="400" Title="Select Reason" TextColor="Black"  
-                     FontFamily="Times" FontSize="16" FontAttributes="Bold"></Picker>
+                     FontFamily="ArialBlack" FontSize="16" FontAttributes="Bold"></Picker>
 
                     <VerticalStackLayout  VerticalOptions="Center" HorizontalOptions="Center">
 
-                        <Label Text="Select Alarm" FontSize="16" FontAttributes="Bold" FontFamily="Times"   
+                        <Label Text="Select Alarm" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack"   
                          TextColor="Black"></Label>
 
                         <RadioButton CheckedChanged="VaultRadioButton_CheckedChanged" FontAttributes="Bold" 
-                         FontSize="16" FontFamily="Times" TextColor="Black" Content="Vault Under Duress" 
+                         FontSize="16" FontFamily="ArialBlack" TextColor="Black" Content="Vault Under Duress" 
                          Value="Vault Under Duress"></RadioButton>
 
                         <RadioButton CheckedChanged="LaneRadioButton_CheckedChanged" FontAttributes="Bold" 
-                         FontSize="16" FontFamily="Times" Content="Lane Duress Alarm" 
+                         FontSize="16" FontFamily="ArialBlack" Content="Lane Duress Alarm" 
                          Value="Lane Duress Alarm" TextColor="Black"></RadioButton>
 
                     </VerticalStackLayout>
@@ -61,17 +61,17 @@
                 </HorizontalStackLayout>
 
                 <Entry Text="{Binding PlazaSupervisor}" x:Name="selectPlazaSupervisor" 
-                 FontSize="16" FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                 FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" HorizontalTextAlignment="Start" 
                  VerticalTextAlignment="Start" Placeholder="Enter Supervisor Name" 
                  TextColor="Black" PlaceholderColor="Black"></Entry>
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
                     <Label Text="Enter Start Date/Time" FontSize="16" FontAttributes="Bold" 
-                     FontFamily="Times" TextColor="Black"></Label>
+                     FontFamily="ArialBlack" TextColor="Black"></Label>
 
                     <Entry Text="{Binding Date}" x:Name="selectDate" FontSize="16" FontAttributes="Bold" 
-                     TextColor="Black" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     TextColor="Black" FontFamily="ArialBlack" HorizontalTextAlignment="Start" 
                      VerticalTextAlignment="Start"></Entry>
 
                 </HorizontalStackLayout>
@@ -79,10 +79,10 @@
                     <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="End">
 
                     <Button Command="{Binding ClearCommand}" BackgroundColor="LightGray" FontSize="16" 
-                     FontAttributes="Bold" FontFamily="Times"  CornerRadius="20" Text="Clear"></Button>
+                     FontAttributes="Bold" FontFamily="ArialBlack"  CornerRadius="20" Text="Clear"></Button>
 
                     <Button Pressed="DuressAlarmEmailButton_Pressed" BackgroundColor="LightGray" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" CornerRadius="20" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" CornerRadius="20" 
                      Text="Email"></Button>
                         
                     </HorizontalStackLayout>

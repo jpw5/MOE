@@ -21,19 +21,21 @@ namespace Master_of_Emails.Table_Repositories
             DatabaseConnection.CreateTable<TollPlaza>();
         }
 
-        public void AddPlaza(int Plaza_id, string Plaza_name, string Plaza_roadway, int Plaza_milepost, string Plaza_region, string Plaza_phone_number)
+        public void AddPlaza(int Plaza_id, string Plaza_name, string Plaza_roadway, int Plaza_milepost, 
+        string Plaza_region, string Plaza_phone_number, string Plaza_company)
         {
             Init();
-            var region = new TollPlaza
+            var plaza = new TollPlaza
                {
                  Plaza_id = Plaza_id,
                  Plaza_name = Plaza_name,
                  Plaza_roadway = Plaza_roadway,
                  Plaza_milepost = Plaza_milepost,
                  Plaza_region = Plaza_region,
-                 Plaza_phone_number=Plaza_phone_number
+                 Plaza_phone_number=Plaza_phone_number,
+                 Plaza_company=Plaza_company
                };
-            DatabaseConnection.Insert(region);
+            DatabaseConnection.Insert(plaza);
         }
 
         public void DeletePlaza(int Plaza_id) 

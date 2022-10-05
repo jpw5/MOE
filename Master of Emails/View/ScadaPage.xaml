@@ -23,12 +23,12 @@
 
                     <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" 
                      SelectedIndexChanged="SelectRegion_SelectedIndexChanged" x:Name="selectRegion" 
-                     WidthRequest="120" FontSize="16" FontAttributes="Bold" FontFamily="Times" 
+                     WidthRequest="120" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" 
                      Title="Select Region" TextColor="Black"></Picker>
 
                     <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" 
                      x:Name="selectPlaza" WidthRequest="500" FontSize="16" FontAttributes="Bold" 
-                     FontFamily="Times" Title="Select Plaza"></Picker>
+                     FontFamily="ArialBlack" Title="Select Plaza"></Picker>
 
                 </HorizontalStackLayout>
 
@@ -38,16 +38,16 @@
                     SearchCommand="{Binding ReturnPersonaleCommand}" TextColor="Black" 
                     IsTextPredictionEnabled="True" Placeholder="Personale Lookup" CancelButtonColor="Black" 
                     VerticalOptions="Center" WidthRequest="400"  FontSize="16" 
-                    FontAttributes="Bold" FontFamily="Times"></SearchBar>
+                    FontAttributes="Bold" FontFamily="ArialBlack"></SearchBar>
 
                     <VerticalStackLayout>
                         
                         <RadioButton CheckedChanged="After_hours_CheckedChanged" x:Name="after_hours"  
-                        FontSize="16" FontAttributes="Bold" FontFamily="Times" TextColor="Black" 
+                        FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" TextColor="Black" 
                         Content="After Hours" Value="After Hours"></RadioButton>
 
                         <RadioButton CheckedChanged="Normal_hours_CheckedChanged" x:Name="normal_hours" 
-                        FontSize="16" FontAttributes="Bold" FontFamily="Times" TextColor="Black"         
+                        FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" TextColor="Black"         
                         Content="Normal Hours" Value="Normal Hours"></RadioButton>
                         
                     </VerticalStackLayout>
@@ -62,17 +62,17 @@
                     <Entry Text="{Binding FacilitiesTelecomPersonaleName}" x:Name="selectContact" 
                      HorizontalTextAlignment="Start" VerticalTextAlignment="Start" 
                      Placeholder="Enter Contact Name" TextColor="Black" PlaceholderColor="Black" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" WidthRequest="200"></Entry>
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" WidthRequest="200"></Entry>
 
                     <Entry Text="{Binding PhoneResult}" x:Name="selectPhoneNumber" 
                      HorizontalTextAlignment="Start" VerticalTextAlignment="Start" FontSize="16"  
-                     FontAttributes="Bold" FontFamily="Times" TextColor="Black" 
+                     FontAttributes="Bold" FontFamily="ArialBlack" TextColor="Black" 
                      Placeholder="Enter Phone Number" PlaceholderColor="Black"></Entry>
 
                     <Entry Text="{Binding AlternatePhoneResult}" x:Name="selectAlternatePhoneNumber" 
                      HorizontalTextAlignment="Start" VerticalTextAlignment="Start" 
                      Placeholder="Alternate Phone Number:"  FontSize="16" FontAttributes="Bold" 
-                     FontFamily="Times" TextColor="Black" PlaceholderColor="Black"></Entry>
+                     FontFamily="ArialBlack" TextColor="Black" PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
 
@@ -80,17 +80,17 @@
 
                     <Entry Text="{Binding ScadaAlarm}" x:Name="selectScadaAlarm" 
                      HorizontalTextAlignment="Start" VerticalTextAlignment="Start" WidthRequest="300"
-                     Placeholder="Enter SCADA Alarm"  FontSize="16" FontAttributes="Bold" FontFamily="Times" 
+                     Placeholder="Enter SCADA Alarm"  FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" 
                      TextColor="Black" PlaceholderColor="Black" ></Entry>
 
                     <Entry Text="{Binding BuildingNumber}" x:Name="selectBuildingNumber"
                      HorizontalTextAlignment="Start" VerticalTextAlignment="Start"  FontSize="16" 
-                     FontAttributes="Bold" FontFamily="Times" Placeholder="Enter Building#" 
+                     FontAttributes="Bold" FontFamily="ArialBlack" Placeholder="Enter Building#" 
                      TextColor="Black" PlaceholderColor="Black"></Entry>
 
                     <Entry Text="{Binding WorkOrderNumber}" x:Name="selectWorkOrderNumber" 
                      HorizontalTextAlignment="Start" VerticalTextAlignment="Start" 
-                     Placeholder="Enter WO#"  FontSize="16" FontAttributes="Bold" FontFamily="Times" 
+                     Placeholder="Enter WO#"  FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" 
                      TextColor="Black" PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
@@ -98,19 +98,19 @@
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
                     <Label VerticalOptions="Center" TextColor="Black" Text="Enter Date/Time" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times"></Label>
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack"></Label>
 
                     <Entry Text="{Binding Date}" x:Name="selectDate" HorizontalTextAlignment="Start" 
                      VerticalTextAlignment="Start" Placeholder="Enter Starting Date/Time" FontSize="16" 
-                     FontAttributes="Bold" FontFamily="Times" TextColor="Black" 
+                     FontAttributes="Bold" FontFamily="ArialBlack" TextColor="Black" 
                      PlaceholderColor="Black"></Entry>
 
                     <Label VerticalOptions="Center" TextColor="Black" Text="Enter Temperature" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times"></Label>
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack"></Label>
 
                     <Entry Text="{Binding Temperature}" x:Name="selectTemperature" 
                      HorizontalTextAlignment="Start" VerticalTextAlignment="Start" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" 
                      TextColor="Black" PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
@@ -120,11 +120,11 @@
                 <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="End">
 
                     <Button Command="{Binding ClearCommand}" BackgroundColor="LightGray" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" CornerRadius="20" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" CornerRadius="20" 
                      Text="Clear"></Button>
 
                     <Button Pressed="ScadaEmailButton_Pressed" BackgroundColor="LightGray" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" CornerRadius="20" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" CornerRadius="20" 
                      Text="Email"></Button>
                     
                 </HorizontalStackLayout>

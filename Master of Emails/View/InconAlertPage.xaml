@@ -21,14 +21,14 @@
 
                 <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" 
                  x:Name="selectRegion" SelectedIndexChanged="SelectRegion_SelectedIndexChanged" 
-                 FontSize="16" FontAttributes="Bold" FontFamily="Times" TextColor="Black" 
+                 FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" TextColor="Black" 
                  Title="Select Region" WidthRequest="120"></Picker>
                 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
                     
                     <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" 
                      x:Name="selectPlaza" SelectedIndexChanged="SelectPlaza_SelectedIndexChanged" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" TextColor="Black" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" TextColor="Black" 
                      Title="Select Plaza" WidthRequest="500"></Picker>
 
                     <Frame WidthRequest="200" HasShadow="True" BorderColor="SandyBrown" 
@@ -44,19 +44,19 @@
                 </HorizontalStackLayout>
 
                 <SearchBar Text="{Binding Requestor}" SearchCommand="{Binding ReturnPersonaleCommand}" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" TextColor="Black" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" TextColor="Black" 
                      CancelButtonColor="Black" WidthRequest="500" IsTextPredictionEnabled="True" 
                      Placeholder="Lookup" HorizontalOptions="Start"></SearchBar>
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
                     <Entry Text="{Binding Requestor}" x:Name="selectRequestor" FontSize="16" 
-                     FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     FontAttributes="Bold" FontFamily="ArialBlack" HorizontalTextAlignment="Start" 
                      VerticalTextAlignment="Start" Placeholder="Enter Requestor Name" 
                      TextColor="Black" PlaceholderColor="Black" WidthRequest="300"></Entry>
 
                     <Entry Text="{Binding PhoneResult}" x:Name="selectPhoneNumber" FontSize="16" 
-                     FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     FontAttributes="Bold" FontFamily="ArialBlack" HorizontalTextAlignment="Start" 
                      VerticalTextAlignment="Start" Placeholder="Enter Phone Number"
                      TextColor="Black" PlaceholderColor="Black"></Entry>
 
@@ -65,10 +65,10 @@
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
                     <Label Text="Enter Start Date/Time" FontSize="16" FontAttributes="Bold" 
-                     FontFamily="Times" TextColor="Black" VerticalOptions="Center"></Label>
+                     FontFamily="ArialBlack" TextColor="Black" VerticalOptions="Center"></Label>
 
                     <Entry Text="{Binding Date}" x:Name="selectDate" FontSize="16" 
-                     FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     FontAttributes="Bold" FontFamily="ArialBlack" HorizontalTextAlignment="Start" 
                      VerticalTextAlignment="Start" Placeholder="Enter Starting Date/Time" 
                      TextColor="Black" PlaceholderColor="Black"></Entry>
                     
@@ -77,24 +77,24 @@
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
                     <Label Text="Enter Incident Or ESR" FontSize="16" FontAttributes="Bold" 
-                     FontFamily="Times" TextColor="Black" VerticalOptions="Center" ></Label>
+                     FontFamily="ArialBlack" TextColor="Black" VerticalOptions="Center" ></Label>
 
                     <Entry Text="{Binding IncidentOrESR}" x:Name="selectIncidentOrESR" FontSize="16" 
-                     FontAttributes="Bold" FontFamily="Times" Placeholder="Incident/ESR" 
+                     FontAttributes="Bold" FontFamily="ArialBlack" Placeholder="Incident/ESR" 
                      TextColor="Black" PlaceholderColor="Black" HeightRequest="20"></Entry>
 
                     <Entry Text="{Binding Duration}" x:Name="selectDuration" FontSize="16" 
-                     FontAttributes="Bold" FontFamily="Times" HorizontalTextAlignment="Start" 
+                     FontAttributes="Bold" FontFamily="ArialBlack" HorizontalTextAlignment="Start" 
                      VerticalTextAlignment="Start" Placeholder="Enter Work Duration" 
                      TextColor="Black" PlaceholderColor="Black" HeightRequest="20"></Entry>
 
                     <VerticalStackLayout>
 
-                        <RadioButton FontSize="16" FontAttributes="Bold" FontFamily="Times" 
+                        <RadioButton FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" 
                          CheckedChanged="HoursRadioButton_CheckedChanged" Value="Hour(s)" 
                          Content="Hours" TextColor="Black"></RadioButton>
 
-                        <RadioButton FontSize="16" FontAttributes="Bold" FontFamily="Times" 
+                        <RadioButton FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" 
                          CheckedChanged="MinuetsRadioButton_CheckedChanged" Value="Minuet(s)" 
                          Content="Minuets" TextColor="Black"></RadioButton>
 
@@ -103,17 +103,17 @@
                 </HorizontalStackLayout>
 
                 <Editor Text="{Binding Reason}" x:Name="selectReason" FontSize="16" FontAttributes="Bold" 
-                 FontFamily="Times" Placeholder="Reason" TextColor="Black" PlaceholderColor="Black" 
+                 FontFamily="ArialBlack" Placeholder="Reason" TextColor="Black" PlaceholderColor="Black" 
                  AutoSize="TextChanges"></Editor>
 
                 <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="End">
 
                     <Button Command="{Binding ClearCommand}" BackgroundColor="LightGray" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" CornerRadius="20" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" CornerRadius="20" 
                      Text="Clear"></Button>
 
                     <Button Pressed="InconAlertEmail_Button_Pressed" BackgroundColor="LightGray" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" CornerRadius="20" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" CornerRadius="20" 
                      Text="Email"></Button>
                     
                 </HorizontalStackLayout>
