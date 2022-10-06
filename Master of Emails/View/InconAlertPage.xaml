@@ -22,7 +22,7 @@
                 <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" 
                  x:Name="selectRegion" SelectedIndexChanged="SelectRegion_SelectedIndexChanged" 
                  FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" TextColor="Black" 
-                 Title="Select Region" WidthRequest="120"></Picker>
+                 Title="Select Region" WidthRequest="150"></Picker>
                 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
                     

@@ -21,14 +21,14 @@
 
                 <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" 
                  SelectedIndexChanged="SelectRegion_SelectedIndexChanged" x:Name="selectRegion" 
-                 WidthRequest="120" FontSize="16" FontAttributes="Bold" FontFamily="Times" 
+                 WidthRequest="150" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" 
                  TextColor="Black" Title="Select Region"></Picker>
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
                     
                     <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" 
                      x:Name="selectPlaza" SelectedIndexChanged="SelectPlaza_SelectedIndexChanged" 
-                     WidthRequest="500" FontSize="16" FontAttributes="Bold" FontFamily="Times" 
+                     WidthRequest="500" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" 
                      TextColor="Black" Title="Select Plaza"></Picker>
 
                     <Frame WidthRequest="200" VerticalOptions="Center" HorizontalOptions="Center" 
@@ -47,44 +47,44 @@
 
                 <Entry Text="{Binding Requestor}" x:Name="selectRequestor" HorizontalTextAlignment="Start" 
                  VerticalTextAlignment="Start" Placeholder="Enter Requestor Name" FontSize="16" 
-                 FontAttributes="Bold" FontFamily="Times" TextColor="Black" PlaceholderColor="Black"></Entry>
+                 FontAttributes="Bold" FontFamily="ArialBlack" TextColor="Black" PlaceholderColor="Black"></Entry>
 
                 <Editor Text="{Binding Reason}" x:Name="selectReason" Placeholder="Reason" FontSize="16" 
-                 FontAttributes="Bold" FontFamily="Times" TextColor="Black" PlaceholderColor="Black" 
+                 FontAttributes="Bold" FontFamily="ArialBlack" TextColor="Black" PlaceholderColor="Black" 
                  AutoSize="TextChanges"></Editor>
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
                     <Label Text="Enter Start Date/Time" FontSize="16" FontAttributes="Bold" 
-                     FontFamily="Times" TextColor="Black" VerticalOptions="Center"></Label>
+                     FontFamily="ArialBlack" TextColor="Black" VerticalOptions="Center"></Label>
 
                     <Entry Text="{Binding StartDate}" x:Name="selectStartDate" 
                      Placeholder="Enter Starting Date/Time" FontSize="16" FontAttributes="Bold" 
-                     FontFamily="Times" TextColor="Black" HorizontalTextAlignment="Start" 
+                     FontFamily="ArialBlack" TextColor="Black" HorizontalTextAlignment="Start" 
                      VerticalTextAlignment="Start"  PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
-                    <Label Text="Enter End Date/Time" FontSize="16" FontAttributes="Bold" FontFamily="Times"  
+                    <Label Text="Enter End Date/Time" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack"  
                      TextColor="Black" VerticalOptions="Center"></Label>
 
                     <Entry Text="{Binding EndDate}" x:Name="selectEndDate" 
                      Placeholder="Enter Starting Date/Time" HorizontalTextAlignment="Start" 
                      VerticalTextAlignment="Start" FontSize="16" FontAttributes="Bold" 
-                     FontFamily="Times" TextColor="Black" PlaceholderColor="Black"></Entry>
+                     FontFamily="ArialBlack" TextColor="Black" PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="End">
 
                     <Button Command="{Binding ClearCommand}" BackgroundColor="LightGray" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" CornerRadius="20" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" CornerRadius="20" 
                      Text="Clear"></Button>
 
                     <Button Pressed="ZFOEmail_Button_Pressed" BackgroundColor="LightGray" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="Times" CornerRadius="20" 
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" CornerRadius="20" 
                      Text="Email"></Button>
 
                 </HorizontalStackLayout>

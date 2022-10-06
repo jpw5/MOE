@@ -84,6 +84,7 @@ namespace Master_of_Emails.ViewModels;
         tollPlazaList?.Clear();
         tollLaneList?.Clear();
         tollDuressReasonList?.Clear();
+        PopulateDuressReasonList();
         PlazaSupervisor = "";
         Date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
     }

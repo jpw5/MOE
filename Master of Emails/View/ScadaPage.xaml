@@ -23,7 +23,7 @@
 
                     <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" 
                      SelectedIndexChanged="SelectRegion_SelectedIndexChanged" x:Name="selectRegion" 
-                     WidthRequest="120" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" 
+                     WidthRequest="150" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" 
                      Title="Select Region" TextColor="Black"></Picker>
 
                     <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" 
@@ -54,8 +54,6 @@
                     
 
                 </HorizontalStackLayout>
-
-               
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
@@ -105,6 +103,10 @@
                      FontAttributes="Bold" FontFamily="ArialBlack" TextColor="Black" 
                      PlaceholderColor="Black"></Entry>
 
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
+
                     <Label VerticalOptions="Center" TextColor="Black" Text="Enter Temperature" 
                      FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack"></Label>
 
@@ -114,8 +116,6 @@
                      TextColor="Black" PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
-
-             
 
                 <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="End">
 

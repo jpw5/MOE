@@ -60,16 +60,16 @@
                      Placeholder="Enter Starting Date/Time" PlaceholderColor="Black"></Entry>
 
                     <Entry Text="{Binding MafNumber}" x:Name="selectMafNumber" FontAttributes="Bold"
-                     FontSize="16" FontFamily="ArialBlack" Placeholder="Enter MAF#" TextColor="Black" 
+                     FontSize="16" FontFamily="ArialBlack" Placeholder="Enter MAF" TextColor="Black" 
                      PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
 
                 <Entry Text="{Binding Problem}" x:Name="selectProblem" FontAttributes="Bold" FontSize="16"
-                 FontFamily="ArialBlack" Placeholder="Enter Problem" TextColor="Black" 
+                 FontFamily="ArialBlack" Placeholder="Enter Problem" TextColor="Black" HorizontalOptions="Start" 
                  PlaceholderColor="Black" WidthRequest="600"></Entry>
 
-                <Editor Text="{Binding ActionTaken}" x:Name="selectActionTaken" FontAttributes="Bold" 
+                 <Editor Text="{Binding ActionTaken}" x:Name="selectActionTaken" FontAttributes="Bold" 
                  FontSize="16" FontFamily="ArialBlack" Placeholder="Action Taken" TextColor="Black" 
                  PlaceholderColor="Black" AutoSize="TextChanges"></Editor>
 

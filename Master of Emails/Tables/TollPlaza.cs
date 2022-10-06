@@ -27,7 +27,6 @@ namespace Master_of_Emails.Tables
         public string Plaza_phone_number{ get; set; }
         [NotNull]
         public string Plaza_region { get; set; }
-        [NotNull]
         public string Plaza_company { get; set; }
     }
 }

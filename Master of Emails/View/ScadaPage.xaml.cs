@@ -18,12 +18,14 @@ public partial class ScadaPage : ContentPage
     public TableQuery<TollLane> tollLanesQueryByPlazaId;
     public TableQuery<TollPlaza> tollPlazaQueryByRegionName;
     public TableQuery<TollPlaza> tollPlazaQueryByPlazaId;
-    public TableQuery<TollEmailDistribution> StandardDistributionSCADA;
+    public TableQuery<TollEmailDistribution> StandardDistributionScadaAll;
+    public TableQuery<TollEmailDistribution> StandardDistributionScadaInfinity;
 
     public string Region;
     public int PlazaId;
 
     public string Plaza;
+    public string PlazaCompany;
     public string Roadway;
     public string SelectedHours;
     public string BuildingNumber;
@@ -97,9 +99,10 @@ public partial class ScadaPage : ContentPage
         tollPlazaQueryByPlazaId = TollPlazaRepo.QueryByPlazaId(PlazaId);
         foreach (TollPlaza plaza in tollPlazaQueryByPlazaId)
         {
-            Plaza = plaza.Plaza_id.ToString() + " " + plaza.Plaza_name;
+            Plaza = plaza.Plaza_id + " " + plaza.Plaza_name;
             Roadway = plaza.Plaza_roadway;
             MilePost = plaza.Plaza_milepost.ToString();
+            PlazaCompany = plaza.Plaza_company;
         }
 
         BuildingNumber=selectBuildingNumber.Text;
@@ -110,14 +113,31 @@ public partial class ScadaPage : ContentPage
         FacilitiesContact = selectContact.Text;
         FacilitiesContactPhone = selectPhoneNumber.Text;
 
-        StandardDistributionSCADA = 
-        TollEmailDistributionRepo.QueryByRegionEmailTypeAndPlazaId(Region, EmailType, "ALL");
 
-        foreach (TollEmailDistribution emaildistributionSCADA in StandardDistributionSCADA)
+        if(PlazaCompany=="Infinity")
         {
-            To = emaildistributionSCADA.Email_distribution_to;
-            Cc = emaildistributionSCADA.Email_distribution_cc;
+            StandardDistributionScadaInfinity =
+            TollEmailDistributionRepo.QueryByRegionEmailTypeAndPlazaId(Region, EmailType, PlazaCompany);
+
+            foreach (TollEmailDistribution emaildistributionSCADA in StandardDistributionScadaInfinity)
+            {
+                To = emaildistributionSCADA.Email_distribution_to;
+                Cc = emaildistributionSCADA.Email_distribution_cc;
+            }
         }
+
+        else
+        {
+            StandardDistributionScadaAll =
+            TollEmailDistributionRepo.QueryByRegionEmailTypeAndPlazaId(Region, EmailType, "ALL");
+
+            foreach (TollEmailDistribution emaildistributionSCADA in StandardDistributionScadaAll)
+            {
+                To = emaildistributionSCADA.Email_distribution_to;
+                Cc = emaildistributionSCADA.Email_distribution_cc;
+            }
+        }
+   
 
         Subject = "SCADA Alarm - " + Plaza.ToUpper();
         Body = "<font size=5>" + "<b>" + "****SunWatch SCADA Alarm - " + SelectedHours + "*****" + "</b>" + "</font>" + "<br>" + "<br>" +
