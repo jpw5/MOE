@@ -24,6 +24,7 @@ public partial class PriorityOneMafPage : ContentPage
     public TableQuery<TollTechnician> tollTechnicianQueryByRegion;
     public TableQuery<TollBomitem> tollBomitemQueryByLaneType;
     public TableQuery<TollEmailDistribution> tollEmailDistributionQueryByRegionEmailTypeAndPlazaId;
+    public TableQuery<TollEmailDistribution> StandardDistributionP1PlazaId;
     public TableQuery<TollEmailDistribution> StandardDistributionP1;
 
     public string Region;
@@ -96,7 +97,6 @@ public partial class PriorityOneMafPage : ContentPage
             return;
         }
 
-       
         Plaza = selectPlaza.SelectedItem.ToString();
         var Split = Plaza.Split(" ", 2);
         PlazaId = Int32.Parse(Split[0]);
@@ -117,11 +117,28 @@ public partial class PriorityOneMafPage : ContentPage
 
         To = "";
         Cc = "";
-        StandardDistributionP1 = TollEmailDistributionRepo.QueryByRegionEmailTypeAndPlazaId(Region, EmailType, "ALL");
-        foreach(TollEmailDistribution standarddistributionP1 in StandardDistributionP1)
+        StandardDistributionP1 = TollEmailDistributionRepo.
+        QueryByRegionEmailTypeAndPlazaId(Region, EmailType, "ALL");
+
+        StandardDistributionP1PlazaId = TollEmailDistributionRepo.
+        QueryByPlazaId(PlazaId.ToString());
+
+        if(StandardDistributionP1PlazaId.Any())
         {
-            To = standarddistributionP1.Email_distribution_to;
-            Cc= standarddistributionP1.Email_distribution_cc;
+            foreach(TollEmailDistribution tollEmailDistribution in StandardDistributionP1PlazaId)
+            {
+                To=tollEmailDistribution.Email_distribution_to;
+                Cc=tollEmailDistribution.Email_distribution_cc;
+            }
+        }
+
+        else
+        {
+            foreach(TollEmailDistribution tollEmailDistribution in StandardDistributionP1)
+            {
+                To = tollEmailDistribution.Email_distribution_to;
+                Cc = tollEmailDistribution.Email_distribution_cc;
+            }
         }
 
         Subject = "Priority 1 - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
@@ -151,30 +168,46 @@ public partial class PriorityOneMafPage : ContentPage
         {
             DisplayAlert("Alert", "Close MOE, make sure Outlook is running, and try again. "+ ex.Message, "close");
         }
-    
     }
 
     private void SelectRegion_SelectedIndexChanged(object sender, EventArgs e)
     {
         int selectedIndex = selectRegion.SelectedIndex;
+        List<string> plazas = new();
+        List<string> technicians = new();
 
         if (selectedIndex != -1)
         {
             selectPlaza.ItemsSource.Clear();
             selectTechnician.ItemsSource.Clear();
+            plazas.Clear();
+            technicians.Clear();    
             Region = selectRegion.Items[selectedIndex];
 
             tollPlazaQueryByRegionName = TollPlazaRepo.QueryByRegionName(Region);
             foreach (TollPlaza tollPlaza in tollPlazaQueryByRegionName)
             {
-                selectPlaza.ItemsSource.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name + " " + tollPlaza.Plaza_roadway + " MP " +
-                tollPlaza.Plaza_milepost);
+                 plazas.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name + " " + tollPlaza.Plaza_roadway + " MP " +
+                 tollPlaza.Plaza_milepost);
+                
+            }
+
+            plazas.Sort();
+            foreach(string tollPlaza in plazas)
+            {
+                 selectPlaza.ItemsSource.Add(tollPlaza);
             }
 
             tollTechnicianQueryByRegion = TollTechnicianRepo.QueryTechnicianByRegion(Region);
             foreach (TollTechnician tollTechnician in tollTechnicianQueryByRegion)
             {
-                selectTechnician.ItemsSource.Add(tollTechnician.Technician_name);
+                technicians.Add(tollTechnician.Technician_name);
+            }
+
+            technicians.Sort();
+            foreach(string tollTechnician in technicians)
+            {
+                selectTechnician.ItemsSource.Add(tollTechnician);
             }
         }
 
@@ -182,24 +215,31 @@ public partial class PriorityOneMafPage : ContentPage
     private void SelectPlaza_SelectedIndexChanged(object sender, EventArgs e)
     {
         int selectedIndex = selectPlaza.SelectedIndex;
+        List<string> lanes = new();
 
         if (selectedIndex != -1)
         {
             selectLane.ItemsSource.Clear();
+            lanes.Clear();
             var Split = selectPlaza.Items[selectedIndex].Split(" ", 2);
             PlazaId = Int32.Parse(Split[0]);
 
             tollLanesQueryByPlazaId = TollLaneRepo.QueryByPlazaId(PlazaId);
             foreach (TollLane tollLane in tollLanesQueryByPlazaId)
             {
-                selectLane.ItemsSource.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_Type);
+                lanes.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_Type);
+            }
+            lanes.Sort();
+            foreach(string tollLane in lanes)
+            {
+                selectLane.ItemsSource.Add(tollLane);
             }
         }
-
     }
     private void SelectLane_SelectedIndexChanged(object sender, EventArgs e)
     {
         selectBomitem.ItemsSource.Clear();
+        List<string> bomitem = new();
         int selectedIndex = selectLane.SelectedIndex;
 
         if (selectedIndex != -1)
@@ -233,7 +273,6 @@ public partial class PriorityOneMafPage : ContentPage
             {
                 selectBomitem.ItemsSource.Add(tollBomitem.Bomitem_name);
             }
-
         }
 
         else if (LaneType == "COAPM")
@@ -293,13 +332,6 @@ public partial class PriorityOneMafPage : ContentPage
                 selectBomitem.ItemsSource.Add(tollBomitem.Bomitem_name);
             }
         }
-
-        
-
     }
-
- 
-   
-
 }
 

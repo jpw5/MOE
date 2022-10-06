@@ -50,10 +50,17 @@ namespace Master_of_Emails.Table_Repositories
         public TableQuery<TollEmailDistribution> QueryByRegionEmailTypeAndPlazaId(string Region, string Type, string PlazaId)
         {
             Init();
-            return DatabaseConnection.Table<TollEmailDistribution>().Where(value => value.Email_distribution_region.Equals(Region) && value.Email_distribution_type.Equals(Type) && value.Email_distribution_plaza_id.Equals(PlazaId));
+            return DatabaseConnection.Table<TollEmailDistribution>().Where(value => 
+            value.Email_distribution_region.Equals(Region) && 
+            value.Email_distribution_type.Equals(Type) && 
+            value.Email_distribution_plaza_id.Equals(PlazaId));
         }
 
-
-
+        public TableQuery<TollEmailDistribution> QueryByPlazaId(string PlazaId)
+        {
+            Init();
+            return DatabaseConnection.Table<TollEmailDistribution>().Where(value =>
+            value.Email_distribution_plaza_id.Equals(PlazaId));
+        }
     }
 }

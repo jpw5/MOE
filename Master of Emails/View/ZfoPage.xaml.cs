@@ -94,7 +94,8 @@ public partial class ZfoPage : ContentPage
 
         To = "";
         Cc = "";
-        StandardDistributionZFO = TollEmailDistributionRepo.QueryByRegionEmailTypeAndPlazaId(Region, EmailType, "ALL");
+        StandardDistributionZFO = 
+        TollEmailDistributionRepo.QueryByRegionEmailTypeAndPlazaId(Region, EmailType, "ALL");
 
         foreach (TollEmailDistribution emaildistributionZFO in StandardDistributionZFO)
         {
@@ -132,17 +133,27 @@ public partial class ZfoPage : ContentPage
     private void SelectRegion_SelectedIndexChanged(object sender, EventArgs e)
     {
         int selectedIndex = selectRegion.SelectedIndex;
+        List<string> plazas = new();
 
         if (selectedIndex != -1)
         {
             selectPlaza.ItemsSource.Clear();
             Region = selectRegion.Items[selectedIndex];
-
+            plazas.Clear();
             tollPlazaQueryByRegionName = TollPlazaRepo.QueryByRegionName(Region);
             foreach (TollPlaza tollPlaza in tollPlazaQueryByRegionName)
             {
-                selectPlaza.ItemsSource.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name + " " + tollPlaza.Plaza_roadway
-                + " MP " + tollPlaza.Plaza_milepost);
+                if(tollPlaza.Plaza_company!="Infinity")
+                {
+                    plazas.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name + " " + tollPlaza.Plaza_roadway
+                    + " MP " + tollPlaza.Plaza_milepost);
+                } 
+            }
+
+            plazas.Sort();
+            foreach (string tollPlaza in plazas)
+            {
+                selectPlaza.ItemsSource.Add(tollPlaza);
             }
         }
     }
@@ -161,6 +172,7 @@ public partial class ZfoPage : ContentPage
             {
                 TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_Type);
             }
+            TollLane.Sort();
             selectLane.ItemsSource = TollLane;
         }
     }

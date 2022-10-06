@@ -135,41 +135,53 @@ public partial class DuressAlarmPage : ContentPage
     private void SelectRegion_SelectedIndexChanged(object sender, EventArgs e)
     {
         int selectedIndex = selectRegion.SelectedIndex;
+        List<string> plazas = new();
 
         if (selectedIndex != -1)
         {
             selectPlaza.ItemsSource.Clear();
             Region = selectRegion.Items[selectedIndex];
-
+            plazas.Clear();
             tollPlazaQueryByRegionName = TollPlazaRepo.QueryByRegionName(Region);
             foreach (TollPlaza tollPlaza in tollPlazaQueryByRegionName)
             {
-                selectPlaza.ItemsSource.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name + " " + tollPlaza.Plaza_roadway + " MP " +
-                tollPlaza.Plaza_milepost);
+                if (tollPlaza.Plaza_company != "Infinity")
+                {
+                    plazas.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name + " " + tollPlaza.Plaza_roadway
+                    + " MP " + tollPlaza.Plaza_milepost);
+                }
+            }
+
+            plazas.Sort();
+            foreach (string tollPlaza in plazas)
+            {
+                selectPlaza.ItemsSource.Add(tollPlaza);
             }
         }
     }
     private void SelectPlaza_SelectedIndexChanged(object sender, EventArgs e)
     {
         int selectedIndex = selectPlaza.SelectedIndex;
-
+        List<string> lanes = new();
         if (selectedIndex != -1)
         {
             selectLane.ItemsSource.Clear();
+            lanes.Clear();
             var Split = selectPlaza.Items[selectedIndex].Split(" ", 2);
             PlazaId = Int32.Parse(Split[0]);
             tollPlazaQueryByPlazaId = TollPlazaRepo.QueryByPlazaId(PlazaId);
-            foreach (TollPlaza plaza in tollPlazaQueryByPlazaId)
-            {
-                Plaza = plaza.Plaza_id.ToString() + " " + plaza.Plaza_name;
-            }
 
             tollLanesQueryByPlazaId = TollLaneRepo.QueryByPlazaId(PlazaId);
             foreach (TollLane tollLane in tollLanesQueryByPlazaId)
             {
-                selectLane.ItemsSource.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_Type);
+                lanes.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_Type);
             }
 
+            lanes.Sort();
+            foreach (string tollLane in lanes)
+            {
+                selectLane.ItemsSource.Add(tollLane);
+            }
             //DisplayAlert("Check", Plaza + " "+Roadway, "Close");
         }
     }

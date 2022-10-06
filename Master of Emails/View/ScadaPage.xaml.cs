@@ -48,7 +48,6 @@ public partial class ScadaPage : ContentPage
 		InitializeComponent();
         BindingContext = scadaPageViewModel;
 	}
-
     private void ScadaEmailButton_Pressed(object sender, EventArgs e)
     {
         if (selectPlaza.SelectedItem == null)
@@ -113,7 +112,6 @@ public partial class ScadaPage : ContentPage
         FacilitiesContact = selectContact.Text;
         FacilitiesContactPhone = selectPhoneNumber.Text;
 
-
         if(PlazaCompany=="Infinity")
         {
             StandardDistributionScadaInfinity =
@@ -138,7 +136,6 @@ public partial class ScadaPage : ContentPage
             }
         }
    
-
         Subject = "SCADA Alarm - " + Plaza.ToUpper();
         Body = "<font size=5>" + "<b>" + "****SunWatch SCADA Alarm - " + SelectedHours + "*****" + "</b>" + "</font>" + "<br>" + "<br>" +
         "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
@@ -169,18 +166,25 @@ public partial class ScadaPage : ContentPage
     private void SelectRegion_SelectedIndexChanged(object sender, EventArgs e)
     {
         int selectedIndex = selectRegion.SelectedIndex;
+        List<string> plazas = new();
 
         if (selectedIndex != -1)
         {
             selectPlaza.ItemsSource.Clear();
             Region = selectRegion.Items[selectedIndex];
-
+            plazas.Clear();
             tollPlazaQueryByRegionName = TollPlazaRepo.QueryByRegionName(Region);
             foreach (TollPlaza tollPlaza in tollPlazaQueryByRegionName)
             {
-                selectPlaza.ItemsSource.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name + " " + tollPlaza.Plaza_roadway + " MP " +
+                plazas.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name + " " + tollPlaza.Plaza_roadway + " MP " +
                 tollPlaza.Plaza_milepost);
-            } 
+            }
+
+            plazas.Sort();
+            foreach (string tollPlaza in plazas)
+            {
+                selectPlaza.ItemsSource.Add(tollPlaza);
+            }
         }
 
     }

@@ -162,29 +162,36 @@ public partial class InconAlertPage : ContentPage
     private void SelectRegion_SelectedIndexChanged(object sender, EventArgs e)
     {
         int selectedIndex = selectRegion.SelectedIndex;
-
+        List<string> plazas = new();
+ 
         if (selectedIndex != -1)
         {
             selectPlaza.ItemsSource.Clear();
             Region = selectRegion.Items[selectedIndex];
-
+            plazas.Clear();
             tollPlazaQueryByRegionName = TollPlazaRepo.QueryByRegionName(Region);
             foreach (TollPlaza tollPlaza in tollPlazaQueryByRegionName)
             {
-                selectPlaza.ItemsSource.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name + " " + tollPlaza.Plaza_roadway 
+                plazas.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name + " " + tollPlaza.Plaza_roadway 
                 + " MP " + tollPlaza.Plaza_milepost);
             }
 
+            plazas.Sort();
+            foreach(string tollPlaza in plazas)
+            {
+                selectPlaza.ItemsSource.Add(tollPlaza);
+            }
         }
     }
 	private void SelectPlaza_SelectedIndexChanged(object sender, EventArgs e)
 	{
         int selectedIndex = selectPlaza.SelectedIndex;
-       
+
         if (selectedIndex != -1)
         {
             selectLane.ItemsSource = null;
             TollLane.Clear();
+            
             var Split = selectPlaza.Items[selectedIndex].Split(" ", 2);
             PlazaId = Int32.Parse(Split[0]);
             tollLanesQueryByPlazaId = TollLaneRepo.QueryByPlazaId(PlazaId);
@@ -192,6 +199,7 @@ public partial class InconAlertPage : ContentPage
             {
                 TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_Type);
             }
+            TollLane.Sort();
             selectLane.ItemsSource = TollLane;
         }
     }

@@ -46,7 +46,7 @@
 
                     <Picker ItemsSource="{Binding TollTechnicianList}" SelectedItem="{Binding Technician}" 
                      x:Name="selectTechnician" FontAttributes="Bold" FontSize="16" FontFamily="ArialBlack"
-                     TextColor="Black" WidthRequest="200" Title="Select Technician"></Picker>
+                     TextColor="Black" WidthRequest="250" Title="Select Technician"></Picker>
 
                 </HorizontalStackLayout>
 
