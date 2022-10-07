@@ -121,7 +121,7 @@ public partial class PriorityOneMafPage : ContentPage
         QueryByRegionEmailTypeAndPlazaId(Region, EmailType, "ALL");
 
         StandardDistributionP1PlazaId = TollEmailDistributionRepo.
-        QueryByPlazaId(PlazaId.ToString());
+        QueryByPlazaId(Roadway);
 
         if(StandardDistributionP1PlazaId.Any())
         {
