@@ -810,6 +810,99 @@
             <Label Text="----------EMAIL DISTRIBUTION END----------" FontSize="24" FontFamily="ArialBlack" 
              FontAttributes="Bold" Padding="10" HorizontalOptions="Center"></Label>
 
+
+            <Label Text="----------PERSONALE START----------" FontSize="24" FontFamily="ArialBlack" 
+             FontAttributes="Bold" Padding="10" HorizontalOptions="Center"></Label>
+
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
+                    
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Entry Text="{Binding NewPersonaleKnId}" FontSize="20" FontFamily="ArialBlack" 
+                     FontAttributes="Bold" Placeholder="Enter Personale KNID"/>
+
+                    <Entry Text="{Binding NewPersonaleName}" FontSize="20" FontFamily="ArialBlack" 
+                     FontAttributes="Bold" Placeholder="Enter Personale Name"/>
+
+                    <Entry Text="{Binding NewPersonalePhoneNumber}" FontSize="20" FontFamily="ArialBlack" 
+                     FontAttributes="Bold" Placeholder="Enter Personale Phone Number"/>
+
+                    <Entry Text="{Binding NewPersonaleEmail}" FontSize="20" FontFamily="ArialBlack" 
+                     FontAttributes="Bold" Placeholder="Enter Personale Email"/>
+
+                    <Entry Text="{Binding NewPersonaleDepartment}" FontSize="20" FontFamily="ArialBlack" 
+                     FontAttributes="Bold" Placeholder="Enter Personale Department"/>
+
+                    <Button Command="{Binding AddNewPersonaleCommand}" FontSize="20" FontFamily="ArialBlack" 
+                     FontAttributes="Bold" Text="Add Personale"/>
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Entry  Text="{Binding RemovePersonale}" FontSize="20" FontFamily="ArialBlack" 
+                     FontAttributes="Bold" Placeholder="Enter Personale KNID" />
+
+                    <Button Command="{Binding DeletePersonaleCommand}" FontSize="20" FontFamily="ArialBlack" 
+                     FontAttributes="Bold" Text="Delete Personale"/>
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                 Padding="10">
+
+                    <Button Command="{Binding GetAllPersonaleCommand}" FontSize="20" 
+                     FontFamily="ArialBlack" FontAttributes="Bold" Text="Get All Personale"/>
+
+                </VerticalStackLayout>
+
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
+                Padding="10">
+
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
+                 BorderColor="SandyBrown">
+
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
+
+                        <Label Text="{Binding NewPersonaleStatusMessage}" TextColor="Black" 
+                         FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
+                         HorizontalOptions="Center" WidthRequest="200"></Label>
+
+                        <Label Text="{Binding RemovePersonaleStatusMessage}" TextColor="Black" 
+                         FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
+                         HorizontalOptions="Center" WidthRequest="200"></Label>
+
+                    </VerticalStackLayout>
+
+                </Frame>
+
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" HasShadow="True" 
+                 BorderColor="SandyBrown">
+
+                    <ListView ItemsSource="{Binding PersonaleList}" VerticalOptions="Center" 
+                     HorizontalOptions="Center" WidthRequest="300" HeightRequest="100" 
+                     VerticalScrollBarVisibility="Always">
+
+                        <ListView.Header>
+                            <Label HorizontalOptions="Center" TextColor="Black" FontSize="20" 
+                             FontFamily="ArialBlack" FontAttributes="Bold" FontAutoScalingEnabled="True" 
+                             Margin="10,0,0,0" Text="Personale List">
+                            </Label>
+                        </ListView.Header>
+
+                    </ListView>
+
+                </Frame>
+
+            </HorizontalStackLayout>
+
+            <Label Text="----------PERSONALE END----------" FontSize="24" FontFamily="ArialBlack" 
+             FontAttributes="Bold" Padding="10" HorizontalOptions="Center"></Label>
+
         </VerticalStackLayout>
 
     </ScrollView>

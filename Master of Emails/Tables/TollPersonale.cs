@@ -11,7 +11,7 @@ namespace Master_of_Emails.Tables
     [Table("personale")]
     public class TollPersonale
     {
-        public int Personale_kn_id { get; set; }
+        public string Personale_kn_id { get; set; }
 
         public string Personale_name { get; set; }
 

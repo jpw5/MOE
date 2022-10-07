@@ -176,6 +176,27 @@ namespace Master_of_Emails.ViewModels;
         [ObservableProperty]
         public ObservableCollection<string> emailDistributionList;
 
+        public TollPersonaleRepository TollPersonaleRepo = new();
+        public List<TollPersonale> TollPersonale = new();
+        [ObservableProperty]
+        public string newPersonaleKnId;
+        [ObservableProperty]
+        public string newPersonaleName;
+        [ObservableProperty]
+        public string newPersonalePhoneNumber;
+        [ObservableProperty]
+        public string newPersonaleEmail;
+        [ObservableProperty]
+        public string newPersonaleDepartment;
+        [ObservableProperty]
+        public string newPersonaleStatusMessage;
+        [ObservableProperty]
+        public string removePersonale;
+        [ObservableProperty]
+        public string removePersonaleStatusMessage;
+        [ObservableProperty]
+        public ObservableCollection<string> personaleList;
+
     public DatabasePageViewModel()
         {
             RegionList = new ObservableCollection<string>();
@@ -187,7 +208,8 @@ namespace Master_of_Emails.ViewModels;
             FacilitiesTelecomList = new ObservableCollection<string>();
             OrganizationList= new ObservableCollection<string>();
             EmailDistributionList = new ObservableCollection<string>();
-
+            PersonaleList = new ObservableCollection<string>();
+            
         if (DB.DatabaseConnection == null)
                 DB.DatabaseInit();
         }
@@ -852,6 +874,85 @@ namespace Master_of_Emails.ViewModels;
         catch (Exception ex)
         {
             EmailDistributionList.Add("No Data Found. " + ex.Message);
+        }
+    }
+
+    [RelayCommand]
+    async void AddNewPersonale()
+    {
+        try
+        {
+            TollPersonaleRepo.AddPersonale
+            (
+            NewPersonaleKnId,
+            NewPersonaleName,
+            NewPersonalePhoneNumber,
+            NewPersonaleEmail,
+            NewPersonaleDepartment
+            );
+
+            NewPersonaleStatusMessage = "Success: Personale Added";
+            await Task.Delay(2000);
+            NewPersonaleStatusMessage = "";
+            NewPersonaleKnId = "";
+            NewPersonaleName = "";
+            NewPersonalePhoneNumber = "";
+            NewPersonaleEmail = "";
+            NewPersonaleDepartment = "";
+        }
+
+        catch (Exception ex)
+        {
+            NewPersonaleStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
+            await Task.Delay(2000);
+            NewPersonaleStatusMessage = "";
+        }
+    }
+
+    [RelayCommand]
+    async void DeletePersonale()
+    {
+        try
+        {
+            TollPersonaleRepo.DeletePersonale(RemovePersonale);
+            RemovePersonale = "";
+            RemovePersonaleStatusMessage = "Success: Email Distribution Deleted.";
+            await Task.Delay(2000);
+            RemovePersonaleStatusMessage = "";
+        }
+
+        catch (Exception ex)
+        {
+            RemovePersonaleStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
+            await Task.Delay(2000);
+            RemovePersonaleStatusMessage = "";
+        }
+    }
+
+    [RelayCommand]
+    private void GetAllPersonale()
+    {
+        PersonaleList.Clear();
+        try
+        {
+            TollPersonale = TollPersonaleRepo.GetPersonale();
+            foreach (TollPersonale personale in TollPersonale)
+            {
+                PersonaleList.Add
+                (
+                "ID: " + personale.Personale_kn_id + " \n" +
+                "Name: " + personale.Personale_name + " \n" +
+                "Phone: " + personale.Personale_phone_number + " \n" +
+                "Email: " + personale.Personale_email + " \n" +
+                "Department: " + personale.Personale_department + " \n"
+                );
+
+            }
+        }
+
+        catch (Exception ex)
+        {
+            PersonaleList.Add("No Data Found. " + ex.Message);
         }
     }
 }
