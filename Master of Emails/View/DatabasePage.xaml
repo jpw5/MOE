@@ -834,6 +834,9 @@
                     <Entry Text="{Binding NewPersonaleDepartment}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Personale Department"/>
 
+                    <Entry Text="{Binding NewPersonaleRole}" FontSize="20" FontFamily="ArialBlack" 
+                     FontAttributes="Bold" Placeholder="Enter Personale Role"/>
+
                     <Button Command="{Binding AddNewPersonaleCommand}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Text="Add Personale"/>
 

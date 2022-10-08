@@ -21,5 +21,7 @@ namespace Master_of_Emails.Tables
 
         public string Personale_department { get; set; }
 
+        public string Personale_role { get; set; }
+
     }
 }

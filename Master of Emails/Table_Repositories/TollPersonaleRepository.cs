@@ -17,11 +17,11 @@ namespace Master_of_Emails.Table_Repositories
         public static void Init()
         {
             DatabaseConnection = DB.DatabaseInit();
-            DatabaseConnection.CreateTable<TollBomitem>();
+            DatabaseConnection.CreateTable<TollPersonale>();
         }
 
         public void AddPersonale(string NewPersonaleKnId, string NewPersonaleName,
-        string NewPersonalePhoneNumber, string NewPersonaleEmail, string NewPersonaleDepartment)
+        string NewPersonalePhoneNumber, string NewPersonaleEmail, string NewPersonaleDepartment, string NewPersonaleRole)
         {
             Init();
             var personale = new TollPersonale
@@ -30,7 +30,8 @@ namespace Master_of_Emails.Table_Repositories
                 Personale_email = NewPersonaleEmail,
                 Personale_name = NewPersonaleName,
                 Personale_phone_number = NewPersonalePhoneNumber,
-                Personale_department = NewPersonaleDepartment
+                Personale_department = NewPersonaleDepartment,
+                Personale_role = NewPersonaleRole
             };
             DatabaseConnection.Insert(personale);
         }
@@ -45,6 +46,16 @@ namespace Master_of_Emails.Table_Repositories
         {
             Init();
             return DatabaseConnection.Table<TollPersonale>().ToList();
+        }
+
+        public TableQuery<TollPersonale> QueryPersonaleByName(string PersonaleName)
+        {
+            Init();
+            PersonaleName = PersonaleName.ToUpper();
+            return DatabaseConnection.Table<TollPersonale>().Where(value => value.Personale_name.ToUpper().Contains(PersonaleName));
+
+            //return DatabaseConnection.Table<TollTechnician>().Where(value => value.Technician_name.
+            //Equals(TechnicianName));
         }
 
 

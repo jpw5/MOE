@@ -189,6 +189,8 @@ namespace Master_of_Emails.ViewModels;
         [ObservableProperty]
         public string newPersonaleDepartment;
         [ObservableProperty]
+        public string newPersonaleRole;
+        [ObservableProperty]
         public string newPersonaleStatusMessage;
         [ObservableProperty]
         public string removePersonale;
@@ -888,7 +890,8 @@ namespace Master_of_Emails.ViewModels;
             NewPersonaleName,
             NewPersonalePhoneNumber,
             NewPersonaleEmail,
-            NewPersonaleDepartment
+            NewPersonaleDepartment,
+            NewPersonaleRole
             );
 
             NewPersonaleStatusMessage = "Success: Personale Added";
@@ -899,6 +902,7 @@ namespace Master_of_Emails.ViewModels;
             NewPersonalePhoneNumber = "";
             NewPersonaleEmail = "";
             NewPersonaleDepartment = "";
+            NewPersonaleRole = "";
         }
 
         catch (Exception ex)
@@ -944,7 +948,8 @@ namespace Master_of_Emails.ViewModels;
                 "Name: " + personale.Personale_name + " \n" +
                 "Phone: " + personale.Personale_phone_number + " \n" +
                 "Email: " + personale.Personale_email + " \n" +
-                "Department: " + personale.Personale_department + " \n"
+                "Department: " + personale.Personale_department + " \n" +
+                "Role: "+ personale.Personale_role + " \n"
                 );
 
             }

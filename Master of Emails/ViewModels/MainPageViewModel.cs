@@ -17,6 +17,11 @@ public partial class MainPageViewModel: ObservableObject
     public TableQuery<TollFacilitiesTelecom> TollFacilitiesTelecomQuery;
     public List<TollFacilitiesTelecom> TollFacilitiesTelecom = new();
 
+    public TollPersonaleRepository TollPersonaleRepo = new();
+    public TableQuery<TollPersonale> TollPersonaleQuery;
+    public List<TollPersonale> TollPersonale = new();
+
+
     public TollPlazaRepository TollPlazaRepo = new();
     public TableQuery<TollPlaza> TollPlazaQuery;
 
@@ -54,6 +59,7 @@ public partial class MainPageViewModel: ObservableObject
         {
             TollTechnicianQuery = TollTechnicianRepo.QueryTechnicianByName(PersonaleSearch);
             TollFacilitiesTelecomQuery=TollFacilitiesTelecomRepo.QueryPersonaleByName(PersonaleSearch);
+            TollPersonaleQuery = TollPersonaleRepo.QueryPersonaleByName(PersonaleSearch);
 
             if(TollTechnicianQuery.Any())
             {
@@ -87,7 +93,25 @@ public partial class MainPageViewModel: ObservableObject
                     PersonaleSearch = PersonaleSearchResultAmount + " Record(s) Found.";
                 }
             }
-            if(!TollTechnicianQuery.Any() && !TollFacilitiesTelecomQuery.Any())
+
+            if(TollPersonaleQuery.Any())
+            {
+                foreach (TollPersonale personale in TollPersonaleQuery)
+                {
+
+                    PersonaleSearchResult += (
+                    "Name: " + personale.Personale_name + " \n" +
+                    "Phone: " + personale.Personale_phone_number + " \n" +
+                    "Email: " + personale.Personale_email + " \n" +
+                    "Dpeartment: " + personale.Personale_department + " \n"+
+                    "Role: " + personale.Personale_role + " \n\n" );
+
+                    PersonaleSearchResultAmount++;
+                    PersonaleSearch = PersonaleSearchResultAmount + " Record(s) Found.";
+                }
+            }
+
+            if(!TollTechnicianQuery.Any() && !TollFacilitiesTelecomQuery.Any() && !TollPersonaleQuery.Any())
             {
                 PersonaleSearch = "No Record Found.";
                 await Task.Delay(2000);
