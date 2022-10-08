@@ -48,12 +48,6 @@ namespace Master_of_Emails.Table_Repositories
         {
             Init();
             return DatabaseConnection.Table<TollPlaza>().ToList();
-        }  
-
-         public TableQuery<TollPlaza> QueryByPlazaId(int Plaza_Id)
-        {
-            Init();
-            return DatabaseConnection.Table<TollPlaza>().Where(value => value.Plaza_id.Equals(Plaza_Id));
         }
 
         public TableQuery<TollPlaza> QueryByRegionName(string Region)
@@ -61,6 +55,20 @@ namespace Master_of_Emails.Table_Repositories
             Init();
             return DatabaseConnection.Table<TollPlaza>().Where(value => value.Plaza_region.Equals(Region));
         }
+        public TableQuery<TollPlaza> QueryByPlazaId(int Plaza_Id)
+        {
+            Init();
+            return DatabaseConnection.Table<TollPlaza>().Where(value => value.Plaza_id.Equals(Plaza_Id));
+        }
 
+        public TableQuery<TollPlaza> QueryPlazaByName(string PlazaName)
+        {
+            Init();
+            PlazaName = PlazaName.ToUpper();
+            return DatabaseConnection.Table<TollPlaza>().Where(value => value.Plaza_name.ToUpper().Contains(PlazaName));
+
+            //return DatabaseConnection.Table<TollTechnician>().Where(value => value.Technician_name.
+            //Equals(TechnicianName));
+        }
     }
 }

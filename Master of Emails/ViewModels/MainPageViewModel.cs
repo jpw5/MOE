@@ -23,7 +23,8 @@ public partial class MainPageViewModel: ObservableObject
 
 
     public TollPlazaRepository TollPlazaRepo = new();
-    public TableQuery<TollPlaza> TollPlazaQuery;
+    public TableQuery<TollPlaza> TollPlazaQueryByPlazaId;
+    public TableQuery<TollPlaza> TollPlazaQueryByPlazaName;
 
     public TollOrganizationRepository TollOrgnizationRepo = new();
     public TableQuery<TollOrganization> TollOrganizationQuery;
@@ -135,14 +136,14 @@ public partial class MainPageViewModel: ObservableObject
 
         try
         {
-            TollPlazaQuery = TollPlazaRepo.QueryByPlazaId(Int32.Parse(PlazaSearch));
+            TollPlazaQueryByPlazaId = TollPlazaRepo.QueryByPlazaId(Int32.Parse(PlazaSearch));
 
-            if (TollPlazaQuery.Any())
+            if(TollPlazaQueryByPlazaId.Any())
             {
-                foreach (TollPlaza plaza in TollPlazaQuery)
+                foreach (TollPlaza plaza in TollPlazaQueryByPlazaId)
                 {
-                    PlazaSearchResult+=(
-                    "Plaza: "+plaza.Plaza_id + " " + plaza.Plaza_name + " \n" +
+                    PlazaSearchResult += (
+                    "Plaza: " + plaza.Plaza_id + " " + plaza.Plaza_name + " \n" +
                     "Roadway: " + plaza.Plaza_roadway + " \n" +
                     "Mile Post: " + plaza.Plaza_milepost + " \n" +
                     "Phone Number: " + plaza.Plaza_phone_number + " \n" +
@@ -161,7 +162,7 @@ public partial class MainPageViewModel: ObservableObject
         }
         catch (Exception)
         {
-            PlazaSearch = "No Record Found Test.";
+            PlazaSearch = "No Record Found By Plaza ID.";
             await Task.Delay(2000);
             PlazaSearch = "";
         }

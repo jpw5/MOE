@@ -54,11 +54,6 @@ namespace Master_of_Emails.Table_Repositories
             PersonaleName = PersonaleName.ToUpper();
             return DatabaseConnection.Table<TollPersonale>().Where(value => value.Personale_name.ToUpper().Contains(PersonaleName));
 
-            //return DatabaseConnection.Table<TollTechnician>().Where(value => value.Technician_name.
-            //Equals(TechnicianName));
         }
-
-
-
     }
 }
