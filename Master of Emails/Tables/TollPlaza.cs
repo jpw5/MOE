@@ -6,10 +6,8 @@ namespace Master_of_Emails.Tables
     [Table("plaza")]
     public class TollPlaza
     {
-
         [PrimaryKey, AutoIncrement]
-        public string Id { get; set; }
-
+        public int Id { get; set; }
         [NotNull]
         public int Plaza_id { get; set; }
         [MaxLength(250), NotNull]
