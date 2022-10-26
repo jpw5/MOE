@@ -6,7 +6,7 @@
 
 ![image](https://user-images.githubusercontent.com/91855477/197878868-ea900c82-18bf-40a4-8ba5-e445962ef66a.png)
 
-# Red Yiled Sign= Priority One MAF email form.
+# Red Yield Sign= Priority One MAF email form.
 # Blue Letter= Incon Alert email form
 # Dark Green Dollar Sign= Zero Fare alert email form
 # Yellow Alarm= Duress Alarm email form
