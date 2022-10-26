@@ -1,18 +1,46 @@
 ﻿using Master_of_Emails.Database;
 using Master_of_Emails.Tables;
 using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Master_of_Emails.Table_Repositories
 {
     public class TollDuressReasonRepository
     {
+
+        /* Unmerged change from project 'Master of Emails (net6.0-maccatalyst)'
+        Before:
+                public DB DB;
+
+                public static SQLiteConnection DatabaseConnection { get; set; }
+        After:
+                public DB DB;
+
+                public static SQLiteConnection DatabaseConnection { get; set; }
+        */
+
+        /* Unmerged change from project 'Master of Emails (net6.0-windows10.0.19041.0)'
+        Before:
+                public DB DB;
+
+                public static SQLiteConnection DatabaseConnection { get; set; }
+        After:
+                public DB DB;
+
+                public static SQLiteConnection DatabaseConnection { get; set; }
+        */
+
+        /* Unmerged change from project 'Master of Emails (net6.0-ios)'
+        Before:
+                public DB DB;
+
+                public static SQLiteConnection DatabaseConnection { get; set; }
+        After:
+                public DB DB;
+
+                public static SQLiteConnection DatabaseConnection { get; set; }
+        */
         public DB DB;
-        
+
         public static SQLiteConnection DatabaseConnection { get; set; }
 
         public static void Init()
@@ -26,7 +54,7 @@ namespace Master_of_Emails.Table_Repositories
             Init();
             var reason = new TollDuressReason
             {
-                Duress_reason_name= Duress_reason_name
+                Duress_reason_name = Duress_reason_name
             };
             var id = DatabaseConnection.Insert(reason);
         }

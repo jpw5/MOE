@@ -24,7 +24,7 @@ public partial class InconAlertPage : ContentPage
     public TableQuery<TollTechnician> tollTechnicianQueryByRegion;
     public TableQuery<TollBomitem> tollBomitemQueryByLaneType;
     public TableQuery<TollEmailDistribution> StandardDistributionIncon;
-    
+
 
     public List<string> TollLane = new();
     public List<string> TollLaneList = new();
@@ -50,10 +50,10 @@ public partial class InconAlertPage : ContentPage
     public string Body;
 
     public InconAlertPage(InconAlertPageViewModel inconAlertPageViewModel)
-	{
-		InitializeComponent();
-		BindingContext=inconAlertPageViewModel;
-	}
+    {
+        InitializeComponent();
+        BindingContext = inconAlertPageViewModel;
+    }
 
     private void InconAlertEmail_Button_Pressed(object sender, EventArgs e)
     {
@@ -69,7 +69,7 @@ public partial class InconAlertPage : ContentPage
             return;
         }
 
-        else if(string.IsNullOrEmpty(selectRequestor.Text))
+        else if (string.IsNullOrEmpty(selectRequestor.Text))
         {
             DisplayAlert("Alert", "Enter Requestor", "Close");
             return;
@@ -93,7 +93,7 @@ public partial class InconAlertPage : ContentPage
             return;
         }
 
-        else if (selectReason.Text==null)
+        else if (selectReason.Text == null)
         {
             DisplayAlert("Alert", "Enter Reason", "Close");
             return;
@@ -123,7 +123,7 @@ public partial class InconAlertPage : ContentPage
 
         To = "";
         Cc = "";
-        StandardDistributionIncon = 
+        StandardDistributionIncon =
         TollEmailDistributionRepo.QueryByRegionEmailTypeAndPlazaId(Region, EmailType, "ALL");
 
         foreach (TollEmailDistribution standarddistributionIncon in StandardDistributionIncon)
@@ -153,8 +153,8 @@ public partial class InconAlertPage : ContentPage
             mail = null;
             Lane = null;
         }
-     
-        catch(Exception ex)
+
+        catch (Exception ex)
         {
             DisplayAlert("Alert", "Close MOE, make sure Outlook is running, and try again. " + ex.Message, "close");
         }
@@ -163,7 +163,7 @@ public partial class InconAlertPage : ContentPage
     {
         int selectedIndex = selectRegion.SelectedIndex;
         List<string> plazas = new();
- 
+
         if (selectedIndex != -1)
         {
             selectPlaza.ItemsSource.Clear();
@@ -172,26 +172,26 @@ public partial class InconAlertPage : ContentPage
             tollPlazaQueryByRegionName = TollPlazaRepo.QueryByRegionName(Region);
             foreach (TollPlaza tollPlaza in tollPlazaQueryByRegionName)
             {
-                plazas.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name + " " + tollPlaza.Plaza_roadway 
+                plazas.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name + " " + tollPlaza.Plaza_roadway
                 + " MP " + tollPlaza.Plaza_milepost);
             }
 
             plazas.Sort();
-            foreach(string tollPlaza in plazas)
+            foreach (string tollPlaza in plazas)
             {
                 selectPlaza.ItemsSource.Add(tollPlaza);
             }
         }
     }
-	private void SelectPlaza_SelectedIndexChanged(object sender, EventArgs e)
-	{
+    private void SelectPlaza_SelectedIndexChanged(object sender, EventArgs e)
+    {
         int selectedIndex = selectPlaza.SelectedIndex;
 
         if (selectedIndex != -1)
         {
             selectLane.ItemsSource = null;
             TollLane.Clear();
-            
+
             var Split = selectPlaza.Items[selectedIndex].Split(" ", 2);
             PlazaId = Int32.Parse(Split[0]);
             tollLanesQueryByPlazaId = TollLaneRepo.QueryByPlazaId(PlazaId);
@@ -211,7 +211,7 @@ public partial class InconAlertPage : ContentPage
         else
         {
             TollLaneList.Clear();
-            for (int i = 0; i < e.CurrentSelection.Count; i++)  
+            for (int i = 0; i < e.CurrentSelection.Count; i++)
             {
                 TollLaneList.Add(e.CurrentSelection[i].ToString());
                 //DisplayAlert("Check", TollLane[i], "Close");

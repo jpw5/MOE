@@ -1,8 +1,4 @@
-using Master_of_Emails.Table_Repositories;
-using Master_of_Emails.Tables;
 using Master_of_Emails.ViewModels;
-using SQLite;
-using System.Security.Claims;
 using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace practice.Pages;
@@ -22,22 +18,22 @@ public partial class FiberAlertPage : ContentPage
     public string ReportedBy;
     public string PhoneNumber;
     public string StartDate;
-    public string EndDate;  
+    public string EndDate;
 
-	public FiberAlertPage(FiberAlertPageViewModel fiberAlertPageViewModel)
-	{
-		InitializeComponent();
-		BindingContext = fiberAlertPageViewModel;
-	}
+    public FiberAlertPage(FiberAlertPageViewModel fiberAlertPageViewModel)
+    {
+        InitializeComponent();
+        BindingContext = fiberAlertPageViewModel;
+    }
 
-	private void FiberAlertEmailButton_Pressed(object sender, EventArgs e)
-	{
-        if(selectRegion.SelectedItem==null)
+    private void FiberAlertEmailButton_Pressed(object sender, EventArgs e)
+    {
+        if (selectRegion.SelectedItem == null)
         {
             DisplayAlert("Alert", "Choose a Region", "Close");
             return;
         }
-        else if(selectMilePost.Text=="")
+        else if (selectMilePost.Text == "")
         {
             DisplayAlert("Alert", "Enter Mile Post", "Close");
             return;
@@ -72,7 +68,7 @@ public partial class FiberAlertPage : ContentPage
             DisplayAlert("Alert", "Enter Phone Number", "Close");
             return;
         }
-        Region= selectRegion.SelectedItem.ToString();
+        Region = selectRegion.SelectedItem.ToString();
         MilePost = selectMilePost.Text;
         AffectedArea = selectAffectedArea.Text;
         Who = selectWho.Text;
@@ -81,7 +77,7 @@ public partial class FiberAlertPage : ContentPage
         ReportedBy = selectReportedBy.Text;
         PhoneNumber = selectPhoneNumber.Text;
         StartDate = selectStartDate.Text;
-        EndDate= selectEndDate.Text;
+        EndDate = selectEndDate.Text;
 
         try
         {
@@ -108,11 +104,11 @@ public partial class FiberAlertPage : ContentPage
             mail = null;
         }
 
-        catch(Exception ex)
+        catch (Exception ex)
         {
             DisplayAlert("Alert", "Close MOE, make sure Outlook is running, and try again. " + ex.Message, "close");
         }
 
-     
+
     }
 }

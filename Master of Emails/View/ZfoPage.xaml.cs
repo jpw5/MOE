@@ -1,4 +1,3 @@
-using Google.Apis.Compute.v1.Data;
 using Master_of_Emails.Table_Repositories;
 using Master_of_Emails.Tables;
 using Master_of_Emails.ViewModels;
@@ -47,9 +46,9 @@ public partial class ZfoPage : ContentPage
     public string Body;
 
     public ZfoPage(ZfoPageViewModel zfoPageViewModel)
-	{
+    {
         InitializeComponent();
-        BindingContext=zfoPageViewModel;
+        BindingContext = zfoPageViewModel;
     }
 
     private void ZFOEmail_Button_Pressed(object sender, EventArgs e)
@@ -67,7 +66,7 @@ public partial class ZfoPage : ContentPage
             return;
         }
 
-        else if(string.IsNullOrEmpty(selectRequestor.Text))
+        else if (string.IsNullOrEmpty(selectRequestor.Text))
         {
             DisplayAlert("Alert", "Enter Requestor", "Close");
             return;
@@ -94,7 +93,7 @@ public partial class ZfoPage : ContentPage
 
         To = "";
         Cc = "";
-        StandardDistributionZFO = 
+        StandardDistributionZFO =
         TollEmailDistributionRepo.QueryByRegionEmailTypeAndPlazaId(Region, EmailType, "ALL");
 
         foreach (TollEmailDistribution emaildistributionZFO in StandardDistributionZFO)
@@ -124,11 +123,11 @@ public partial class ZfoPage : ContentPage
             Lane = null;
         }
 
-        catch(Exception ex)
+        catch (Exception ex)
         {
             DisplayAlert("Alert", "Close MOE, make sure Outlook is running, and try again. " + ex.Message, "close");
         }
-      
+
     }
     private void SelectRegion_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -143,11 +142,11 @@ public partial class ZfoPage : ContentPage
             tollPlazaQueryByRegionName = TollPlazaRepo.QueryByRegionName(Region);
             foreach (TollPlaza tollPlaza in tollPlazaQueryByRegionName)
             {
-                if(tollPlaza.Plaza_company!="Infinity")
+                if (tollPlaza.Plaza_company != "Infinity")
                 {
                     plazas.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name + " " + tollPlaza.Plaza_roadway
                     + " MP " + tollPlaza.Plaza_milepost);
-                } 
+                }
             }
 
             plazas.Sort();

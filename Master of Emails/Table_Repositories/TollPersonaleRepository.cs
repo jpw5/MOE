@@ -1,11 +1,6 @@
 ﻿using Master_of_Emails.Database;
 using Master_of_Emails.Tables;
 using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Master_of_Emails.Table_Repositories
 {

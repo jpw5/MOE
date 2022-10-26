@@ -40,7 +40,7 @@ public partial class DuressAlarmPage : ContentPage
     public string Body;
 
     public DuressAlarmPage(DuressAlarmPageViewModel duressAlarmPageViewModel)
-	{
+    {
         InitializeComponent();
         BindingContext = duressAlarmPageViewModel;
     }
@@ -89,9 +89,9 @@ public partial class DuressAlarmPage : ContentPage
 
         Region = selectRegion.SelectedItem.ToString();
         Lane = selectLane.SelectedItem.ToString();
-        DuressReason=selectDuressReason.SelectedItem.ToString();
+        DuressReason = selectDuressReason.SelectedItem.ToString();
         Date = selectDate.Text;
-        PlazaSupervisor= selectPlazaSupervisor.Text;
+        PlazaSupervisor = selectPlazaSupervisor.Text;
         DuressReason = selectDuressReason.SelectedItem.ToString();
 
         StandardDistributionDuress =
@@ -101,8 +101,8 @@ public partial class DuressAlarmPage : ContentPage
         Cc = "";
         foreach (TollEmailDistribution emaildistributionDuress in StandardDistributionDuress)
         {
-                To = emaildistributionDuress.Email_distribution_to;
-                Cc = emaildistributionDuress.Email_distribution_cc;  
+            To = emaildistributionDuress.Email_distribution_to;
+            Cc = emaildistributionDuress.Email_distribution_cc;
         }
 
         string Subject = "Duress Alarm at " + Plaza.ToUpper() + " / " + Lane.ToUpper();
@@ -126,11 +126,11 @@ public partial class DuressAlarmPage : ContentPage
             mail = null;
         }
 
-        catch(Exception ex)
+        catch (Exception ex)
         {
             DisplayAlert("Alert", "Close MOE, make sure Outlook is running, and try again. " + ex.Message, "close");
         }
-    
+
     }
     private void SelectRegion_SelectedIndexChanged(object sender, EventArgs e)
     {

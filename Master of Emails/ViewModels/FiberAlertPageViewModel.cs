@@ -6,41 +6,41 @@ using System.Collections.ObjectModel;
 
 namespace Master_of_Emails.ViewModels;
 
-    public partial class FiberAlertPageViewModel: ObservableObject
-    {
-        [ObservableProperty]
-        public ObservableCollection<string> tollRegionList;
-        [ObservableProperty]
-        public string region;
-        public TollRegionRepository TollRegionRepo = new();
-        public List<TollRegion> TollRegion = new();
+public partial class FiberAlertPageViewModel : ObservableObject
+{
+    [ObservableProperty]
+    public ObservableCollection<string> tollRegionList;
+    [ObservableProperty]
+    public string region;
+    public TollRegionRepository TollRegionRepo = new();
+    public List<TollRegion> TollRegion = new();
 
-        [ObservableProperty]
-        public string milePost;
+    [ObservableProperty]
+    public string milePost;
 
-        [ObservableProperty]
-        public string affectedArea;
+    [ObservableProperty]
+    public string affectedArea;
 
-        [ObservableProperty]
-        public string who;
+    [ObservableProperty]
+    public string who;
 
-        [ObservableProperty]
-        public string amountCut;
+    [ObservableProperty]
+    public string amountCut;
 
-        [ObservableProperty]
-        public string fiberTechnician;
+    [ObservableProperty]
+    public string fiberTechnician;
 
-        [ObservableProperty]
-        public string reportedBy;
+    [ObservableProperty]
+    public string reportedBy;
 
-        [ObservableProperty]
-        public string phoneNumber;
+    [ObservableProperty]
+    public string phoneNumber;
 
-        [ObservableProperty]
-        public string startDate = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
+    [ObservableProperty]
+    public string startDate = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
 
-        [ObservableProperty]
-        public string endDate = "TBD";
+    [ObservableProperty]
+    public string endDate = "TBD";
 
     public FiberAlertPageViewModel()
     {

@@ -62,14 +62,14 @@ public partial class PriorityOneMafPageViewModel : ObservableObject
         tollRegionList = new ObservableCollection<string>();
         tollPlazaList = new ObservableCollection<string>();
         tollLaneList = new ObservableCollection<string>();
-        tollTechnicianList=new ObservableCollection<string>();
-        tollBomitemList=new ObservableCollection<string>();
+        tollTechnicianList = new ObservableCollection<string>();
+        tollBomitemList = new ObservableCollection<string>();
         PopulateRegionList();
     }
     public void PopulateRegionList()
     {
-        TollRegion= TollRegionRepo.GetRegions();
-        if(TollRegion!=null)
+        TollRegion = TollRegionRepo.GetRegions();
+        if (TollRegion != null)
         {
             foreach (TollRegion region in TollRegion)
             {
@@ -89,9 +89,9 @@ public partial class PriorityOneMafPageViewModel : ObservableObject
         tollBomitemList?.Clear();
         tollTechnicianList?.Clear();
         Date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
-        Problem= "";
-        MafNumber= "";
-        ActionTaken= "";
+        Problem = "";
+        MafNumber = "";
+        ActionTaken = "";
     }
 
 }

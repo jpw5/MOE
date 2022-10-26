@@ -4,9 +4,9 @@ namespace practice.Pages;
 
 public partial class Settings : ContentPage
 {
-	public Settings(SettingsPageViewModel settingsPageViewModel)
-	{
-		InitializeComponent();
-		BindingContext=settingsPageViewModel;
-	}
+    public Settings(SettingsPageViewModel settingsPageViewModel)
+    {
+        InitializeComponent();
+        BindingContext = settingsPageViewModel;
+    }
 }
