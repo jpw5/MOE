@@ -1,4 +1,4 @@
-# This application is an updated version of MOE writtin in C# and XAML utilizing the .NET MAUI framework. 
+# This application is an updated version of MOE written in C# and XAML utilizing the .NET MAUI framework. 
 
 # An SQLite database is utilized for application data in the program instead of text files. 
 # The database file should be put in C:\Users\"Localuser"\AppData\Local\Packages\"Generated folder"\LocalState. 
