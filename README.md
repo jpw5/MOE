@@ -1,7 +1,8 @@
 # MOE. This program is an update version of MOE, orginally built with Visual Basic. This newer version is writtin in C# and XAML utilizing the .NET MAUI framework. 
 
-# An SQLite database is utilized for application data in the program instead of text files. The database file should be put # in C:\Users\"Localuser"\AppData\Local\Packages\"Generated folder"\LocalState. When the application first loads a folder
-# will generate within the AppData folder.
+# An SQLite database is utilized for application data in the program instead of text files. 
+# The database file should be put # in C:\Users\"Localuser"\AppData\Local\Packages\"Generated folder"\LocalState. 
+# When the application first loads a folder will generate within the AppData folder.
 
 # The application opens up to a 3x3 grid layout which contains six buttons and three search bars, one for personale, plaza, and organization.
 
