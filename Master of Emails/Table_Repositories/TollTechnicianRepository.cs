@@ -1,16 +1,10 @@
 ﻿using Master_of_Emails.Database;
 using Master_of_Emails.Tables;
 using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Master_of_Emails.Table_Repositories
 {
-  
+
     public class TollTechnicianRepository
     {
         public DB DB;
@@ -22,17 +16,17 @@ namespace Master_of_Emails.Table_Repositories
             DatabaseConnection.CreateTable<TollTechnician>();
         }
 
-        public void AddTechnician(string NewTechnicianKnId, string NewTechnicianName, 
+        public void AddTechnician(string NewTechnicianKnId, string NewTechnicianName,
         string NewTechnicianPhoneNumber, string NewTechnicianEmail, string NewTechnicianRegion)
         {
             Init();
-            var technician= new TollTechnician
+            var technician = new TollTechnician
             {
                 Technician_kn_id = NewTechnicianKnId,
                 Technician_email = NewTechnicianEmail,
-                Technician_name= NewTechnicianName,
-                Technician_phone_number= NewTechnicianPhoneNumber,
-                Technician_region= NewTechnicianRegion
+                Technician_name = NewTechnicianName,
+                Technician_phone_number = NewTechnicianPhoneNumber,
+                Technician_region = NewTechnicianRegion
             };
             DatabaseConnection.Insert(technician);
         }
@@ -52,8 +46,8 @@ namespace Master_of_Emails.Table_Repositories
         public TableQuery<TollTechnician> QueryTechnicianByName(string TechnicianName)
         {
             Init();
-            TechnicianName=TechnicianName.ToUpper();
-            return DatabaseConnection.Table<TollTechnician>().Where(value=> value.Technician_name.ToUpper().Contains(TechnicianName));
+            TechnicianName = TechnicianName.ToUpper();
+            return DatabaseConnection.Table<TollTechnician>().Where(value => value.Technician_name.ToUpper().Contains(TechnicianName));
 
             //return DatabaseConnection.Table<TollTechnician>().Where(value => value.Technician_name.
             //Equals(TechnicianName));
@@ -71,5 +65,5 @@ namespace Master_of_Emails.Table_Repositories
 
 
 
-   
+
 }

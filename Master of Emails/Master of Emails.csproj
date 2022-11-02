@@ -28,11 +28,21 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<DefaultLanguage>en</DefaultLanguage>
+		<GenerateAppInstallerFile>True</GenerateAppInstallerFile>
+		<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+		<PackageCertificateThumbprint>45F136E2249579A5C7A172336FFE6A780B8826E8</PackageCertificateThumbprint>
+		<AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+		<AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+		<AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+		<GenerateTestArtifacts>True</GenerateTestArtifacts>
+		<AppInstallerUri>C:\Users\Ali Shakoor\OneDrive\Desktop\Test</AppInstallerUri>
+		<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\moe.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="Gray" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
@@ -49,6 +59,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="%24placeholder.scale-400.jpg" />
 	  <None Remove="Resources\Fonts\ArialBlack.ttf" />
 	  <None Remove="Resources\Fonts\TimesNewRoman.otf" />
 	</ItemGroup>
@@ -72,6 +83,10 @@
 	    <Isolated>false</Isolated>
 	    <EmbedInteropTypes>true</EmbedInteropTypes>
 	  </COMReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="$placeholder.scale-400.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>

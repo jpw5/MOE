@@ -7,53 +7,53 @@ using System.Collections.ObjectModel;
 
 namespace Master_of_Emails.ViewModels;
 
-    public partial class InconAlertPageViewModel : ObservableObject
-    {
-        [ObservableProperty]
-        public ObservableCollection<string> tollRegionList;
-        [ObservableProperty]
-        public string region;
-        public TollRegionRepository TollRegionRepo = new();
-        public List<TollRegion> TollRegion = new();
-
-        [ObservableProperty]
-        public ObservableCollection<string> tollPlazaList;
-        [ObservableProperty]
-        public string plaza;
-        public TollPlazaRepository TollPlazaRepo = new();
-        public List<TollPlaza> TollPlaza = new();
-
-        [ObservableProperty]
-        public ObservableCollection<string> tollLaneList;
-        [ObservableProperty]
-        public string lane;
-        public TollLaneRepository TollLaneRepo = new();
-        public List<TollLane> TollLane = new();
-
-        [ObservableProperty]
-        public string requestor;
-        [ObservableProperty]
-        public string phoneResult;
-        public TollTechnicianRepository TollTechnicianRepo = new();
-        public TableQuery<TollTechnician> TollTechnicianQuery;
-
-        public TollOrganizationRepository TollOrgnizationRepo = new();
-        public TableQuery<TollOrganization> TollOrganizationQuery;
+public partial class InconAlertPageViewModel : ObservableObject
+{
+    [ObservableProperty]
+    public ObservableCollection<string> tollRegionList;
+    [ObservableProperty]
+    public string region;
+    public TollRegionRepository TollRegionRepo = new();
+    public List<TollRegion> TollRegion = new();
 
     [ObservableProperty]
-        public string date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
-    
-        [ObservableProperty]
-        public string duration;
+    public ObservableCollection<string> tollPlazaList;
+    [ObservableProperty]
+    public string plaza;
+    public TollPlazaRepository TollPlazaRepo = new();
+    public List<TollPlaza> TollPlaza = new();
 
-        [ObservableProperty]
-        public string incidentOrESR="NA";
+    [ObservableProperty]
+    public ObservableCollection<string> tollLaneList;
+    [ObservableProperty]
+    public string lane;
+    public TollLaneRepository TollLaneRepo = new();
+    public List<TollLane> TollLane = new();
 
-        [ObservableProperty]
-        public string reason;
+    [ObservableProperty]
+    public string requestor;
+    [ObservableProperty]
+    public string phoneResult;
+    public TollTechnicianRepository TollTechnicianRepo = new();
+    public TableQuery<TollTechnician> TollTechnicianQuery;
 
-        [ObservableProperty]
-        public string unit;
+    public TollOrganizationRepository TollOrgnizationRepo = new();
+    public TableQuery<TollOrganization> TollOrganizationQuery;
+
+    [ObservableProperty]
+    public string date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
+
+    [ObservableProperty]
+    public string duration;
+
+    [ObservableProperty]
+    public string incidentOrESR = "NA";
+
+    [ObservableProperty]
+    public string reason;
+
+    [ObservableProperty]
+    public string unit;
 
     public InconAlertPageViewModel()
     {
@@ -97,12 +97,12 @@ namespace Master_of_Emails.ViewModels;
             }
         }
 
-        else if(TollOrganizationQuery.Any())
+        else if (TollOrganizationQuery.Any())
         {
             PhoneNumber.Clear();
             FullName.Clear();
 
-            foreach(TollOrganization organization in TollOrganizationQuery)
+            foreach (TollOrganization organization in TollOrganizationQuery)
             {
                 PhoneNumber.Add(organization.Organization_phone_number);
                 FullName.Add(organization.Organization_name);
@@ -131,7 +131,7 @@ namespace Master_of_Emails.ViewModels;
         Duration = "";
         IncidentOrESR = "";
         Reason = "";
-        Date= DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
+        Date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
     }
 }
 

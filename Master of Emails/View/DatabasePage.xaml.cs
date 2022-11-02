@@ -1,7 +1,4 @@
-using Master_of_Emails;
 using Master_of_Emails.Database;
-using Master_of_Emails.Table_Repositories;
-using Master_of_Emails.Tables;
 using Master_of_Emails.ViewModels;
 
 
@@ -11,8 +8,8 @@ public partial class DatabasePage : ContentPage
 {
     public DB DB;
     public DatabasePage(DatabasePageViewModel databasePageViewModel)
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         BindingContext = databasePageViewModel;
         if (DB.DatabaseConnection == null)
             DB.DatabaseInit();

@@ -79,7 +79,7 @@
 
                 <SearchBar Text="{Binding PlazaSearch}" SearchCommand="{Binding ReturnPlazaCommand}" 
                  FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" TextColor="Black" 
-                 CancelButtonColor="White" Margin="18" Placeholder="Plaza" 
+                 CancelButtonColor="White" Margin="18" Placeholder="Plaza ID" 
                  IsTextPredictionEnabled="True"></SearchBar>
 
                 <Label Text="{Binding PlazaSearchResult}" FontSize="16" FontAttributes="Bold" 

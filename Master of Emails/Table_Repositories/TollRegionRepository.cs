@@ -1,11 +1,6 @@
 ﻿using Master_of_Emails.Database;
 using Master_of_Emails.Tables;
 using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Master_of_Emails.Table_Repositories
 {
@@ -23,16 +18,16 @@ namespace Master_of_Emails.Table_Repositories
         {
             Init();
             var region = new TollRegion
-                {
-                  Region_name = RegionName
-                };
-               var id=DatabaseConnection.Insert(region);
+            {
+                Region_name = RegionName
+            };
+            var id = DatabaseConnection.Insert(region);
         }
 
         public void DeleteRegion(int Id)
         {
-             Init();
-             DatabaseConnection.Delete<TollRegion>(Id);
+            Init();
+            DatabaseConnection.Delete<TollRegion>(Id);
         }
 
         public List<TollRegion> GetRegions()
@@ -43,8 +38,8 @@ namespace Master_of_Emails.Table_Repositories
             {
                 return DatabaseConnection.Table<TollRegion>().ToList();
             }
-            
-            catch(Exception)
+
+            catch (Exception)
             {
                 return null;
             }

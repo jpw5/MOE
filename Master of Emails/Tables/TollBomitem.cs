@@ -1,9 +1,4 @@
 ﻿using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Master_of_Emails.Tables
 {
@@ -16,6 +11,6 @@ namespace Master_of_Emails.Tables
 
         public string Bomitem_lane_type { get; set; }
 
-        public string Bomitem_name{ get; set; }
+        public string Bomitem_name { get; set; }
     }
 }

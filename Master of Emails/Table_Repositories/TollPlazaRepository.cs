@@ -1,12 +1,6 @@
 ﻿using Master_of_Emails.Database;
 using Master_of_Emails.Tables;
-using Google.Apis.Compute.v1.Data;
 using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Master_of_Emails.Table_Repositories
 {
@@ -21,24 +15,24 @@ namespace Master_of_Emails.Table_Repositories
             DatabaseConnection.CreateTable<TollPlaza>();
         }
 
-        public void AddPlaza(int Plaza_id, string Plaza_name, string Plaza_roadway, int Plaza_milepost, 
+        public void AddPlaza(int Plaza_id, string Plaza_name, string Plaza_roadway, int Plaza_milepost,
         string Plaza_region, string Plaza_phone_number, string Plaza_company)
         {
             Init();
             var plaza = new TollPlaza
-               {
-                 Plaza_id = Plaza_id,
-                 Plaza_name = Plaza_name,
-                 Plaza_roadway = Plaza_roadway,
-                 Plaza_milepost = Plaza_milepost,
-                 Plaza_region = Plaza_region,
-                 Plaza_phone_number=Plaza_phone_number,
-                 Plaza_company=Plaza_company
-               };
+            {
+                Plaza_id = Plaza_id,
+                Plaza_name = Plaza_name,
+                Plaza_roadway = Plaza_roadway,
+                Plaza_milepost = Plaza_milepost,
+                Plaza_region = Plaza_region,
+                Plaza_phone_number = Plaza_phone_number,
+                Plaza_company = Plaza_company
+            };
             DatabaseConnection.Insert(plaza);
         }
 
-        public void DeletePlaza(int Plaza_id) 
+        public void DeletePlaza(int Plaza_id)
         {
             Init();
             DatabaseConnection.Delete<TollPlaza>(Plaza_id);
@@ -48,12 +42,6 @@ namespace Master_of_Emails.Table_Repositories
         {
             Init();
             return DatabaseConnection.Table<TollPlaza>().ToList();
-        }  
-
-         public TableQuery<TollPlaza> QueryByPlazaId(int Plaza_Id)
-        {
-            Init();
-            return DatabaseConnection.Table<TollPlaza>().Where(value => value.Plaza_id.Equals(Plaza_Id));
         }
 
         public TableQuery<TollPlaza> QueryByRegionName(string Region)
@@ -61,6 +49,20 @@ namespace Master_of_Emails.Table_Repositories
             Init();
             return DatabaseConnection.Table<TollPlaza>().Where(value => value.Plaza_region.Equals(Region));
         }
+        public TableQuery<TollPlaza> QueryByPlazaId(int Plaza_Id)
+        {
+            Init();
+            return DatabaseConnection.Table<TollPlaza>().Where(value => value.Plaza_id.Equals(Plaza_Id));
+        }
 
+        public TableQuery<TollPlaza> QueryPlazaByName(string PlazaName)
+        {
+            Init();
+            PlazaName = PlazaName.ToUpper();
+            return DatabaseConnection.Table<TollPlaza>().Where(value => value.Plaza_name.ToUpper().Contains(PlazaName));
+
+            //return DatabaseConnection.Table<TollTechnician>().Where(value => value.Technician_name.
+            //Equals(TechnicianName));
+        }
     }
 }

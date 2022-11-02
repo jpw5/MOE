@@ -44,10 +44,10 @@ public partial class ScadaPage : ContentPage
     public string Body;
 
     public ScadaPage(ScadaPageViewModel scadaPageViewModel)
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         BindingContext = scadaPageViewModel;
-	}
+    }
     private void ScadaEmailButton_Pressed(object sender, EventArgs e)
     {
         if (selectPlaza.SelectedItem == null)
@@ -104,7 +104,7 @@ public partial class ScadaPage : ContentPage
             PlazaCompany = plaza.Plaza_company;
         }
 
-        BuildingNumber=selectBuildingNumber.Text;
+        BuildingNumber = selectBuildingNumber.Text;
         Alarm = selectScadaAlarm.Text;
         WorkOrderNumber = selectWorkOrderNumber.Text;
         Date = selectDate.Text;
@@ -112,7 +112,7 @@ public partial class ScadaPage : ContentPage
         FacilitiesContact = selectContact.Text;
         FacilitiesContactPhone = selectPhoneNumber.Text;
 
-        if(PlazaCompany=="Infinity")
+        if (PlazaCompany == "Infinity")
         {
             StandardDistributionScadaInfinity =
             TollEmailDistributionRepo.QueryByRegionEmailTypeAndPlazaId(Region, EmailType, PlazaCompany);
@@ -135,7 +135,7 @@ public partial class ScadaPage : ContentPage
                 Cc = emaildistributionSCADA.Email_distribution_cc;
             }
         }
-   
+
         Subject = "SCADA Alarm - " + Plaza.ToUpper();
         Body = "<font size=5>" + "<b>" + "****SunWatch SCADA Alarm - " + SelectedHours + "*****" + "</b>" + "</font>" + "<br>" + "<br>" +
         "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
@@ -158,7 +158,7 @@ public partial class ScadaPage : ContentPage
             mail = null;
         }
 
-        catch(Exception ex)
+        catch (Exception ex)
         {
             DisplayAlert("Alert", "Close MOE, make sure Outlook is running, and try again. " + ex.Message, "close");
         }
@@ -197,7 +197,7 @@ public partial class ScadaPage : ContentPage
     private void Normal_hours_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
         SelectedHours = "Normal Hours";
-        selectWorkOrderNumber.Text="NA";
+        selectWorkOrderNumber.Text = "NA";
     }
 
 }

@@ -1,9 +1,4 @@
 ﻿using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace Master_of_Emails.Tables
@@ -11,6 +6,7 @@ namespace Master_of_Emails.Tables
     [Table("personale")]
     public class TollPersonale
     {
+        [PrimaryKey]
         public string Personale_kn_id { get; set; }
 
         public string Personale_name { get; set; }

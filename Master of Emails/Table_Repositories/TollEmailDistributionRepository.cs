@@ -1,11 +1,6 @@
 ﻿using Master_of_Emails.Database;
 using Master_of_Emails.Tables;
 using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace Master_of_Emails.Table_Repositories
@@ -20,7 +15,7 @@ namespace Master_of_Emails.Table_Repositories
             DatabaseConnection.CreateTable<TollEmailDistribution>();
         }
         public void AddEmailDistribution(string Email_distribution_region, string Email_distribution_type,
-            string Email_distribution_plaza_id,string Email_distribution_to, string Email_distribution_cc)
+            string Email_distribution_plaza_id, string Email_distribution_to, string Email_distribution_cc)
         {
             Init();
             var emaildistribution = new TollEmailDistribution
@@ -50,9 +45,9 @@ namespace Master_of_Emails.Table_Repositories
         public TableQuery<TollEmailDistribution> QueryByRegionEmailTypeAndPlazaId(string Region, string Type, string PlazaId)
         {
             Init();
-            return DatabaseConnection.Table<TollEmailDistribution>().Where(value => 
-            value.Email_distribution_region.Equals(Region) && 
-            value.Email_distribution_type.Equals(Type) && 
+            return DatabaseConnection.Table<TollEmailDistribution>().Where(value =>
+            value.Email_distribution_region.Equals(Region) &&
+            value.Email_distribution_type.Equals(Type) &&
             value.Email_distribution_plaza_id.Equals(PlazaId));
         }
 

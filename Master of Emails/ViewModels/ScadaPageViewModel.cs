@@ -8,45 +8,45 @@ using System.Collections.ObjectModel;
 
 namespace Master_of_Emails.ViewModels;
 
-    public partial class ScadaPageViewModel : ObservableObject
-    {
-        [ObservableProperty]
-        public ObservableCollection<string> tollRegionList;
-        [ObservableProperty]
-        public string region;
-        public TollRegionRepository TollRegionRepo = new();
-        public List<TollRegion> TollRegion = new();
+public partial class ScadaPageViewModel : ObservableObject
+{
+    [ObservableProperty]
+    public ObservableCollection<string> tollRegionList;
+    [ObservableProperty]
+    public string region;
+    public TollRegionRepository TollRegionRepo = new();
+    public List<TollRegion> TollRegion = new();
 
-        [ObservableProperty]
-        public ObservableCollection<string> tollPlazaList;
-        [ObservableProperty]
-        public string plaza;
-        public TollPlazaRepository TollPlazaRepo = new();
-        public List<TollPlaza> TollPlaza = new();
+    [ObservableProperty]
+    public ObservableCollection<string> tollPlazaList;
+    [ObservableProperty]
+    public string plaza;
+    public TollPlazaRepository TollPlazaRepo = new();
+    public List<TollPlaza> TollPlaza = new();
 
-        [ObservableProperty]
-        public string facilitiesTelecomPersonaleName;
-        [ObservableProperty]
-        public string phoneResult;
-        [ObservableProperty]
-        public string alternatePhoneResult;
-        public TollFacilitiesTelecomRepository TollFacilitiesTelecomRepo = new();
-        public TableQuery<TollFacilitiesTelecom> TollFacilitiesTelecomQuery;
+    [ObservableProperty]
+    public string facilitiesTelecomPersonaleName;
+    [ObservableProperty]
+    public string phoneResult;
+    [ObservableProperty]
+    public string alternatePhoneResult;
+    public TollFacilitiesTelecomRepository TollFacilitiesTelecomRepo = new();
+    public TableQuery<TollFacilitiesTelecom> TollFacilitiesTelecomQuery;
 
-        [ObservableProperty]
-        public string scadaAlarm;
+    [ObservableProperty]
+    public string scadaAlarm;
 
-        [ObservableProperty]
-        public string buildingNumber;
+    [ObservableProperty]
+    public string buildingNumber;
 
-        [ObservableProperty]
-        public string workOrderNumber;
+    [ObservableProperty]
+    public string workOrderNumber;
 
-        [ObservableProperty]
-        public string date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
+    [ObservableProperty]
+    public string date = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
 
-        [ObservableProperty]
-        public string temperature="NA";
+    [ObservableProperty]
+    public string temperature = "NA";
 
 
     public ScadaPageViewModel()
@@ -77,7 +77,7 @@ namespace Master_of_Emails.ViewModels;
         List<string> PhoneNumber = new();
         List<string> AlternatePhoneNumber = new();
         List<string> FullName = new();
-        
+
         if (TollFacilitiesTelecomQuery.Any())
         {
             PhoneNumber.Clear();
@@ -91,7 +91,7 @@ namespace Master_of_Emails.ViewModels;
                 PhoneResult = "Phone: " + PhoneNumber[0];
                 AlternatePhoneResult = "Alternate: " + AlternatePhoneNumber[0];
                 FacilitiesTelecomPersonaleName = FullName[0];
-                
+
             }
         }
 

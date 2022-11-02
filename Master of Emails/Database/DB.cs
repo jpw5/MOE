@@ -1,10 +1,7 @@
-﻿using practice.Pages;
-using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SQLite;
+/* 
+ Creates connection to MOE.db to be used by other parts of the app.
+*/
 
 namespace Master_of_Emails.Database
 {

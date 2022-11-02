@@ -7,42 +7,42 @@ using System.Collections.ObjectModel;
 
 namespace Master_of_Emails.ViewModels;
 
-    public partial class  ZfoPageViewModel: ObservableObject
+public partial class ZfoPageViewModel : ObservableObject
 {
-        [ObservableProperty]
-        public ObservableCollection<string> tollRegionList;
-        [ObservableProperty]
-        public string region;
-        public TollRegionRepository TollRegionRepo = new();
-        public List<TollRegion> TollRegion = new();
+    [ObservableProperty]
+    public ObservableCollection<string> tollRegionList;
+    [ObservableProperty]
+    public string region;
+    public TollRegionRepository TollRegionRepo = new();
+    public List<TollRegion> TollRegion = new();
 
-        [ObservableProperty]
-        public ObservableCollection<string> tollPlazaList;
-        [ObservableProperty]
-        public string plaza;
-        public TollPlazaRepository TollPlazaRepo = new();
-        public List<TollPlaza> TollPlaza = new();
+    [ObservableProperty]
+    public ObservableCollection<string> tollPlazaList;
+    [ObservableProperty]
+    public string plaza;
+    public TollPlazaRepository TollPlazaRepo = new();
+    public List<TollPlaza> TollPlaza = new();
 
-        [ObservableProperty]
-        public ObservableCollection<string> tollLaneList;
-        [ObservableProperty]
-        public string lane;
-        public TollLaneRepository TollLaneRepo = new();
-        public List<TollLane> TollLane = new();
+    [ObservableProperty]
+    public ObservableCollection<string> tollLaneList;
+    [ObservableProperty]
+    public string lane;
+    public TollLaneRepository TollLaneRepo = new();
+    public List<TollLane> TollLane = new();
 
-        [ObservableProperty]
-        public string requestor;
-        public TollTechnicianRepository TollPersonaleRepo = new();
-        public TableQuery<TollTechnician> TollTechnicianQuery;
+    [ObservableProperty]
+    public string requestor;
+    public TollTechnicianRepository TollPersonaleRepo = new();
+    public TableQuery<TollTechnician> TollTechnicianQuery;
 
-        [ObservableProperty]
-        public string reason;
+    [ObservableProperty]
+    public string reason;
 
-        [ObservableProperty]
-        public string startDate = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
+    [ObservableProperty]
+    public string startDate = DateTime.Now.ToString("dddd, MMMM dd, yyyy / HH:mm");
 
-        [ObservableProperty]
-        public string endDate = "TBD";
+    [ObservableProperty]
+    public string endDate = "TBD";
 
 
 
@@ -99,7 +99,7 @@ namespace Master_of_Emails.ViewModels;
         tollLaneList?.Clear();
         Requestor = "";
         Reason = "";
-        
+
     }
 
 }

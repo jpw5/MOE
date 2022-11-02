@@ -4,10 +4,9 @@ using CommunityToolkit.Mvvm.Input;
 using Master_of_Emails.Table_Repositories;
 using Master_of_Emails.Tables;
 using SQLite;
-using System.Linq;
 
 namespace Master_of_Emails.ViewModels;
-public partial class MainPageViewModel: ObservableObject
+public partial class MainPageViewModel : ObservableObject
 {
     public TollTechnicianRepository TollTechnicianRepo = new();
     public TableQuery<TollTechnician> TollTechnicianQuery;
@@ -23,7 +22,8 @@ public partial class MainPageViewModel: ObservableObject
 
 
     public TollPlazaRepository TollPlazaRepo = new();
-    public TableQuery<TollPlaza> TollPlazaQuery;
+    public TableQuery<TollPlaza> TollPlazaQueryByPlazaId;
+    public TableQuery<TollPlaza> TollPlazaQueryByPlazaName;
 
     public TollOrganizationRepository TollOrgnizationRepo = new();
     public TableQuery<TollOrganization> TollOrganizationQuery;
@@ -37,7 +37,7 @@ public partial class MainPageViewModel: ObservableObject
     [ObservableProperty]
     public string plazaSearch;
     [ObservableProperty]
-    public string plazaSearchResult="Search Result Area";
+    public string plazaSearchResult = "Search Result Area";
 
     [ObservableProperty]
     public string organizationSearch;
@@ -46,7 +46,7 @@ public partial class MainPageViewModel: ObservableObject
 
     public MainPageViewModel()
     {
-        
+
     }
 
     [RelayCommand]
@@ -58,31 +58,31 @@ public partial class MainPageViewModel: ObservableObject
         try
         {
             TollTechnicianQuery = TollTechnicianRepo.QueryTechnicianByName(PersonaleSearch);
-            TollFacilitiesTelecomQuery=TollFacilitiesTelecomRepo.QueryPersonaleByName(PersonaleSearch);
+            TollFacilitiesTelecomQuery = TollFacilitiesTelecomRepo.QueryPersonaleByName(PersonaleSearch);
             TollPersonaleQuery = TollPersonaleRepo.QueryPersonaleByName(PersonaleSearch);
 
-            if(TollTechnicianQuery.Any())
+            if (TollTechnicianQuery.Any())
             {
-                
+
                 foreach (TollTechnician personale in TollTechnicianQuery)
                 {
-                    PersonaleSearchResult+=(
-                    "Name: "+personale.Technician_name+" \n"+
+                    PersonaleSearchResult += (
+                    "Name: " + personale.Technician_name + " \n" +
                     "Phone: " + personale.Technician_phone_number + " \n" +
-                    "Email: " + personale.Technician_email + " \n" + 
-                    "Dpeartment: " + personale.Technician_region +" Technician \n\n");
+                    "Email: " + personale.Technician_email + " \n" +
+                    "Dpeartment: " + personale.Technician_region + " Technician \n\n");
                     PersonaleSearchResultAmount++;
-                    PersonaleSearch = PersonaleSearchResultAmount+" Record(s) Found.";
+                    PersonaleSearch = PersonaleSearchResultAmount + " Record(s) Found.";
                 }
             }
 
-            if(TollFacilitiesTelecomQuery.Any())
+            if (TollFacilitiesTelecomQuery.Any())
             {
 
-                foreach(TollFacilitiesTelecom personale in TollFacilitiesTelecomQuery)
+                foreach (TollFacilitiesTelecom personale in TollFacilitiesTelecomQuery)
                 {
-                    
-                    PersonaleSearchResult+= (
+
+                    PersonaleSearchResult += (
                     "Name: " + personale.Facilities_telecom_name + " \n" +
                     "Phone: " + personale.Facilities_telecom_phone_number + " \n" +
                     "Alternate Phone: " + personale.Facilities_telecom_alerternate_number + " \n" +
@@ -94,7 +94,7 @@ public partial class MainPageViewModel: ObservableObject
                 }
             }
 
-            if(TollPersonaleQuery.Any())
+            if (TollPersonaleQuery.Any())
             {
                 foreach (TollPersonale personale in TollPersonaleQuery)
                 {
@@ -103,15 +103,15 @@ public partial class MainPageViewModel: ObservableObject
                     "Name: " + personale.Personale_name + " \n" +
                     "Phone: " + personale.Personale_phone_number + " \n" +
                     "Email: " + personale.Personale_email + " \n" +
-                    "Dpeartment: " + personale.Personale_department + " \n"+
-                    "Role: " + personale.Personale_role + " \n\n" );
+                    "Dpeartment: " + personale.Personale_department + " \n" +
+                    "Role: " + personale.Personale_role + " \n\n");
 
                     PersonaleSearchResultAmount++;
                     PersonaleSearch = PersonaleSearchResultAmount + " Record(s) Found.";
                 }
             }
 
-            if(!TollTechnicianQuery.Any() && !TollFacilitiesTelecomQuery.Any() && !TollPersonaleQuery.Any())
+            if (!TollTechnicianQuery.Any() && !TollFacilitiesTelecomQuery.Any() && !TollPersonaleQuery.Any())
             {
                 PersonaleSearch = "No Record Found.";
                 await Task.Delay(2000);
@@ -120,9 +120,9 @@ public partial class MainPageViewModel: ObservableObject
         }
         catch (Exception)
         {
-                PersonaleSearch = ".";
-                await Task.Delay(2000);
-                PersonaleSearch = "";
+            PersonaleSearch = ".";
+            await Task.Delay(2000);
+            PersonaleSearch = "";
         }
     }
 
@@ -135,14 +135,14 @@ public partial class MainPageViewModel: ObservableObject
 
         try
         {
-            TollPlazaQuery = TollPlazaRepo.QueryByPlazaId(Int32.Parse(PlazaSearch));
+            TollPlazaQueryByPlazaId = TollPlazaRepo.QueryByPlazaId(Int32.Parse(PlazaSearch));
 
-            if (TollPlazaQuery.Any())
+            if (TollPlazaQueryByPlazaId.Any())
             {
-                foreach (TollPlaza plaza in TollPlazaQuery)
+                foreach (TollPlaza plaza in TollPlazaQueryByPlazaId)
                 {
-                    PlazaSearchResult+=(
-                    "Plaza: "+plaza.Plaza_id + " " + plaza.Plaza_name + " \n" +
+                    PlazaSearchResult += (
+                    "Plaza: " + plaza.Plaza_id + " " + plaza.Plaza_name + " \n" +
                     "Roadway: " + plaza.Plaza_roadway + " \n" +
                     "Mile Post: " + plaza.Plaza_milepost + " \n" +
                     "Phone Number: " + plaza.Plaza_phone_number + " \n" +
@@ -161,7 +161,7 @@ public partial class MainPageViewModel: ObservableObject
         }
         catch (Exception)
         {
-            PlazaSearch = "No Record Found Test.";
+            PlazaSearch = "No Record Found By Plaza ID.";
             await Task.Delay(2000);
             PlazaSearch = "";
         }
@@ -211,7 +211,7 @@ public partial class MainPageViewModel: ObservableObject
     {
         PersonaleSearch = "";
         PersonaleSearchResult = "Search Result Area";
-        
+
     }
 
     [RelayCommand]
