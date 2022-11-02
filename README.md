@@ -20,9 +20,10 @@
 ![image](https://user-images.githubusercontent.com/91855477/199598885-a799ff58-4673-4bee-a92c-dbdd6d937496.png)
 
 # Within each emailer form are drop down menus and text input fields for various inputs. 
-# Using Microsoft.Office.Interop.Outlook; the program connects to your outlook session, and inserts the To, CC, Subject,  
-# and Body into a Template.msg outlook email item based on the inputs provided. The Template.msg file that the program 
-# writes to should be in the generated folder within the AppData folder. 
+# Using Microsoft.Office.Interop.Outlook; the program connects to your outlook session.
+# The application inserts the relevant information into the To, CC, Subject, and Body of a Template.msg outlook email item 
+
+# The Template.msg file that the program writes to should be in the generated folder within the AppData folder. 
 # An example URL is C:\Users\alish\AppData\Local\Packages\360BDCF4-1F62-4376-B814-729BCA18E0AD_gnq6z8cxyv47g\LocalState.
 
 # The user can add to the database throught the "Database" tab in the app.
