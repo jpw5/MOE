@@ -84,7 +84,7 @@ public partial class ZfoPage : ContentPage
             Lane += TollLaneList[i] + " ";
         }
 
-        TollLaneList.Clear();
+        
         Region = selectRegion.SelectedItem.ToString();
         Requestor = selectRequestor.Text;
         Reason = selectReason.Text;

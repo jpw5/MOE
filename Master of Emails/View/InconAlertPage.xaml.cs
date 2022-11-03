@@ -57,6 +57,7 @@ public partial class InconAlertPage : ContentPage
 
     private void InconAlertEmail_Button_Pressed(object sender, EventArgs e)
     {
+        
         if (selectPlaza.SelectedItem == null)
         {
             DisplayAlert("Alert", "Choose a Plaza", "Close");
@@ -113,7 +114,7 @@ public partial class InconAlertPage : ContentPage
             Lane += TollLaneList[i] + " ";
         }
 
-        TollLaneList.Clear();
+       
         Region = selectRegion.SelectedItem.ToString();
         Date = selectDate.Text;
         Requestor = selectRequestor.Text;
