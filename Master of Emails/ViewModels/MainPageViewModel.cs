@@ -68,6 +68,7 @@ public partial class MainPageViewModel : ObservableObject
                 {
                     PersonaleSearchResult += (
                     "Name: " + personale.Technician_name + " \n" +
+                    "ID: " + personale.Technician_kn_id + " \n" +
                     "Phone: " + personale.Technician_phone_number + " \n" +
                     "Email: " + personale.Technician_email + " \n" +
                     "Dpeartment: " + personale.Technician_region + " Technician \n\n");
@@ -84,6 +85,7 @@ public partial class MainPageViewModel : ObservableObject
 
                     PersonaleSearchResult += (
                     "Name: " + personale.Facilities_telecom_name + " \n" +
+                    "ID: " + personale.Facilities_telecom_kn_id + " \n" +
                     "Phone: " + personale.Facilities_telecom_phone_number + " \n" +
                     "Alternate Phone: " + personale.Facilities_telecom_alerternate_number + " \n" +
                     "Email: " + personale.Facilities_telecom_email + " \n" +
@@ -101,6 +103,7 @@ public partial class MainPageViewModel : ObservableObject
 
                     PersonaleSearchResult += (
                     "Name: " + personale.Personale_name + " \n" +
+                    "ID: " + personale.Personale_kn_id + " \n" +
                     "Phone: " + personale.Personale_phone_number + " \n" +
                     "Email: " + personale.Personale_email + " \n" +
                     "Dpeartment: " + personale.Personale_department + " \n" +
