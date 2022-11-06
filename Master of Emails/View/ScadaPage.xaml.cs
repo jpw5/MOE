@@ -176,8 +176,7 @@ public partial class ScadaPage : ContentPage
             tollPlazaQueryByRegionName = TollPlazaRepo.QueryByRegionName(Region);
             foreach (TollPlaza tollPlaza in tollPlazaQueryByRegionName)
             {
-                plazas.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name + " " + tollPlaza.Plaza_roadway + " MP " +
-                tollPlaza.Plaza_milepost);
+                plazas.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name);
             }
 
             plazas.Sort();

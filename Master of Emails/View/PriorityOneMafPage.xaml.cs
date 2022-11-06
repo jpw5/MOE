@@ -146,9 +146,9 @@ public partial class PriorityOneMafPage : ContentPage
         "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
         "<font size=4>" + "<b>" + "Roadway: " + "</b>" + Roadway + "</font>" + "<br>" +
         "<font size=4>" + "<b>" + "Lane: " + "</b>" + Lane + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Bomitem: " + "</b>" + Bomitem + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "BOM Item: " + "</b>" + Bomitem + "</font>" + "<br>" +
         "<font size=4>" + "<b>" + "Problem: " + "</b>" + Problem + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Action Take: " + "</b>" + ActionTaken + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Action Taken: " + "</b>" + ActionTaken + "</font>" + "<br>" +
         "<font size=4>" + "<b>" + "Technician: " + "</b>" + Technician + "</font>" + "<br>" +
         "<font size=4>" + "<b>" + "Date/Time Contacted: " + "</b>" + Date + "</font>" + "<br>" +
         "<font size=4>" + "<b>" + "MAF#: " + "</b>" + MAFNumber + "</font>";
@@ -187,8 +187,7 @@ public partial class PriorityOneMafPage : ContentPage
             tollPlazaQueryByRegionName = TollPlazaRepo.QueryByRegionName(Region);
             foreach (TollPlaza tollPlaza in tollPlazaQueryByRegionName)
             {
-                plazas.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name + " " + tollPlaza.Plaza_roadway + " MP " +
-                tollPlaza.Plaza_milepost);
+                plazas.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name);
 
             }
 

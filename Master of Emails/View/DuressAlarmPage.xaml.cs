@@ -147,8 +147,7 @@ public partial class DuressAlarmPage : ContentPage
             {
                 if (tollPlaza.Plaza_company != "Infinity")
                 {
-                    plazas.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name + " " + tollPlaza.Plaza_roadway
-                    + " MP " + tollPlaza.Plaza_milepost);
+                    plazas.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name);
                 }
             }
 

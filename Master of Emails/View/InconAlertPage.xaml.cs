@@ -139,7 +139,7 @@ public partial class InconAlertPage : ContentPage
         "<font size=4>" + "<b>" + "Lane: " + "</b>" + Lane + "</font>" + "<br>" +
         "<font size=4>" + "<b>" + "Date/Time Contacted: " + "</b>" + Date + "</font>" + "<br>" +
         "<font size=4>" + "<b>" + "Requestor: " + "</b>" + Requestor + " / " + RequestorPhoneNumber + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Duration of Work: " + "</b>" + Duration + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Duration of Work: " + "</b>" + Duration +" "+ Units + "</font>" + "<br>" +
         "<font size=4>" + "<b>" + "Reason: " + "</b>" + Reason + "</font>" + "<br>";
 
         try
@@ -172,8 +172,7 @@ public partial class InconAlertPage : ContentPage
             tollPlazaQueryByRegionName = TollPlazaRepo.QueryByRegionName(Region);
             foreach (TollPlaza tollPlaza in tollPlazaQueryByRegionName)
             {
-                plazas.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name + " " + tollPlaza.Plaza_roadway
-                + " MP " + tollPlaza.Plaza_milepost);
+                plazas.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name);
             }
 
             plazas.Sort();
