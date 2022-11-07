@@ -13,6 +13,8 @@ namespace Master_of_Emails.Tables
 
         public int Lane_number { get; set; }
 
-        public string Lane_Type { get; set; }
+        public string Lane_type { get; set; }
+
+        public string Lane_direction { get; set; }
     }
 }

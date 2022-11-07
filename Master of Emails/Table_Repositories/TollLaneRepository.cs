@@ -50,14 +50,15 @@ namespace Master_of_Emails.Table_Repositories
             DatabaseConnection.CreateTable<TollLane>();
         }
 
-        public void AddLane(int Plaza_id, int Lane_number, string Lane_type)
+        public void AddLane(int Plaza_id, int Lane_number, string Lane_type, string Lane_direction)
         {
             Init();
             var lane = new TollLane
             {
                 Plaza_id = Plaza_id,
                 Lane_number = Lane_number,
-                Lane_Type = Lane_type
+                Lane_type = Lane_type,
+                Lane_direction=Lane_direction
             };
             DatabaseConnection.Insert(lane);
         }
@@ -78,6 +79,14 @@ namespace Master_of_Emails.Table_Repositories
         {
             Init();
             return DatabaseConnection.Table<TollLane>().Where(value => value.Plaza_id.Equals(Plaza_Id));
+        }
+
+        public TableQuery<TollLane> QueryByPlazaIdAndLaneDirection(int Plaza_Id, string Lane_Direction)
+        {
+            Init();
+            return DatabaseConnection.Table<TollLane>().Where(value => 
+            value.Plaza_id.Equals(Plaza_Id) && 
+            value.Lane_direction.Equals(Lane_Direction));
         }
     }
 

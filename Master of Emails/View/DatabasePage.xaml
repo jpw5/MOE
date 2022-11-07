@@ -209,6 +209,9 @@
                     <Entry Text="{Binding NewLaneType}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Placeholder="Enter Lane Type" />
 
+                    <Entry Text="{Binding NewLaneDirection}" FontSize="20" FontFamily="ArialBlack" 
+                     FontAttributes="Bold" Placeholder="Enter Lane Direction" />
+
                     <Button Command="{Binding AddNewLaneCommand}" FontSize="20" FontFamily="ArialBlack" 
                      FontAttributes="Bold" Text="Add Lane"/>
                     

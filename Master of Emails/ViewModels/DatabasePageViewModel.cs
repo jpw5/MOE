@@ -57,6 +57,8 @@ public partial class DatabasePageViewModel : ObservableObject
     [ObservableProperty]
     public string newLaneType;
     [ObservableProperty]
+    public string newLaneDirection;
+    [ObservableProperty]
     public string newLaneStatusMessage;
     [ObservableProperty]
     public string removeLane;
@@ -371,12 +373,14 @@ public partial class DatabasePageViewModel : ObservableObject
                 (
                 Int32.Parse(NewLanePlazaId),
                 Int32.Parse(NewLaneNumber),
-                NewLaneType
+                NewLaneType,
+                NewLaneDirection
                 );
 
             NewLanePlazaId = "";
             NewLaneNumber = "";
             NewLaneType = "";
+            NewLaneDirection = "";
             NewLaneStatusMessage = "Success: Lane Added";
             await Task.Delay(2000);
             NewLaneStatusMessage = "";
@@ -423,7 +427,8 @@ public partial class DatabasePageViewModel : ObservableObject
                 (
                 "Plaza " + lane.Plaza_id + " \n" +
                 "Lane: " + lane.Lane_number + " \n" +
-                "Type: " + lane.Lane_Type + " \n"
+                "Type: " + lane.Lane_type + " \n" +
+                "Direction: "+lane.Lane_direction + " \n"
                 );
         }
     }
