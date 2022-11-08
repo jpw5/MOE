@@ -1,3 +1,4 @@
+using Master_of_Emails;
 using Master_of_Emails.Table_Repositories;
 using Master_of_Emails.Tables;
 using Master_of_Emails.ViewModels;
@@ -8,43 +9,7 @@ namespace practice.Pages;
 
 public partial class ZfoPage : ContentPage
 {
-    public Outlook.Application objApp = new();
-    public Outlook.MailItem mail = null;
-    public string Template = Path.Combine(FileSystem.AppDataDirectory, "Template.msg");
-
-    public TollPlazaRepository TollPlazaRepo = new();
-    public TollLaneRepository TollLaneRepo = new();
-    public TollTechnicianRepository TollTechnicianRepo = new();
-    public TollBomitemRepository TollBomitemRepo = new();
-    public TollEmailDistributionRepository TollEmailDistributionRepo = new();
-
-    public TableQuery<TollLane> tollLanesQueryByPlazaId;
-    public TableQuery<TollLane> tollLanesQueryByPlazaIdAndLaneDirection;
-    public TableQuery<TollPlaza> tollPlazaQueryByRegionName;
-    public TableQuery<TollPlaza> tollPlazaQueryByPlazaId;
-    public TableQuery<TollTechnician> tollTechnicianQueryByRegion;
-    public TableQuery<TollBomitem> tollBomitemQueryByLaneType;
-    public TableQuery<TollEmailDistribution> tollEmailDistributionQueryByRegionAndEmailType;
-    public TableQuery<TollEmailDistribution> StandardDistributionZFO;
-
-    public List<string> TollLane = new();
-    public List<string> TollLaneList = new();
-
-    public string Region;
-    public int PlazaId;
-
-    public string Plaza;
-    public string Lane;
-    public string Requestor;
-    public string Reason;
-    public string StartDate;
-    public string EndDate;
-
-    public string EmailType = "ZFO";
-    public string To;
-    public string Cc;
-    public string Subject;
-    public string Body;
+    readonly SharedComponents SharedComponents = new();
 
     public ZfoPage(ZfoPageViewModel zfoPageViewModel)
     {
@@ -61,7 +26,7 @@ public partial class ZfoPage : ContentPage
             return;
         }
 
-        else if (!TollLaneList.Any())
+        else if (!SharedComponents.TollLaneList.Any())
         {
             DisplayAlert("Alert", "Choose Lane(s)", "Close");
             return;
@@ -79,49 +44,51 @@ public partial class ZfoPage : ContentPage
             return;
         }
 
-        Plaza = (string)selectPlaza.SelectedItem;
-        for (int i = 0; i < TollLaneList.Count; i++)
+        SharedComponents.Plaza = (string)selectPlaza.SelectedItem;
+        for (int i = 0; i < SharedComponents.TollLaneList.Count; i++)
         {
-            Lane += TollLaneList[i] + " ";
+            SharedComponents.Lane += SharedComponents.TollLaneList[i] + " ";
         }
 
-        
-        Region = selectRegion.SelectedItem.ToString();
-        Requestor = selectRequestor.Text;
-        Reason = selectReason.Text;
-        StartDate = selectStartDate.Text;
-        EndDate = selectEndDate.Text;
+        SharedComponents.Region = selectRegion.SelectedItem.ToString();
+        SharedComponents.Requestor = selectRequestor.Text;
+        SharedComponents.Reason = selectReason.Text;
+        SharedComponents.StartDate = selectStartDate.Text;
+        SharedComponents.EndDate = selectEndDate.Text;
 
-        To = "";
-        Cc = "";
-        StandardDistributionZFO =
-        TollEmailDistributionRepo.QueryByRegionEmailTypeAndPlazaId(Region, EmailType, "ALL");
+        SharedComponents.To = "";
+        SharedComponents.Cc = "";
 
-        foreach (TollEmailDistribution emaildistributionZFO in StandardDistributionZFO)
+        SharedComponents.StandardDistributionZFO = (
+        SharedComponents.
+        TollEmailDistributionRepo.
+        QueryByRegionEmailTypeAndPlazaId(SharedComponents.Region, SharedComponents.EmailType, "ALL"));
+
+        foreach (TollEmailDistribution emaildistributionZFO in SharedComponents.StandardDistributionZFO)
         {
-            To = emaildistributionZFO.Email_distribution_to;
-            Cc = emaildistributionZFO.Email_distribution_cc;
+            SharedComponents.To = emaildistributionZFO.Email_distribution_to;
+            SharedComponents.Cc = emaildistributionZFO.Email_distribution_cc;
         }
 
-        string Subject = "SunWatch ZFO Alert - " + Plaza.ToUpper() + " / " + Lane.ToUpper();
+        string Subject = "SunWatch ZFO Alert - " + SharedComponents.Plaza.ToUpper() + " / " + SharedComponents.Lane.ToUpper();
         string Body = "<font size=5>" + "<b>" + "****SunWatch ZFO Alert****" + "</b>" + "</font>" + "<br>" + "<br>" +
-        "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Lane(s): " + "</b>" + Lane + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Requestor: " + "</b>" + Requestor + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Reason: " + "</b>" + Reason + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Start Date/Time: " + "</b>" + StartDate + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "End Date/Time: " + "</b>" + EndDate + "</font>" + "<br>";
+        "<font size=4>" + "<b>" + "Plaza: " + "</b>" + SharedComponents.Plaza + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Lane(s): " + "</b>" + SharedComponents.Lane + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Requestor: " + "</b>" + SharedComponents.Requestor + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Reason: " + "</b>" + SharedComponents.Reason + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Start Date/Time: " + "</b>" + SharedComponents.StartDate + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "End Date/Time: " + "</b>" + SharedComponents.EndDate + "</font>" + "<br>";
 
         try
         {
-            mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
-            mail.To = To;
-            mail.CC = Cc;
-            mail.Subject = Subject;
-            mail.HTMLBody = Body;
-            mail.Display();
-            mail = null;
-            Lane = null;
+            SharedComponents.Mail = (Outlook.MailItem)SharedComponents.ObjApp.CreateItemFromTemplate(SharedComponents.Template);
+            SharedComponents.Mail.To = SharedComponents.To;
+            SharedComponents.Mail.CC = SharedComponents.Cc;
+            SharedComponents.Mail.Subject = Subject;
+            SharedComponents.Mail.HTMLBody = Body;
+            SharedComponents.Mail.Display();
+            SharedComponents.Mail = null;
+            SharedComponents.Lane = null;
         }
 
         catch (Exception ex)
@@ -138,10 +105,13 @@ public partial class ZfoPage : ContentPage
         if (selectedIndex != -1)
         {
             selectPlaza.ItemsSource.Clear();
-            Region = selectRegion.Items[selectedIndex];
+            SharedComponents.Region = selectRegion.Items[selectedIndex];
             plazas.Clear();
-            tollPlazaQueryByRegionName = TollPlazaRepo.QueryByRegionName(Region);
-            foreach (TollPlaza tollPlaza in tollPlazaQueryByRegionName)
+
+            SharedComponents.TollPlazaQueryByRegionName = SharedComponents.TollPlazaRepo.
+            QueryByRegionName(SharedComponents.Region);
+
+            foreach (TollPlaza tollPlaza in SharedComponents.TollPlazaQueryByRegionName)
             {
                 if (tollPlaza.Plaza_company != "Infinity")
                 {
@@ -163,277 +133,334 @@ public partial class ZfoPage : ContentPage
         if (selectedIndex != -1)
         {
             selectLane.ItemsSource = null;
-            TollLane.Clear();
+            SharedComponents.TollLane.Clear();
             var Split = selectPlaza.Items[selectedIndex].Split(" ", 2);
-            PlazaId = Int32.Parse(Split[0]);
+            SharedComponents.PlazaId = Int32.Parse(Split[0]);
 
             if (selectPlaza.Items[selectedIndex].ToString().Equals("3331 Celebration Osceola PKWY NBOn"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "NB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "NB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("3331 Celebration Osceola PKWY SBOff"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "SB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "SB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("3112 CR 470 NBOn"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "NB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "NB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("3112 CR 470 SBOff"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "SB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "SB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("3311 Celebration US 192 NBOn"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "NB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "NB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("3311 Celebration US 192 SBOff"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "SB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "SB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("3410 Osceola PKWY B NBOn"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "NB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "NB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("3410 Osceola Parkway B SBOff"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "SB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "SB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("3120 SR 50 NBOff"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "NB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "NB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("3120 SR 50 SBOn"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "SB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "SB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("3421 Kissimmee Park Rd East NBOn"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "NB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "NB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("3421 Kissimmee Park Rd East SBOff"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "SB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "SB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("3511 Seidel Road NBOff"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "NB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "NB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("3511 Seidel Road SBOn"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "SB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "SB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("3521 Western Beltway US 192 NBOff"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "NB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "NB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("3521 Western Beltway US 192 SBOn"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "SB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "SB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("3531 Sinclair Road NBOff"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "NB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "NB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("3531 Sinclair Road SBOn"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "SB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "SB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("8111 SR 434 NBOff"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "NB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "NB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("8111 SR 434 SBOn"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "SB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "SB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("8121 Red Bug Lake Road NBOff"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "NB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "NB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("8121 Red Bug Lake Road NW SBOn"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "SB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "SB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("8131 Aloma Ave (SR426) NBOff"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "NB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "NB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("8131 Aloma Ave (SR 426) SBOn"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "SB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "SB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("8151 Lake Mary Blvd (CR 427) NBOn"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "NB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "NB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("8151 Lake Mary Blvd (CR 427) SBOff"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "SB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "SB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("8171 CR 46A NBOn"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "NB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "NB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else if (selectPlaza.Items[selectedIndex].ToString().Equals("8171 CR 46A SBOff"))
             {
-                tollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, "SB");
-                foreach (TollLane tollLane in tollLanesQueryByPlazaIdAndLaneDirection)
+                SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection = 
+                SharedComponents.TollLaneRepo.QueryByPlazaIdAndLaneDirection(SharedComponents.PlazaId, "SB");
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaIdAndLaneDirection)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
             }
 
             else
             {
-                tollLanesQueryByPlazaId = TollLaneRepo.QueryByPlazaId(PlazaId);
-                foreach (TollLane tollLane in tollLanesQueryByPlazaId)
+                SharedComponents.TollLanesQueryByPlazaId = 
+                SharedComponents.TollLaneRepo.QueryByPlazaId(SharedComponents.PlazaId);
+
+                foreach (TollLane tollLane in SharedComponents.TollLanesQueryByPlazaId)
                 {
-                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                    SharedComponents.TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
                 }
 
             }
 
-
-            TollLane.Sort();
-            selectLane.ItemsSource = TollLane;
+            SharedComponents.TollLane.Sort();
+            selectLane.ItemsSource = SharedComponents.TollLane;
         }
     }
     private void SelectLane_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -445,10 +472,10 @@ public partial class ZfoPage : ContentPage
 
         else
         {
-            TollLaneList.Clear();
+            SharedComponents.TollLaneList.Clear();
             for (int i = 0; i < e.CurrentSelection.Count; i++)
             {
-                TollLaneList.Add(e.CurrentSelection[i].ToString());
+                SharedComponents.TollLaneList.Add(e.CurrentSelection[i].ToString());
                 //DisplayAlert("Check", TollLane[i], "Close");
             }
         }
