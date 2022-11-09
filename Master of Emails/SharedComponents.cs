@@ -36,10 +36,51 @@ namespace Master_of_Emails
         public Outlook.Application ObjApp = new();
         public Outlook.MailItem Mail { get; set; } = null;
         public string Template { get; set; } = Path.Combine(FileSystem.AppDataDirectory, "Template.msg");
-        public string EmailType { get; set; } = "ZFO";
+        public string EmailTypeZFO { get; set; } = "ZFO";
         public string To { get; set; }
         public string Cc { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
+
+        public List<string> GetLanes(string Plaza, int PlazId)
+        {
+
+            List<string> TollLane = new();
+            var Split= Plaza.Split(" ");
+            String Direction = Split.Last();
+
+
+            if 
+             (
+             Direction.Equals("NBOn") || Direction.Equals("SBOff") || Direction.Equals("NBOff") || 
+             Direction.Equals("SBOn") || Direction.Equals("WBOff") || Direction.Equals("EBOn")    ||
+             Direction.Equals("EBOff") || Direction.Equals("WBOn")
+             )
+            
+            {
+                TollLanesQueryByPlazaIdAndLaneDirection = TollLaneRepo.QueryByPlazaIdAndLaneDirection(PlazaId, Direction);
+                foreach (TollLane tollLane in TollLanesQueryByPlazaIdAndLaneDirection)
+                {
+                    TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                }
+            }
+
+            else
+            {
+                TollLanesQueryByPlazaId = TollLaneRepo.QueryByPlazaId(PlazaId);
+
+                foreach (TollLane tollLane in TollLanesQueryByPlazaId)
+                {
+                   TollLane.Add(tollLane.Lane_number.ToString() + " " + tollLane.Lane_type);
+                }
+
+            }
+
+            return TollLane;
+        }
+
+
     }
+
+
 }

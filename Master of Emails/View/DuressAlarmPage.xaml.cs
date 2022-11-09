@@ -1,3 +1,4 @@
+using Master_of_Emails;
 using Master_of_Emails.Table_Repositories;
 using Master_of_Emails.Tables;
 using Master_of_Emails.ViewModels;
@@ -8,6 +9,8 @@ namespace practice.Pages;
 
 public partial class DuressAlarmPage : ContentPage
 {
+    readonly SharedComponents SharedComponents = new();
+
     public Outlook.Application objApp = new();
     public Outlook.MailItem mail = null;
     public string Template = Path.Combine(FileSystem.AppDataDirectory, "Template.msg");
@@ -169,6 +172,8 @@ public partial class DuressAlarmPage : ContentPage
             lanes.Clear();
             var Split = selectPlaza.Items[selectedIndex].Split(" ", 2);
             PlazaId = Int32.Parse(Split[0]);
+
+            lanes = SharedComponents.GetLanes(selectPlaza.Items[selectedIndex].ToString(), PlazaId);
 
 
             if (selectPlaza.Items[selectedIndex].ToString().Equals("3331 Celebration Osceola PKWY NBOn"))

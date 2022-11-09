@@ -62,7 +62,7 @@ public partial class ZfoPage : ContentPage
         SharedComponents.StandardDistributionZFO = (
         SharedComponents.
         TollEmailDistributionRepo.
-        QueryByRegionEmailTypeAndPlazaId(SharedComponents.Region, SharedComponents.EmailType, "ALL"));
+        QueryByRegionEmailTypeAndPlazaId(SharedComponents.Region, SharedComponents.EmailTypeZFO, "ALL"));
 
         foreach (TollEmailDistribution emaildistributionZFO in SharedComponents.StandardDistributionZFO)
         {
