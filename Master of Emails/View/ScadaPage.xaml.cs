@@ -119,6 +119,15 @@ public partial class ScadaPage : ContentPage
         }
 
     }
+
+    private void SelectPlaza_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        int selectedIndex = selectPlaza.SelectedIndex;
+        SharedComponents.Plaza= selectPlaza.Items[selectedIndex];   
+        var Split = SharedComponents.Plaza.Split(" ", 2);
+        SharedComponents.PlazaId = Int32.Parse(Split[0]);
+    }
+
     private void After_hours_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
         SharedComponents.SelectedHours = "After Hours";

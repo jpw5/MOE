@@ -27,8 +27,9 @@
                      Title="Select Region" TextColor="Black"></Picker>
 
                     <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" 
-                     x:Name="selectPlaza" WidthRequest="500" FontSize="16" FontAttributes="Bold" 
-                     FontFamily="ArialBlack" Title="Select Plaza"></Picker>
+                     x:Name="selectPlaza" SelectedIndexChanged="SelectPlaza_SelectedIndexChanged" 
+                     WidthRequest="500" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" 
+                     Title="Select Plaza"></Picker>
 
                 </HorizontalStackLayout>
 
