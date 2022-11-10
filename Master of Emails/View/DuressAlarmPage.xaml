@@ -81,7 +81,7 @@
                     <Label Text="Enter Start Date/Time" FontSize="16" FontAttributes="Bold" 
                      FontFamily="ArialBlack" TextColor="Black"></Label>
 
-                    <Entry Text="{Binding Date}" x:Name="selectDate" FontSize="16" FontAttributes="Bold" 
+                    <Entry Text="{Binding Date}" x:Name="selectStartDate" FontSize="16" FontAttributes="Bold" 
                      TextColor="Black" FontFamily="ArialBlack" HorizontalTextAlignment="Start" 
                      VerticalTextAlignment="Start"></Entry>
 

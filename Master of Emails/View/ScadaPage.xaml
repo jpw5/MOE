@@ -95,13 +95,12 @@
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
-                    <Label VerticalOptions="Center" TextColor="Black" Text="Enter Date/Time" 
+                    <Label VerticalOptions="Center" TextColor="Black" Text="Enter Date/Time Contacted" 
                      FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack"></Label>
 
                     <Entry Text="{Binding Date}" x:Name="selectDate" HorizontalTextAlignment="Start" 
-                     VerticalTextAlignment="Start" Placeholder="Enter Starting Date/Time" FontSize="16" 
-                     FontAttributes="Bold" FontFamily="ArialBlack" TextColor="Black" 
-                     PlaceholderColor="Black"></Entry>
+                     VerticalTextAlignment="Start" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" 
+                     TextColor="Black"></Entry>
 
                 </HorizontalStackLayout>
 

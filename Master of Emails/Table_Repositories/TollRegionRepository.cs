@@ -24,10 +24,21 @@ namespace Master_of_Emails.Table_Repositories
             var id = DatabaseConnection.Insert(region);
         }
 
-        public void DeleteRegion(int Id)
+        public void DeleteRegion(int Region_id)
         {
             Init();
-            DatabaseConnection.Delete<TollRegion>(Id);
+            DatabaseConnection.Delete<TollRegion>(Region_id);
+        }
+
+        public void UpdateRegion(int Region_id, string RegionName)
+        {
+            Init();
+            var region = new TollRegion
+            {
+                Region_id = Region_id,
+                Region_name = RegionName
+            };
+            DatabaseConnection.Update(region);
         }
 
         public List<TollRegion> GetRegions()

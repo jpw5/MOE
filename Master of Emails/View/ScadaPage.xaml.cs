@@ -1,3 +1,4 @@
+using Master_of_Emails.Components;
 using Master_of_Emails.Table_Repositories;
 using Master_of_Emails.Tables;
 using Master_of_Emails.ViewModels;
@@ -7,41 +8,7 @@ namespace practice.Pages;
 
 public partial class ScadaPage : ContentPage
 {
-    public Outlook.Application objApp = new();
-    public Outlook.MailItem mail = null;
-    public string Template = Path.Combine(FileSystem.AppDataDirectory, "Template.msg");
-
-    public TollPlazaRepository TollPlazaRepo = new();
-    public TollLaneRepository TollLaneRepo = new();
-    public TollEmailDistributionRepository TollEmailDistributionRepo = new();
-
-    public TableQuery<TollLane> tollLanesQueryByPlazaId;
-    public TableQuery<TollPlaza> tollPlazaQueryByRegionName;
-    public TableQuery<TollPlaza> tollPlazaQueryByPlazaId;
-    public TableQuery<TollEmailDistribution> StandardDistributionScadaAll;
-    public TableQuery<TollEmailDistribution> StandardDistributionScadaInfinity;
-
-    public string Region;
-    public int PlazaId;
-
-    public string Plaza;
-    public string PlazaCompany;
-    public string Roadway;
-    public string SelectedHours;
-    public string BuildingNumber;
-    public string Alarm;
-    public string Date;
-    public string MilePost;
-    public string WorkOrderNumber;
-    public string Temperature;
-    public string FacilitiesContact;
-    public string FacilitiesContactPhone;
-
-    public string EmailType = "SCADA";
-    public string To;
-    public string Cc;
-    public string Subject;
-    public string Body;
+    readonly SharedComponents SharedComponents = new();
 
     public ScadaPage(ScadaPageViewModel scadaPageViewModel)
     {
@@ -50,112 +17,77 @@ public partial class ScadaPage : ContentPage
     }
     private void ScadaEmailButton_Pressed(object sender, EventArgs e)
     {
-        if (selectPlaza.SelectedItem == null)
+
+        bool CheckScadaInputs = SharedComponents.CheckScadaInputs(selectRegion.SelectedItem,
+             selectPlaza.SelectedItem, SharedComponents.SelectedHours, SharedComponents.Contact, 
+             SharedComponents.PhoneNumber, SharedComponents.Alarm, SharedComponents.BuildingNumber,
+             SharedComponents.WorkOrderNumber, SharedComponents.StartDate, SharedComponents.Temperature);
+
+        SharedComponents.Region = selectRegion.SelectedItem.ToString();
+        SharedComponents.TollPlazaQueryByPlazaId = SharedComponents.TollPlazaRepo.QueryByPlazaId(SharedComponents.PlazaId);
+        foreach (TollPlaza plaza in SharedComponents.TollPlazaQueryByPlazaId)
         {
-            DisplayAlert("Alert", "Choose a Plaza", "Close");
-            return;
+            SharedComponents.Plaza = plaza.Plaza_id + " " + plaza.Plaza_name;
+            SharedComponents.Roadway = plaza.Plaza_roadway;
+            SharedComponents.MilePost = plaza.Plaza_milepost.ToString();
+            SharedComponents.PlazaCompany = plaza.Plaza_company;
         }
 
-        else if (string.IsNullOrEmpty(SelectedHours))
+        SharedComponents.BuildingNumber = selectBuildingNumber.Text;
+        SharedComponents.Alarm = selectScadaAlarm.Text;
+        SharedComponents.WorkOrderNumber = selectWorkOrderNumber.Text;
+        SharedComponents.StartDate = selectDate.Text;
+        SharedComponents.Temperature = selectTemperature.Text;
+        SharedComponents.Contact = selectContact.Text;
+        SharedComponents.PhoneNumber = selectPhoneNumber.Text;
+
+        if (SharedComponents.PlazaCompany == "Infinity")
         {
-            DisplayAlert("Alert", "Choose Hours", "Close");
-            return;
-        }
+            SharedComponents.StandardDistributionScadaInfinity =
+            SharedComponents.TollEmailDistributionRepo.QueryByRegionEmailTypeAndPlazaId
+            (SharedComponents.Region, SharedComponents.EmailTypeSCADA, SharedComponents.PlazaCompany);
 
-        else if (string.IsNullOrEmpty(selectContact.Text))
-        {
-            DisplayAlert("Alert", "Enter Contact", "Close");
-            return;
-        }
-
-        else if (string.IsNullOrEmpty(selectPhoneNumber.Text))
-        {
-            DisplayAlert("Alert", "Enter Phone Number", "Close");
-            return;
-        }
-
-        else if (string.IsNullOrEmpty(selectScadaAlarm.Text))
-        {
-            DisplayAlert("Alert", "Enter SCADA Alarm", "Close");
-            return;
-        }
-
-        else if (string.IsNullOrEmpty(selectBuildingNumber.Text))
-        {
-            DisplayAlert("Alert", "Enter Building Alarm", "Close");
-            return;
-        }
-
-        else if (string.IsNullOrEmpty(selectWorkOrderNumber.Text))
-        {
-            DisplayAlert("Alert", "Enter Work Order Number", "Close");
-            return;
-        }
-
-        Region = selectRegion.SelectedItem.ToString();
-        var Split = selectPlaza.SelectedItem.ToString().Split(" ", 2);
-        PlazaId = Int32.Parse(Split[0]);
-        tollPlazaQueryByPlazaId = TollPlazaRepo.QueryByPlazaId(PlazaId);
-        foreach (TollPlaza plaza in tollPlazaQueryByPlazaId)
-        {
-            Plaza = plaza.Plaza_id + " " + plaza.Plaza_name;
-            Roadway = plaza.Plaza_roadway;
-            MilePost = plaza.Plaza_milepost.ToString();
-            PlazaCompany = plaza.Plaza_company;
-        }
-
-        BuildingNumber = selectBuildingNumber.Text;
-        Alarm = selectScadaAlarm.Text;
-        WorkOrderNumber = selectWorkOrderNumber.Text;
-        Date = selectDate.Text;
-        Temperature = selectTemperature.Text;
-        FacilitiesContact = selectContact.Text;
-        FacilitiesContactPhone = selectPhoneNumber.Text;
-
-        if (PlazaCompany == "Infinity")
-        {
-            StandardDistributionScadaInfinity =
-            TollEmailDistributionRepo.QueryByRegionEmailTypeAndPlazaId(Region, EmailType, PlazaCompany);
-
-            foreach (TollEmailDistribution emaildistributionSCADA in StandardDistributionScadaInfinity)
+            foreach (TollEmailDistribution emaildistributionSCADA in SharedComponents.StandardDistributionScadaInfinity)
             {
-                To = emaildistributionSCADA.Email_distribution_to;
-                Cc = emaildistributionSCADA.Email_distribution_cc;
+                SharedComponents.To = emaildistributionSCADA.Email_distribution_to;
+                SharedComponents.Cc = emaildistributionSCADA.Email_distribution_cc;
             }
         }
 
         else
         {
-            StandardDistributionScadaAll =
-            TollEmailDistributionRepo.QueryByRegionEmailTypeAndPlazaId(Region, EmailType, "ALL");
+            SharedComponents.StandardDistributionScadaAll =
+            SharedComponents.TollEmailDistributionRepo.QueryByRegionEmailTypeAndPlazaId(SharedComponents.Region, SharedComponents.EmailTypeSCADA, "ALL");
 
-            foreach (TollEmailDistribution emaildistributionSCADA in StandardDistributionScadaAll)
+            foreach (TollEmailDistribution emaildistributionSCADA in SharedComponents.StandardDistributionScadaAll)
             {
-                To = emaildistributionSCADA.Email_distribution_to;
-                Cc = emaildistributionSCADA.Email_distribution_cc;
+                SharedComponents.To = emaildistributionSCADA.Email_distribution_to;
+                SharedComponents.Cc = emaildistributionSCADA.Email_distribution_cc;
             }
         }
 
-        Subject = "SCADA Alarm - " + Plaza.ToUpper();
-        Body = "<font size=5>" + "<b>" + "****SunWatch SCADA Alarm - " + SelectedHours + "*****" + "</b>" + "</font>" + "<br>" + "<br>" +
-        "<font size=4>" + "<b>" + "Plaza: " + "</b>" + Plaza + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Roadway: " + "</b>" + Roadway + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Building Number: " + "</b>" + BuildingNumber + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Alarm: " + "</b>" + Alarm + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Contact: " + "</b>" + FacilitiesContact + " / " + FacilitiesContactPhone + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Date/Time Contacted: " + "</b>" + Date + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Mile Post: " + "</b>" + MilePost + "</font>" + "<br>" +
-        "<font size=4>" + "<b>" + "Work Order #: " + "</b>" + WorkOrderNumber + "</font>" + "<br>";
+        SharedComponents.Subject = "SCADA Alarm - " + SharedComponents.Plaza.ToUpper();
+        SharedComponents.Body = "<font size=5>" + "<b>" + "****SunWatch SCADA Alarm - " + SharedComponents.SelectedHours + "*****" + "</b>" + "</font>" + "<br>" + "<br>" +
+        "<font size=4>" + "<b>" + "Plaza: " + "</b>" + SharedComponents.Plaza + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Roadway: " + "</b>" + SharedComponents.Roadway + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Building Number: " + "</b>" + SharedComponents.BuildingNumber + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Alarm: " + "</b>" + SharedComponents.Alarm + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Contact: " + "</b>" + SharedComponents.Contact + " / " + SharedComponents.PhoneNumber + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Date/Time Contacted: " + "</b>" + SharedComponents.StartDate + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Mile Post: " + "</b>" + SharedComponents.MilePost + "</font>" + "<br>" +
+        "<font size=4>" + "<b>" + "Work Order #: " + "</b>" + SharedComponents.WorkOrderNumber + "</font>" + "<br>";
 
         try
         {
-            mail = (Outlook.MailItem)objApp.CreateItemFromTemplate(Template);
-            mail.To = To;
-            mail.CC = Cc;
-            mail.Subject = Subject;
-            mail.HTMLBody = Body;
-            mail.Display();
-            mail = null;
+            SharedComponents.Mail = (Outlook.MailItem)SharedComponents.ObjApp.
+            CreateItemFromTemplate(SharedComponents.Template);
+            SharedComponents.Mail.To = SharedComponents.To;
+            SharedComponents.Mail.CC = SharedComponents.Cc;
+            SharedComponents.Mail.Subject = SharedComponents.Subject;
+            SharedComponents.Mail.HTMLBody = SharedComponents.Body;
+            SharedComponents.Mail.Display();
+            SharedComponents.Mail = null;
+            SharedComponents.Lane = null;
         }
 
         catch (Exception ex)
@@ -171,10 +103,10 @@ public partial class ScadaPage : ContentPage
         if (selectedIndex != -1)
         {
             selectPlaza.ItemsSource.Clear();
-            Region = selectRegion.Items[selectedIndex];
+            SharedComponents.Region = selectRegion.Items[selectedIndex];
             plazas.Clear();
-            tollPlazaQueryByRegionName = TollPlazaRepo.QueryByRegionName(Region);
-            foreach (TollPlaza tollPlaza in tollPlazaQueryByRegionName)
+            SharedComponents.TollPlazaQueryByRegionName = SharedComponents.TollPlazaRepo.QueryByRegionName(SharedComponents.Region);
+            foreach (TollPlaza tollPlaza in SharedComponents.TollPlazaQueryByRegionName)
             {
                 plazas.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name);
             }
@@ -189,13 +121,13 @@ public partial class ScadaPage : ContentPage
     }
     private void After_hours_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        SelectedHours = "After Hours";
+        SharedComponents.SelectedHours = "After Hours";
         selectWorkOrderNumber.Text = "";
     }
 
     private void Normal_hours_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        SelectedHours = "Normal Hours";
+        SharedComponents.SelectedHours = "Normal Hours";
         selectWorkOrderNumber.Text = "NA";
     }
 

@@ -58,10 +58,9 @@
                     <Label Text="Enter Start Date/Time" FontSize="16" FontAttributes="Bold" 
                      FontFamily="ArialBlack" TextColor="Black" VerticalOptions="Center"></Label>
 
-                    <Entry Text="{Binding StartDate}" x:Name="selectStartDate" 
-                     Placeholder="Enter Starting Date/Time" FontSize="16" FontAttributes="Bold" 
-                     FontFamily="ArialBlack" TextColor="Black" HorizontalTextAlignment="Start" 
-                     VerticalTextAlignment="Start"  PlaceholderColor="Black"></Entry>
+                    <Entry Text="{Binding StartDate}" x:Name="selectStartDate" FontSize="16" FontAttributes="Bold" 
+                     FontFamily="ArialBlack" TextColor="Black" HorizontalTextAlignment="Start"
+                     VerticalTextAlignment="Start"></Entry>
 
                 </HorizontalStackLayout>
 
@@ -70,10 +69,9 @@
                     <Label Text="Enter End Date/Time" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack"  
                      TextColor="Black" VerticalOptions="Center"></Label>
 
-                    <Entry Text="{Binding EndDate}" x:Name="selectEndDate" 
-                     Placeholder="Enter Starting Date/Time" HorizontalTextAlignment="Start" 
-                     VerticalTextAlignment="Start" FontSize="16" FontAttributes="Bold" 
-                     FontFamily="ArialBlack" TextColor="Black" PlaceholderColor="Black"></Entry>
+                    <Entry Text="{Binding EndDate}" x:Name="selectEndDate" HorizontalTextAlignment="Start" 
+                     VerticalTextAlignment="Start" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" 
+                     TextColor="Black"></Entry>
 
                 </HorizontalStackLayout>
 

@@ -67,10 +67,10 @@
                     <Label Text="Enter Start Date/Time" FontSize="16" FontAttributes="Bold" 
                      FontFamily="ArialBlack" TextColor="Black" VerticalOptions="Center"></Label>
 
-                    <Entry Text="{Binding Date}" x:Name="selectDate" FontSize="16" 
+                    <Entry Text="{Binding Date}" x:Name="selectStartDate" FontSize="16" 
                      FontAttributes="Bold" FontFamily="ArialBlack" HorizontalTextAlignment="Start" 
-                     VerticalTextAlignment="Start" Placeholder="Enter Starting Date/Time" 
-                     TextColor="Black" PlaceholderColor="Black"></Entry>
+                     VerticalTextAlignment="Start" 
+                     TextColor="Black"></Entry>
                     
                 </HorizontalStackLayout>
 

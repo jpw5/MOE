@@ -45,6 +45,7 @@ namespace Master_of_Emails.Table_Repositories
             return DatabaseConnection.Table<TollBomitem>().Where(value => value.Bomitem_lane_type.Equals(Lane_Type));
         }
 
+    
 
     }
 }
