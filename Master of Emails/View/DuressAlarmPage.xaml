@@ -31,30 +31,26 @@
                      WidthRequest="500" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" 
                      TextColor="Black" Title="Select Plaza"></Picker>
 
-                </HorizontalStackLayout>
-
-                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
-
                     <Picker ItemsSource="{Binding TollLaneList}" SelectedItem="{Binding Lane}" HorizontalOptions="Start" 
                      x:Name="selectLane" WidthRequest="150" FontSize="16" FontAttributes="Bold" 
                      FontFamily="ArialBlack" TextColor="Black" Title="Select Lane"></Picker>
 
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
+
                     <Picker ItemsSource="{Binding TollDuressReasonList}" SelectedItem="{Binding DuressReason}"
-                     x:Name="selectDuressReason" WidthRequest="500" Title="Select Reason" TextColor="Black"  
+                     x:Name="selectDuressReason" WidthRequest="650" Title="Select Reason" TextColor="Black"  
                      FontFamily="ArialBlack" FontSize="16" FontAttributes="Bold"></Picker>
 
                 </HorizontalStackLayout>
 
-         
                 <HorizontalStackLayout Spacing="20" VerticalOptions="Center" HorizontalOptions="Start">
-
 
                     <Label Text="Select Alarm" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack"   
                          TextColor="Black" VerticalOptions="Center"></Label>
 
-
                     <VerticalStackLayout  VerticalOptions="Center" HorizontalOptions="Center">
-
 
                         <RadioButton CheckedChanged="VaultRadioButton_CheckedChanged" FontAttributes="Bold" 
                          FontSize="16" FontFamily="ArialBlack" TextColor="Black" Content="Vault Under Duress" 
@@ -66,15 +62,12 @@
 
                     </VerticalStackLayout>
 
-
                     <Entry Text="{Binding PlazaSupervisor}" x:Name="selectPlazaSupervisor" HeightRequest="10"
                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" HorizontalTextAlignment="Start" 
                     VerticalTextAlignment="Start" Placeholder="Enter Supervisor Name" 
                     TextColor="Black" PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
-
-              
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 

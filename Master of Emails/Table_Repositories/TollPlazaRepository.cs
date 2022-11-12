@@ -55,14 +55,12 @@ namespace Master_of_Emails.Table_Repositories
             return DatabaseConnection.Table<TollPlaza>().Where(value => value.Plaza_id.Equals(Plaza_Id));
         }
 
-        public TableQuery<TollPlaza> QueryPlazaByName(string PlazaName)
+        public TableQuery<TollPlaza> QueryByPlazaName(string PlazaName)
         {
             Init();
             PlazaName = PlazaName.ToUpper();
             return DatabaseConnection.Table<TollPlaza>().Where(value => value.Plaza_name.ToUpper().Contains(PlazaName));
 
-            //return DatabaseConnection.Table<TollTechnician>().Where(value => value.Technician_name.
-            //Equals(TechnicianName));
         }
     }
 }

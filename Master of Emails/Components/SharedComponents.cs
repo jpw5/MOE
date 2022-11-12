@@ -14,9 +14,10 @@ namespace Master_of_Emails.Components
         public TollBomitemRepository TollBomitemRepo = new();
         public TollEmailDistributionRepository TollEmailDistributionRepo = new();
 
-        //Variables definition for the TableQueries used by other classes.
+        //Instanciates variables for the TableQueries used by other classes.
         public TableQuery<TollPlaza> TollPlazaQueryByRegionName { get; set; }
         public TableQuery<TollPlaza> TollPlazaQueryByPlazaId { get; set; }
+        public TableQuery<TollPlaza> TollPlazaQueryByPlazaName { get; set; }
         public TableQuery<TollLane> TollLanesQueryByPlazaId { get; set; }
         public TableQuery<TollLane> TollLanesQueryByPlazaIdAndLaneDirection { get; set; }
         public TableQuery<TollTechnician> TollTechnicianQueryByRegion { get; set; }
@@ -30,12 +31,13 @@ namespace Master_of_Emails.Components
         public TableQuery<TollEmailDistribution> StandardDistributionScadaInfinity { get; set; }
         public TableQuery<TollEmailDistribution> StandardDistributionScadaAll { get; set; }
 
-        public List<string> TollLane = new();
-        public List<string> TollLaneList = new();
 
+        //Variables used by the emailer forms.
+        public List<string> TollLaneList = new();
         public string Region { get; set; }
-        public int PlazaId { get; set; }
         public string Plaza { get; set; }
+        public int PlazaId { get; set; }
+        public string PlazaName { get; set; }
         public string Roadway { get; set; }
         public string Lane { get; set; }
         public string Requestor { get; set; }
@@ -69,7 +71,8 @@ namespace Master_of_Emails.Components
         public string WorkOrderNumber { get; set; }
         public string Temperature { get; set; }
         public string PlazaCompany { get; set; }
-
+        
+        //Variable definitions for the sending of the email
         public Outlook.Application ObjApp = new();
         public Outlook.MailItem Mail { get; set; } = null;
         public string Template { get; set; } = Path.Combine(FileSystem.AppDataDirectory, "Template.msg");
@@ -83,7 +86,8 @@ namespace Master_of_Emails.Components
         public string Subject { get; set; }
         public string Body { get; set; }
 
-        public List<string> GetLanes(string Plaza, int PlazId)
+        //Method to retreive the assoicated lanes of a plaza. Returned in List<string> form.
+        public List<string> GetLanes()
         {
 
             List<string> TollLane = new();
@@ -117,6 +121,7 @@ namespace Master_of_Emails.Components
             return TollLane;
         }
 
+        //Method to retreive the assoicated Bomitem of a lane. Returned in List<string> form.
         public List<string> GetBomitem(string Lane)
         {
             List<string> TollBomitems = new();

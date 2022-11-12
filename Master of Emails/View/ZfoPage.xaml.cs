@@ -27,13 +27,12 @@ public partial class ZfoPage : ContentPage
 
        if(CheckZFOInputs==true)
         {
-            SharedComponents.Plaza = selectPlaza.SelectedItem.ToString();
+            SharedComponents.Region = selectRegion.SelectedItem.ToString();
             for (int i = 0; i < SharedComponents.TollLaneList.Count; i++)
             {
                 SharedComponents.Lane += SharedComponents.TollLaneList[i] + " ";
             }
 
-            SharedComponents.Region = selectRegion.SelectedItem.ToString();
             SharedComponents.Requestor = selectRequestor.Text;
             SharedComponents.Reason = selectReason.Text;
             SharedComponents.StartDate = selectStartDate.Text;
@@ -85,9 +84,6 @@ public partial class ZfoPage : ContentPage
         {
             DisplayAlert("Alert", "One or more inputs are empty", "Close");
         }
-
-   
-
     }
     private void SelectRegion_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -127,12 +123,19 @@ public partial class ZfoPage : ContentPage
         {
             selectLane.ItemsSource = null;
             TollLanes.Clear();
-
             var Split = selectPlaza.Items[selectedIndex].Split(" ", 2);
             SharedComponents.PlazaId = Int32.Parse(Split[0]);
+            SharedComponents.PlazaName = Split[1];
 
-            TollLanes = SharedComponents.GetLanes(selectPlaza.Items[selectedIndex], SharedComponents.PlazaId);
+            SharedComponents.TollPlazaQueryByPlazaName =
+            SharedComponents.TollPlazaRepo.QueryByPlazaName(SharedComponents.PlazaName);
+            foreach (TollPlaza plaza in SharedComponents.TollPlazaQueryByPlazaName)
+            {
+                SharedComponents.Plaza = plaza.Plaza_id + " " + plaza.Plaza_name;
+                SharedComponents.Roadway = plaza.Plaza_roadway;
+            }
 
+            TollLanes = SharedComponents.GetLanes();
             TollLanes.Sort();
             selectLane.ItemsSource = TollLanes;
         }

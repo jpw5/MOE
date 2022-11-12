@@ -19,21 +19,13 @@ public partial class PriorityOneMafPage : ContentPage
 
     private void PriorityOneEmail_Button_Pressed(object sender, EventArgs e)
     {
-        bool CheckPriorityOneInputs=SharedComponents.CheckPriorityOneInputs(selectRegion.SelectedItem, selectPlaza.SelectedItem, selectLane.SelectedItem,
-        selectBomitem.SelectedItem, selectTechnician.SelectedItem, selectMafNumber.Text, selectProblem.Text,
-        selectActionTaken.Text);
+        bool CheckPriorityOneInputs=
+        SharedComponents.CheckPriorityOneInputs(selectRegion.SelectedItem, selectPlaza.SelectedItem, 
+        selectLane.SelectedItem, selectBomitem.SelectedItem, selectTechnician.SelectedItem, selectMafNumber.Text, 
+        selectProblem.Text, selectActionTaken.Text);
 
         if(CheckPriorityOneInputs==true)
         {
-            SharedComponents.Region = selectRegion.SelectedItem.ToString();
-            SharedComponents.TollPlazaQueryByPlazaId =
-            SharedComponents.TollPlazaRepo.QueryByPlazaId(SharedComponents.PlazaId);
-            foreach (TollPlaza plaza in SharedComponents.TollPlazaQueryByPlazaId)
-            {
-                SharedComponents.Plaza = plaza.Plaza_id + " " + plaza.Plaza_name;
-                SharedComponents.Roadway = plaza.Plaza_roadway;
-            }
-
             SharedComponents.Region = selectRegion.SelectedItem.ToString();
             SharedComponents.Lane = selectLane.SelectedItem.ToString();
             SharedComponents.Bomitem = selectBomitem.SelectedItem.ToString();
@@ -42,9 +34,9 @@ public partial class PriorityOneMafPage : ContentPage
             SharedComponents.MafNumber = selectMafNumber.Text;
             SharedComponents.Problem = selectProblem.Text;
             SharedComponents.ActionTaken = selectActionTaken.Text;
-
             SharedComponents.To = "";
             SharedComponents.Cc = "";
+
             SharedComponents.StandardDistributionP1 = SharedComponents.TollEmailDistributionRepo.
             QueryByRegionEmailTypeAndPlazaId(SharedComponents.Region, SharedComponents.EmailTypeP1, "ALL");
 
@@ -117,15 +109,13 @@ public partial class PriorityOneMafPage : ContentPage
             selectTechnician.ItemsSource.Clear();
             plazas.Clear();
             technicians.Clear();
-            SharedComponents.Region = selectRegion.Items[selectedIndex];
 
-            SharedComponents.TollPlazaQueryByRegionName = 
-            SharedComponents.TollPlazaRepo.QueryByRegionName(SharedComponents.Region);
+            SharedComponents.TollPlazaQueryByRegionName = SharedComponents.TollPlazaRepo.
+            QueryByRegionName(selectRegion.Items[selectedIndex]);
 
             foreach (TollPlaza tollPlaza in SharedComponents.TollPlazaQueryByRegionName)
             {
                 plazas.Add(tollPlaza.Plaza_id + " " + tollPlaza.Plaza_name);
-
             }
 
             plazas.Sort();
@@ -135,7 +125,7 @@ public partial class PriorityOneMafPage : ContentPage
             }
 
             SharedComponents.TollTechnicianQueryByRegion = 
-            SharedComponents.TollTechnicianRepo.QueryTechnicianByRegion(SharedComponents.Region);
+            SharedComponents.TollTechnicianRepo.QueryTechnicianByRegion(selectRegion.Items[selectedIndex]);
 
             foreach (TollTechnician tollTechnician in SharedComponents.TollTechnicianQueryByRegion)
             {
@@ -159,10 +149,20 @@ public partial class PriorityOneMafPage : ContentPage
         {
             selectLane.ItemsSource.Clear();
             TollLanes.Clear();
-            
+
             var Split = selectPlaza.Items[selectedIndex].Split(" ", 2);
             SharedComponents.PlazaId = Int32.Parse(Split[0]);
-            TollLanes = SharedComponents.GetLanes(selectPlaza.Items[selectedIndex], SharedComponents.PlazaId);
+            SharedComponents.PlazaName = Split[1];
+
+            SharedComponents.TollPlazaQueryByPlazaName =
+            SharedComponents.TollPlazaRepo.QueryByPlazaName(SharedComponents.PlazaName);
+            foreach (TollPlaza plaza in SharedComponents.TollPlazaQueryByPlazaName)
+            {
+                SharedComponents.Plaza = plaza.Plaza_id + " " + plaza.Plaza_name;
+                SharedComponents.Roadway = plaza.Plaza_roadway;
+            }
+
+            TollLanes = SharedComponents.GetLanes();
             TollLanes.Sort();
             foreach (string tollLane in TollLanes)
             {

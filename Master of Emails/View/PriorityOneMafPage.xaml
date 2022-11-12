@@ -19,34 +19,37 @@
             <VerticalStackLayout Padding="10" Spacing="30" VerticalOptions="Center" 
              HorizontalOptions="Start">
 
-                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
 
                     <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" 
                      x:Name="selectRegion" SelectedIndexChanged="SelectRegion_SelectedIndexChanged" 
                      WidthRequest="150" FontSize="16" FontAttributes="Bold" TextColor="Black" 
                      FontFamily="ArialBlack" Title="Select Region"></Picker>
 
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout>
                     <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" 
                      x:Name="selectPlaza" SelectedIndexChanged="SelectPlaza_SelectedIndexChanged"
                      WidthRequest="500" FontSize="16" FontAttributes="Bold" TextColor="Black" 
-                     FontFamily="ArialBlack" Title="Select Plaza"></Picker> 
-
-                </HorizontalStackLayout>
-
-                <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="Start">
+                     FontFamily="ArialBlack" Title="Select Plaza" HorizontalOptions="Start"></Picker>
 
                     <Picker ItemsSource="{Binding TollLaneList}" SelectedItem="{Binding Lane}" 
                      x:Name="selectLane" SelectedIndexChanged="SelectLane_SelectedIndexChanged" 
                      WidthRequest="150" FontSize="16" FontAttributes="Bold" TextColor="Black" 
                      FontFamily="ArialBlack" Title="Select Lane"></Picker>
+                    
+                </HorizontalStackLayout>
+           
+                <HorizontalStackLayout Padding="10" Spacing="20" HorizontalOptions="Start">
 
                     <Picker ItemsSource="{Binding TollBomitemList}" SelectedItem="{Binding Bomitem}" 
                      x:Name="selectBomitem" FontAttributes="Bold" FontSize="16" FontFamily="ArialBlack" 
-                     TextColor="Black" WidthRequest="200" Title="Select BOM Item"></Picker>
+                     TextColor="Black" WidthRequest="300" Title="Select BOM Item"></Picker>
 
                     <Picker ItemsSource="{Binding TollTechnicianList}" SelectedItem="{Binding Technician}" 
                      x:Name="selectTechnician" FontAttributes="Bold" FontSize="16" FontFamily="ArialBlack"
-                     TextColor="Black" WidthRequest="250" Title="Select Technician"></Picker>
+                     TextColor="Black" WidthRequest="300" Title="Select Technician"></Picker>
 
                 </HorizontalStackLayout>
 

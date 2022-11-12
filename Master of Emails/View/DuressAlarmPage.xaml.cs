@@ -21,21 +21,11 @@ public partial class DuressAlarmPage : ContentPage
     private void DuressAlarmEmailButton_Pressed(object sender, EventArgs e)
     {
         bool CheckDuressAlarmInputs=SharedComponents.CheckDuressAlarmInputs(selectRegion.SelectedItem, 
-             selectPlaza.SelectedItem, selectLane.SelectedItem,
-             selectDuressReason.SelectedItem, SharedComponents.Alarm, selectPlazaSupervisor.Text, 
-             selectStartDate.Text);
+             selectPlaza.SelectedItem, selectLane.SelectedItem, selectDuressReason.SelectedItem, 
+             SharedComponents.Alarm, selectPlazaSupervisor.Text, selectStartDate.Text);
 
         if(CheckDuressAlarmInputs==true)
         {
-            SharedComponents.Region = selectRegion.SelectedItem.ToString();
-            SharedComponents.TollPlazaQueryByPlazaId = 
-            SharedComponents.TollPlazaRepo.QueryByPlazaId(SharedComponents.PlazaId);
-            foreach (TollPlaza plaza in SharedComponents.TollPlazaQueryByPlazaId)
-            {
-                SharedComponents.Plaza = plaza.Plaza_id + " " + plaza.Plaza_name;
-                SharedComponents.Roadway = plaza.Plaza_roadway;
-            }
-
             SharedComponents.Region = selectRegion.SelectedItem.ToString();
             SharedComponents.Lane = selectLane.SelectedItem.ToString();
             SharedComponents.DuressReason = selectDuressReason.SelectedItem.ToString();
@@ -43,7 +33,9 @@ public partial class DuressAlarmPage : ContentPage
             SharedComponents.PlazaSupervisor = selectPlazaSupervisor.Text;
 
             SharedComponents.StandardDistributionDuress =
-            SharedComponents.TollEmailDistributionRepo.QueryByRegionEmailTypeAndPlazaId(SharedComponents.Region, SharedComponents.EmailTypeDuress, SharedComponents.PlazaId.ToString());
+            SharedComponents.TollEmailDistributionRepo.
+            QueryByRegionEmailTypeAndPlazaId(SharedComponents.Region, SharedComponents.EmailTypeDuress, 
+            SharedComponents.PlazaId.ToString());
 
             SharedComponents.To = "";
             SharedComponents.Cc = "";
@@ -121,10 +113,18 @@ public partial class DuressAlarmPage : ContentPage
         {
             selectLane.ItemsSource.Clear();
             TollLanes.Clear();
-            
+
             var Split = selectPlaza.Items[selectedIndex].Split(" ", 2);
             SharedComponents.PlazaId = Int32.Parse(Split[0]);
-            TollLanes = SharedComponents.GetLanes(selectPlaza.Items[selectedIndex], SharedComponents.PlazaId);
+            SharedComponents.TollPlazaQueryByPlazaId = SharedComponents.TollPlazaRepo.QueryByPlazaId(SharedComponents.PlazaId);
+
+            foreach (TollPlaza plaza in SharedComponents.TollPlazaQueryByPlazaId)
+            {
+                SharedComponents.Plaza = plaza.Plaza_id + " " + plaza.Plaza_name;
+                SharedComponents.Roadway = plaza.Plaza_roadway;
+            }
+
+            TollLanes = SharedComponents.GetLanes();
             TollLanes.Sort();
             foreach (string tollLane in TollLanes)
             {

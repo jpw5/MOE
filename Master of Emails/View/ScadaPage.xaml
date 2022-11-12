@@ -19,19 +19,15 @@
             <VerticalStackLayout Padding="10" Spacing="30" VerticalOptions="Center" 
              HorizontalOptions="Start">
 
-                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
-
-                    <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" 
+                <Picker ItemsSource="{Binding TollRegionList}" SelectedItem="{Binding Region}" 
                      SelectedIndexChanged="SelectRegion_SelectedIndexChanged" x:Name="selectRegion" 
                      WidthRequest="150" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" 
                      Title="Select Region" TextColor="Black"></Picker>
 
-                    <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" 
+                <Picker ItemsSource="{Binding TollPlazaList}" SelectedItem="{Binding Plaza}" 
                      x:Name="selectPlaza" SelectedIndexChanged="SelectPlaza_SelectedIndexChanged" 
-                     WidthRequest="500" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" 
+                     WidthRequest="650" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" 
                      Title="Select Plaza"></Picker>
-
-                </HorizontalStackLayout>
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
@@ -61,17 +57,12 @@
                     <Entry Text="{Binding FacilitiesTelecomPersonaleName}" x:Name="selectContact" 
                      HorizontalTextAlignment="Start" VerticalTextAlignment="Start" 
                      Placeholder="Enter Contact Name" TextColor="Black" PlaceholderColor="Black" 
-                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" WidthRequest="200"></Entry>
+                     FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" WidthRequest="400"></Entry>
 
                     <Entry Text="{Binding PhoneResult}" x:Name="selectPhoneNumber" 
                      HorizontalTextAlignment="Start" VerticalTextAlignment="Start" FontSize="16"  
                      FontAttributes="Bold" FontFamily="ArialBlack" TextColor="Black" 
                      Placeholder="Enter Phone Number" PlaceholderColor="Black"></Entry>
-
-                    <Entry Text="{Binding AlternatePhoneResult}" x:Name="selectAlternatePhoneNumber" 
-                     HorizontalTextAlignment="Start" VerticalTextAlignment="Start" 
-                     Placeholder="Alternate Phone Number:"  FontSize="16" FontAttributes="Bold" 
-                     FontFamily="ArialBlack" TextColor="Black" PlaceholderColor="Black"></Entry>
 
                 </HorizontalStackLayout>
 
@@ -99,7 +90,7 @@
                     <Label VerticalOptions="Center" TextColor="Black" Text="Enter Date/Time Contacted" 
                      FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack"></Label>
 
-                    <Entry Text="{Binding Date}" x:Name="selectDate" HorizontalTextAlignment="Start" 
+                    <Entry Text="{Binding Date}" x:Name="selectStartDate" HorizontalTextAlignment="Start" 
                      VerticalTextAlignment="Start" FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" 
                      TextColor="Black"></Entry>
 

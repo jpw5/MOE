@@ -19,29 +19,20 @@ public partial class InconAlertPage : ContentPage
 
     private void InconAlertEmail_Button_Pressed(object sender, EventArgs e)
     {
+      
 
-        bool CheckInconAlertInputs = SharedComponents.
-            CheckInconAlertInputs(selectRegion.SelectedItem, selectPlaza.SelectedItem,
-            SharedComponents.TollLaneList, selectRequestor.Text, selectPhoneNumber.Text, selectReason.Text, 
-            selectStartDate.Text, selectIncidentOrESR.Text, selectDuration.Text, SharedComponents.Units);
+        bool CheckInconAlertInputs = 
+             SharedComponents.CheckInconAlertInputs(selectRegion.SelectedItem, selectPlaza.SelectedItem, 
+             SharedComponents.TollLaneList, selectRequestor.Text, selectPhoneNumber.Text, selectReason.Text, 
+             selectStartDate.Text, selectIncidentOrESR.Text, selectDuration.Text, SharedComponents.Units);
 
         if(CheckInconAlertInputs==true)
         {
             SharedComponents.Region = selectRegion.SelectedItem.ToString();
-            SharedComponents.TollPlazaQueryByPlazaId = SharedComponents.TollPlazaRepo.QueryByPlazaId(SharedComponents.PlazaId);
-            foreach (TollPlaza plaza in SharedComponents.TollPlazaQueryByPlazaId)
-            {
-                SharedComponents.Plaza = plaza.Plaza_id + " " + plaza.Plaza_name;
-                SharedComponents.Roadway = plaza.Plaza_roadway;
-            }
-
             for (int i = 0; i < SharedComponents.TollLaneList.Count; i++)
             {
                 SharedComponents.Lane += SharedComponents.TollLaneList[i] + " ";
             }
-
-
-            SharedComponents.Region = selectRegion.SelectedItem.ToString();
             SharedComponents.StartDate = selectStartDate.Text;
             SharedComponents.Requestor = selectRequestor.Text;
             SharedComponents.PhoneNumber = selectPhoneNumber.Text;
@@ -60,9 +51,11 @@ public partial class InconAlertPage : ContentPage
                 SharedComponents.Cc = standarddistributionIncon.Email_distribution_cc;
             }
 
-            SharedComponents.Subject = "InConAlert for Plaza - " + SharedComponents.Plaza.ToUpper() + " / " + SharedComponents.Lane.ToUpper();
-            SharedComponents.Body = "<font size=5>" + "<b>" + "****SunWatch InConAlert****" + "</b>" + "</font>" + "<br>" + "<br>" +
-            "<font size=4>" + "<b>" + "Plaza: " + "</b>" + SharedComponents.Plaza + "</font>" + "<br>" +
+            SharedComponents.Subject = "InConAlert for Plaza - " + SharedComponents.Plaza.ToUpper() + " / " + 
+            SharedComponents.Lane.ToUpper();
+
+            SharedComponents.Body = "<font size=5>" + "<b>" + "****SunWatch InConAlert****" + "</b>" + "</font>" + 
+            "<br>" + "<br>" + "<font size=4>" + "<b>" + "Plaza: " + "</b>" + SharedComponents.Plaza + "</font>" + "<br>" +
             "<font size=4>" + "<b>" + "Roadway: " + "</b>" + SharedComponents.Roadway + "</font>" + "<br>" +
             "<font size=4>" + "<b>" + "Lane: " + "</b>" + SharedComponents.Lane + "</font>" + "<br>" +
             "<font size=4>" + "<b>" + "Date/Time Contacted: " + "</b>" + SharedComponents.StartDate + "</font>" + "<br>" +
@@ -129,12 +122,19 @@ public partial class InconAlertPage : ContentPage
         {
             selectLane.ItemsSource = null;
             TollLanes.Clear();
-
             var Split = selectPlaza.Items[selectedIndex].Split(" ", 2);
             SharedComponents.PlazaId = Int32.Parse(Split[0]);
+            SharedComponents.PlazaName = Split[1];
 
-            TollLanes = SharedComponents.GetLanes(selectPlaza.Items[selectedIndex], SharedComponents.PlazaId);
+            SharedComponents.TollPlazaQueryByPlazaName =
+            SharedComponents.TollPlazaRepo.QueryByPlazaName(SharedComponents.PlazaName);
+            foreach (TollPlaza plaza in SharedComponents.TollPlazaQueryByPlazaName)
+            {
+                SharedComponents.Plaza = plaza.Plaza_id + " " + plaza.Plaza_name;
+                SharedComponents.Roadway = plaza.Plaza_roadway;
+            }
 
+            TollLanes = SharedComponents.GetLanes();
             TollLanes.Sort();
             selectLane.ItemsSource = TollLanes;
         }
