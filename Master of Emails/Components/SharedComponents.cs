@@ -164,6 +164,7 @@ namespace Master_of_Emails.Components
             return TollBomitems;
         }
 
+        //Method to check if inputs in the ZFO emailer are not empty.
         public static bool CheckZFOInputs(object Region, object Plaza, List<string> TollLaneList, string Requestor, 
          string Reason, string StartDate, string EndDate)
 
@@ -185,7 +186,7 @@ namespace Master_of_Emails.Components
 
             return true;
         }
-
+        //Method to check if inputs in the Duress Alarm emailer are not empty.
         public static bool CheckDuressAlarmInputs(object Region, object Plaza, object Lane, object DuressReason, 
          string Alarm, string PlazaSupervisor, string StartDate)
 
@@ -208,6 +209,7 @@ namespace Master_of_Emails.Components
             return true;
         }
 
+        //Method to check if inputs in the Fiber Alert emailer are not empty.
         public static bool CheckFiberAlertInputs(object Region, string MilePost, string AffectedArea, string Who, 
          string AmountCut, string FiberTechnician, string ReportedBy, string PhoneNumber)
 
@@ -230,7 +232,7 @@ namespace Master_of_Emails.Components
 
             return true;
         }
-
+        //Method to check if inputs in the Incon Alert emailer are not empty.
         public static bool CheckInconAlertInputs(object Region, object Plaza, List<string> TollLaneList, string Requestor,
         string PhoneNumber, string Reason, string StartDate, string IncidentOrESR, string Duration, string Units)
 
@@ -255,7 +257,7 @@ namespace Master_of_Emails.Components
 
             return true;
         }
-
+        //Method to check if inputs in the Priority 1 MAF emailer are not empty.
         public static bool CheckPriorityOneInputs(object Region, object Plaza, object Lane, object Bomitem,
         object Technician, string MafNumber, string Problem, string ActionTaken)
 
@@ -278,7 +280,7 @@ namespace Master_of_Emails.Components
 
             return true;
         }
-
+        //Method to check if inputs in the SCADA emailer are not empty.
         public static bool CheckScadaInputs(object Region, object Plaza, string SelectedHours, string Contact,
         string PhoneNumber, string ScadaAlarm, string BuildingNumber, string WorkOrderNumber, string StartDate,
         string Temperature)
@@ -304,7 +306,7 @@ namespace Master_of_Emails.Components
 
             return true;
         }
+
+        
     }
-
-
 }

@@ -34,8 +34,6 @@ public partial class PriorityOneMafPage : ContentPage
             SharedComponents.MafNumber = selectMafNumber.Text;
             SharedComponents.Problem = selectProblem.Text;
             SharedComponents.ActionTaken = selectActionTaken.Text;
-            SharedComponents.To = "";
-            SharedComponents.Cc = "";
 
             SharedComponents.StandardDistributionP1 = SharedComponents.TollEmailDistributionRepo.
             QueryByRegionEmailTypeAndPlazaId(SharedComponents.Region, SharedComponents.EmailTypeP1, "ALL");

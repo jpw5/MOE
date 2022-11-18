@@ -38,9 +38,6 @@ public partial class ZfoPage : ContentPage
             SharedComponents.StartDate = selectStartDate.Text;
             SharedComponents.EndDate = selectEndDate.Text;
 
-            SharedComponents.To = "";
-            SharedComponents.Cc = "";
-
             SharedComponents.StandardDistributionZFO = (
             SharedComponents.
             TollEmailDistributionRepo.

@@ -39,8 +39,6 @@ public partial class InconAlertPage : ContentPage
             SharedComponents.Duration = selectDuration.Text;
             SharedComponents.Reason = selectReason.Text;
 
-            SharedComponents.To = "";
-            SharedComponents.Cc = "";
             SharedComponents.StandardDistributionIncon =
             SharedComponents.TollEmailDistributionRepo.QueryByRegionEmailTypeAndPlazaId(SharedComponents.Region,
             SharedComponents.EmailTypeIncon, "ALL");

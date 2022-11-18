@@ -37,8 +37,6 @@ public partial class DuressAlarmPage : ContentPage
             QueryByRegionEmailTypeAndPlazaId(SharedComponents.Region, SharedComponents.EmailTypeDuress, 
             SharedComponents.PlazaId.ToString());
 
-            SharedComponents.To = "";
-            SharedComponents.Cc = "";
             foreach (TollEmailDistribution emaildistributionDuress in SharedComponents.StandardDistributionDuress)
             {
                 SharedComponents.To = emaildistributionDuress.Email_distribution_to;
