@@ -60,11 +60,7 @@
                     <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" 
                      Padding="10">
                         
-                        <Label Text="{Binding NewRegionStatusMessage}" TextColor="Black" FontSize="20" 
-                         FontFamily="ArialBlack" FontAttributes="Bold" FontAutoScalingEnabled="True" 
-                         VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="200"></Label>
-                        
-                        <Label Text="{Binding RemoveRegionStatusMessage}" TextColor="Black" FontSize="20" 
+                        <Label Text="{Binding RegionStatusMessage}" TextColor="Black" FontSize="20" 
                          FontFamily="ArialBlack" FontAttributes="Bold" FontAutoScalingEnabled="True" 
                          VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="200"></Label>
                         
@@ -158,14 +154,10 @@
                     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10"
                      Padding="10">
 
-                        <Label Text="{Binding NewPlazaStatusMessage}" FontSize="20" FontFamily="ArialBlack" 
+                        <Label Text="{Binding PlazaStatusMessage}" FontSize="20" FontFamily="ArialBlack" 
                          TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
 
-                        <Label Text="{Binding RemovePlazaStatusMessage}" FontSize="20" FontFamily="ArialBlack" 
-                         TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" 
-                         HorizontalOptions="Center" WidthRequest="200"></Label>
-                        
                     </VerticalStackLayout>
                     
                 </Frame>
@@ -247,14 +239,10 @@
                     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10"
                      Padding="10">
 
-                        <Label Text="{Binding NewLaneStatusMessage}" FontSize="20" FontFamily="ArialBlack" 
+                        <Label Text="{Binding LaneStatusMessage}" FontSize="20" FontFamily="ArialBlack" 
                          TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
 
-                        <Label Text="{Binding RemoveLaneStatusMessage}" FontSize="20" FontFamily="ArialBlack" 
-                         TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" 
-                         HorizontalOptions="Center" WidthRequest="200"></Label>
-                        
                     </VerticalStackLayout>
                     
                 </Frame>
@@ -338,14 +326,10 @@
                     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" 
                      Padding="10">
 
-                        <Label Text="{Binding NewTechnicianStatusMessage}" TextColor="Black" FontSize="20" 
+                        <Label Text="{Binding TechnicianStatusMessage}" TextColor="Black" FontSize="20" 
                          FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
 
-                        <Label Text="{Binding RemoveTechnicianStatusMessage}" TextColor="Black" 
-                         FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
-                         HorizontalOptions="Center" WidthRequest="200"></Label>
-                        
                     </VerticalStackLayout>
                     
                 </Frame>
@@ -421,14 +405,10 @@
                     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10"
                      Padding="10">
 
-                        <Label Text="{Binding NewBomitemStatusMessage}" TextColor="Black" FontSize="20" 
+                        <Label Text="{Binding BomitemStatusMessage}" TextColor="Black" FontSize="20" 
                          FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
 
-                        <Label Text="{Binding RemoveBomitemStatusMessage}" TextColor="Black" FontSize="20"
-                         FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
-                         HorizontalOptions="Center" WidthRequest="200"></Label>
-                        
                     </VerticalStackLayout>
                     
                 </Frame>
@@ -500,13 +480,10 @@
                     
                     <VerticalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
 
-                        <Label Text="{Binding NewDuressReasonStatusMessage}" TextColor="Black" 
+                        <Label Text="{Binding DuressReasonStatusMessage}" TextColor="Black" 
                          FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
 
-                        <Label Text="{Binding RemoveDuressReasonStatusMessage}" TextColor="Black" 
-                         FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
-                         HorizontalOptions="Center" WidthRequest="200"></Label>
                         
                     </VerticalStackLayout>
                     
@@ -596,14 +573,10 @@
                     
                     <VerticalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
 
-                        <Label Text="{Binding NewFacilitiesTelecomStatusMessage}" TextColor="Black" 
+                        <Label Text="{Binding FacilitiesTelecomStatusMessage}" TextColor="Black" 
                          FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
 
-                        <Label Text="{Binding RemoveFacilitiesTelecomStatusMessage}" TextColor="Black" 
-                         FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
-                         HorizontalOptions="Center" WidthRequest="200"></Label>
-                        
                     </VerticalStackLayout>
                     
                 </Frame>
@@ -684,11 +657,7 @@
 
                     <VerticalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
 
-                        <Label Text="{Binding NewOrganizationStatusMessage}" TextColor="Black" 
-                         FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
-                         HorizontalOptions="Center" WidthRequest="200"></Label>
-
-                        <Label Text="{Binding RemoveOrganizationStatusMessage}" TextColor="Black" 
+                        <Label Text="{Binding OrganizationStatusMessage}" TextColor="Black" 
                          FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
 
@@ -777,11 +746,7 @@
 
                     <VerticalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
 
-                        <Label Text="{Binding NewEmailDistributionStatusMessage}" TextColor="Black" 
-                         FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
-                         HorizontalOptions="Center" WidthRequest="200"></Label>
-
-                        <Label Text="{Binding RemoveEmailDistributionStatusMessage}" TextColor="Black" 
+                        <Label Text="{Binding EmailDistributionStatusMessage}" TextColor="Black" 
                          FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
 
@@ -874,11 +839,7 @@
 
                     <VerticalStackLayout HorizontalOptions="Center" Spacing="10" Padding="10">
 
-                        <Label Text="{Binding NewPersonaleStatusMessage}" TextColor="Black" 
-                         FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
-                         HorizontalOptions="Center" WidthRequest="200"></Label>
-
-                        <Label Text="{Binding RemovePersonaleStatusMessage}" TextColor="Black" 
+                        <Label Text="{Binding PersonaleStatusMessage}" TextColor="Black" 
                          FontSize="20" FontFamily="ArialBlack" FontAttributes="Bold" VerticalOptions="Center" 
                          HorizontalOptions="Center" WidthRequest="200"></Label>
 

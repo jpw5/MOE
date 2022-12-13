@@ -15,11 +15,10 @@ public partial class DatabasePageViewModel : ObservableObject
     [ObservableProperty]
     public string newRegion;
     [ObservableProperty]
-    public string newRegionStatusMessage;
+    public string regionStatusMessage;
     [ObservableProperty]
     public string removeRegion;
-    [ObservableProperty]
-    public string removeRegionStatusMessage;
+  
     [ObservableProperty]
     public ObservableCollection<string> regionList;
 
@@ -40,11 +39,9 @@ public partial class DatabasePageViewModel : ObservableObject
     [ObservableProperty]
     public string newPlazaCompany;
     [ObservableProperty]
-    public string newPlazaStatusMessage;
+    public string plazaStatusMessage;
     [ObservableProperty]
     public string removePlaza;
-    [ObservableProperty]
-    public string removePlazaStatusMessage;
     [ObservableProperty]
     public ObservableCollection<string> plazaList;
 
@@ -59,11 +56,9 @@ public partial class DatabasePageViewModel : ObservableObject
     [ObservableProperty]
     public string newLaneDirection;
     [ObservableProperty]
-    public string newLaneStatusMessage;
+    public string laneStatusMessage;
     [ObservableProperty]
     public string removeLane;
-    [ObservableProperty]
-    public string removeLaneStatusMessage;
     [ObservableProperty]
     public ObservableCollection<string> laneList;
 
@@ -80,11 +75,9 @@ public partial class DatabasePageViewModel : ObservableObject
     [ObservableProperty]
     public string newTechnicianRegion;
     [ObservableProperty]
-    public string newTechnicianStatusMessage;
+    public string technicianStatusMessage;
     [ObservableProperty]
     public string removeTechnician;
-    [ObservableProperty]
-    public string removeTechnicianStatusMessage;
     [ObservableProperty]
     public ObservableCollection<string> technicianList;
 
@@ -95,11 +88,9 @@ public partial class DatabasePageViewModel : ObservableObject
     [ObservableProperty]
     public string newBomitemName;
     [ObservableProperty]
-    public string newBomitemStatusMessage;
+    public string bomitemStatusMessage;
     [ObservableProperty]
     public string removeBomitem;
-    [ObservableProperty]
-    public string removeBomitemStatusMessage;
     [ObservableProperty]
     public ObservableCollection<string> bomitemList;
 
@@ -108,11 +99,9 @@ public partial class DatabasePageViewModel : ObservableObject
     [ObservableProperty]
     public string newDuressReason;
     [ObservableProperty]
-    public string newDuressReasonStatusMessage;
-    [ObservableProperty]
     public string removeDuressReason;
     [ObservableProperty]
-    public string removeDuressReasonStatusMessage;
+    public string duressReasonStatusMessage;
     [ObservableProperty]
     public ObservableCollection<string> duressReasonList;
 
@@ -131,11 +120,8 @@ public partial class DatabasePageViewModel : ObservableObject
     [ObservableProperty]
     public string newDepartment;
     [ObservableProperty]
-    public string newFacilitiesTelecomStatusMessage;
-    [ObservableProperty]
-    public string removeFacilitiesTelecom;
-    [ObservableProperty]
-    public string removeFacilitiesTelecomStatusMessage;
+    public string facilitiesTelecomStatusMessage;
+    [ObservableProperty] public string removeFacilitiesTelecom;
     [ObservableProperty]
     public ObservableCollection<string> facilitiesTelecomList;
 
@@ -148,11 +134,9 @@ public partial class DatabasePageViewModel : ObservableObject
     [ObservableProperty]
     public string newOrganizationEmail;
     [ObservableProperty]
-    public string newOrganizationStatusMessage;
+    public string organizationStatusMessage;
     [ObservableProperty]
     public string removeOrganization;
-    [ObservableProperty]
-    public string removeOrganizationStatusMessage;
     [ObservableProperty]
     public ObservableCollection<string> organizationList;
 
@@ -169,11 +153,9 @@ public partial class DatabasePageViewModel : ObservableObject
     [ObservableProperty]
     public string newEmailDistributionCc;
     [ObservableProperty]
-    public string newEmailDistributionStatusMessage;
+    public string emailDistributionStatusMessage;
     [ObservableProperty]
     public string removeEmailDistribution;
-    [ObservableProperty]
-    public string removeEmailDistributionStatusMessage;
     [ObservableProperty]
     public ObservableCollection<string> emailDistributionList;
 
@@ -192,11 +174,9 @@ public partial class DatabasePageViewModel : ObservableObject
     [ObservableProperty]
     public string newPersonaleRole;
     [ObservableProperty]
-    public string newPersonaleStatusMessage;
+    public string personaleStatusMessage;
     [ObservableProperty]
     public string removePersonale;
-    [ObservableProperty]
-    public string removePersonaleStatusMessage;
     [ObservableProperty]
     public ObservableCollection<string> personaleList;
 
@@ -224,16 +204,16 @@ public partial class DatabasePageViewModel : ObservableObject
         {
             TollRegionRepo.AddRegion(NewRegion);
             NewRegion = "";
-            NewRegionStatusMessage = "Success: Region Added.";
+            RegionStatusMessage = "Success: Region Added.";
             await Task.Delay(2000);
-            NewRegionStatusMessage = "";
+            RegionStatusMessage = "";
         }
 
         catch (Exception ex)
         {
-            NewRegionStatusMessage = "Error: Failed to add region. " + ex.Message;
+            RegionStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
             await Task.Delay(2000);
-            NewRegionStatusMessage = "";
+            RegionStatusMessage = "";
         }
 
     }
@@ -245,17 +225,17 @@ public partial class DatabasePageViewModel : ObservableObject
         {
             TollRegionRepo.DeleteRegion(Int32.Parse(RemoveRegion));
             RemoveRegion = "";
-            RemoveRegionStatusMessage = "Success: Region Deleted.";
+            RegionStatusMessage = "Success: Region Deleted.";
             await Task.Delay(2000);
-            RemoveRegionStatusMessage = "";
+            RegionStatusMessage = "";
         }
 
         catch (Exception ex)
 
         {
-            RemoveRegionStatusMessage = "Error: Failed to delete. " + ex.Message;
+            RegionStatusMessage = "Error: Enter a valid Region ID. " + ex.Message;
             await Task.Delay(2000);
-            RemoveRegionStatusMessage = "";
+            RegionStatusMessage = "";
         }
     }
 
@@ -305,16 +285,16 @@ public partial class DatabasePageViewModel : ObservableObject
             NewPlazaRegionName = "";
             NewPlazaPhoneNumber = "";
             NewPlazaCompany = "";
-            NewPlazaStatusMessage = "Success: Plaza Added.";
+            PlazaStatusMessage = "Success: Plaza Added.";
             await Task.Delay(2000);
-            NewPlazaStatusMessage = "";
+            PlazaStatusMessage = "";
         }
 
         catch (Exception ex)
         {
-            NewPlazaStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
+            PlazaStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
             await Task.Delay(2000);
-            NewPlazaStatusMessage = "";
+            PlazaStatusMessage = "";
         }
     }
 
@@ -326,15 +306,15 @@ public partial class DatabasePageViewModel : ObservableObject
             int id = Int32.Parse(RemovePlaza);
             TollPlazaRepo.DeletePlaza(id);
             RemovePlaza = "";
-            RemovePlazaStatusMessage = "Success: Plaza Deleted.";
+            PlazaStatusMessage = "Success: Plaza Deleted.";
             await Task.Delay(2000);
-            RemovePlazaStatusMessage = "";
+            PlazaStatusMessage = "";
         }
         catch (Exception ex)
         {
-            RemovePlazaStatusMessage = "Error: Enter a valid plaza ID. " + ex.Message;
+            PlazaStatusMessage = "Error: Enter a valid plaza ID. " + ex.Message;
             await Task.Delay(2000);
-            RemovePlazaStatusMessage = "";
+            PlazaStatusMessage = "";
 
         }
     }
@@ -381,16 +361,16 @@ public partial class DatabasePageViewModel : ObservableObject
             NewLaneNumber = "";
             NewLaneType = "";
             NewLaneDirection = "";
-            NewLaneStatusMessage = "Success: Lane Added";
+            LaneStatusMessage = "Success: Lane Added";
             await Task.Delay(2000);
-            NewLaneStatusMessage = "";
+            LaneStatusMessage = "";
         }
 
         catch (Exception ex)
         {
-            NewLaneStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
+            LaneStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
             await Task.Delay(2000);
-            NewLaneStatusMessage = "";
+            LaneStatusMessage = "";
         }
     }
 
@@ -402,16 +382,16 @@ public partial class DatabasePageViewModel : ObservableObject
             int id = Int32.Parse(RemoveLane);
             TollLaneRepo.DeleteLane(id);
             RemoveLane = "";
-            RemoveLaneStatusMessage = "Success: Lane Deleted.";
+            LaneStatusMessage = "Success: Lane Deleted.";
             await Task.Delay(2000);
-            RemoveLaneStatusMessage = "";
+            LaneStatusMessage = "";
         }
         catch (Exception ex)
 
         {
-            RemoveLaneStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
+            LaneStatusMessage = "Error: Please enter a valid Lane ID. " + ex.Message;
             await Task.Delay(2000);
-            RemoveLaneStatusMessage = "";
+            LaneStatusMessage = "";
         }
     }
 
@@ -453,16 +433,16 @@ public partial class DatabasePageViewModel : ObservableObject
             NewTechnicianPhoneNumber = "";
             NewTechnicianEmail = "";
             NewTechnicianRegion = "";
-            NewTechnicianStatusMessage = "Success: Technician Added";
+            TechnicianStatusMessage = "Success: Technician Added";
             await Task.Delay(2000);
-            NewTechnicianStatusMessage = "";
+            TechnicianStatusMessage = "";
         }
 
         catch (Exception ex)
         {
-            NewTechnicianStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
+            TechnicianStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
             await Task.Delay(2000);
-            NewTechnicianStatusMessage = "";
+            TechnicianStatusMessage = "";
         }
     }
 
@@ -473,16 +453,16 @@ public partial class DatabasePageViewModel : ObservableObject
         {
             TollTechnicianRepo.DeleteTechnician(RemoveTechnician);
             RemoveTechnician = "";
-            RemoveTechnicianStatusMessage = "Success: Technician Deleted.";
+            TechnicianStatusMessage = "Success: Technician Deleted.";
             await Task.Delay(2000);
-            RemoveTechnicianStatusMessage = "";
+            TechnicianStatusMessage = "";
         }
 
         catch (Exception ex)
         {
-            RemoveTechnicianStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
+            TechnicianStatusMessage = "Error: Please enter a valid Technician ID. " + ex.Message;
             await Task.Delay(2000);
-            RemoveTechnicianStatusMessage = "";
+            TechnicianStatusMessage = "";
         }
     }
     [RelayCommand]
@@ -502,8 +482,6 @@ public partial class DatabasePageViewModel : ObservableObject
                     "Phone: " + technician.Technician_phone_number + " \n" +
                     "Email: " + technician.Technician_email + " \n"
                     );
-
-
             }
         }
 
@@ -521,16 +499,16 @@ public partial class DatabasePageViewModel : ObservableObject
             TollBomitemRepo.AddBomitem(NewBomitemLaneType, NewBomitemName);
             NewBomitemLaneType = "";
             NewBomitemName = "";
-            NewBomitemStatusMessage = "Success: Bom Item Added";
+            BomitemStatusMessage = "Success: Bom Item Added";
             await Task.Delay(2000);
-            NewBomitemStatusMessage = "";
+            BomitemStatusMessage = "";
         }
 
         catch (Exception ex)
         {
-            NewBomitemStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
+            BomitemStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
             await Task.Delay(2000);
-            NewBomitemStatusMessage = "";
+            BomitemStatusMessage = "";
         }
     }
 
@@ -541,16 +519,16 @@ public partial class DatabasePageViewModel : ObservableObject
         {
             TollBomitemRepo.DeleteBomitem(Int32.Parse(RemoveBomitem));
             RemoveBomitem = "";
-            RemoveBomitemStatusMessage = "Success: Bomitem Deleted.";
+            BomitemStatusMessage = "Success: Bomitem Deleted.";
             await Task.Delay(2000);
-            RemoveBomitemStatusMessage = "";
+            BomitemStatusMessage = "";
         }
 
         catch (Exception ex)
         {
-            RemoveBomitemStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
+            BomitemStatusMessage = "Error: Please enter a valid BOM Item ID. " + ex.Message;
             await Task.Delay(2000);
-            RemoveBomitemStatusMessage = "";
+            BomitemStatusMessage = "";
         }
     }
 
@@ -585,16 +563,16 @@ public partial class DatabasePageViewModel : ObservableObject
             TollDuressReasonRepo.AddDuressReason(NewDuressReason);
             NewDuressReason = "";
 
-            NewDuressReasonStatusMessage = "Success: Duress Reason Added";
+            DuressReasonStatusMessage = "Success: Duress Reason Added";
             await Task.Delay(2000);
-            NewDuressReasonStatusMessage = "";
+            DuressReasonStatusMessage = "";
         }
 
         catch (Exception ex)
         {
-            NewDuressReasonStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
+            DuressReasonStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
             await Task.Delay(2000);
-            NewDuressReasonStatusMessage = "";
+            DuressReasonStatusMessage = "";
         }
     }
 
@@ -603,25 +581,25 @@ public partial class DatabasePageViewModel : ObservableObject
     {
         if (string.IsNullOrWhiteSpace(RemoveDuressReason))
         {
-            RemoveDuressReasonStatusMessage = "Error: Please enter valid inputs.";
+            DuressReasonStatusMessage = "Error: Please enter valid inputs.";
             await Task.Delay(2000);
-            RemoveDuressReasonStatusMessage = "";
+            DuressReasonStatusMessage = "";
             return;
         }
         try
         {
             TollDuressReasonRepo.DeleteDuressReason(Int32.Parse(RemoveDuressReason));
             RemoveDuressReason = "";
-            RemoveDuressReasonStatusMessage = "Success: Duress Reason Deleted.";
+            DuressReasonStatusMessage = "Success: Duress Reason Deleted.";
             await Task.Delay(2000);
-            RemoveDuressReasonStatusMessage = "";
+            DuressReasonStatusMessage = "";
         }
 
         catch (Exception)
         {
-            RemoveDuressReasonStatusMessage = "Error: Please enter valid inputs.";
+            DuressReasonStatusMessage = "Error: Please enter a valid Duress Reason ID.";
             await Task.Delay(2000);
-            RemoveDuressReasonStatusMessage = "";
+            DuressReasonStatusMessage = "";
         }
     }
 
@@ -663,9 +641,9 @@ public partial class DatabasePageViewModel : ObservableObject
                NewDepartment
                );
 
-            NewFacilitiesTelecomStatusMessage = "Success: Personale Added";
+            FacilitiesTelecomStatusMessage = "Success: Personale Added";
             await Task.Delay(2000);
-            NewFacilitiesTelecomStatusMessage = "";
+            FacilitiesTelecomStatusMessage = "";
             NewFacilitiesTelecomKnID = "";
             NewFacilitiesTelecomName = "";
             NewFacilitiesTelecomPhoneNumber = "";
@@ -676,9 +654,9 @@ public partial class DatabasePageViewModel : ObservableObject
 
         catch (Exception ex)
         {
-            NewFacilitiesTelecomStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
+            FacilitiesTelecomStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
             await Task.Delay(2000);
-            NewFacilitiesTelecomStatusMessage = "";
+            FacilitiesTelecomStatusMessage = "";
         }
     }
 
@@ -690,16 +668,16 @@ public partial class DatabasePageViewModel : ObservableObject
         {
             TollFacilitiesTelecomRepo.DeleteFacilitiesTelecom(RemoveFacilitiesTelecom);
             RemoveFacilitiesTelecom = "";
-            RemoveFacilitiesTelecomStatusMessage = "Success: Personale Deleted.";
+            FacilitiesTelecomStatusMessage = "Success: Personale Deleted.";
             await Task.Delay(2000);
-            RemoveFacilitiesTelecomStatusMessage = "";
+            FacilitiesTelecomStatusMessage = "";
         }
 
         catch (Exception ex)
         {
-            RemoveFacilitiesTelecomStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
+            FacilitiesTelecomStatusMessage = "Error: Please enter valid ID. " + ex.Message;
             await Task.Delay(2000);
-            RemoveFacilitiesTelecomStatusMessage = "";
+            FacilitiesTelecomStatusMessage = "";
         }
     }
 
@@ -741,9 +719,9 @@ public partial class DatabasePageViewModel : ObservableObject
             NewOrganizationEmail
             );
 
-            NewOrganizationStatusMessage = "Success: Organization Added";
+            OrganizationStatusMessage = "Success: Organization Added";
             await Task.Delay(2000);
-            NewOrganizationStatusMessage = "";
+            OrganizationStatusMessage = "";
             NewOrganizationName = "";
             NewOrganizationPhoneNumber = "";
             NewOrganizationEmail = "";
@@ -751,9 +729,9 @@ public partial class DatabasePageViewModel : ObservableObject
 
         catch (Exception ex)
         {
-            NewOrganizationStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
+            OrganizationStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
             await Task.Delay(2000);
-            NewOrganizationStatusMessage = "";
+            OrganizationStatusMessage = "";
         }
     }
 
@@ -764,16 +742,16 @@ public partial class DatabasePageViewModel : ObservableObject
         {
             TollOrganizationRepo.DeleteOrgnization(Int32.Parse(RemoveOrganization));
             RemoveOrganization = "";
-            RemoveOrganizationStatusMessage = "Success: Organization Deleted.";
+            OrganizationStatusMessage = "Success: Organization Deleted.";
             await Task.Delay(2000);
-            RemoveOrganizationStatusMessage = "";
+            OrganizationStatusMessage = "";
         }
 
         catch (Exception ex)
         {
-            RemoveOrganizationStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
+            OrganizationStatusMessage = "Error: Please enter a valid Organization ID. " + ex.Message;
             await Task.Delay(2000);
-            RemoveOrganizationStatusMessage = "";
+            OrganizationStatusMessage = "";
         }
     }
 
@@ -817,9 +795,9 @@ public partial class DatabasePageViewModel : ObservableObject
             NewEmailDistributionCc
             );
 
-            NewEmailDistributionStatusMessage = "Success: Email Distribution Added";
+            EmailDistributionStatusMessage = "Success: Email Distribution Added";
             await Task.Delay(2000);
-            NewEmailDistributionStatusMessage = "";
+            EmailDistributionStatusMessage = "";
             NewEmailDistributionRegion = "";
             NewEmailDistributionType = "";
             NewEmailDistributionPlazaId = "";
@@ -829,9 +807,9 @@ public partial class DatabasePageViewModel : ObservableObject
 
         catch (Exception ex)
         {
-            NewEmailDistributionStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
+            EmailDistributionStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
             await Task.Delay(2000);
-            NewEmailDistributionStatusMessage = "";
+            EmailDistributionStatusMessage = "";
         }
     }
 
@@ -842,16 +820,16 @@ public partial class DatabasePageViewModel : ObservableObject
         {
             TollEmailDistributionRepo.DeleteEmailDistribution(Int32.Parse(RemoveEmailDistribution));
             RemoveEmailDistribution = "";
-            RemoveEmailDistributionStatusMessage = "Success: Email Distribution Deleted.";
+            EmailDistributionStatusMessage = "Success: Email Distribution Deleted.";
             await Task.Delay(2000);
-            RemoveEmailDistributionStatusMessage = "";
+            EmailDistributionStatusMessage = "";
         }
 
         catch (Exception ex)
         {
-            RemoveEmailDistributionStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
+            EmailDistributionStatusMessage = "Error: Please enter a valid ID. " + ex.Message;
             await Task.Delay(2000);
-            RemoveEmailDistributionStatusMessage = "";
+            EmailDistributionStatusMessage = "";
         }
     }
 
@@ -898,9 +876,9 @@ public partial class DatabasePageViewModel : ObservableObject
             NewPersonaleRole
             );
 
-            NewPersonaleStatusMessage = "Success: Personale Added";
+            PersonaleStatusMessage = "Success: Personale Added";
             await Task.Delay(2000);
-            NewPersonaleStatusMessage = "";
+            PersonaleStatusMessage = "";
             NewPersonaleKnId = "";
             NewPersonaleName = "";
             NewPersonalePhoneNumber = "";
@@ -911,9 +889,9 @@ public partial class DatabasePageViewModel : ObservableObject
 
         catch (Exception ex)
         {
-            NewPersonaleStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
+            PersonaleStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
             await Task.Delay(2000);
-            NewPersonaleStatusMessage = "";
+            PersonaleStatusMessage = "";
         }
     }
 
@@ -924,16 +902,16 @@ public partial class DatabasePageViewModel : ObservableObject
         {
             TollPersonaleRepo.DeletePersonale(RemovePersonale);
             RemovePersonale = "";
-            RemovePersonaleStatusMessage = "Success: Email Distribution Deleted.";
+            PersonaleStatusMessage = "Success: Email Distribution Deleted.";
             await Task.Delay(2000);
-            RemovePersonaleStatusMessage = "";
+            PersonaleStatusMessage = "";
         }
 
         catch (Exception ex)
         {
-            RemovePersonaleStatusMessage = "Error: Please enter valid inputs. " + ex.Message;
+            PersonaleStatusMessage = "Error: Please enter a valid personale ID. " + ex.Message;
             await Task.Delay(2000);
-            RemovePersonaleStatusMessage = "";
+            PersonaleStatusMessage = "";
         }
     }
 
