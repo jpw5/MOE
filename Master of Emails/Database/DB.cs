@@ -14,7 +14,8 @@ namespace Master_of_Emails.Database
         public static SQLiteConnection DatabaseInit()
         {
             DatabaseName = "MOE.db";
-            DatabasePath = Path.Combine(FileSystem.AppDataDirectory, DatabaseName);
+            DatabasePath = "T:\\VBS\\" + DatabaseName;
+            //DatabasePath = Path.Combine(FileSystem.AppDataDirectory, DatabaseName);
             DatabaseConnection = new SQLiteConnection(DatabasePath);
             return DatabaseConnection;
         }

@@ -25,13 +25,16 @@ public partial class ScadaPageViewModel : ObservableObject
     public List<TollPlaza> TollPlaza = new();
 
     [ObservableProperty]
-    public string facilitiesTelecomPersonaleName;
+    public string contact;
     [ObservableProperty]
     public string phoneResult;
     [ObservableProperty]
     public string alternatePhoneResult;
     public TollFacilitiesTelecomRepository TollFacilitiesTelecomRepo = new();
     public TableQuery<TollFacilitiesTelecom> TollFacilitiesTelecomQuery;
+
+    public TollOrganizationRepository TollOrgnizationRepo = new();
+    public TableQuery<TollOrganization> TollOrganizationQuery;
 
     [ObservableProperty]
     public string scadaAlarm;
@@ -71,8 +74,8 @@ public partial class ScadaPageViewModel : ObservableObject
     [RelayCommand]
     public async void ReturnPersonale()
     {
-        TollFacilitiesTelecomQuery = TollFacilitiesTelecomRepo.QueryPersonaleByName
-        (FacilitiesTelecomPersonaleName);
+        TollFacilitiesTelecomQuery = TollFacilitiesTelecomRepo.QueryPersonaleByName(Contact);
+        TollOrganizationQuery = TollOrgnizationRepo.QueryByOrganizationName(Contact);
 
         List<string> PhoneNumber = new();
         List<string> AlternatePhoneNumber = new();
@@ -90,8 +93,22 @@ public partial class ScadaPageViewModel : ObservableObject
                 FullName.Add(facilitiestelecom.Facilities_telecom_name);
                 PhoneResult = "Phone: " + PhoneNumber[0];
                 AlternatePhoneResult = "Alternate: " + AlternatePhoneNumber[0];
-                FacilitiesTelecomPersonaleName = FullName[0];
+                Contact = FullName[0];
 
+            }
+        }
+
+        else if (TollOrganizationQuery.Any())
+        {
+            PhoneNumber.Clear();
+            FullName.Clear();
+
+            foreach (TollOrganization organization in TollOrganizationQuery)
+            {
+                PhoneNumber.Add(organization.Organization_phone_number);
+                FullName.Add(organization.Organization_name);
+                PhoneResult = "Phone: " + PhoneNumber[0];
+                Contact = FullName[0];
             }
         }
 
@@ -110,7 +127,7 @@ public partial class ScadaPageViewModel : ObservableObject
         tollRegionList?.Clear();
         PopulateRegionList();
         tollPlazaList?.Clear();
-        FacilitiesTelecomPersonaleName = "";
+        Contact = "";
         PhoneResult = "";
         AlternatePhoneResult = "";
         ScadaAlarm = "";

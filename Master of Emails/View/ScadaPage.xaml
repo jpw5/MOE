@@ -31,9 +31,9 @@
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
-                    <SearchBar Text="{Binding FacilitiesTelecomPersonaleName}" 
+                    <SearchBar Text="{Binding Contact}" 
                     SearchCommand="{Binding ReturnPersonaleCommand}" TextColor="Black" 
-                    IsTextPredictionEnabled="True" Placeholder="Personale Lookup" CancelButtonColor="Black" 
+                    IsTextPredictionEnabled="True" Placeholder="Lookup" CancelButtonColor="Black" 
                     VerticalOptions="Center" WidthRequest="400"  FontSize="16" 
                     FontAttributes="Bold" FontFamily="ArialBlack"></SearchBar>
 
@@ -54,7 +54,7 @@
 
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Start">
 
-                    <Entry Text="{Binding FacilitiesTelecomPersonaleName}" x:Name="selectContact" 
+                    <Entry Text="{Binding Contact}" x:Name="selectContact" 
                      HorizontalTextAlignment="Start" VerticalTextAlignment="Start" 
                      Placeholder="Enter Contact Name" TextColor="Black" PlaceholderColor="Black" 
                      FontSize="16" FontAttributes="Bold" FontFamily="ArialBlack" WidthRequest="400"></Entry>

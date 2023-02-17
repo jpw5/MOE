@@ -108,6 +108,8 @@ public partial class PriorityOneMafPage : ContentPage
             plazas.Clear();
             technicians.Clear();
 
+
+
             SharedComponents.TollPlazaQueryByRegionName = SharedComponents.TollPlazaRepo.
             QueryByRegionName(selectRegion.Items[selectedIndex]);
 

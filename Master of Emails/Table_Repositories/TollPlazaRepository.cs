@@ -59,7 +59,9 @@ namespace Master_of_Emails.Table_Repositories
         {
             Init();
             PlazaName = PlazaName.ToUpper();
-            return DatabaseConnection.Table<TollPlaza>().Where(value => value.Plaza_name.ToUpper().Contains(PlazaName));
+            return DatabaseConnection.Table<TollPlaza>()
+                .Where(value => value.Plaza_name.ToUpper().Equals(PlazaName))
+                .OrderBy(value=> value.Plaza_id);
 
         }
     }
